@@ -75,10 +75,11 @@ public class Robot extends IterativeRobot {
 		driveTrain = new DriveTrain(frontLeft, backLeft, frontRight, backRight);
 		Log.init("driveTrain initialized!");
 		intake = new Intake(intakeLeft, intakeRight);
+		Log.init("intake initialized!");
 		
-		turner = new SteelTalon(Config.TURNER);
-		tilter = new SteelTalon(Config.TILTER);
-		shooter = new SteelTalon(Config.SHOOTER);
+		turner = new SteelTalon(Config.TURNER_MOTOR);
+		tilter = new SteelTalon(Config.TILTER_MOTOR);
+		shooter = new SteelTalon(Config.SHOOTER_MOTOR);
 		launcher= new Launcher(shooter, turner, tilter);
 		Log.init("launcher initialized!");
 		

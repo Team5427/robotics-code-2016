@@ -27,10 +27,11 @@ public class Config {
 	public static final int BACK_LEFT_MOTOR = 2;
 	public static final int FRONT_RIGHT_MOTOR = 1;
 	public static final int BACK_RIGHT_MOTOR = 3;
+	public static final int TILTER_MOTOR = 4;
+	public static final int TURNER_MOTOR = 5;
+	public static final int SHOOTER_MOTOR = 6;
 	public static final int JOYSTICK_PORT = 0;
-	public static final int TILTER = 4;
-	public static final int TURNER = 5;
-	public static final int SHOOTER = 6;
+	
 	
 	
 	public static final int ALT_JOYSTICK_PORT = 0;
