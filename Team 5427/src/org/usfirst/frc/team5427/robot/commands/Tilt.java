@@ -11,6 +11,7 @@ public class Tilt extends Command {
 	public Tilt() {
         // Use requires() here to declare subsystem dependencies
        requires(Robot.launcher);
+       requires(Robot.driveTrain);
     }
 	
 	// Called just before this Command runs the first time

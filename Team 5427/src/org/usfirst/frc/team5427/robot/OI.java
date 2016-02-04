@@ -23,7 +23,7 @@ public class OI {
     		button5 = new JoystickButton(joy,5),
     		button6 = new JoystickButton(joy,6),
     		button7 = new JoystickButton(joy,7),
-    		button8 = new JoystickButton(joy,8);   		
+    		button8 = new JoystickButton(joy,8);
 
     public OI(){ 
     	toggleIntake.toggleWhenPressed(new intakeControl());
