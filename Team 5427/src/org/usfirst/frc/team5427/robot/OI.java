@@ -33,11 +33,10 @@ public class OI {
     	shoot.toggleWhenPressed(new Shoot());
     	
     }
-    
-    public void toggleIntake(){
-    	
-    }
-    
+    /**
+     * returns the joystick object
+     * @return the joystick
+     */
 	public Joystick getJoy() {
 		return joy;
 	}
@@ -63,7 +62,10 @@ public class OI {
 //		return null;
 //	}
 	
-	
+	/**
+	 * returns the right joystick if using 2
+	 * @return the other joystick
+	 */
 	public Joystick getAltJoy(){
 		return altJoy;
 		

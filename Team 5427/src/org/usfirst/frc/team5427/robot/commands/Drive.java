@@ -8,7 +8,7 @@ import org.usfirst.frc.team5427.robot.util.Config;
 import org.usfirst.frc.team5427.robot.util.Log;
 
 /**
- *
+ * this class constantly inputs the Joystick axis into the driveTrain file, causing the robot to move.
  */
 public class Drive extends Command {
 

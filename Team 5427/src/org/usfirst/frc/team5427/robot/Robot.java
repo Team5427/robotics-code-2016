@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team5427.robot.commands.AutoLaunchBoulder;
 import org.usfirst.frc.team5427.robot.commands.AutoLocateGoal;
 import org.usfirst.frc.team5427.robot.commands.Drive;
-import org.usfirst.frc.team5427.robot.commands.ExampleCommand;
 import org.usfirst.frc.team5427.robot.commands.Turn;
 import org.usfirst.frc.team5427.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5427.robot.subsystems.Intake;
@@ -86,7 +85,7 @@ public class Robot extends IterativeRobot {
 		
 		Log.init("Loading interface...");
 		chooser = new SendableChooser();
-		chooser.addDefault("Default Auto", new ExampleCommand());
+		// chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 		Log.init("Interface loaded!...");

@@ -7,10 +7,10 @@ import org.usfirst.frc.team5427.robot.Robot;
 import org.usfirst.frc.team5427.robot.util.Config;
 
 /**
- *
+ * Tells the intake subsystem to set its speed to the speed defined in Config when run.
  */
 public class intakeControl extends Command {
-
+	
     public intakeControl() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.intake);
