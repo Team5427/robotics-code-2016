@@ -24,7 +24,9 @@ public class OI {
     		button6 = new JoystickButton(joy,6),
     		button7 = new JoystickButton(joy,7),
     		button8 = new JoystickButton(joy,8);
-
+    /**
+     * constructor for the OI class, defines the button-press events.
+     */
     public OI(){ 
     	toggleIntake.toggleWhenPressed(new intakeControl());
     	toTilt.whenPressed(new Tilt());
