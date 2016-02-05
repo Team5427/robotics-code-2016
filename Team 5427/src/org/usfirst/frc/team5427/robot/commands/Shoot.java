@@ -8,6 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class Shoot extends Command {
 
+	/**
+	 * sets the speed of the launching mechanism to the speed defined in the configuration file.
+	 */
 	public Shoot() {
         // Use requires() here to declare subsystem dependencies
        requires(Robot.launcher);

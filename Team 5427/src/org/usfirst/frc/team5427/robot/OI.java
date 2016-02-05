@@ -23,19 +23,20 @@ public class OI {
     		button5 = new JoystickButton(joy,5),
     		button6 = new JoystickButton(joy,6),
     		button7 = new JoystickButton(joy,7),
-    		button8 = new JoystickButton(joy,8);   		
-
+    		button8 = new JoystickButton(joy,8);
+    /**
+     * constructor for the OI class, defines the button-press events.
+     */
     public OI(){ 
     	toggleIntake.toggleWhenPressed(new intakeControl());
     	toTilt.whenPressed(new Tilt());
     	shoot.toggleWhenPressed(new Shoot());
     	
     }
-    
-    public void toggleIntake(){
-    	
-    }
-    
+    /**
+     * returns the joystick object
+     * @return the joystick
+     */
 	public Joystick getJoy() {
 		return joy;
 	}
@@ -61,7 +62,10 @@ public class OI {
 //		return null;
 //	}
 	
-	
+	/**
+	 * returns the right joystick if using 2
+	 * @return the other joystick
+	 */
 	public Joystick getAltJoy(){
 		return altJoy;
 		

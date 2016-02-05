@@ -10,10 +10,8 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team5427.robot.commands.AutoLaunchBoulder;
 import org.usfirst.frc.team5427.robot.commands.AutoLocateGoal;
 import org.usfirst.frc.team5427.robot.commands.Drive;
-import org.usfirst.frc.team5427.robot.commands.ExampleCommand;
 import org.usfirst.frc.team5427.robot.commands.Turn;
 import org.usfirst.frc.team5427.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team5427.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team5427.robot.subsystems.Intake;
 import org.usfirst.frc.team5427.robot.subsystems.Launcher;
 import org.usfirst.frc.team5427.robot.util.Config;
@@ -75,10 +73,11 @@ public class Robot extends IterativeRobot {
 		driveTrain = new DriveTrain(frontLeft, backLeft, frontRight, backRight);
 		Log.init("driveTrain initialized!");
 		intake = new Intake(intakeLeft, intakeRight);
+		Log.init("intake initialized!");
 		
-		turner = new SteelTalon(Config.TURNER);
-		tilter = new SteelTalon(Config.TILTER);
-		shooter = new SteelTalon(Config.SHOOTER);
+		turner = new SteelTalon(Config.TURNER_MOTOR);
+		tilter = new SteelTalon(Config.TILTER_MOTOR);
+		shooter = new SteelTalon(Config.SHOOTER_MOTOR);
 		launcher= new Launcher(shooter, turner, tilter);
 		Log.init("launcher initialized!");
 		
@@ -86,7 +85,7 @@ public class Robot extends IterativeRobot {
 		
 		Log.init("Loading interface...");
 		chooser = new SendableChooser();
-		chooser.addDefault("Default Auto", new ExampleCommand());
+		// chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 		Log.init("Interface loaded!...");

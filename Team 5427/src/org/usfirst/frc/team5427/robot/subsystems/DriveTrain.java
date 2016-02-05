@@ -21,11 +21,16 @@ public class DriveTrain extends Subsystem {
 	SpeedController backRight;
 	
 	
-	
+	/**
+	 * Drivetrain constructor -- as parameters takes each motor to initialise.
+	 * @param frontLeft
+	 * @param backLeft
+	 * @param frontRight
+	 * @param backRight
+	 */
 	public DriveTrain(SpeedController frontLeft, SpeedController backLeft, SpeedController frontRight, 
 			SpeedController backRight)
 	{
-		//Add joystick to contructor later
 		this.frontLeft = frontLeft;
 		this.backLeft = backLeft;
 		this.frontRight = frontRight;
@@ -36,22 +41,36 @@ public class DriveTrain extends Subsystem {
 		
 
 	}
-	
+	/**
+	 * Sets the speed of the left motors on the drive train.
+	 * @param speed - the speed you want to set
+	 */
 	public void setLeftSpeed(double speed){
 		frontLeft.set(speed);
 		backLeft.set(speed);
 	}
+	/**
+	 * Sets the speed of the right motors on the drive train.
+	 * @param speed - the speed you want to set
+	 */
 	public void setRightSpeed(double speed){
 		frontRight.set(speed);
 		backRight.set(speed);
 	}
-	
+	/**
+	 * Sets the speed of all motors to 0
+	 */
 	public void stop()
 	{
 		setLeftSpeed(0);
 		setRightSpeed(0);		
 	}
-	public void driveMath(double joyX, double joyY)
+	/**
+	 * sets the left and right stick in occordance with the joystick inputs for a single joystick
+	 * @param joyX - X axis of joystick
+	 * @param joyY - Y axis of joystick
+	 */
+	public void driveJoystick(double joyX, double joyY)
     {
 	
 			double leftSpeed = (-1*joyY)+joyX;
@@ -69,6 +88,11 @@ public class DriveTrain extends Subsystem {
 		
 		
     }
+	/**
+	 * sets the left and right stick in occordance with the joystick inputs for dual joysticks
+	 * @param y - Y axis of left joystick 
+	 * @param y2 - Y axis of right joystick 
+	 */
 	public void driveDualJoystick(double y, double y2) {
 		
 		double leftSpeed = y;

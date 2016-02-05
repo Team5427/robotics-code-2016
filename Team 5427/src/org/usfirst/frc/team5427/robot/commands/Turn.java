@@ -7,7 +7,9 @@ import org.usfirst.frc.team5427.robot.util.Log;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class Turn extends Command {
-
+	/**
+	 * set the speed of the motor that rotates the launcher in accordance with the joystick twist axis.
+	 */
 	public Turn() {
         // Use requires() here to declare subsystem dependencies
        requires(Robot.launcher);

@@ -8,7 +8,7 @@ import org.usfirst.frc.team5427.robot.util.Config;
 import org.usfirst.frc.team5427.robot.util.Log;
 
 /**
- *
+ * this class constantly inputs the Joystick axis into the driveTrain file, causing the robot to move.
  */
 public class Drive extends Command {
 
@@ -27,7 +27,7 @@ public class Drive extends Command {
 	protected void execute() {
 		if (Robot.oi.getJoy().getRawButton(Config.TO_TILT_BUTTON) == false) {
 			if (Config.JOYSTICK_MODE == Config.ONE_JOYSTICK) {
-				Robot.driveTrain.driveMath(Robot.oi.getJoy().getX(), Robot.oi.getJoy().getY());
+				Robot.driveTrain.driveJoystick(Robot.oi.getJoy().getX(), Robot.oi.getJoy().getY());
 			}
 			if (Config.JOYSTICK_MODE == Config.TWO_JOYSTICKS) {
 				Robot.driveTrain.driveDualJoystick(Robot.oi.getJoy().getY(), Robot.oi.getAltJoy().getY());

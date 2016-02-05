@@ -1,6 +1,12 @@
 package org.usfirst.frc.team5427.robot.util;
 
-
+/**
+ * The log class is used for logging various things to the console, it is a shortcut
+ * to System.out.print, and also allows for sorting your log messages to various things,
+ * allowing some to be filtered out on runtime.
+ * 
+ *
+ */
 @SuppressWarnings(value = { "all" })
 public class Log {
 
