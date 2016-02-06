@@ -39,6 +39,9 @@ public class Config {
 	//OPTIONS
 	public static final double INTAKE_SPEED=0.5;
 	public static final double LAUNCH_SPEED=0.5;
+	
+	//degree speeds
+	public static final double TURNER_SECONDS_PER_DEGREE=.1;
 
 
 	}

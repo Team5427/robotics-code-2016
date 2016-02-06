@@ -6,11 +6,13 @@ import org.usfirst.frc.team5427.robot.util.Log;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class Turn extends Command {
+public class Programmed_Turn extends Command {
 	/**
 	 * set the speed of the motor that rotates the launcher in accordance with the joystick twist axis.
 	 */
-	public Turn() {
+	double degrees;
+	
+	public Programmed_Turn() {
         // Use requires() here to declare subsystem dependencies
        requires(Robot.launcher);
     }
@@ -24,14 +26,12 @@ public class Turn extends Command {
     
     protected void execute() {
     	//sets the speed of the turning motor
-    	if(Robot.oi.getJoy().getTwist()<0)
-    	{
-    		Robot.launcher.setTurnSpeed(Config.TURNER_SECONDS_PER_DEGREE);
-    	}
-    	else if(Robot.oi.getJoy().getTwist()>0)
-    	{
-    		Robot.launcher.setTurnSpeed(-1*Config.TURNER_SECONDS_PER_DEGREE);
-    	}
+    	
+    }
+    
+    public void setDegrees(double degrees)
+    {
+    	this.degrees=degrees;
     }
 
     // Make this return true when this Command no longer needs to run execute()
