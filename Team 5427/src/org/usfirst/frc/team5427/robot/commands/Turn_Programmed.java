@@ -6,29 +6,32 @@ import org.usfirst.frc.team5427.robot.util.Log;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class Tilt extends Command {
+public class Turn_Programmed extends Command {
+	private double degrees;
 	/**
-	 * sets the speed of the tilting mechanism in accordance with the Y axis of the joystick.
+	 * set the speed of the motor that rotates the launcher in accordance with the joystick twist axis.
 	 */
-	public Tilt() {
+	public Turn_Programmed(double degrees) {
         // Use requires() here to declare subsystem dependencies
        requires(Robot.launcher);
-       requires(Robot.driveTrain);
+       super.setTimeout(Math.abs(degrees*Config.TURNER_SECONDS_PER_DEGREE));
+       this.degrees=degrees;
     }
 	
 	// Called just before this Command runs the first time
 	protected void initialize() {
-        Log.info("initialized tilter");
+        Log.info("initialized ProgrammedTurner");
     }
 	
 // Called repeatedly when this Command is scheduled to run
     
     protected void execute() {
-    	//sets the speed of the turning motor
-    	if(Robot.oi.getJoy().getY()>0)
-    		Robot.launcher.setTiltSpeed(-1*Config.TILT_SPEED);
-    	if(Robot.oi.getJoy().getY()<0)
-    		Robot.launcher.setTiltSpeed(Config.TILT_SPEED);
+    	//sets the speed of the turning motor MANUALLY
+    	if(degrees<0)
+    		Robot.launcher.setTurnSpeed(-1*Config.TURN_SPEED);
+    	else if(degrees>0)
+    		Robot.launcher.setTurnSpeed(Config.TURN_SPEED);
+    		
     }
 
     // Make this return true when this Command no longer needs to run execute()
