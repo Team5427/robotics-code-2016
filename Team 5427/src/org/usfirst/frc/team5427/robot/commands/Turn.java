@@ -23,15 +23,23 @@ public class Turn extends Command {
 // Called repeatedly when this Command is scheduled to run
     
     protected void execute() {
-    	//sets the speed of the turning motor
+
+//    	//sets the speed of the turning motor
+//    	if(Robot.oi.getJoy().getTwist()<0)
+//    	{
+//    		Robot.launcher.setTurnSpeed(Config.TURNER_SECONDS_PER_DEGREE);
+//    	}
+//    	else if(Robot.oi.getJoy().getTwist()>0)
+//    	{
+//    		Robot.launcher.setTurnSpeed(-1*Config.TURNER_SECONDS_PER_DEGREE);
+//    	}
+
+    	//sets the speed of the turning motor MANUALLY
     	if(Robot.oi.getJoy().getTwist()<0)
-    	{
-    		Robot.launcher.setTurnSpeed(Config.TURNER_SECONDS_PER_DEGREE);
-    	}
+    		Robot.launcher.setTurnSpeed(-1*Config.TURN_SPEED);
     	else if(Robot.oi.getJoy().getTwist()>0)
-    	{
-    		Robot.launcher.setTurnSpeed(-1*Config.TURNER_SECONDS_PER_DEGREE);
-    	}
+    		Robot.launcher.setTurnSpeed(-1*Config.TURN_SPEED);
+
     }
 
     // Make this return true when this Command no longer needs to run execute()

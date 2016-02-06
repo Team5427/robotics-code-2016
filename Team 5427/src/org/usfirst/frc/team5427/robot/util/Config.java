@@ -43,5 +43,9 @@ public class Config {
 	//degree speeds
 	public static final double TURNER_SECONDS_PER_DEGREE=.1;
 
-
+	//other{Turn/Tild Speed inverse}
+	public static final double TURNER_SECONDS_PER_DEGREE=.1;
+	public static final double TURN_SPEED=.1;
+	public static final double TILTER_SECONDS_PER_DEGREE=.1;
+	public static final double TILT_SPEED=.1;
 	}
