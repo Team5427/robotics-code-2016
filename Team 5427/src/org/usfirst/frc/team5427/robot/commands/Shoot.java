@@ -14,6 +14,7 @@ public class Shoot extends Command {
 	public Shoot() {
         // Use requires() here to declare subsystem dependencies
        requires(Robot.launcher);
+       super.setTimeout(Config.SHOOTER_SECONDS);
     }
 	
 	// Called just before this Command runs the first time

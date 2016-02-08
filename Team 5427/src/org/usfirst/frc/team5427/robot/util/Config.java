@@ -48,4 +48,7 @@ public class Config {
 	public static final double TURN_SPEED=.1;
 	public static final double TILTER_SECONDS_PER_DEGREE=.1;
 	public static final double TILT_SPEED=.1;
+	
+	//Shooter time run
+	public static final int SHOOTER_SECONDS;
 	}
