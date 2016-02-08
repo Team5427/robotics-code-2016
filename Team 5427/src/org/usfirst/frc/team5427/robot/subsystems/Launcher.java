@@ -1,5 +1,8 @@
 package org.usfirst.frc.team5427.robot.subsystems;
 
+import org.usfirst.frc.team5427.robot.Robot;
+import org.usfirst.frc.team5427.robot.util.Config;
+
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -51,6 +54,21 @@ public class Launcher extends Subsystem{
 	{
 		turner.set(speed);
 	}
+	
+	
+	public void moveTurnerDegrees(double degrees)
+	{
+		//for a certain number of seconds
+		double numSeconds=Math.abs(degrees*Config.TURNER_SECONDS_PER_DEGREE);
+//		if(degrees<0)
+//			turner.set(degrees*Config.TURNER_SECONDS_PER_DEGREE);
+//		else if(0==degrees)
+//			turner.set(0);
+//		else
+//			turner.set(degrees*Config.TURNER_SECONDS_PER_DEGREE);
+			
+	}
+	
 	/**
 	 * sets the speed of the tilting motors to the specified speed.
 	 * @param speed

@@ -39,6 +39,16 @@ public class Config {
 	//OPTIONS
 	public static final double INTAKE_SPEED=0.5;
 	public static final double LAUNCH_SPEED=0.5;
+	
+	//degree speeds
+	public static final double TURNER_SECONDS_PER_DEGREE=.1;
 
-
+	//other{Turn/Tild Speed inverse}
+	public static final double TURNER_SECONDS_PER_DEGREE=.1;
+	public static final double TURN_SPEED=.1;
+	public static final double TILTER_SECONDS_PER_DEGREE=.1;
+	public static final double TILT_SPEED=.1;
+	
+	//Shooter time run
+	public static final int SHOOTER_SECONDS;
 	}
