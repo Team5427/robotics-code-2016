@@ -49,6 +49,9 @@ public class Robot extends IterativeRobot {
 	public static Intake intake;
 	public static Launcher launcher;
 	public static OI oi;
+	
+	double turnDegrees;
+	double tiltDegrees;
 
 	// Command autonomousCommand; TODO delete this line upon completion
 	SendableChooser chooser;
@@ -119,6 +122,10 @@ public class Robot extends IterativeRobot {
 	 */
 	public void autonomousInit() {
 		Log.info("Autonomous Start!~");
+		
+		turnDegrees = 0;
+		tiltDegrees = 0;
+		
 		AutoLocateGoal autoLocateGoal = new AutoLocateGoal();
 		autoLocateGoal.start();
 		// autonomousCommand = (Command) chooser.getSelected(); TODO delete this
