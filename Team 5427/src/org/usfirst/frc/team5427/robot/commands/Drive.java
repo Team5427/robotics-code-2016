@@ -24,6 +24,7 @@ public class Drive extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 
+	@SuppressWarnings("all")
 	protected void execute() {
 		if (Robot.oi.getJoy().getRawButton(Config.TO_TILT_BUTTON) == false) {
 			if (Config.JOYSTICK_MODE == Config.ONE_JOYSTICK) {
