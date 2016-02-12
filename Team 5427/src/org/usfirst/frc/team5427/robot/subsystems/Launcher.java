@@ -46,6 +46,16 @@ public class Launcher extends Subsystem{
 		
 	}
 	
+	public void stopTurn(){
+		setTurnSpeed(0);
+	}
+	public void stopTilt(){
+		setTiltSpeed(0);
+	}
+	public void stopShoot(){
+		setShootSpeed(0);
+	}
+	
 	/**
 	 * sets the speed of the turning motors to the specified speed.
 	 * @param speed

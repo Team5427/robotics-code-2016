@@ -11,6 +11,7 @@ public class Turn_Programmed extends Command {
 	Config config;
 	/**
 	 * set the speed of the motor that rotates the launcher in accordance with the joystick twist axis.
+	 *@param targetDegrees - the degree value to reach before stopping command.
 	 */
 	public Turn_Programmed(double targetDegrees) {
         // Use requires() here to declare subsystem dependencies
@@ -20,6 +21,9 @@ public class Turn_Programmed extends Command {
     }
 	
 	// Called just before this Command runs the first time
+	/**
+	 * sets the speed of the tilt to tilt the correct direction. the tilt is stopped when the command ends.
+	 */
 	protected void initialize() {
         Log.info("initialized ProgrammedTurner");
         if(getDegrees()-targetDegrees<0)
@@ -31,8 +35,6 @@ public class Turn_Programmed extends Command {
 	// Called repeatedly when this Command is scheduled to run
     
     protected void execute() {
-    	//sets the speed of the turning motor MANUALLY
-    	
     		
     }
 
@@ -46,7 +48,7 @@ public class Turn_Programmed extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.launcher.stop();
+    	Robot.launcher.stopTurn();
     }
 
     // Called when another command which requires one or more of the same

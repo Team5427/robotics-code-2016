@@ -7,10 +7,12 @@ import org.usfirst.frc.team5427.robot.util.Log;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class Tilt_Programmed extends Command {
+	private double targetDegrees;
 	/**
 	 * sets the speed of the tilting mechanism in accordance with the Y axis of the joystick.
+	 * @param targetDegrees - the degree value to reach before stopping command.
 	 */
-	private double targetDegrees;
+	
 	public Tilt_Programmed(double targetDegrees) {
         // Use requires() here to declare subsystem dependencies
        requires(Robot.launcher);
@@ -20,6 +22,9 @@ public class Tilt_Programmed extends Command {
     }
 	
 	// Called just before this Command runs the first time
+	/**
+	 * sets the speed of the tilt to tilt the correct direction. the tilt is stopped when the command ends.
+	 */
 	protected void initialize() {
         Log.info("initialized tilter");
         if(getDegrees()-targetDegrees<0)
@@ -31,8 +36,7 @@ public class Tilt_Programmed extends Command {
 // Called repeatedly when this Command is scheduled to run
     
     protected void execute() {
-    	//sets the speed of the turning motor
-    	
+   	
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -45,7 +49,7 @@ public class Tilt_Programmed extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.launcher.stop();
+    	Robot.launcher.stopTilt();
     }
 
     // Called when another command which requires one or more of the same

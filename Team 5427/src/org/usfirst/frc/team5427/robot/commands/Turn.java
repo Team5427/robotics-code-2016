@@ -35,10 +35,10 @@ public class Turn extends Command {
 //    	}
 
     	//sets the speed of the turning motor MANUALLY
-    	if(Robot.oi.getJoy().getTwist()<0)
+    	if(Robot.oi.getJoy().getTwist()<-.2)
     		Robot.launcher.setTurnSpeed(-1*Config.TURN_SPEED);
-    	else if(Robot.oi.getJoy().getTwist()>0)
-    		Robot.launcher.setTurnSpeed(-1*Config.TURN_SPEED);
+    	else if(Robot.oi.getJoy().getTwist()>.2)
+    		Robot.launcher.setTurnSpeed(Config.TURN_SPEED);
 
     }
 
@@ -49,7 +49,7 @@ public class Turn extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.launcher.stop();
+    	Robot.launcher.stopTurn();
     }
 
     // Called when another command which requires one or more of the same

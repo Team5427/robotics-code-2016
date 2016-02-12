@@ -25,20 +25,23 @@ public class Tilt extends Command {
     
     protected void execute() {
     	//sets the speed of the turning motor
-    	if(Robot.oi.getJoy().getY()>0)
+    	if(Robot.oi.getJoy().getY()<-.2)
     		Robot.launcher.setTiltSpeed(-1*Config.TILT_SPEED);
-    	if(Robot.oi.getJoy().getY()<0)
+    	if(Robot.oi.getJoy().getY()>.2)
     		Robot.launcher.setTiltSpeed(Config.TILT_SPEED);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+    	if(Robot.oi.getJoy().getRawButton(Config.TO_TILT_BUTTON) == false){
+    		return true;
+    	}
         return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.launcher.stop();
+    	Robot.launcher.stopTilt();
     }
 
     // Called when another command which requires one or more of the same

@@ -56,12 +56,14 @@ public class Config {
 	
 	public static double getTilt() {
 		// TODO get tilt degrees from encoder
-		return -1;
+		double tilt = -1;
+		return tilt;
 	}
 	
 	public static double getTurn() {
 		//TODO get turn degrees from encoder
-		return -1;
+		double turn = -1;
+		return turn;
 	}
 	
 	
