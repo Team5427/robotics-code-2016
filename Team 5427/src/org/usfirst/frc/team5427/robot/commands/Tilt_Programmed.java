@@ -10,33 +10,37 @@ public class Tilt_Programmed extends Command {
 	/**
 	 * sets the speed of the tilting mechanism in accordance with the Y axis of the joystick.
 	 */
-	private double degrees;
-	public Tilt_Programmed(double degrees) {
+	private double targetDegrees;
+	public Tilt_Programmed(double targetDegrees) {
         // Use requires() here to declare subsystem dependencies
        requires(Robot.launcher);
        requires(Robot.driveTrain);
-       super.setTimeout(Math.abs(degrees*Config.TILTER_SECONDS_PER_DEGREE));
-       this.degrees=degrees;
+       this.targetDegrees=targetDegrees;
+       initialize();
     }
 	
 	// Called just before this Command runs the first time
 	protected void initialize() {
         Log.info("initialized tilter");
+        if(getDegrees()-targetDegrees<0)
+    		Robot.launcher.setTiltSpeed(-1*Config.TILT_SPEED);
+    	else if(getDegrees()-targetDegrees>0)
+    		Robot.launcher.setTiltSpeed(Config.TILT_SPEED);
     }
 	
 // Called repeatedly when this Command is scheduled to run
     
     protected void execute() {
     	//sets the speed of the turning motor
-    	if(degrees<0)
-    		Robot.launcher.setTiltSpeed(-1*Config.TILT_SPEED);
-    	if(degrees>0)
-    		Robot.launcher.setTiltSpeed(Config.TILT_SPEED);
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+    	if(getDegrees()-targetDegrees==0){
+    		return true;
+    	}
+    	return false;
     }
 
     // Called once after isFinished returns true
@@ -48,6 +52,10 @@ public class Tilt_Programmed extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
     	end();
+    }
+    
+    protected double getDegrees(){
+    	return Config.getTilt();
     }
 
 }

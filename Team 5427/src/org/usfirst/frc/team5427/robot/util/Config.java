@@ -50,4 +50,20 @@ public class Config {
 	
 	//Shooter time run
 	public static final int SHOOTER_SECONDS=500;
+	
+	
+	//MEASUREMENTS
+	
+	public static double getTilt() {
+		// TODO get tilt degrees from encoder
+		return -1;
+	}
+	
+	public static double getTurn() {
+		//TODO get turn degrees from encoder
+		return -1;
+	}
+	
+	
+	
 	}
