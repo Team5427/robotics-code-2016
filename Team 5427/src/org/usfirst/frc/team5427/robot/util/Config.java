@@ -30,6 +30,8 @@ public class Config {
 	public static final int TILTER_MOTOR = 4;
 	public static final int TURNER_MOTOR = 5;
 	public static final int SHOOTER_MOTOR = 6;
+	public static final int WINCH_LEFT_MOTOR = 7;
+	public static final int WINCH_RIGHT_MOTOR = 8;
 	public static final int JOYSTICK_PORT = 0;
 	
 	
@@ -39,6 +41,7 @@ public class Config {
 	//OPTIONS
 	public static final double INTAKE_SPEED=0.5;
 	public static final double LAUNCH_SPEED=0.5;
+	public static final double WINCH_SPEED=0.5;
 	
 	//degree speeds
 	public static final double TURNER_SECONDS_PER_DEGREE=.1;

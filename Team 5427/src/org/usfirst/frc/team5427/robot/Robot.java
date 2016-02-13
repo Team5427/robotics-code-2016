@@ -10,10 +10,12 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team5427.robot.commands.AutoLaunchBoulder;
 import org.usfirst.frc.team5427.robot.commands.AutoLocateGoal;
 import org.usfirst.frc.team5427.robot.commands.Drive;
+import org.usfirst.frc.team5427.robot.commands.ExampleCommand;
 import org.usfirst.frc.team5427.robot.commands.Turn;
 import org.usfirst.frc.team5427.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5427.robot.subsystems.Intake;
 import org.usfirst.frc.team5427.robot.subsystems.Launcher;
+import org.usfirst.frc.team5427.robot.subsystems.Winch;
 import org.usfirst.frc.team5427.robot.util.Config;
 import org.usfirst.frc.team5427.robot.util.Log;
 
@@ -41,6 +43,9 @@ public class Robot extends IterativeRobot {
 	static SpeedController shooter;
 	static SpeedController tilter;
 	static SpeedController turner;
+	
+	static SpeedController winchLeft;
+	static SpeedController winchRight;
 
 	static SpeedController intakeLeft;
 	static SpeedController intakeRight;
@@ -48,6 +53,7 @@ public class Robot extends IterativeRobot {
 	public static DriveTrain driveTrain;
 	public static Intake intake;
 	public static Launcher launcher;
+	public static Winch winch;
 	public static OI oi;
 	
 	double turnDegrees;
@@ -83,6 +89,11 @@ public class Robot extends IterativeRobot {
 		shooter = new SteelTalon(Config.SHOOTER_MOTOR);
 		launcher= new Launcher(shooter, turner, tilter);
 		Log.init("launcher initialized!");
+		
+		winchLeft = new SteelTalon(Config.WINCH_LEFT_MOTOR);
+		winchRight = new SteelTalon(Config.WINCH_RIGHT_MOTOR);
+		winch = new Winch(winchLeft,winchRight);
+		Log.init("winch initialized!");
 		
 		Log.init("All subsystems ready!");
 		
