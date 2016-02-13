@@ -22,7 +22,7 @@ public class DriveTrain extends Subsystem {
 	
 	
 	/**
-	 * Drivetrain constructor -- as parameters takes each motor to initialise.
+	 * Drivetrain constructor -- as parameters takes each motor to initialize.
 	 * @param frontLeft
 	 * @param backLeft
 	 * @param frontRight

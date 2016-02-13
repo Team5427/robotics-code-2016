@@ -58,8 +58,7 @@ public class Robot extends IterativeRobot {
 	
 	double turnDegrees;
 	double tiltDegrees;
-
-	// Command autonomousCommand; TODO delete this line upon completion
+	
 	SendableChooser chooser;
 
 	/**
@@ -99,12 +98,13 @@ public class Robot extends IterativeRobot {
 		
 		Log.init("Loading interface...");
 		chooser = new SendableChooser();
-		// chooser.addDefault("Default Auto", new ExampleCommand());
-		// chooser.addObject("My Auto", new MyAutoCommand());
+		
 		SmartDashboard.putData("Auto mode", chooser);
 		Log.init("Interface loaded!...");
 
 		Log.init("All systems ready!");
+		// chooser.addDefault("Default Auto", new ExampleCommand());
+		// chooser.addObject("My Auto", new MyAutoCommand());
 	}
 
 	/**
@@ -139,7 +139,7 @@ public class Robot extends IterativeRobot {
 		
 		AutoLocateGoal autoLocateGoal = new AutoLocateGoal();
 		autoLocateGoal.start();
-		// autonomousCommand = (Command) chooser.getSelected(); TODO delete this
+		// autonomousCommand = (Command) chooser.getSelected();
 		// line upon completion
 
 		/*
@@ -149,9 +149,8 @@ public class Robot extends IterativeRobot {
 		 * autonomousCommand = new ExampleCommand(); break; }
 		 */
 
-		// schedule the autonomous command (example)
-		// if (autonomousCommand != null) autonomousCommand.start(); TODO delete
-		// this line upon completion
+		// schedule the autonomous command (example) 
+		// if (autonomousCommand != null) autonomousCommand.start();
 	}
 
 	/**
@@ -172,8 +171,7 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		// if (autonomousCommand != null) autonomousCommand.cancel(); TODO
-		// delete this line upon completion
+		// if (autonomousCommand != null) autonomousCommand.cancel();
 	}
 
 	/**
