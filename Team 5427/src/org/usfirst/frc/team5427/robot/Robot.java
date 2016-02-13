@@ -1,12 +1,6 @@
 
 package org.usfirst.frc.team5427.robot;
 
-import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-
 import org.usfirst.frc.team5427.robot.commands.AutoLaunchBoulder;
 import org.usfirst.frc.team5427.robot.commands.AutoLocateGoal;
 import org.usfirst.frc.team5427.robot.commands.Drive;
@@ -14,9 +8,14 @@ import org.usfirst.frc.team5427.robot.commands.Turn;
 import org.usfirst.frc.team5427.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5427.robot.subsystems.Intake;
 import org.usfirst.frc.team5427.robot.subsystems.Launcher;
+import org.usfirst.frc.team5427.robot.subsystems.Winch;
 import org.usfirst.frc.team5427.robot.util.Config;
 import org.usfirst.frc.team5427.robot.util.Log;
 
+import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -41,16 +40,20 @@ public class Robot extends IterativeRobot {
 	static SpeedController shooter;
 	static SpeedController tilter;
 	static SpeedController turner;
-
+	
+	static SpeedController winchLeft;
+	static SpeedController winchRight;
+	
 	static SpeedController intakeLeft;
 	static SpeedController intakeRight;
 	
 	public static DriveTrain driveTrain;
 	public static Intake intake;
 	public static Launcher launcher;
+	public static Winch winch;
 	public static OI oi;
 
-	// Command autonomousCommand; TODO delete this line upon completion
+	// Command autonomousCommand; TODO delete this line upon completion.
 	SendableChooser chooser;
 
 	/**
@@ -81,11 +84,16 @@ public class Robot extends IterativeRobot {
 		launcher= new Launcher(shooter, turner, tilter);
 		Log.init("launcher initialized!");
 		
+		winchLeft = new SteelTalon(Config.WINCH_LEFT_MOTOR);
+		winchRight = new SteelTalon(Config.WINCH_RIGHT_MOTOR);
+		winch = new Winch(winchLeft,winchRight);
+		Log.init("winch initialized!");
+		
 		Log.init("All subsystems ready!");
 		
 		Log.init("Loading interface...");
 		chooser = new SendableChooser();
-		// chooser.addDefault("Default Auto", new ExampleCommand());
+		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 		Log.init("Interface loaded!...");
