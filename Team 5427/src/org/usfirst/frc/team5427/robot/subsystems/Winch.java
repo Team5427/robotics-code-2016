@@ -3,7 +3,8 @@ package org.usfirst.frc.team5427.robot.subsystems;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Winch extends Subsystem{
+public class Winch extends Subsystem
+{
 	
 	SpeedController winchLeft;
 	SpeedController winchRight;

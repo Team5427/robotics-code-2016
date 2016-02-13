@@ -20,6 +20,8 @@ public class Config {
 	public static final int TOGGLE_INTAKE_BUTTON = 2;
 	public static final int TO_TILT_BUTTON=8;
 	public static final int SHOOTER_BUTTON=1;
+	public static final int WINCH_UP_BUTTON=3;
+	public static final int WINCH_DOWN_BUTTON=4;
 	
 	
 	//PORTS FOR VARIOUS THINGS

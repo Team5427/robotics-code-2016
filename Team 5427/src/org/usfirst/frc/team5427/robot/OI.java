@@ -18,14 +18,20 @@ public class OI {
 	Joystick altJoy = new Joystick(Config.ALT_JOYSTICK_PORT);
     Button toggleIntake = new JoystickButton(joy, Config.TOGGLE_INTAKE_BUTTON),
     		toTilt = new JoystickButton(joy,Config.TO_TILT_BUTTON),
-    		shoot = new JoystickButton(joy,Config.SHOOTER_BUTTON);
+    		shoot = new JoystickButton(joy,Config.SHOOTER_BUTTON),
+    		winchDown=new JoystickButton(joy,Config.WINCH_DOWN_BUTTON),
+    		winchUp=new JoystickButton(joy,Config.WINCH_UP_BUTTON);
+    		
     /**
      * constructor for the OI class, defines the button-press events.
      */
     public OI(){ 
     	toggleIntake.toggleWhenPressed(new intakeControl());
     	toTilt.whenPressed(new Tilt());
-    	shoot.toggleWhenPressed(new Shoot());
+    	shoot.whenPressed(new Shoot());
+    	winchUp.whenPressed(new Scale());
+    	winchDown.whenPressed(new PullUp());
+    	
     	
     }
     /**
