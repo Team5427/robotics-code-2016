@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5427.robot;
 
+import org.usfirst.frc.team5427.robot.commands.PullUp;
+import org.usfirst.frc.team5427.robot.commands.Scale;
 import org.usfirst.frc.team5427.robot.commands.Shoot;
 import org.usfirst.frc.team5427.robot.commands.Tilt;
 import org.usfirst.frc.team5427.robot.commands.intakeControl;
