@@ -28,12 +28,12 @@ public class OI {
      * constructor for the OI class, defines the button-press events.
      */
     public OI(){ 
-    	toggleIntake.toggleWhenPressed(new intakeControl());
-    	toTilt.whenPressed(new Tilt());
-    	shoot.whenPressed(new Shoot());
-    	winchUp.whenPressed(new Scale());
-    	winchDown.whenPressed(new PullUp());
-    	
+//    	toggleIntake.toggleWhenPressed(new intakeControl());
+//    	toTilt.whenPressed(new Tilt());
+//    	shoot.whenPressed(new Shoot());
+//    	winchUp.whenPressed(new Scale());
+//    	winchDown.whenPressed(new PullUp());
+//    	
     	
     }
     /**

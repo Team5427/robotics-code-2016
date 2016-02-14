@@ -25,9 +25,9 @@ public class Tilt extends Command {
     
     protected void execute() {
     	//sets the speed of the turning motor
-    	if(Robot.oi.getJoy().getY()<-.2)
+    	if(Robot.oi.getJoy().getThrottle()<-.2)
     		Robot.launcher.setTiltSpeed(-1*Config.TILT_SPEED);
-    	if(Robot.oi.getJoy().getY()>.2)
+    	if(Robot.oi.getJoy().getThrottle()>.2)
     		Robot.launcher.setTiltSpeed(Config.TILT_SPEED);
     }
 

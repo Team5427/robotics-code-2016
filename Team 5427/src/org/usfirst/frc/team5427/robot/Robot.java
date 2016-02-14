@@ -79,20 +79,20 @@ public class Robot extends IterativeRobot {
 		frontLeft = new SteelTalon(Config.FRONT_LEFT_MOTOR);
 		driveTrain = new DriveTrain(frontLeft, backLeft, frontRight, backRight);
 		Log.init("driveTrain initialized!");
-		intake = new Intake(intakeLeft, intakeRight);
-		Log.init("intake initialized!");
-		
-		turner = new SteelTalon(Config.TURNER_MOTOR);
-		tilter = new SteelTalon(Config.TILTER_MOTOR);
-		shooter = new SteelTalon(Config.SHOOTER_MOTOR);
-		launcher= new Launcher(shooter, turner, tilter);
-		Log.init("launcher initialized!");
-		
-		winchLeft = new SteelTalon(Config.WINCH_LEFT_MOTOR);
-		winchRight = new SteelTalon(Config.WINCH_RIGHT_MOTOR);
-		winch = new Winch(winchLeft,winchRight);
-		Log.init("winch initialized!");
-		
+//		intake = new Intake(intakeLeft, intakeRight);
+//		Log.init("intake initialized!");
+//		
+//		turner = new SteelTalon(Config.TURNER_MOTOR);
+//		tilter = new SteelTalon(Config.TILTER_MOTOR);
+//		shooter = new SteelTalon(Config.SHOOTER_MOTOR);
+//		launcher= new Launcher(shooter, turner, tilter);
+//		Log.init("launcher initialized!");
+//		
+//		winchLeft = new SteelTalon(Config.WINCH_LEFT_MOTOR);
+//		winchRight = new SteelTalon(Config.WINCH_RIGHT_MOTOR);
+//		winch = new Winch(winchLeft,winchRight);
+//		Log.init("winch initialized!");
+//		
 		Log.init("All subsystems ready!");
 		
 		Log.init("Loading interface...");
@@ -136,8 +136,8 @@ public class Robot extends IterativeRobot {
 		turnDegrees = 0;
 		tiltDegrees = 0;
 		
-		AutoLocateGoal autoLocateGoal = new AutoLocateGoal();
-		autoLocateGoal.start();
+		//AutoLocateGoal autoLocateGoal = new AutoLocateGoal();
+		//autoLocateGoal.start();
 		// autonomousCommand = (Command) chooser.getSelected();
 		// line upon completion
 
@@ -164,8 +164,8 @@ public class Robot extends IterativeRobot {
 		drive = new Drive();
 		drive.start();
 		
-		turn=new Turn();
-		turn.start();
+		//turn=new Turn();
+		//turn.start();
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
