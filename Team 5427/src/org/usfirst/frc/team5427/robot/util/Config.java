@@ -1,8 +1,5 @@
 package org.usfirst.frc.team5427.robot.util;
 
-import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.Joystick;
-
 public class Config {
 	//MISC
 	public static final String NAME = "Team5427RoboCode";
@@ -23,7 +20,6 @@ public class Config {
 	public static final int WINCH_UP_BUTTON=3;
 	public static final int WINCH_DOWN_BUTTON=4;
 	
-	
 	//PORTS FOR VARIOUS THINGS
 	public static final int FRONT_LEFT_MOTOR = 0;
 	public static final int BACK_LEFT_MOTOR = 1;
@@ -32,11 +28,10 @@ public class Config {
 	public static final int TILTER_MOTOR = 4;
 	public static final int TURNER_MOTOR = 5;
 	public static final int SHOOTER_MOTOR = 6;
+
 	public static final int WINCH_LEFT_MOTOR = 7;//Will be 4 & 5
 	public static final int WINCH_RIGHT_MOTOR = 8;
 	public static final int JOYSTICK_PORT = 0;
-	
-	
 	
 	public static final int ALT_JOYSTICK_PORT = 0;
 	
@@ -73,4 +68,5 @@ public class Config {
 	
 	
 	
+
 	}
