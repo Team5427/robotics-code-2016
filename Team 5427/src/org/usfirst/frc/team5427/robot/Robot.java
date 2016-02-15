@@ -1,12 +1,6 @@
 
 package org.usfirst.frc.team5427.robot;
 
-import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-
 import org.usfirst.frc.team5427.robot.commands.AutoLaunchBoulder;
 import org.usfirst.frc.team5427.robot.commands.AutoLocateGoal;
 import org.usfirst.frc.team5427.robot.commands.Drive;
@@ -18,6 +12,10 @@ import org.usfirst.frc.team5427.robot.subsystems.Winch;
 import org.usfirst.frc.team5427.robot.util.Config;
 import org.usfirst.frc.team5427.robot.util.Log;
 
+import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -79,6 +77,7 @@ public class Robot extends IterativeRobot {
 		frontLeft = new SteelTalon(Config.FRONT_LEFT_MOTOR);
 		driveTrain = new DriveTrain(frontLeft, backLeft, frontRight, backRight);
 		Log.init("driveTrain initialized!");
+
 //		intake = new Intake(intakeLeft, intakeRight);
 //		Log.init("intake initialized!");
 //		
@@ -92,12 +91,12 @@ public class Robot extends IterativeRobot {
 //		winchRight = new SteelTalon(Config.WINCH_RIGHT_MOTOR);
 //		winch = new Winch(winchLeft,winchRight);
 //		Log.init("winch initialized!");
-//		
+
 		Log.init("All subsystems ready!");
 		
 		Log.init("Loading interface...");
 		chooser = new SendableChooser();
-		
+
 		SmartDashboard.putData("Auto mode", chooser);
 		Log.init("Interface loaded!...");
 
