@@ -6,11 +6,11 @@ import org.usfirst.frc.team5427.robot.util.Log;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class Tilt extends Command {
+public class UserControlledTilt extends Command {
 	/**
 	 * sets the speed of the tilting mechanism in accordance with the Y axis of the joystick.
 	 */
-	public Tilt() {
+	public UserControlledTilt() {
         // Use requires() here to declare subsystem dependencies
        requires(Robot.launcher);
        requires(Robot.driveTrain);
