@@ -29,7 +29,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
-	Drive drive;
+	static Drive drive;
 	UserControlledTurn turn;
 	AutoLaunchBoulder autoLaunchBoulder;
 	
