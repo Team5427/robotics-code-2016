@@ -29,8 +29,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
-	static Drive drive;
-	UserControlledTurn turn;
+	 Drive drive;
+	//UserControlledTurn turn;
 	AutoLaunchBoulder autoLaunchBoulder;
 	
 	static SpeedController frontLeft;
@@ -173,7 +173,7 @@ public class Robot extends IterativeRobot {
 		drive.start();
 		
 		//turn=new Turn();
-		//turn.start();
+		//turn.start();//this stuff is in OI, so I'm commenting out the turn at the top
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
