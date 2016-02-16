@@ -17,20 +17,24 @@ public class Config {
 	public static final int TOGGLE_INTAKE_BUTTON = 2;
 	public static final int TO_TILT_BUTTON=8;
 	public static final int SHOOTER_BUTTON=1;
-	public static final int WINCH_UP_BUTTON=3;
-	public static final int WINCH_DOWN_BUTTON=4;
+	public static final int SCISSOR_UP_BUTTON=3;
+	public static final int SCISSOR_DOWN_BUTTON=4;
+	public static final int WINCH_BUTTON=5;
 	
 	//PORTS FOR VARIOUS THINGS
 	public static final int FRONT_LEFT_MOTOR = 0;
 	public static final int BACK_LEFT_MOTOR = 1;
 	public static final int FRONT_RIGHT_MOTOR = 2;
 	public static final int BACK_RIGHT_MOTOR = 3;
-	public static final int TILTER_MOTOR = 4;
-	public static final int TURNER_MOTOR = 5;
-	public static final int SHOOTER_MOTOR = 6;
+	public static final int TILTER_MOTOR = 6;
+	public static final int TURNER_MOTOR = 7;
+	public static final int SHOOTER_MOTOR = 8;
 
-	public static final int WINCH_LEFT_MOTOR = 7;//Will be 4 & 5
-	public static final int WINCH_RIGHT_MOTOR = 8;
+	public static final int WINCH_LEFT_MOTOR = 4;//Will be 4 & 5
+	public static final int WINCH_RIGHT_MOTOR = 5;
+	
+	public static final int SCISSOR_MOTOR=9;
+	
 	public static final int JOYSTICK_PORT = 0;
 	
 	public static final int ALT_JOYSTICK_PORT = 0;
@@ -39,6 +43,7 @@ public class Config {
 	public static final double INTAKE_SPEED=0.5;
 	public static final double LAUNCH_SPEED=0.5;
 	public static final double WINCH_SPEED=0.5;
+	public static final double SCISSOR_SPEED=0.5;
 	
 	//degree speeds
 	public static final double TURNER_SECONDS_PER_DEGREE=.1;

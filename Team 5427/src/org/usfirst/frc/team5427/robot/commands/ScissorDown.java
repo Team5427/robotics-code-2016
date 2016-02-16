@@ -6,12 +6,12 @@ import org.usfirst.frc.team5427.robot.util.Log;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class PullUp extends Command{
+public class ScissorDown extends Command{
 	
-	public PullUp()
+	public ScissorDown()
 	{
-		requires(Robot.winch);
-		super.setTimeout(.1);
+		requires(Robot.scissorLift);
+		//super.setTimeout(.1);
 	}
 
 	// Called just before this Command runs the first time
@@ -24,7 +24,7 @@ public class PullUp extends Command{
 		//if(Robot.oi.getJoy().getButton(button))
 		//Robot.winch.setSpeed(Config.WINCH_SPEED);
 		//latches onto bar
-		Robot.winch.setSpeed(Config.WINCH_SPEED*-1);
+		Robot.scissorLift.setSpeed(Config.SCISSOR_SPEED*-1);
 	}
 
     // Make this return true when this Command no longer needs to run execute()

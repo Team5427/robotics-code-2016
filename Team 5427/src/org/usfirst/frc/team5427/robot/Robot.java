@@ -8,6 +8,7 @@ import org.usfirst.frc.team5427.robot.commands.UserControlledTurn;
 import org.usfirst.frc.team5427.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5427.robot.subsystems.Intake;
 import org.usfirst.frc.team5427.robot.subsystems.Launcher;
+import org.usfirst.frc.team5427.robot.subsystems.ScissorLift;
 import org.usfirst.frc.team5427.robot.subsystems.Winch;
 import org.usfirst.frc.team5427.robot.util.Config;
 import org.usfirst.frc.team5427.robot.util.Log;
@@ -47,10 +48,13 @@ public class Robot extends IterativeRobot {
 	static SpeedController intakeLeft;
 	static SpeedController intakeRight;
 	
+	static SpeedController scissor;
+	
 	public static DriveTrain driveTrain;
 	public static Intake intake;
 	public static Launcher launcher;
 	public static Winch winch;
+	public static ScissorLift scissorLift;
 	public static OI oi;
 	
 	double turnDegrees;
@@ -91,7 +95,12 @@ public class Robot extends IterativeRobot {
 //		winchRight = new SteelTalon(Config.WINCH_RIGHT_MOTOR);
 //		winch = new Winch(winchLeft,winchRight);
 //		Log.init("winch initialized!");
-
+//
+//		scissor=new SteelTalon(Config.SCISSOR_MOTOR);
+//		scissorLift=new ScissorLift(scissor);
+//		Log.init("scissorLift initialized!");
+//
+		
 		Log.init("All subsystems ready!");
 		
 		Log.init("Loading interface...");

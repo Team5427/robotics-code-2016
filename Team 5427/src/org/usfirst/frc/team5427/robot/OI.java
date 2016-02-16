@@ -1,10 +1,12 @@
 package org.usfirst.frc.team5427.robot;
 
-import org.usfirst.frc.team5427.robot.commands.PullUp;
+import org.usfirst.frc.team5427.robot.commands.ScissorUp;
 import org.usfirst.frc.team5427.robot.commands.Scale;
+import org.usfirst.frc.team5427.robot.commands.ScissorDown;
 import org.usfirst.frc.team5427.robot.commands.Shoot;
 import org.usfirst.frc.team5427.robot.commands.UserControlledTilt;
 import org.usfirst.frc.team5427.robot.commands.intakeControl;
+import org.usfirst.frc.team5427.robot.subsystems.Winch;
 import org.usfirst.frc.team5427.robot.util.Config;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -21,19 +23,22 @@ public class OI {
     Button toggleIntake = new JoystickButton(joy, Config.TOGGLE_INTAKE_BUTTON),
     		toTilt = new JoystickButton(joy,Config.TO_TILT_BUTTON),
     		shoot = new JoystickButton(joy,Config.SHOOTER_BUTTON),
-    		winchDown=new JoystickButton(joy,Config.WINCH_DOWN_BUTTON),
-    		winchUp=new JoystickButton(joy,Config.WINCH_UP_BUTTON);
+    		scissorDown=new JoystickButton(joy,Config.SCISSOR_DOWN_BUTTON),
+    		scissorUp=new JoystickButton(joy,Config.SCISSOR_UP_BUTTON),
+    		winch= new JoystickButton(joy,Config.WINCH_BUTTON);
     		
     /**
      * constructor for the OI class, defines the button-press events.
      */
     public OI(){ 
-//    	toggleIntake.toggleWhenPressed(new intakeControl());
-//    	toTilt.whenPressed(new Tilt());
-//    	shoot.whenPressed(new Shoot());
-//    	winchUp.whenPressed(new Scale());
-//    	winchDown.whenPressed(new PullUp());
-//    	
+    	toggleIntake.toggleWhenPressed(new intakeControl());
+    	toTilt.whenPressed(new UserControlledTilt());
+    	shoot.whenPressed(new Shoot());
+    	scissorUp.whenPressed(new ScissorUp());
+    	scissorDown.whenPressed(new ScissorDown());
+    	scissorDown.whenPressed(new ScissorDown());
+    	winch.whenPressed(new Scale());
+    	
     	
     }
     /**
