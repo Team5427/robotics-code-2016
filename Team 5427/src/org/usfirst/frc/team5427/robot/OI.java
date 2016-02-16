@@ -35,18 +35,18 @@ public class OI {
      * constructor for the OI class, defines the button-press events.
      */
     public OI(){ 
-    	toggleIntake.toggleWhenPressed(new intakeControl());
+    	//toggleIntake.toggleWhenPressed(new intakeControl());
     	toTurret.cancelWhenPressed(Robot.drive);
-    	toTurret.whenPressed(UCTilt=new UserControlledTilt());
-    	toTurret.whenPressed(UCTurn=new UserControlledTurn());
+    	//toTurret.whenPressed(UCTilt=new UserControlledTilt());
+    	//toTurret.whenPressed(UCTurn=new UserControlledTurn());
     	toTurret.whenReleased(Robot.drive=new Drive());
     	//toTurret.whenReleased(UCTilt.end());
     	//toTurret.whenReleased(UCTurn.end());
-    	shoot.whenPressed(new Shoot());
-    	scissorUp.whenPressed(new ScissorUp());
-    	scissorDown.whenPressed(new ScissorDown());
-    	scissorDown.whenPressed(new ScissorDown());
-    	winch.whenPressed(new Scale());
+    	//shoot.whenPressed(new Shoot());
+    	//scissorUp.whenPressed(new ScissorUp());
+    	//scissorDown.whenPressed(new ScissorDown());
+    	//scissorDown.whenPressed(new ScissorDown());
+    	//winch.whenPressed(new Scale());
     	
     	
     }
