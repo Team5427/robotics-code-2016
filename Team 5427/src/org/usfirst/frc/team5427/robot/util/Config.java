@@ -20,6 +20,7 @@ public class Config {
 	public static final int SCISSOR_UP_BUTTON=3;
 	public static final int SCISSOR_DOWN_BUTTON=4;
 	public static final int WINCH_BUTTON=5;
+	public static final int ULTRASONIC_BUTTON=11;
 	
 	//PORTS FOR VARIOUS THINGS
 	public static final int FRONT_LEFT_MOTOR = 0;

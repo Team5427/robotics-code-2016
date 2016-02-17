@@ -10,6 +10,7 @@ import org.usfirst.frc.team5427.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5427.robot.subsystems.Intake;
 import org.usfirst.frc.team5427.robot.subsystems.Launcher;
 import org.usfirst.frc.team5427.robot.subsystems.ScissorLift;
+import org.usfirst.frc.team5427.robot.subsystems.SteelUltrasonic;
 import org.usfirst.frc.team5427.robot.subsystems.Winch;
 import org.usfirst.frc.team5427.robot.util.Config;
 import org.usfirst.frc.team5427.robot.util.Log;
@@ -59,13 +60,13 @@ public class Robot extends IterativeRobot {
 	public static Winch winch;
 	public static ScissorLift scissorLift;
 	public static OI oi;
+	public static SteelUltrasonic steelUltrasonic;
 	
 	double turnDegrees;
 	double tiltDegrees;
 	
 	SendableChooser chooser;
-	//makes the  ultrasonic sensor
-	Ultrasonic mySonic;
+
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -77,17 +78,17 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		Log.init("Operator interface initialized!");
 		
-		Log.init("Robot initializing Ultrasonic");
-		mySonic=new Ultrasonic(Config.SONIC_PORT_TRIG,Config.SONIC_PORT_ECHO);
-		/*Log.init(mySonic.toString());
-		Log.init(mySonic.wait(timeout););
-		Log.init(mySonic.toString());
-		Log.init(mySonic.toString());*/
 		
-		Log.init("Ultrasonic initialized!");
 		
 		Log.init("Robot initializing subsystems...");
 		
+		steelUltrasonic=new SteelUltrasonic(new Ultrasonic(Config.SONIC_PORT_TRIG,Config.SONIC_PORT_ECHO));
+		/*Log.debug(mySonic.toString());
+		Log.debug(mySonic.wait(timeout););
+		Log.debug(mySonic.toString());
+		Log.debug(mySonic.toString());*/
+		
+		Log.init("Ultrasonic initialized!");
 		backRight = new SteelTalon(Config.BACK_RIGHT_MOTOR);
 		frontRight = new SteelTalon(Config.FRONT_RIGHT_MOTOR);
 		backLeft = new SteelTalon(Config.BACK_LEFT_MOTOR);
@@ -160,7 +161,6 @@ public class Robot extends IterativeRobot {
 		//AutoLocateGoal autoLocateGoal = new AutoLocateGoal();
 		//autoLocateGoal.start();
 		// autonomousCommand = (Command) chooser.getSelected();
-		// line upon completion
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -188,21 +188,7 @@ public class Robot extends IterativeRobot {
 		//the below code makes the sensor print the distance in inches if the 
 		//joystick is titled.  if() can be removed, but will then infinitely print text
 		//if(oi.getJoy().getX()!=0)
-		Log.init("Distance Time!");
-			
-		while(true)	
-		{
-			//logs values when button 11 pressed
-			if(oi.getJoy().getRawButton(11))
-			{
-				
-				Log.init("Distance in Inches"+mySonic.getRangeInches());
-			}
-			
-		}
-		
-		//turn=new Turn();
-		//turn.start();//this stuff is in OI, so I'm commenting out the turn at the top
+	
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
@@ -215,7 +201,6 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		//if(oi.get)
 
 	}
 

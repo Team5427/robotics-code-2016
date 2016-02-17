@@ -5,6 +5,7 @@ import org.usfirst.frc.team5427.robot.commands.Drive;
 import org.usfirst.frc.team5427.robot.commands.Scale;
 import org.usfirst.frc.team5427.robot.commands.ScissorDown;
 import org.usfirst.frc.team5427.robot.commands.Shoot;
+import org.usfirst.frc.team5427.robot.commands.UltrasonicLog;
 import org.usfirst.frc.team5427.robot.commands.UserControlledTilt;
 import org.usfirst.frc.team5427.robot.commands.UserControlledTurn;
 import org.usfirst.frc.team5427.robot.commands.intakeControl;
@@ -27,7 +28,8 @@ public class OI {
     		shoot = new JoystickButton(joy,Config.SHOOTER_BUTTON),
     		scissorDown=new JoystickButton(joy,Config.SCISSOR_DOWN_BUTTON),
     		scissorUp=new JoystickButton(joy,Config.SCISSOR_UP_BUTTON),
-    		winch= new JoystickButton(joy,Config.WINCH_BUTTON);
+    		winch= new JoystickButton(joy,Config.WINCH_BUTTON),
+    		ultrasonic = new JoystickButton(joy,Config.ULTRASONIC_BUTTON);
    UserControlledTilt UCTilt;
    UserControlledTurn UCTurn;
     		
@@ -47,6 +49,7 @@ public class OI {
     	//scissorDown.whenPressed(new ScissorDown());
     	//scissorDown.whenPressed(new ScissorDown());
     	//winch.whenPressed(new Scale());
+    	ultrasonic.whenPressed(new UltrasonicLog());
     	
     	
     }
