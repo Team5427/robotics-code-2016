@@ -35,8 +35,8 @@ public class Config {
 	
 	public static final int SCISSOR_MOTOR=9;
 	
-	public static final int SONIC_PORT_TRIG=0;
-	public static final int SONIC_PORT_ECHO=1;
+	public static final int SONIC_PORT_TRIG=1;
+	public static final int SONIC_PORT_ECHO=0;
 	
 	public static final int JOYSTICK_PORT = 0;
 	

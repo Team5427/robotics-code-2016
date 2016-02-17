@@ -4,6 +4,7 @@ package org.usfirst.frc.team5427.robot;
 import org.usfirst.frc.team5427.robot.commands.AutoLaunchBoulder;
 import org.usfirst.frc.team5427.robot.commands.AutoLocateGoal;
 import org.usfirst.frc.team5427.robot.commands.Drive;
+
 import org.usfirst.frc.team5427.robot.commands.UserControlledTurn;
 import org.usfirst.frc.team5427.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5427.robot.subsystems.Intake;
@@ -31,6 +32,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 
 	 Drive drive;
+	 
 	//UserControlledTurn turn;
 	AutoLaunchBoulder autoLaunchBoulder;
 	
@@ -77,6 +79,11 @@ public class Robot extends IterativeRobot {
 		
 		Log.init("Robot initializing Ultrasonic");
 		mySonic=new Ultrasonic(Config.SONIC_PORT_TRIG,Config.SONIC_PORT_ECHO);
+		/*Log.init(mySonic.toString());
+		Log.init(mySonic.wait(timeout););
+		Log.init(mySonic.toString());
+		Log.init(mySonic.toString());*/
+		
 		Log.init("Ultrasonic initialized!");
 		
 		Log.init("Robot initializing subsystems...");
@@ -180,8 +187,19 @@ public class Robot extends IterativeRobot {
 		
 		//the below code makes the sensor print the distance in inches if the 
 		//joystick is titled.  if() can be removed, but will then infinitely print text
-		if(oi.getJoy().getX()!=0)
-			Log.init("Distance"+mySonic.getRangeInches());
+		//if(oi.getJoy().getX()!=0)
+		Log.init("Distance Time!");
+			
+		while(true)	
+		{
+			//logs values when button 11 pressed
+			if(oi.getJoy().getRawButton(11))
+			{
+				
+				Log.init("DistanceMM"+mySonic.getRangeInches());
+			}
+			
+		}
 		
 		//turn=new Turn();
 		//turn.start();//this stuff is in OI, so I'm commenting out the turn at the top
@@ -207,4 +225,7 @@ public class Robot extends IterativeRobot {
 	public void testPeriodic() {
 		LiveWindow.run();
 	}
+	
+	//returns the Ultrasonic sensor
+	
 }
