@@ -15,6 +15,7 @@ import org.usfirst.frc.team5427.robot.util.Log;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -61,6 +62,8 @@ public class Robot extends IterativeRobot {
 	double tiltDegrees;
 	
 	SendableChooser chooser;
+	//makes the  ultrasonic sensor
+	Ultrasonic mySonic;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -72,6 +75,9 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		Log.init("Operator interface initialized!");
 		
+		Log.init("Robot initializing Ultrasonic");
+		mySonic=new Ultrasonic(Config.SONIC_PORT_TRIG,Config.SONIC_PORT_ECHO);
+		Log.init("Ultrasonic initialized!");
 		
 		Log.init("Robot initializing subsystems...");
 		
@@ -171,6 +177,11 @@ public class Robot extends IterativeRobot {
 		Log.info("Teleop Start!~");
 		drive = new Drive();
 		drive.start();
+		
+		//the below code makes the sensor print the distance in inches if the 
+		//joystick is titled.  if() can be removed, but will then infinitely print text
+		if(oi.getJoy().getX()!=0)
+			Log.init("Distance"+mySonic.getRangeInches());
 		
 		//turn=new Turn();
 		//turn.start();//this stuff is in OI, so I'm commenting out the turn at the top
