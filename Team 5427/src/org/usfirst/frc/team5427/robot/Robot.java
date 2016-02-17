@@ -196,7 +196,7 @@ public class Robot extends IterativeRobot {
 			if(oi.getJoy().getRawButton(11))
 			{
 				
-				Log.init("DistanceMM"+mySonic.getRangeInches());
+				Log.init("Distance in Inches"+mySonic.getRangeInches());
 			}
 			
 		}
