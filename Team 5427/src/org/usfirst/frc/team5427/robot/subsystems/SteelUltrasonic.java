@@ -16,4 +16,8 @@ public class SteelUltrasonic extends Subsystem {
 	public double getUltrasonicRangeInches(){
 		return u.getRangeInches();
 	}
+	
+	public void ping()
+	{u.ping();}
+	}
 }

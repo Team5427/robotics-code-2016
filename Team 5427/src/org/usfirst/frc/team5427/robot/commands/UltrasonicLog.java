@@ -16,6 +16,7 @@ public class UltrasonicLog extends Command{
 	@Override
 	protected void execute() {
 		
+		Robot.steelUltrasonic.ping();
 		Log.init("Distance in Inches"+Robot.steelUltrasonic.getUltrasonicRangeInches());
 	}
 
