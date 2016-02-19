@@ -62,6 +62,8 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static SteelUltrasonic steelUltrasonic;
 	
+	Ultrasonic mySonic;
+	
 	double turnDegrees;
 	double tiltDegrees;
 	
@@ -83,12 +85,13 @@ public class Robot extends IterativeRobot {
 		Log.init("Robot initializing subsystems...");
 		
 		steelUltrasonic=new SteelUltrasonic(new Ultrasonic(Config.SONIC_PORT_TRIG,Config.SONIC_PORT_ECHO));
+		mySonic=new Ultrasonic(Config.SONIC_PORT_TRIG,Config.SONIC_PORT_ECHO);
 		/*Log.debug(mySonic.toString());
 		Log.debug(mySonic.wait(timeout););
 		Log.debug(mySonic.toString());
 		Log.debug(mySonic.toString());*/
-		
 		Log.init("Ultrasonic initialized!");
+		
 		backRight = new SteelTalon(Config.BACK_RIGHT_MOTOR);
 		frontRight = new SteelTalon(Config.FRONT_RIGHT_MOTOR);
 		backLeft = new SteelTalon(Config.BACK_LEFT_MOTOR);
@@ -187,6 +190,14 @@ public class Robot extends IterativeRobot {
 		
 		//the below code makes the sensor print the distance in inches if the 
 		//joystick is titled.  if() can be removed, but will then infinitely print text
+		while(true)
+		{
+			if(oi.getJoy().getRawButton(11))
+			{
+				mySonic.ping();
+				Log.init("Dist "+mySonic.getRangeInches());
+			}
+		}
 		//if(oi.getJoy().getX()!=0)
 	
 		// This makes sure that the autonomous stops running when

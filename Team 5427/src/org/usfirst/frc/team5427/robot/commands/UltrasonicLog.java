@@ -7,17 +7,25 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class UltrasonicLog extends Command{
 
+	public UltrasonicLog()
+	{
+		requires(Robot.steelUltrasonic);
+	}
+	
 	@Override
 	protected void initialize() {
 		
-		requires(Robot.steelUltrasonic);
+		
 	}
 
 	@Override
 	protected void execute() {
 		
-		Robot.steelUltrasonic.ping();
-		Log.init("Distance in Inches"+Robot.steelUltrasonic.getUltrasonicRangeInches());
+		if(Robot.oi.getJoy().getRawButton(11))
+		{
+			//Robot.steelUltrasonic.ping();
+			//Log.init("Distance in Inches"+Robot.steelUltrasonic.getUltrasonicRangeInches());
+		}
 	}
 
 	@Override
