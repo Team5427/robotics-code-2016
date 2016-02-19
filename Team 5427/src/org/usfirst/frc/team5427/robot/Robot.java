@@ -15,6 +15,8 @@ import org.usfirst.frc.team5427.robot.subsystems.Winch;
 import org.usfirst.frc.team5427.robot.util.Config;
 import org.usfirst.frc.team5427.robot.util.Log;
 
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Ultrasonic;
@@ -84,8 +86,8 @@ public class Robot extends IterativeRobot {
 		
 		Log.init("Robot initializing subsystems...");
 		
-		steelUltrasonic=new SteelUltrasonic(new Ultrasonic(Config.SONIC_PORT_TRIG,Config.SONIC_PORT_ECHO));
-		mySonic=new Ultrasonic(Config.SONIC_PORT_TRIG,Config.SONIC_PORT_ECHO);
+		//steelUltrasonic=new SteelUltrasonic(new Ultrasonic(Config.SONIC_PORT_TRIG,Config.SONIC_PORT_ECHO));
+		mySonic=new Ultrasonic(new DigitalOutput(Config.SONIC_PORT_TRIG),new DigitalInput(Config.SONIC_PORT_ECHO));
 		/*Log.debug(mySonic.toString());
 		Log.debug(mySonic.wait(timeout););
 		Log.debug(mySonic.toString());
@@ -190,13 +192,20 @@ public class Robot extends IterativeRobot {
 		
 		//the below code makes the sensor print the distance in inches if the 
 		//joystick is titled.  if() can be removed, but will then infinitely print text
+		//mySonic.addNotify();
+		
+		mySonic.setEnabled(true);
+		mySonic.setAutomaticMode(true);
 		while(true)
 		{
 			if(oi.getJoy().getRawButton(11))
 			{
-				mySonic.ping();
+				
+				//mySonic.ping();
+				
 				Log.init("Dist "+mySonic.getRangeInches());
 			}
+			
 		}
 		//if(oi.getJoy().getX()!=0)
 	

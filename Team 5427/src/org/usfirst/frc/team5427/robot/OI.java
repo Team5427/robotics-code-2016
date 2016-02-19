@@ -5,7 +5,7 @@ import org.usfirst.frc.team5427.robot.commands.Drive;
 import org.usfirst.frc.team5427.robot.commands.Scale;
 import org.usfirst.frc.team5427.robot.commands.ScissorDown;
 import org.usfirst.frc.team5427.robot.commands.Shoot;
-import org.usfirst.frc.team5427.robot.commands.UltrasonicLog;
+//import org.usfirst.frc.team5427.robot.commands.UltrasonicLog;
 import org.usfirst.frc.team5427.robot.commands.UserControlledTilt;
 import org.usfirst.frc.team5427.robot.commands.UserControlledTurn;
 import org.usfirst.frc.team5427.robot.commands.intakeControl;
@@ -49,7 +49,7 @@ public class OI {
     	//scissorDown.whenPressed(new ScissorDown());
     	//scissorDown.whenPressed(new ScissorDown());
     	//winch.whenPressed(new Scale());
-    	ultrasonic.whenPressed(new UltrasonicLog());
+    	//ultrasonic.whenPressed(new UltrasonicLog());
     	
     	
     }
