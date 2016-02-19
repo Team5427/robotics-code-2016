@@ -36,6 +36,9 @@ public class Robot extends IterativeRobot {
 
 	 Drive drive;
 	 
+	 //stores distance in inches from the object
+	 private double distanceInInches;
+	 
 	//UserControlledTurn turn;
 	AutoLaunchBoulder autoLaunchBoulder;
 	
@@ -198,15 +201,20 @@ public class Robot extends IterativeRobot {
 		mySonic.setAutomaticMode(true);
 		while(true)
 		{
-			if(oi.getJoy().getRawButton(11))
-			{
-				
-				//mySonic.ping();
-				
-				Log.init("Dist "+mySonic.getRangeInches());
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				Log.init("Error Sleeping in getDistance");
 			}
-			
+			if(Math.abs(distanceInInches-mySonic.getRangeInches())>1000);
+			else				
+				distanceInInches=mySonic.getRangeInches();
+			Log.init("Dist "+mySonic.getRangeInches());			
 		}
+		
+		
 		//if(oi.getJoy().getX()!=0)
 	
 		// This makes sure that the autonomous stops running when
