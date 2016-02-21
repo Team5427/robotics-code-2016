@@ -13,11 +13,11 @@ import org.usfirst.frc.team5427.robot.util.Log;
  */
 public class SonicDist extends Command {
 	
-	Ultrasonic mySonic;
+	//Ultrasonic mySonic;
 
-	public SonicDist(Ultrasonic mySonic) {
+	public SonicDist() {
 		// Use requires() here to declare subsystem dependencies
-		this.mySonic=mySonic;
+		//this.mySonic=mySonic;
 	}
 
 	
@@ -31,23 +31,26 @@ public class SonicDist extends Command {
 
 	@SuppressWarnings("all")
 	protected void execute() {
-		if(Math.abs(Robot.getDistance()-mySonic.getRangeInches())>500);
+		if(Math.abs(Robot.getDistance()-Robot.mySonic.getRangeInches())>500);
 		else				
-			Robot.distanceInInches=(mySonic.getRangeInches());
-		Log.init("Dist "+Robot.getDistance());	
+			Robot.distanceInInches=(Robot.mySonic.getRangeInches());
+		Log.init("Dist1 "+Robot.getDistance());	
+		if(Math.abs(Robot.getDistance()-Robot.mySonic.getRangeInches())>50);
+		else				
+			Robot.distanceInInches=(Robot.mySonic.getRangeInches());
+		Log.init("Dist2 "+Robot.getDistance());	
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return false;
+		if(Robot.oi.getJoy().getRawButton(1))
+				return false;
+		return true;
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
-//		if(Math.abs(Robot.getDistance()-mySonic.getRangeInches())>500);
-//		else				
-//			Robot.distanceInInches=(mySonic.getRangeInches());
-//		Log.init("Dist "+Robot.getDistance());	
+		this.cancel();
 	}
 
 	// Called when another command which requires one or more of the same

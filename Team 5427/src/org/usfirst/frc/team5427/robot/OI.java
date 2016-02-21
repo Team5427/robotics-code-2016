@@ -5,6 +5,7 @@ import org.usfirst.frc.team5427.robot.commands.Drive;
 import org.usfirst.frc.team5427.robot.commands.Scale;
 import org.usfirst.frc.team5427.robot.commands.ScissorDown;
 import org.usfirst.frc.team5427.robot.commands.Shoot;
+import org.usfirst.frc.team5427.robot.commands.SonicDist;
 //import org.usfirst.frc.team5427.robot.commands.UltrasonicLog;
 import org.usfirst.frc.team5427.robot.commands.UserControlledTilt;
 import org.usfirst.frc.team5427.robot.commands.UserControlledTurn;
@@ -45,6 +46,7 @@ public class OI {
     	//toTurret.whenReleased(UCTilt.end());
     	//toTurret.whenReleased(UCTurn.end());
     	//shoot.whenPressed(new Shoot());
+    	shoot.whenPressed(new SonicDist());
     	//scissorUp.whenPressed(new ScissorUp());
     	//scissorDown.whenPressed(new ScissorDown());
     	//scissorDown.whenPressed(new ScissorDown());

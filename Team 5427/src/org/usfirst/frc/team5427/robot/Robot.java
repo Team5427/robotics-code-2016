@@ -73,41 +73,41 @@ public class Robot extends IterativeRobot {
 //		
 //	};
 	
-	Ultrasonic mySonic;
+	public static Ultrasonic mySonic;
 	
 	double turnDegrees;
 	double tiltDegrees;
 	
 	SendableChooser chooser;
-	Runnable sonicRunnable = new Runnable(){
-
-		@Override
-		public void run() {
-			//the below code logs the distance in inches every .25 seconds.  THe 
-			//distanceInInches only changes if the difference between old and new is <500, else it 
-			//stays the same.  THis is to prevent unwanted glitching
-			
-			mySonic.setEnabled(true);
-			mySonic.setAutomaticMode(true);
-
-			while(true)
-			{
-				try {
-					Thread.sleep(250);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					Log.init("Error Sleeping in getDistance");
-				}
-				if(Math.abs(distanceInInches-mySonic.getRangeInches())>500);
-				else				
-					distanceInInches=mySonic.getRangeInches();
-				Log.init("Dist "+distanceInInches);			
-			}
-			
-		}
-	
-	};
+//	Runnable sonicRunnable = new Runnable(){
+//
+//		@Override
+//		public void run() {
+//			//the below code logs the distance in inches every .25 seconds.  THe 
+//			//distanceInInches only changes if the difference between old and new is <500, else it 
+//			//stays the same.  THis is to prevent unwanted glitching
+//			
+//			mySonic.setEnabled(true);
+//			mySonic.setAutomaticMode(true);
+//
+//			while(true)
+//			{
+//				try {
+//					Thread.sleep(250);
+//				} catch (InterruptedException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//					Log.init("Error Sleeping in getDistance");
+//				}
+//				if(Math.abs(distanceInInches-mySonic.getRangeInches())>500);
+//				else				
+//					distanceInInches=mySonic.getRangeInches();
+//				Log.init("Dist "+distanceInInches);			
+//			}
+//			
+//		}
+//	
+//	};
 
 
 	/**
@@ -229,11 +229,12 @@ public class Robot extends IterativeRobot {
 		drive.start();
 		
 		
-<<<<<<< HEAD
+//<<<<<<< HEAD
 		mySonic.setEnabled(true);
 		mySonic.setAutomaticMode(true);
-		sonicDist=new SonicDist(mySonic);
-		sonicDist.start();
+		sonicDist=new SonicDist();
+		
+		//sonicDist.start();
 		
 	//		try {
 //				//Thread.sleep(250);
@@ -244,10 +245,10 @@ public class Robot extends IterativeRobot {
 //			}
 					
 	//	}
-=======
-		ultrasonicThread = new Thread(sonicRunnable);
-		ultrasonicThread.start();
->>>>>>> b26600fa0664d27722fce56f42b3826c953eb8de
+//=======
+		//ultrasonicThread = new Thread(sonicRunnable);
+		//ultrasonicThread.start();
+//>>>>>>> b26600fa0664d27722fce56f42b3826c953eb8de
 		
 		
 		//if(oi.getJoy().getX()!=0)
