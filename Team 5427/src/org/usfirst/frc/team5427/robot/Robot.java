@@ -4,7 +4,7 @@ package org.usfirst.frc.team5427.robot;
 import org.usfirst.frc.team5427.robot.commands.AutoLaunchBoulder;
 import org.usfirst.frc.team5427.robot.commands.AutoLocateGoal;
 import org.usfirst.frc.team5427.robot.commands.Drive;
-
+import org.usfirst.frc.team5427.robot.commands.SonicDist;
 import org.usfirst.frc.team5427.robot.commands.UserControlledTurn;
 import org.usfirst.frc.team5427.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5427.robot.subsystems.Intake;
@@ -35,9 +35,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 
 	 Drive drive;
-	 
+	 SonicDist sonicDist;
 	 //stores distance in inches from the object
-	 private double distanceInInches;
+	 public static double distanceInInches;
 	 
 	//UserControlledTurn turn;
 	AutoLaunchBoulder autoLaunchBoulder;
@@ -66,6 +66,10 @@ public class Robot extends IterativeRobot {
 	public static ScissorLift scissorLift;
 	public static OI oi;
 	public static SteelUltrasonic steelUltrasonic;
+	
+//	public static Thread t = new Thread(new Runnable(){
+//		
+//	};
 	
 	Ultrasonic mySonic;
 	
@@ -199,20 +203,18 @@ public class Robot extends IterativeRobot {
 		
 		mySonic.setEnabled(true);
 		mySonic.setAutomaticMode(true);
-		while(true)
-		{
-			try {
-				Thread.sleep(250);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				Log.init("Error Sleeping in getDistance");
-			}
-			if(Math.abs(distanceInInches-mySonic.getRangeInches())>500);
-			else				
-				distanceInInches=mySonic.getRangeInches();
-			Log.init("Dist "+distanceInInches);			
-		}
+		sonicDist=new SonicDist(mySonic);
+		sonicDist.start();
+		
+	//		try {
+//				//Thread.sleep(250);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//				Log.init("Error Sleeping in getDistance");
+//			}
+					
+	//	}
 		
 		
 		//if(oi.getJoy().getX()!=0)
@@ -238,6 +240,11 @@ public class Robot extends IterativeRobot {
 	public void testPeriodic() {
 		LiveWindow.run();
 	}
+	
+	public static double getDistance()
+	{return distanceInInches;}
+	
+	
 	
 	//returns the Ultrasonic sensor
 	
