@@ -4,8 +4,10 @@ package org.usfirst.frc.team5427.robot;
 import org.usfirst.frc.team5427.robot.commands.AutoLaunchBoulder;
 import org.usfirst.frc.team5427.robot.commands.AutoLocateGoal;
 import org.usfirst.frc.team5427.robot.commands.Drive;
+import org.usfirst.frc.team5427.robot.commands.GetStuffIn;
 import org.usfirst.frc.team5427.robot.commands.SonicDist;
 import org.usfirst.frc.team5427.robot.commands.UserControlledTurn;
+import org.usfirst.frc.team5427.robot.subsystems.BringInEr;
 import org.usfirst.frc.team5427.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5427.robot.subsystems.Intake;
 import org.usfirst.frc.team5427.robot.subsystems.Launcher;
@@ -18,6 +20,7 @@ import org.usfirst.frc.team5427.robot.util.Log;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -38,6 +41,8 @@ public class Robot extends IterativeRobot {
 	
 	 Drive drive;
 	 SonicDist sonicDist;
+	 //new intake system
+	 //public static GetStuffIn getStuff;
 	 //stores distance in inches from the object
 	 public static double distanceInInches;
 	 
@@ -61,6 +66,8 @@ public class Robot extends IterativeRobot {
 	
 	static SpeedController scissor;
 	
+	static Relay getBoulderIn;
+	
 	public static DriveTrain driveTrain;
 	public static Intake intake;
 	public static Launcher launcher;
@@ -68,6 +75,7 @@ public class Robot extends IterativeRobot {
 	public static ScissorLift scissorLift;
 	public static OI oi;
 	public static SteelUltrasonic steelUltrasonic;
+	public static BringInEr intaker;
 	
 //	public static Thread t = new Thread(new Runnable(){
 //		
@@ -139,6 +147,9 @@ public class Robot extends IterativeRobot {
 		driveTrain = new DriveTrain(frontLeft, backLeft, frontRight, backRight);
 		Log.init("driveTrain initialized!");
 
+		getBoulderIn=new Relay(Config.RELAY_PORT, Relay.Direction.kReverse);
+		intaker=new BringInEr(getBoulderIn);
+		Log.init("Intaker initialized");
 //		intake = new Intake(intakeLeft, intakeRight);
 //		Log.init("intake initialized!");
 //		

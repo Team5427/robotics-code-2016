@@ -2,10 +2,12 @@ package org.usfirst.frc.team5427.robot;
 
 import org.usfirst.frc.team5427.robot.commands.ScissorUp;
 import org.usfirst.frc.team5427.robot.commands.Drive;
+import org.usfirst.frc.team5427.robot.commands.GetStuffIn;
 import org.usfirst.frc.team5427.robot.commands.Scale;
 import org.usfirst.frc.team5427.robot.commands.ScissorDown;
 import org.usfirst.frc.team5427.robot.commands.Shoot;
 import org.usfirst.frc.team5427.robot.commands.SonicDist;
+import org.usfirst.frc.team5427.robot.commands.StopStuff;
 //import org.usfirst.frc.team5427.robot.commands.UltrasonicLog;
 import org.usfirst.frc.team5427.robot.commands.UserControlledTilt;
 import org.usfirst.frc.team5427.robot.commands.UserControlledTurn;
@@ -25,6 +27,7 @@ public class OI {
 	Joystick joy = new Joystick(Config.JOYSTICK_PORT);
 	Joystick altJoy = new Joystick(Config.ALT_JOYSTICK_PORT);
     Button toggleIntake = new JoystickButton(joy, Config.TOGGLE_INTAKE_BUTTON),
+    		intaker = new JoystickButton(joy, Config.NEW_INTAKE_BUTTON),
     		toTurret = new JoystickButton(joy,Config.TO_TURRET_BUTTON),
     		shoot = new JoystickButton(joy,Config.SHOOTER_BUTTON),
     		scissorDown=new JoystickButton(joy,Config.SCISSOR_DOWN_BUTTON),
@@ -47,6 +50,8 @@ public class OI {
     	//toTurret.whenReleased(UCTurn.end());
     	//shoot.whenPressed(new Shoot());
     	ultrasonic.whenPressed(new SonicDist());
+    	intaker.whenPressed(new GetStuffIn());
+    	intaker.whenReleased( new StopStuff());
     	//scissorUp.whenPressed(new ScissorUp());
     	//scissorDown.whenPressed(new ScissorDown());
     	//scissorDown.whenPressed(new ScissorDown());

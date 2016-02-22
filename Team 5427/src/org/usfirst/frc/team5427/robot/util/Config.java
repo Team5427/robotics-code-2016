@@ -15,6 +15,7 @@ public class Config {
 	
 	//Buttons
 	public static final int TOGGLE_INTAKE_BUTTON = 2;
+	public static final int NEW_INTAKE_BUTTON = 2;
 	public static final int TO_TURRET_BUTTON=8;
 	public static final int SHOOTER_BUTTON=1;
 	public static final int SCISSOR_UP_BUTTON=3;
@@ -33,6 +34,8 @@ public class Config {
 
 	public static final int WINCH_LEFT_MOTOR = 4;//Will be 4 & 5
 	public static final int WINCH_RIGHT_MOTOR = 5;
+	
+	public static final int RELAY_PORT=1;
 	
 	public static final int SCISSOR_MOTOR=9;
 	
