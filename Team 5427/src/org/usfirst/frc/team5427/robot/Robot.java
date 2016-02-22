@@ -234,21 +234,9 @@ public class Robot extends IterativeRobot {
 		mySonic.setAutomaticMode(true);
 		sonicDist=new SonicDist();
 		
-		//sonicDist.start();
 		
-	//		try {
-//				//Thread.sleep(250);
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//				Log.init("Error Sleeping in getDistance");
-//			}
-					
-	//	}
-//=======
 		//ultrasonicThread = new Thread(sonicRunnable);
 		//ultrasonicThread.start();
-//>>>>>>> b26600fa0664d27722fce56f42b3826c953eb8de
 		
 		
 		//if(oi.getJoy().getX()!=0)

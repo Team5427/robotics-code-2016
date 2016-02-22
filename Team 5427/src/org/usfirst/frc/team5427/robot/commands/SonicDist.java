@@ -43,7 +43,7 @@ public class SonicDist extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if(Robot.oi.getJoy().getRawButton(1))
+		if(Robot.oi.getJoy().getRawButton(Config.ULTRASONIC_BUTTON))
 				return false;
 		return true;
 	}

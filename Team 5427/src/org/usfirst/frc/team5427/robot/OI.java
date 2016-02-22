@@ -46,7 +46,7 @@ public class OI {
     	//toTurret.whenReleased(UCTilt.end());
     	//toTurret.whenReleased(UCTurn.end());
     	//shoot.whenPressed(new Shoot());
-    	shoot.whenPressed(new SonicDist());
+    	ultrasonic.whenPressed(new SonicDist());
     	//scissorUp.whenPressed(new ScissorUp());
     	//scissorDown.whenPressed(new ScissorDown());
     	//scissorDown.whenPressed(new ScissorDown());
