@@ -1,44 +1,47 @@
 package org.usfirst.frc.team5427.robot.subsystems;
 
+import org.usfirst.frc.team5427.robot.Robot;
+import org.usfirst.frc.team5427.robot.SteelTalon;
+import org.usfirst.frc.team5427.robot.util.Config;
+
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Intake extends Subsystem{
+/**
+ * This Subsystem will be responsible for managing all four SIM motors that are
+ * responsible for controlling the wheels.
+ *		//TODO expand on this description once more is known about the robot.
+ * @author team5427
+ */
+public class Intake extends Subsystem {
+
+	Relay motorIntake;
 	
-	SpeedController intakeLeft;
-	SpeedController intakeRight;
 	
 	/**
-	 * constructor for the intake subsystem
-	 * @param left - left intake motor
-	 * @param right - right intake motor
+	 * BringInEr constructor -- as parameters takes each motor to initialise.
+	 * @param motorIntake
 	 */
-	public Intake(SpeedController left, SpeedController right){
-		intakeLeft = left;
-		intakeRight = right;
+	public Intake(Relay motorIntake)
+	{
+		this.motorIntake= motorIntake;
+		motorIntake.setDirection(Relay.Direction.kReverse);
 	}
-	
 	@Override
 	protected void initDefaultCommand() {
 		
-		
-	}
-	/**
-	 * sets both intake motors to 0 speed
-	 */
-	public void stop(){
-		intakeLeft.set(0);
-		intakeRight.set(0);
-	}
-	/**
-	 * sets the speed of the intake motors to the value specified. the right motor is reversed to cause them both to spin same direction.
-	 * @param speed - the speed to set the motors to (0-1)
-	 */
-	public void setSpeed(double speed){
-		intakeLeft.set(speed);
-		intakeRight.set(speed*-1);
-	}
-	
-	
 
+	}
+	/**
+	 *Makes it power on
+	 */
+	public void go()
+	{motorIntake.set(Relay.Value.kOn);}
+	
+	 //* Makes it power off
+	 //*/
+	public void stop()
+	{motorIntake.set(Relay.Value.kOff);}
 }
+	

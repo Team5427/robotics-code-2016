@@ -7,11 +7,9 @@ import org.usfirst.frc.team5427.robot.commands.Scale;
 import org.usfirst.frc.team5427.robot.commands.ScissorDown;
 import org.usfirst.frc.team5427.robot.commands.Shoot;
 import org.usfirst.frc.team5427.robot.commands.SonicDist;
-import org.usfirst.frc.team5427.robot.commands.StopStuff;
 //import org.usfirst.frc.team5427.robot.commands.UltrasonicLog;
 import org.usfirst.frc.team5427.robot.commands.UserControlledTilt;
 import org.usfirst.frc.team5427.robot.commands.UserControlledTurn;
-import org.usfirst.frc.team5427.robot.commands.intakeControl;
 import org.usfirst.frc.team5427.robot.subsystems.Winch;
 import org.usfirst.frc.team5427.robot.util.Config;
 
@@ -41,7 +39,6 @@ public class OI {
      * constructor for the OI class, defines the button-press events.
      */
     public OI(){ 
-    	//toggleIntake.toggleWhenPressed(new intakeControl());
     	//toTurret.cancelWhenPressed(Robot.drive);
     	//toTurret.whenPressed(UCTilt=new UserControlledTilt());
     	//toTurret.whenPressed(UCTurn=new UserControlledTurn());
@@ -51,7 +48,6 @@ public class OI {
     	//shoot.whenPressed(new Shoot());
     	ultrasonic.whenPressed(new SonicDist());
     	intaker.whenPressed(new GetStuffIn());
-    	intaker.whenReleased( new StopStuff());
     	//scissorUp.whenPressed(new ScissorUp());
     	//scissorDown.whenPressed(new ScissorDown());
     	//scissorDown.whenPressed(new ScissorDown());

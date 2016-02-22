@@ -13,7 +13,7 @@ public class GetStuffIn extends Command {
 	
     public GetStuffIn() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.intaker);
+        requires(Robot.intake);
     }
 
     // Called just before this Command runs the first time
@@ -23,18 +23,18 @@ public class GetStuffIn extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intaker.go();
+    	Robot.intake.go();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	if(Robot.oi.getJoy().getRawButton(Config.NEW_INTAKE_BUTTON))
-			return true;
-    	return false;    }
+			return false;
+    	return true;    }
 
     // Called once after isFinished returns true
     public void end() {
-    	this.setTimeout(0);
+    	Robot.intake.stop();
     }
 
     // Called when another command which requires one or more of the same

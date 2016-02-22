@@ -7,7 +7,7 @@ import org.usfirst.frc.team5427.robot.commands.Drive;
 import org.usfirst.frc.team5427.robot.commands.GetStuffIn;
 import org.usfirst.frc.team5427.robot.commands.SonicDist;
 import org.usfirst.frc.team5427.robot.commands.UserControlledTurn;
-import org.usfirst.frc.team5427.robot.subsystems.BringInEr;
+import org.usfirst.frc.team5427.robot.subsystems.Intake;
 import org.usfirst.frc.team5427.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5427.robot.subsystems.Intake;
 import org.usfirst.frc.team5427.robot.subsystems.Launcher;
@@ -69,17 +69,13 @@ public class Robot extends IterativeRobot {
 	static Relay getBoulderIn;
 	
 	public static DriveTrain driveTrain;
-	public static Intake intake;
 	public static Launcher launcher;
 	public static Winch winch;
 	public static ScissorLift scissorLift;
 	public static OI oi;
 	public static SteelUltrasonic steelUltrasonic;
-	public static BringInEr intaker;
+	public static Intake intake;
 	
-//	public static Thread t = new Thread(new Runnable(){
-//		
-//	};
 	
 	public static Ultrasonic mySonic;
 	
@@ -87,36 +83,6 @@ public class Robot extends IterativeRobot {
 	double tiltDegrees;
 	
 	SendableChooser chooser;
-//	Runnable sonicRunnable = new Runnable(){
-//
-//		@Override
-//		public void run() {
-//			//the below code logs the distance in inches every .25 seconds.  THe 
-//			//distanceInInches only changes if the difference between old and new is <500, else it 
-//			//stays the same.  THis is to prevent unwanted glitching
-//			
-//			mySonic.setEnabled(true);
-//			mySonic.setAutomaticMode(true);
-//
-//			while(true)
-//			{
-//				try {
-//					Thread.sleep(250);
-//				} catch (InterruptedException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//					Log.init("Error Sleeping in getDistance");
-//				}
-//				if(Math.abs(distanceInInches-mySonic.getRangeInches())>500);
-//				else				
-//					distanceInInches=mySonic.getRangeInches();
-//				Log.init("Dist "+distanceInInches);			
-//			}
-//			
-//		}
-//	
-//	};
-
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -148,7 +114,7 @@ public class Robot extends IterativeRobot {
 		Log.init("driveTrain initialized!");
 
 		getBoulderIn=new Relay(Config.RELAY_PORT, Relay.Direction.kReverse);
-		intaker=new BringInEr(getBoulderIn);
+		intake=new Intake(getBoulderIn);
 		Log.init("Intaker initialized");
 //		intake = new Intake(intakeLeft, intakeRight);
 //		Log.init("intake initialized!");
@@ -239,15 +205,10 @@ public class Robot extends IterativeRobot {
 		drive = new Drive();
 		drive.start();
 		
-		
-//<<<<<<< HEAD
 		mySonic.setEnabled(true);
 		mySonic.setAutomaticMode(true);
 		sonicDist=new SonicDist();
 		
-		
-		//ultrasonicThread = new Thread(sonicRunnable);
-		//ultrasonicThread.start();
 		
 		
 		//if(oi.getJoy().getX()!=0)
