@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class ScissorLift extends Subsystem
 {
 	
-	SpeedController lifter;
+	SpeedController motorScissorLift;
 	
-	public ScissorLift(SpeedController lifter)
+	public ScissorLift(SpeedController motorScissorLift)
 	{
-		this.lifter=lifter;
+		this.motorScissorLift=motorScissorLift;
 	}
 	
 	@Override
@@ -27,6 +27,6 @@ public class ScissorLift extends Subsystem
 	
 	public void setSpeed(double speed)
 	{
-		lifter.set(speed);
+		motorScissorLift.set(speed);
 	}
 }

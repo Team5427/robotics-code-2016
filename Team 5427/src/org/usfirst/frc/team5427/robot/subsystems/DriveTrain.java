@@ -15,26 +15,26 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class DriveTrain extends Subsystem {
 
-	SpeedController frontLeft;
-	SpeedController backLeft;
-	SpeedController frontRight;
-	SpeedController backRight;
+	SpeedController motorFrontLeft;
+	SpeedController motorBackLeft;
+	SpeedController motorFrontRight;
+	SpeedController motorBackRight;
 	
 	
 	/**
 	 * Drivetrain constructor -- as parameters takes each motor to initialise.
-	 * @param frontLeft
-	 * @param backLeft
-	 * @param frontRight
-	 * @param backRight
+	 * @param motorFrontLeft
+	 * @param motorBackLeft
+	 * @param motorFrontRight
+	 * @param motorBackRight
 	 */
-	public DriveTrain(SpeedController frontLeft, SpeedController backLeft, SpeedController frontRight, 
-			SpeedController backRight)
+	public DriveTrain(SpeedController motorFrontLeft, SpeedController motorBackLeft, SpeedController motorFrontRight, 
+			SpeedController motorBackRight)
 	{
-		this.frontLeft = frontLeft;
-		this.backLeft = backLeft;
-		this.frontRight = frontRight;
-		this.backRight = backRight;
+		this.motorFrontLeft = motorFrontLeft;
+		this.motorBackLeft = motorBackLeft;
+		this.motorFrontRight = motorFrontRight;
+		this.motorBackRight = motorBackRight;
 	}
 	@Override
 	protected void initDefaultCommand() {
@@ -46,16 +46,16 @@ public class DriveTrain extends Subsystem {
 	 * @param speed - the speed you want to set
 	 */
 	public void setLeftSpeed(double speed){
-		frontLeft.set(speed);
-		backLeft.set(speed);
+		motorFrontLeft.set(speed);
+		motorBackLeft.set(speed);
 	}
 	/**
 	 * Sets the speed of the right motors on the drive train.
 	 * @param speed - the speed you want to set
 	 */
 	public void setRightSpeed(double speed){
-		frontRight.set(speed);
-		backRight.set(speed);
+		motorFrontRight.set(speed);
+		motorBackRight.set(speed);
 	}
 	/**
 	 * Sets the speed of all motors to 0
