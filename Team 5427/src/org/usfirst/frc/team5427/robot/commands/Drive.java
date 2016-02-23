@@ -33,9 +33,13 @@ public class Drive extends Command {
 			if (Config.JOYSTICK_MODE == Config.TWO_JOYSTICKS) {
 				Robot.driveTrain.driveDualJoystick(Robot.oi.getJoy().getY(), Robot.oi.getAltJoy().getY());
 			}
-			Log.init("DRIVING");
+			//Log.init("DRIVING");
 		} else
+		{
 			Robot.driveTrain.stop();
+			//Log.init("NOT");
+		}
+		
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

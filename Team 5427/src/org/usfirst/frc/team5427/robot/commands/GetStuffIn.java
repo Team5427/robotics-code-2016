@@ -15,7 +15,7 @@ public class GetStuffIn extends Command {
     public GetStuffIn() {
         // Use requires() here to declare subsystem dependencies
     	//It needs the intake system
-       requires(Robot.intake);
+       //requires(Robot.intake);
     }
 
     //not used
@@ -27,7 +27,7 @@ public class GetStuffIn extends Command {
     //makes the intaker go until told to stop this command
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intake.go();
+    	//Robot.intake.go();
     }
 
     //checks if button is pressed.  If it is, command continues to run.  If it is not, command 
@@ -41,7 +41,7 @@ public class GetStuffIn extends Command {
     // Called once after isFinished returns true
     //stops the intake
     public void end() {
-    	Robot.intake.stop();
+    	//Robot.intake.stop();
     	
     }
 

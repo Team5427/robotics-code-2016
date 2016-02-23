@@ -49,7 +49,6 @@ public class OI {
     	//shoot.whenPressed(new Shoot());
     	ultrasonic.whenPressed(new SonicDist());
     	intaker.whenPressed(new GetStuffIn());
-    	
     	//scissorUp.whenPressed(new ScissorUp());
     	//scissorDown.whenPressed(new ScissorDown());
     	//scissorDown.whenPressed(new ScissorDown());
