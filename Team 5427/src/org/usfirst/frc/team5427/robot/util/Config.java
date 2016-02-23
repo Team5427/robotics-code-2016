@@ -15,7 +15,7 @@ public class Config {
 	
 	//Buttons
 	public static final int TOGGLE_INTAKE_BUTTON = 2;
-	public static final int NEW_INTAKE_BUTTON = 2;
+	public static final int NEW_INTAKE_BUTTON = 10;
 	public static final int TO_TURRET_BUTTON=8;
 	public static final int SHOOTER_BUTTON=1;
 	public static final int SCISSOR_UP_BUTTON=3;
