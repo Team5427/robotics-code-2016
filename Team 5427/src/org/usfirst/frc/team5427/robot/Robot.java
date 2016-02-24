@@ -56,7 +56,7 @@ public class Robot extends IterativeRobot {
 	
 	static SpeedController shooter;
 	static SpeedController tilter;
-	static SpeedController turner;
+	static Relay turner;
 	
 	static SpeedController winchLeft;
 	static SpeedController winchRight;
@@ -98,12 +98,9 @@ public class Robot extends IterativeRobot {
 		
 		Log.init("Robot initializing subsystems...");
 		
-		//steelUltrasonic=new SteelUltrasonic(new Ultrasonic(Config.SONIC_PORT_TRIG,Config.SONIC_PORT_ECHO));
+		
 		mySonic=new Ultrasonic(new DigitalOutput(Config.SONIC_PORT_TRIG),new DigitalInput(Config.SONIC_PORT_ECHO));
-		/*Log.debug(mySonic.toString());
-		Log.debug(mySonic.wait(timeout););
-		Log.debug(mySonic.toString());
-		Log.debug(mySonic.toString());*/
+		
 		Log.init("Ultrasonic initialized!");
 		
 		backRight = new SteelTalon(Config.BACK_RIGHT_MOTOR);
@@ -116,24 +113,23 @@ public class Robot extends IterativeRobot {
 		getBoulderIn=new Relay(Config.RELAY_PORT, Relay.Direction.kReverse);
 		intake=new Intake(getBoulderIn);
 		Log.init("Intaker initialized");
-//		intake = new Intake(intakeLeft, intakeRight);
-//		Log.init("intake initialized!");
-//		
-//		turner = new SteelTalon(Config.TURNER_MOTOR);
-//		tilter = new SteelTalon(Config.TILTER_MOTOR);
-//		shooter = new SteelTalon(Config.SHOOTER_MOTOR);
-//		launcher= new Launcher(shooter, turner, tilter);
-//		Log.init("launcher initialized!");
-//		
-//		winchLeft = new SteelTalon(Config.WINCH_LEFT_MOTOR);
-//		winchRight = new SteelTalon(Config.WINCH_RIGHT_MOTOR);
-//		winch = new Winch(winchLeft,winchRight);
-//		Log.init("winch initialized!");
-//
-//		scissor=new SteelTalon(Config.SCISSOR_MOTOR);
-//		scissorLift=new ScissorLift(scissor);
-//		Log.init("scissorLift initialized!");
-//
+		
+		
+		turner = new Relay(Config.TURNER_MOTOR);
+		tilter = new SteelTalon(Config.TILTER_MOTOR);
+		shooter = new SteelTalon(Config.SHOOTER_MOTOR);
+		launcher= new Launcher(shooter, turner, tilter);
+		Log.init("launcher initialized!");
+		
+		winchLeft = new SteelTalon(Config.WINCH_LEFT_MOTOR);
+		winchRight = new SteelTalon(Config.WINCH_RIGHT_MOTOR);
+		winch = new Winch(winchLeft,winchRight);
+		Log.init("winch initialized!");
+
+		scissor=new SteelTalon(Config.SCISSOR_MOTOR);
+		scissorLift=new ScissorLift(scissor);
+		Log.init("scissorLift initialized!");
+
 		
 		Log.init("All subsystems ready!");
 		

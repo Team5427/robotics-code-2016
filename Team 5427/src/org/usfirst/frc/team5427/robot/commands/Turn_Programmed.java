@@ -27,9 +27,9 @@ public class Turn_Programmed extends Command {
 	protected void initialize() {
         Log.info("initialized ProgrammedTurner");
         if(getDegrees()-targetDegrees<0)
-    		Robot.launcher.setTurnSpeed(-1*Config.TURN_SPEED);
+    		Robot.launcher.turn(-1);
     	else if(getDegrees()-targetDegrees>0)
-    		Robot.launcher.setTurnSpeed(Config.TURN_SPEED);
+    		Robot.launcher.turn(1);
     }
 	
 	// Called repeatedly when this Command is scheduled to run

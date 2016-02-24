@@ -26,9 +26,9 @@ public class UserControlledTurn extends Command {
 
     	//sets the speed of the turning motor MANUALLY
     	if(Robot.oi.getJoy().getTwist()<-.2)
-    		Robot.launcher.setTurnSpeed(-1*Config.TURN_SPEED);
+    		Robot.launcher.turn(-1);
     	else if(Robot.oi.getJoy().getTwist()>.2)
-    		Robot.launcher.setTurnSpeed(Config.TURN_SPEED);
+    		Robot.launcher.turn(1);
 
     }
 

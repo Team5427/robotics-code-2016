@@ -3,6 +3,7 @@ package org.usfirst.frc.team5427.robot.subsystems;
 import org.usfirst.frc.team5427.robot.Robot;
 import org.usfirst.frc.team5427.robot.util.Config;
 
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -25,10 +26,10 @@ public class Launcher extends Subsystem {
 	SpeedController motorFlyWheel;
 
 	/**
-	 * SpeedController which is responsible for rotating the turret mechanism to
+	 * Relay which is responsible for rotating the turret mechanism to
 	 * the left and right, on the horizontal axis.
 	 */
-	SpeedController motorRotateHorizontal;
+	Relay motorRotateHorizontal;
 
 	/**
 	 * SpeedController which is responsible for rotating the turret up and down,
@@ -44,7 +45,7 @@ public class Launcher extends Subsystem {
 	 * @param turner
 	 * @param tilter
 	 */
-	public Launcher(SpeedController motorFlyWheel, SpeedController motorRotateHorizontal,
+	public Launcher(SpeedController motorFlyWheel, Relay motorRotateHorizontal,
 			SpeedController motorRotateVertical) {
 		this.motorFlyWheel = motorFlyWheel;
 		this.motorRotateHorizontal = motorRotateHorizontal;
@@ -60,14 +61,14 @@ public class Launcher extends Subsystem {
 	 * sets all of the motor speeds to 0
 	 */
 	public void stop() {
-		setTurnSpeed(0);
+		stopTurn();
 		setTiltSpeed(0);
 		setShootSpeed(0);
 
 	}
 
 	public void stopTurn() {
-		setTurnSpeed(0);
+		motorRotateHorizontal.set(Relay.Value.kOff);
 	}
 
 	public void stopTilt() {
@@ -79,12 +80,16 @@ public class Launcher extends Subsystem {
 	}
 
 	/**
-	 * sets the speed of the turning motors to the specified speed.
-	 * 
-	 * @param speed
+	 * makes the turning motor turn L/R. if direction<0, goes one way; if direction>0, 
+	 * goes the other way 
+	 * @param direction
 	 */
-	public void setTurnSpeed(double speed) {
-		motorRotateHorizontal.set(speed);
+	public void turn(int direction) {
+		if(direction<0)
+			motorRotateHorizontal.setDirection(Relay.Direction.kReverse);
+		else if(direction>0)
+			motorRotateHorizontal.setDirection(Relay.Direction.kForward);
+		motorRotateHorizontal.set(Relay.Value.kOn);
 	}
 
 	/**
