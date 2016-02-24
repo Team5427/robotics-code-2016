@@ -44,11 +44,11 @@ public class Launcher extends Subsystem {
 	 * @param turner
 	 * @param tilter
 	 */
-	public Launcher(SpeedController motorflyWheel, SpeedController motorrotateHorizontal,
-			SpeedController motor_rotateVertical) {
-		this.motorFlyWheel = motorflyWheel;
-		this.motorRotateHorizontal = motorrotateHorizontal;
-		this.motorRotateVertical = motor_rotateVertical;
+	public Launcher(SpeedController motorFlyWheel, SpeedController motorRotateHorizontal,
+			SpeedController motorRotateVertical) {
+		this.motorFlyWheel = motorFlyWheel;
+		this.motorRotateHorizontal = motorRotateHorizontal;
+		this.motorRotateVertical = motorRotateVertical;
 	}
 
 	@Override

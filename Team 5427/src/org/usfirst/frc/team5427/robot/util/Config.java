@@ -6,7 +6,7 @@ public class Config {
 	
 
 	public static final boolean DEBUG_MODE = false; //displays 'Log.debug' in console
-	public static final boolean LOGGING = true; //only logs errors, warnings and fatals with this false
+	public static final boolean LOGGING = true; //only logs errors and fatals with this false
 	
 	//Controls
 	public static final int JOYSTICK_MODE = 0;

@@ -6,13 +6,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Winch extends Subsystem
 {
 	
-	SpeedController winchLeft;
-	SpeedController winchRight;
+	SpeedController motorWinchLeft;
+	SpeedController motorWinchRight;
 	
-	public Winch(SpeedController winchLeft,SpeedController winchRight)
+	public Winch(SpeedController motorWinchLeft,SpeedController motorWinchRight)
 	{
-		this.winchLeft = winchLeft;
-		this.winchRight = winchRight;
+		this.motorWinchLeft = motorWinchLeft;
+		this.motorWinchRight = motorWinchRight;
 	}
 	
 	@Override
@@ -27,7 +27,7 @@ public class Winch extends Subsystem
 	
 	public void setSpeed(double speed)
 	{
-		winchLeft.set(speed);
-		winchRight.set(speed);
+		motorWinchLeft.set(speed);
+		motorWinchRight.set(speed);
 	}
 }
