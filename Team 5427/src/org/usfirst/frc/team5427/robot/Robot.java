@@ -64,7 +64,7 @@ public class Robot extends IterativeRobot {
 	static SpeedController intakeLeft;
 	static SpeedController intakeRight;
 	
-	static SpeedController scissor;
+	static Relay scissor;
 	
 	static Relay getBoulderIn;
 	
@@ -116,24 +116,24 @@ public class Robot extends IterativeRobot {
 		getBoulderIn=new Relay(Config.RELAY_PORT, Relay.Direction.kReverse);
 		intake=new Intake(getBoulderIn);
 		Log.init("Intaker initialized");
-//		intake = new Intake(intakeLeft, intakeRight);
-//		Log.init("intake initialized!");
-//		
-//		turner = new SteelTalon(Config.TURNER_MOTOR);
-//		tilter = new SteelTalon(Config.TILTER_MOTOR);
-//		shooter = new SteelTalon(Config.SHOOTER_MOTOR);
-//		launcher= new Launcher(shooter, turner, tilter);
-//		Log.init("launcher initialized!");
-//		
-//		winchLeft = new SteelTalon(Config.WINCH_LEFT_MOTOR);
-//		winchRight = new SteelTalon(Config.WINCH_RIGHT_MOTOR);
-//		winch = new Winch(winchLeft,winchRight);
-//		Log.init("winch initialized!");
-//
-//		scissor=new SteelTalon(Config.SCISSOR_MOTOR);
-//		scissorLift=new ScissorLift(scissor);
-//		Log.init("scissorLift initialized!");
-//
+		intake = new Intake(intakeLeft, intakeRight);
+		Log.init("intake initialized!");
+		
+		turner = new SteelTalon(Config.TURNER_MOTOR);
+		tilter = new SteelTalon(Config.TILTER_MOTOR);
+		shooter = new SteelTalon(Config.SHOOTER_MOTOR);
+		launcher= new Launcher(shooter, turner, tilter);
+		Log.init("launcher initialized!");
+		
+		winchLeft = new SteelTalon(Config.WINCH_LEFT_MOTOR);
+		winchRight = new SteelTalon(Config.WINCH_RIGHT_MOTOR);
+		winch = new Winch(winchLeft,winchRight);
+		Log.init("winch initialized!");
+
+		scissor=new Relay(Config.SCISSOR_MOTOR);
+		scissorLift=new ScissorLift(scissor);
+		Log.init("scissorLift initialized!");
+
 		
 		Log.init("All subsystems ready!");
 		
