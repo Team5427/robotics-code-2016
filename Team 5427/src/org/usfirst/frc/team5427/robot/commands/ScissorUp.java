@@ -24,11 +24,14 @@ public class ScissorUp extends Command{
 		//if(Robot.oi.getJoy().getButton(button))
 		//Robot.winch.setSpeed(Config.WINCH_SPEED);
 		//latches onto bar
-		Robot.scissorLift.setSpeed(Config.SCISSOR_SPEED*1);
+		Robot.scissorLift.move(1);
 	}
 
     // Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
+		if(Robot.oi.getJoy().getRawButton(Config.SCISSOR_UP_BUTTON) == false)
+			return true;
+		
 		return false;
 	}
 

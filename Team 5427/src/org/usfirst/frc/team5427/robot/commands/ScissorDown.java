@@ -16,7 +16,7 @@ public class ScissorDown extends Command{
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Log.init("initialized pullUp");
+		Log.init("initialized pullDown");
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -24,17 +24,20 @@ public class ScissorDown extends Command{
 		//if(Robot.oi.getJoy().getButton(button))
 		//Robot.winch.setSpeed(Config.WINCH_SPEED);
 		//latches onto bar
-		Robot.scissorLift.setSpeed(Config.SCISSOR_SPEED*-1);
+		Robot.scissorLift.move(-1);
 	}
 
     // Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
+		if(Robot.oi.getJoy().getRawButton(Config.SCISSOR_DOWN_BUTTON) == false)
+			return true;
+		
 		return false;
 	}
 
     // Called once after isFinished returns true
 	protected void end() {
-		Robot.winch.stop();
+		Robot.scissorLift.stop();
 	}
 
     // Called when another command which requires one or more of the same

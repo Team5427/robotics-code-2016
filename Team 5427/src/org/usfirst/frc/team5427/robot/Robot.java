@@ -64,7 +64,7 @@ public class Robot extends IterativeRobot {
 	static SpeedController intakeLeft;
 	static SpeedController intakeRight;
 	
-	static SpeedController scissor;
+	static Relay scissor;
 	
 	static Relay getBoulderIn;
 	
@@ -113,9 +113,16 @@ public class Robot extends IterativeRobot {
 		getBoulderIn=new Relay(Config.RELAY_PORT, Relay.Direction.kReverse);
 		intake=new Intake(getBoulderIn);
 		Log.init("Intaker initialized");
+<<<<<<< HEAD
 		
 		
 		turner = new Relay(Config.TURNER_MOTOR);
+=======
+		intake = new Intake(intakeLeft, intakeRight);
+		Log.init("intake initialized!");
+		
+		turner = new SteelTalon(Config.TURNER_MOTOR);
+>>>>>>> f3664ada0edf082ee5027757164085b2fe54da3f
 		tilter = new SteelTalon(Config.TILTER_MOTOR);
 		shooter = new SteelTalon(Config.SHOOTER_MOTOR);
 		launcher= new Launcher(shooter, turner, tilter);
@@ -126,7 +133,11 @@ public class Robot extends IterativeRobot {
 		winch = new Winch(winchLeft,winchRight);
 		Log.init("winch initialized!");
 
+<<<<<<< HEAD
 		scissor=new SteelTalon(Config.SCISSOR_MOTOR);
+=======
+		scissor=new Relay(Config.SCISSOR_MOTOR);
+>>>>>>> f3664ada0edf082ee5027757164085b2fe54da3f
 		scissorLift=new ScissorLift(scissor);
 		Log.init("scissorLift initialized!");
 

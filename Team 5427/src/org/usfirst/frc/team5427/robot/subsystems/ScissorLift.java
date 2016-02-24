@@ -2,15 +2,16 @@
 
 package org.usfirst.frc.team5427.robot.subsystems;
 
-import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.Relay.Direction;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class ScissorLift extends Subsystem
 {
 	
-	SpeedController motorScissorLift;
+	Relay motorScissorLift;
 	
-	public ScissorLift(SpeedController motorScissorLift)
+	public ScissorLift(Relay motorScissorLift)
 	{
 		this.motorScissorLift=motorScissorLift;
 	}
@@ -22,11 +23,16 @@ public class ScissorLift extends Subsystem
 	
 	public void stop()
 	{
-		setSpeed(0);
+		motorScissorLift.set(Relay.Value.kOff);
 	}
 	
-	public void setSpeed(double speed)
+	public void move(int direction)
 	{
-		motorScissorLift.set(speed);
+		if(direction<0)
+			motorScissorLift.setDirection(Relay.Direction.kReverse);
+		else if(direction>0)
+			motorScissorLift.setDirection(Relay.Direction.kForward);
+
+		motorScissorLift.set(Relay.Value.kOn);
 	}
 }
