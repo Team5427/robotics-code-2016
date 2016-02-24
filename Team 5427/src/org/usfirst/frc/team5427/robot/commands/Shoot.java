@@ -19,7 +19,7 @@ public class Shoot extends Command {
 	
 	// Called just before this Command runs the first time
 	protected void initialize() {
-        Log.info("initialized Shoot");
+        Log.init("initialized Shoot");
         Robot.launcher.setShootSpeed(Config.LAUNCH_SPEED);
     }
 	

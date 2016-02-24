@@ -8,7 +8,7 @@ public class AutoLocateGoal extends Command {
 
 	@Override
 	protected void initialize() {
-		Log.info("initialized AutoLocateGoal");
+		Log.init("initialized AutoLocateGoal");
 				
 	}
 

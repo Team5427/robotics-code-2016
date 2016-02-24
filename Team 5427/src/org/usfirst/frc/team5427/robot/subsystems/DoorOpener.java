@@ -14,19 +14,19 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class DoorOpener extends Subsystem {
 
-	SpeedController leftArm;
-	SpeedController rightArm;
+	SpeedController motorLeftArm;
+	SpeedController motorRightArm;
 	
 	
 	/**
 	 * DoorOpener constructor -- as parameters takes each motor to initialise.
-	 * @param leftArm
-	 * @param rightArm
+	 * @param motorLeftArm
+	 * @param motorRightArm
 	 */
-	public DoorOpener(SpeedController leftArm, SpeedController rightArm)
+	public DoorOpener(SpeedController motorLeftArm, SpeedController motorRightArm)
 	{
-		this.leftArm=leftArm;
-		this.rightArm=rightArm;
+		this.motorLeftArm=motorLeftArm;
+		this.motorRightArm=motorRightArm;
 	}
 	@Override
 	protected void initDefaultCommand() {
@@ -37,7 +37,7 @@ public class DoorOpener extends Subsystem {
 	 * Sets the speed of the left Arm motor
 	 */
 	public void setLeftSpeed(double speed){
-		leftArm.set(speed);
+		motorLeftArm.set(speed);
 		
 	}
 	/**
@@ -45,7 +45,7 @@ public class DoorOpener extends Subsystem {
 	 * @param speed - the speed you want to set
 	 */
 	public void setRightSpeed(double speed){
-		rightArm.set(speed);
+		motorRightArm.set(speed);
 	}
 	/**
 	 * Sets the speed of all motors to 0

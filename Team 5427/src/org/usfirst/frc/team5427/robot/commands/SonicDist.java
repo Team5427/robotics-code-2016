@@ -24,7 +24,7 @@ public class SonicDist extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Log.info("initialized Sonic");
+		Log.init("initialized Sonic");
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -34,11 +34,11 @@ public class SonicDist extends Command {
 		if(Math.abs(Robot.getDistance()-Robot.mySonic.getRangeInches())>500);
 		else				
 			Robot.distanceInInches=(Robot.mySonic.getRangeInches());
-		Log.init("Dist1 "+Robot.getDistance());	
+		Log.debug("Dist1 "+Robot.getDistance());	
 		if(Math.abs(Robot.getDistance()-Robot.mySonic.getRangeInches())>50);
 		else				
 			Robot.distanceInInches=(Robot.mySonic.getRangeInches());
-		Log.init("Dist2 "+Robot.getDistance());	
+		Log.debug("Dist2 "+Robot.getDistance());	
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

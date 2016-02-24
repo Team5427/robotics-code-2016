@@ -25,7 +25,7 @@ public class Turn_Programmed extends Command {
 	 * sets the speed of the tilt to tilt the correct direction. the tilt is stopped when the command ends.
 	 */
 	protected void initialize() {
-        Log.info("initialized ProgrammedTurner");
+        Log.init("initialized ProgrammedTurner");
         if(getDegrees()-targetDegrees<0)
     		Robot.launcher.turn(-1);
     	else if(getDegrees()-targetDegrees>0)

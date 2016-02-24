@@ -39,8 +39,8 @@ public class Intake extends Subsystem {
 	public void go()
 	{motorIntake.set(Relay.Value.kOn);}
 	
-	 //* Makes it power off
-	 //*/
+	 /** Makes it power off
+	  */
 	public void stop()
 	{motorIntake.set(Relay.Value.kOff);}
 }

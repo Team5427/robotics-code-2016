@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class AutoLaunchBoulder extends Command {
 	@Override
 	protected void initialize() {
-		Log.info("initialized AutoLaunchBoulder");
+		Log.init("initialized AutoLaunchBoulder");
 	}
 
 	@Override

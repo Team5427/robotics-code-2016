@@ -26,7 +26,7 @@ public class Tilt_Programmed extends Command {
 	 * sets the speed of the tilt to tilt the correct direction. the tilt is stopped when the command ends.
 	 */
 	protected void initialize() {
-        Log.info("initialized tilter");
+        Log.init("initialized tilter");
         if(getDegrees()-targetDegrees<0)
     		Robot.launcher.setTiltSpeed(-1*Config.TILT_SPEED);
     	else if(getDegrees()-targetDegrees>0)
