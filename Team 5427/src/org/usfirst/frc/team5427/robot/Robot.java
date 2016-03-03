@@ -154,14 +154,7 @@ public class Robot extends IterativeRobot {
 	 
 	//UserControlledTurn turn;
 	AutoLaunchBoulder autoLaunchBoulder;
-	
-	static SpeedController frontLeft;
-	static SpeedController backLeft;
-	static SpeedController frontRight;
-	static SpeedController backRight;
-	
-	static SpeedController shooter;
-	static SpeedController tilter;
+
 	static Relay turner;
 	
 	static SpeedController winchLeft;
@@ -190,6 +183,8 @@ public class Robot extends IterativeRobot {
 	
 	SendableChooser chooser;
 
+	
+
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -209,11 +204,11 @@ public class Robot extends IterativeRobot {
 		
 		Log.init("Ultrasonic initialized!");
 		
-		backRight = new SteelTalon(Config.BACK_RIGHT_MOTOR);
-		frontRight = new SteelTalon(Config.FRONT_RIGHT_MOTOR);
-		backLeft = new SteelTalon(Config.BACK_LEFT_MOTOR);
-		frontLeft = new SteelTalon(Config.FRONT_LEFT_MOTOR);
-		driveTrain = new DriveTrain(frontLeft, backLeft, frontRight, backRight);
+		MOTOR_PWM_RearRight = new SteelTalon(Config.BACK_RIGHT_MOTOR);
+		MOTOR_PWM_FrontRight = new SteelTalon(Config.FRONT_RIGHT_MOTOR);
+		MOTOR_PWM_RearLeft = new SteelTalon(Config.BACK_LEFT_MOTOR);
+		MOTOR_PWM_FrontLeft = new SteelTalon(Config.FRONT_LEFT_MOTOR);
+		driveTrain = new DriveTrain(MOTOR_PWM_FrontLeft, MOTOR_PWM_RearLeft, MOTOR_PWM_FrontRight, MOTOR_PWM_RearRight);
 		Log.init("driveTrain initialized!");
 
 //		getBoulderIn=new Relay(Config.RELAY_PORT, Relay.Direction.kReverse);
