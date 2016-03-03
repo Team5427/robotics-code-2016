@@ -36,6 +36,112 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
+    
+ // TODO fill in the blank in this comment after testing the robot.
+ 	/**
+ 	 * Motor utilized in the DriveTrain. It is located in the front left of the
+ 	 * robot from a top-down point of view, and setting the speed of this motor
+ 	 * to a positive value will cause the robot to move __________
+ 	 */
+ 	static SpeedController MOTOR_PWM_FrontLeft;
+ 	
+ 	// TODO fill in the blank in this comment after testing the robot.
+ 	/**
+ 	 * Motor utilized in the DriveTrain. It is located in the rear left of the
+ 	 * robot from a top-down point of view, and setting the speed of this motor
+ 	 * to a positive value will cause the robot to move __________
+ 	 */
+ 	static SpeedController MOTOR_PWM_RearLeft;
+ 	
+ 	// TODO fill in the blank in this comment after testing the robot.
+ 	/**
+ 	 * Motor utilized in the DriveTrain. It is located in the front right of the
+ 	 * robot from a top-down point of view, and setting the speed of this motor
+ 	 * to a positive value will cause the robot to move __________
+ 	 */
+ 	static SpeedController MOTOR_PWM_FrontRight;
+ 	
+ 	// TODO fill in the blank in this comment after testing the robot.
+ 	/**
+ 	 * Motor utilized in the DriveTrain. It is located in the rear right of the
+ 	 * robot from a top-down point of view, and setting the speed of this motor
+ 	 * to a positive value will cause the robot to move __________
+ 	 */
+ 	static SpeedController MOTOR_PWM_RearRight;
+ 	
+ 	// TODO fill in the blank in this comment after testing the robot.
+ 	/**
+ 	 * Motor that powers the FlyWheel which is responsible for launching the
+ 	 * boulder from the robot on contact. Setting it to a positive speed will
+ 	 * make it make the wheel spin __________ relative to the front of the
+ 	 * shooting mechanism.
+ 	 */
+ 	static SpeedController MOTOR_PWM_Flywheel;
+
+ 	// TODO fill in the blank in this comment after testing the robot.
+ 	/**
+ 	 * Motor that controls the movement of the left arm on the robot, moving it
+ 	 * either forwards or backwards. Setting its speed to a positive value will
+ 	 * cause the arm to move _________
+ 	 */
+ 	static SpeedController MOTOR_PWM_LeftArm;
+ 	
+ 	// TODO fill in the blank in this comment after testing the robot.
+ 	/**
+ 	 * Motor that controls the movement of the right arm on the robot, moving it
+ 	 * either forwards or backwards. Setting its speed to a positive value will
+ 	 * cause the arm to move _________
+ 	 */
+ 	static SpeedController MOTOR_PWM_RightArm;
+
+ 	// TODO fill in the blank in this comment after testing the robot.
+ 	/**
+ 	 * One of the two motors that is responsible for controlling the winch on
+ 	 * the robot. This is the motor that is located closer to the front of the
+ 	 * robot, and setting its speed to 1 will cause the spool of wire to
+ 	 * _________
+ 	 */
+ 	static SpeedController MOTOR_PWM_WinchOne;
+ 	
+ 	// TODO fill in the blank in this comment after testing the robot.
+ 	/**
+ 	 * One of the two motors that is responsible for controlling the winch on
+ 	 * the robot. This is the motor that is located closer to the front of the
+ 	 * robot, and setting its speed to 1 will cause the spool of wire to
+ 	 * _________
+ 	 */
+ 	static SpeedController MOTOR_PWM_WinchTwo;
+
+ 	// TODO fill in the blank in this comment after testing the robot.
+ 	/**
+ 	 * A small motor that is attached to the front of the shooting mechanism and
+ 	 * is meant to turn a set of wheels that will intake the ball. Setting this
+ 	 * to forwards will make the intake __________ incoming boulders.
+ 	 */
+ 	static Relay MOTOR_RELAY_Intake;
+ 	
+ 	// TODO fill in the blank in this comment after testing the robot.
+ 	/**
+ 	 * A small motor that is meant to rotate the turret. Setting the motor to
+ 	 * forwards will make the turret turn ________
+ 	 */
+ 	static Relay MOTOR_RELAY_RotateTurret;
+ 	
+ 	// TODO fill in the blank in this comment after testing the robot.
+ 	/**
+ 	 * A small motor that is meant to tilt the turret. Setting it to forwards
+ 	 * will make the turret tilt _________
+ 	 */
+ 	static Relay MOTOR_RELAY_TiltTurret;
+ 	
+ 	// TODO fill in the blank in this comment after testing the robot.
+ 	/**
+ 	 * A small motor that is mean to extend/retract the scissor lift at the back
+ 	 * of the robot. Setting the direction to forwards will cause the scissor
+ 	 * lift to move ___________
+ 	 */
+ 	static Relay MOTOR_RELAY_ScissorLift;
+
 
 	Thread ultrasonicThread;
 	
