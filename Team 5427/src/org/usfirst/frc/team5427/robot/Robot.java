@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team5427.robot;
 
+import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team5427.robot.commands.AutoLaunchBoulder;
 import org.usfirst.frc.team5427.robot.commands.AutoLocateGoal;
 import org.usfirst.frc.team5427.robot.commands.Drive;
@@ -278,7 +279,10 @@ public class Robot extends IterativeRobot {
 		
 		turnDegrees = 0;
 		tiltDegrees = 0;
-		
+
+		Command autonomousCommand = null;
+//		autonomousCommand = (Command) chooser.getSelected();
+
 		//AutoLocateGoal autoLocateGoal = new AutoLocateGoal();
 		//autoLocateGoal.start();
 		// autonomousCommand = (Command) chooser.getSelected();
@@ -291,7 +295,8 @@ public class Robot extends IterativeRobot {
 		 */
 
 		// schedule the autonomous command (example) 
-		// if (autonomousCommand != null) autonomousCommand.start();
+		 if (autonomousCommand != null)
+			 autonomousCommand.start();
 	}
 
 	/**
