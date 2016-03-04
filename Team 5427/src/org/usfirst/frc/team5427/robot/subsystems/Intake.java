@@ -16,17 +16,17 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Intake extends Subsystem {
 
-	Relay motorIntake;
+	Relay motorRelay_Intake;
 	
 	
 	/**
 	 * BringInEr constructor -- as parameters takes each motor to initialise.
-	 * @param motorIntake
+	 * @param motorRelay_Intake
 	 */
-	public Intake(Relay motorIntake)
+	public Intake(Relay motorRelay_Intake)
 	{
-		this.motorIntake= motorIntake;
-		motorIntake.setDirection(Relay.Direction.kReverse);
+		this.motorRelay_Intake= motorRelay_Intake;
+		motorRelay_Intake.setDirection(Relay.Direction.kReverse);
 	}
 	@Override
 	protected void initDefaultCommand() {
@@ -37,11 +37,11 @@ public class Intake extends Subsystem {
 	 *Makes it power on
 	 */
 	public void go()
-	{motorIntake.set(Relay.Value.kOn);}
+	{motorRelay_Intake.set(Relay.Value.kOn);}
 	
 	 /** Makes it power off
 	  */
 	public void stop()
-	{motorIntake.set(Relay.Value.kOff);}
+	{motorRelay_Intake.set(Relay.Value.kOff);}
 }
 	

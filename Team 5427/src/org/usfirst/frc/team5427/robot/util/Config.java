@@ -4,7 +4,7 @@ public class Config {
 	//MISC
 	public static final String NAME = "Team5427RoboCode";
 	
-
+	
 	public static final boolean DEBUG_MODE = false; //displays 'Log.debug' in console
 	public static final boolean LOGGING = true; //only logs errors and fatals with this false
 	
@@ -17,23 +17,23 @@ public class Config {
 	public static final int TOGGLE_INTAKE_BUTTON = 2;
 	public static final int NEW_INTAKE_BUTTON = 10;
 	public static final int TO_TURRET_BUTTON=2;
-	public static final int SHOOTER_BUTTON=1;
-	public static final int SCISSOR_UP_BUTTON=3;
-	public static final int SCISSOR_DOWN_BUTTON=4;
+	public static final int SHOOT_BUTTON=1;
+	public static final int SCISSORLIFT_UP_BUTTON=3;
+	public static final int SCISSORLIFT_DOWN_BUTTON=4;
 	public static final int WINCH_BUTTON=5;
 	public static final int ULTRASONIC_BUTTON=11;
 	
 	//PORTS FOR VARIOUS THINGS
 	public static final int FRONT_LEFT_MOTOR = 0;
-	public static final int BACK_LEFT_MOTOR = 1;
+	public static final int REAR_LEFT_MOTOR = 1;
 	public static final int FRONT_RIGHT_MOTOR = 2;
-	public static final int BACK_RIGHT_MOTOR = 3;
-	public static final int TILTER_MOTOR = 6;
-	public static final int TURNER_MOTOR = 7;
+	public static final int REAR_RIGHT_MOTOR = 3;
+	public static final int TILT_TURRET_MOTOR = 6;
+	public static final int TURN_TURRET_MOTOR = 7;
 	public static final int SHOOTER_MOTOR = 8;
 
-	public static final int WINCH_LEFT_MOTOR = 4;//Will be 4 & 5
-	public static final int WINCH_RIGHT_MOTOR = 5;
+	public static final int WINCH_ONE_MOTOR = 4;//Will be 4 & 5
+	public static final int WINCH_TWO_MOTOR = 5;
 	
 	public static final int RELAY_PORT=1;
 	
@@ -82,3 +82,4 @@ public class Config {
 	
 
 	}
+	

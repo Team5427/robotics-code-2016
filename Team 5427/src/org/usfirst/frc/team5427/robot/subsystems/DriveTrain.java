@@ -15,26 +15,26 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class DriveTrain extends Subsystem {
 
-	SpeedController motorFrontLeft;
-	SpeedController motorBackLeft;
-	SpeedController motorFrontRight;
-	SpeedController motorBackRight;
+	SpeedController motorPWM_FrontLeft;
+	SpeedController motorPWM_RearLeft;
+	SpeedController motorPWM_FrontRight;
+	SpeedController MOTOR_PWM_BackRight;
 	
 	
 	/**
 	 * Drivetrain constructor -- as parameters takes each motor to initialise.
-	 * @param motorFrontLeft
-	 * @param motorBackLeft
-	 * @param motorFrontRight
-	 * @param motorBackRight
+	 * @param motorPWM_FrontLeft
+	 * @param motorPWM_RearLeft
+	 * @param motorPWM_FrontRight
+	 * @param MOTOR_PWM_BackRight
 	 */
-	public DriveTrain(SpeedController motorFrontLeft, SpeedController motorBackLeft, SpeedController motorFrontRight, 
-			SpeedController motorBackRight)
+	public DriveTrain(SpeedController motorPWM_FrontLeft, SpeedController motorPWM_RearLeft, SpeedController motorPWM_FrontRight, 
+			SpeedController MOTOR_PWM_BackRight)
 	{
-		this.motorFrontLeft = motorFrontLeft;
-		this.motorBackLeft = motorBackLeft;
-		this.motorFrontRight = motorFrontRight;
-		this.motorBackRight = motorBackRight;
+		this.motorPWM_FrontLeft = motorPWM_FrontLeft;
+		this.motorPWM_RearLeft = motorPWM_RearLeft;
+		this.motorPWM_FrontRight = motorPWM_FrontRight;
+		this.MOTOR_PWM_BackRight = MOTOR_PWM_BackRight;
 	}
 	@Override
 	protected void initDefaultCommand() {
@@ -46,16 +46,16 @@ public class DriveTrain extends Subsystem {
 	 * @param speed - the speed you want to set
 	 */
 	public void setLeftSpeed(double speed){
-		motorFrontLeft.set(speed);
-		motorBackLeft.set(speed);
+		motorPWM_FrontLeft.set(speed);
+		motorPWM_RearLeft.set(speed);
 	}
 	/**
 	 * Sets the speed of the right motors on the drive train.
 	 * @param speed - the speed you want to set
 	 */
 	public void setRightSpeed(double speed){
-		motorFrontRight.set(speed);
-		motorBackRight.set(speed);
+		motorPWM_FrontRight.set(speed);
+		MOTOR_PWM_BackRight.set(speed);
 	}
 	/**
 	 * Sets the speed of all motors to 0

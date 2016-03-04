@@ -23,7 +23,7 @@ public class Launcher extends Subsystem {
 	 * SpeedController which is responsible for the flywheel that launches the
 	 * boulder out of the robot.
 	 */
-	SpeedController motorFlyWheel;
+	SpeedController motorPWM_Flywheel;
 
 	/**
 	 * Relay which is responsible for rotating the turret mechanism to
@@ -35,7 +35,7 @@ public class Launcher extends Subsystem {
 	 * SpeedController which is responsible for rotating the turret up and down,
 	 * on the vertical axis.
 	 */
-	SpeedController motorRotateVertical;
+	Relay motorRotateVertical;
 
 	/**
 	 * launcher constructor -- takes motors for various parts of the launcher as
@@ -46,10 +46,10 @@ public class Launcher extends Subsystem {
 	 * @param tilter
 	 */
 	public Launcher(SpeedController motorFlyWheel, Relay motorRotateHorizontal,
-			SpeedController motorRotateVertical) {
-		this.motorFlyWheel = motorFlyWheel;
+			Relay motorRelay_TiltTurret) {
+		this.motorPWM_Flywheel = motorFlyWheel;
 		this.motorRotateHorizontal = motorRotateHorizontal;
-		this.motorRotateVertical = motorRotateVertical;
+		this.motorRotateVertical = motorRelay_TiltTurret;
 	}
 
 	@Override
@@ -97,8 +97,18 @@ public class Launcher extends Subsystem {
 	 * 
 	 * @param speed
 	 */
+	public void tiltUp(){
+		motorRotateVertical.setDirection(Relay.Direction.kForward);
+		motorRotateVertical.set(Relay.Value.kOn);
+	}
+	public void tiltDown(){
+		motorRotateVertical.setDirection(Relay.Direction.kReverse);
+		motorRotateVertical.set(Relay.Value.kOn);
+	}
 	public void setTiltSpeed(double speed) {
-		motorRotateVertical.set(speed);
+		if(speed>0) tiltUp();
+		if(speed<0) tiltDown();
+		if(speed==0) stop();
 	}
 
 	/**
@@ -107,7 +117,7 @@ public class Launcher extends Subsystem {
 	 * @param speed
 	 */
 	public void setShootSpeed(double speed) {
-		motorFlyWheel.set(speed);
+		motorPWM_Flywheel.set(speed);
 	}
 
 }

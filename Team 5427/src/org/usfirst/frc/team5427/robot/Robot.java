@@ -43,7 +43,7 @@ public class Robot extends IterativeRobot {
  	 * robot from a top-down point of view, and setting the speed of this motor
  	 * to a positive value will cause the robot to move __________
  	 */
- 	static SpeedController MOTOR_PWM_FrontLeft;
+ 	static SpeedController motorPWM_FrontLeft;
  	
  	// TODO fill in the blank in this comment after testing the robot.
  	/**
@@ -51,7 +51,7 @@ public class Robot extends IterativeRobot {
  	 * robot from a top-down point of view, and setting the speed of this motor
  	 * to a positive value will cause the robot to move __________
  	 */
- 	static SpeedController MOTOR_PWM_RearLeft;
+ 	static SpeedController motorPWM_RearLeft;
  	
  	// TODO fill in the blank in this comment after testing the robot.
  	/**
@@ -59,7 +59,7 @@ public class Robot extends IterativeRobot {
  	 * robot from a top-down point of view, and setting the speed of this motor
  	 * to a positive value will cause the robot to move __________
  	 */
- 	static SpeedController MOTOR_PWM_FrontRight;
+ 	static SpeedController motorPWM_FrontRight;
  	
  	// TODO fill in the blank in this comment after testing the robot.
  	/**
@@ -67,7 +67,7 @@ public class Robot extends IterativeRobot {
  	 * robot from a top-down point of view, and setting the speed of this motor
  	 * to a positive value will cause the robot to move __________
  	 */
- 	static SpeedController MOTOR_PWM_RearRight;
+ 	static SpeedController motorPWM_RearRight;
  	
  	// TODO fill in the blank in this comment after testing the robot.
  	/**
@@ -76,7 +76,7 @@ public class Robot extends IterativeRobot {
  	 * make it make the wheel spin __________ relative to the front of the
  	 * shooting mechanism.
  	 */
- 	static SpeedController MOTOR_PWM_Flywheel;
+ 	static SpeedController motorPWM_Flywheel;
 
  	// TODO fill in the blank in this comment after testing the robot.
  	/**
@@ -84,7 +84,7 @@ public class Robot extends IterativeRobot {
  	 * either forwards or backwards. Setting its speed to a positive value will
  	 * cause the arm to move _________
  	 */
- 	static SpeedController MOTOR_PWM_LeftArm;
+ 	static SpeedController motorPWM_LeftArm;
  	
  	// TODO fill in the blank in this comment after testing the robot.
  	/**
@@ -92,7 +92,7 @@ public class Robot extends IterativeRobot {
  	 * either forwards or backwards. Setting its speed to a positive value will
  	 * cause the arm to move _________
  	 */
- 	static SpeedController MOTOR_PWM_RightArm;
+ 	static SpeedController motorPWM_RightArm;
 
  	// TODO fill in the blank in this comment after testing the robot.
  	/**
@@ -101,7 +101,7 @@ public class Robot extends IterativeRobot {
  	 * robot, and setting its speed to 1 will cause the spool of wire to
  	 * _________
  	 */
- 	static SpeedController MOTOR_PWM_WinchOne;
+ 	static SpeedController motorPWM_WinchOne;
  	
  	// TODO fill in the blank in this comment after testing the robot.
  	/**
@@ -110,7 +110,7 @@ public class Robot extends IterativeRobot {
  	 * robot, and setting its speed to 1 will cause the spool of wire to
  	 * _________
  	 */
- 	static SpeedController MOTOR_PWM_WinchTwo;
+ 	static SpeedController motorPWM_WinchTwo;
 
  	// TODO fill in the blank in this comment after testing the robot.
  	/**
@@ -118,21 +118,21 @@ public class Robot extends IterativeRobot {
  	 * is meant to turn a set of wheels that will intake the ball. Setting this
  	 * to forwards will make the intake __________ incoming boulders.
  	 */
- 	static Relay MOTOR_RELAY_Intake;
+ 	static Relay motorRelay_Intake;
  	
  	// TODO fill in the blank in this comment after testing the robot.
  	/**
  	 * A small motor that is meant to rotate the turret. Setting the motor to
  	 * forwards will make the turret turn ________
  	 */
- 	static Relay MOTOR_RELAY_RotateTurret;
+ 	static Relay motorRelay_RotateTurret;
  	
  	// TODO fill in the blank in this comment after testing the robot.
  	/**
  	 * A small motor that is meant to tilt the turret. Setting it to forwards
  	 * will make the turret tilt _________
  	 */
- 	static Relay MOTOR_RELAY_TiltTurret;
+ 	static Relay motorRelay_TiltTurret;
  	
  	// TODO fill in the blank in this comment after testing the robot.
  	/**
@@ -140,7 +140,7 @@ public class Robot extends IterativeRobot {
  	 * of the robot. Setting the direction to forwards will cause the scissor
  	 * lift to move ___________
  	 */
- 	static Relay MOTOR_RELAY_ScissorLift;
+ 	static Relay motorRelay_ScissorLift;
 
 
 	Thread ultrasonicThread;
@@ -154,20 +154,7 @@ public class Robot extends IterativeRobot {
 	 
 	//UserControlledTurn turn;
 	AutoLaunchBoulder autoLaunchBoulder;
-
-	static Relay turner;
 	
-	static SpeedController winchLeft;
-	static SpeedController winchRight;
-
-	static SpeedController intakeLeft;
-	static SpeedController intakeRight;
-	
-	static Relay scissor;
-	
-	static Relay getBoulderIn;
-	
-	public static DriveTrain driveTrain;
 	public static Launcher launcher;
 	public static Winch winch;
 	public static ScissorLift scissorLift;
@@ -175,7 +162,7 @@ public class Robot extends IterativeRobot {
 	public static SteelUltrasonic steelUltrasonic;
 	public static Intake intake;
 	
-	
+	public static DriveTrain driveTrain;
 	public static Ultrasonic mySonic;
 	
 	double turnDegrees;
@@ -204,34 +191,34 @@ public class Robot extends IterativeRobot {
 		
 		Log.init("Ultrasonic initialized!");
 		
-		MOTOR_PWM_RearRight = new SteelTalon(Config.BACK_RIGHT_MOTOR);
-		MOTOR_PWM_FrontRight = new SteelTalon(Config.FRONT_RIGHT_MOTOR);
-		MOTOR_PWM_RearLeft = new SteelTalon(Config.BACK_LEFT_MOTOR);
-		MOTOR_PWM_FrontLeft = new SteelTalon(Config.FRONT_LEFT_MOTOR);
-		driveTrain = new DriveTrain(MOTOR_PWM_FrontLeft, MOTOR_PWM_RearLeft, MOTOR_PWM_FrontRight, MOTOR_PWM_RearRight);
+		motorPWM_RearRight = new SteelTalon(Config.REAR_RIGHT_MOTOR);
+		motorPWM_FrontRight = new SteelTalon(Config.FRONT_RIGHT_MOTOR);
+		motorPWM_RearLeft = new SteelTalon(Config.REAR_LEFT_MOTOR);
+		motorPWM_FrontLeft = new SteelTalon(Config.FRONT_LEFT_MOTOR);
+		driveTrain = new DriveTrain(motorPWM_FrontLeft, motorPWM_RearLeft, motorPWM_FrontRight, motorPWM_RearRight);
 		Log.init("driveTrain initialized!");
 
-//		getBoulderIn=new Relay(Config.RELAY_PORT, Relay.Direction.kReverse);
-//		intake=new Intake(getBoulderIn);
-//		Log.init("Intaker initialized");
-//		
-//		
-//		turner = new Relay(Config.TURNER_MOTOR);
-//		tilter = new SteelTalon(Config.TILTER_MOTOR);
-//		shooter = new SteelTalon(Config.SHOOTER_MOTOR);
-//		launcher= new Launcher(shooter, turner, tilter);
-//		Log.init("launcher initialized!");
-//		
-//		winchLeft = new SteelTalon(Config.WINCH_LEFT_MOTOR);
-//		winchRight = new SteelTalon(Config.WINCH_RIGHT_MOTOR);
-//		winch = new Winch(winchLeft,winchRight);
-//		Log.init("winch initialized!");
-//
-//
-//		scissor=new Relay(Config.SCISSOR_MOTOR);
-//
-//		scissorLift=new ScissorLift(scissor);
-//		Log.init("scissorLift initialized!");
+		motorRelay_Intake=new Relay(Config.RELAY_PORT, Relay.Direction.kReverse);
+		intake=new Intake(motorRelay_Intake);
+		Log.init("Intaker initialized");
+		
+		
+		motorRelay_RotateTurret = new Relay(Config.TURN_TURRET_MOTOR);
+		motorRelay_TiltTurret = new Relay(Config.TILT_TURRET_MOTOR);
+		motorPWM_Flywheel = new SteelTalon(Config.SHOOTER_MOTOR);
+		launcher= new Launcher(motorPWM_Flywheel, motorRelay_RotateTurret, motorRelay_TiltTurret);
+		Log.init("launcher initialized!");
+		
+		motorPWM_WinchOne = new SteelTalon(Config.WINCH_ONE_MOTOR);
+		motorPWM_WinchTwo = new SteelTalon(Config.WINCH_TWO_MOTOR);
+		winch = new Winch(motorPWM_WinchOne,motorPWM_WinchTwo);
+		Log.init("winch initialized!");
+
+
+		motorRelay_ScissorLift =new Relay(Config.SCISSOR_MOTOR);
+
+		scissorLift=new ScissorLift(motorRelay_ScissorLift);
+		Log.init("scissorLift initialized!");
 
 		
 		Log.init("All subsystems ready!");

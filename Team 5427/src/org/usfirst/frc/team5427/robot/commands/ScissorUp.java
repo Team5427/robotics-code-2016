@@ -29,7 +29,7 @@ public class ScissorUp extends Command{
 
     // Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if(Robot.oi.getJoy().getRawButton(Config.SCISSOR_UP_BUTTON) == false)
+		if(Robot.oi.getJoy().getRawButton(Config.SCISSORLIFT_UP_BUTTON) == false)
 			return true;
 		
 		return false;

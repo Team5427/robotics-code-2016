@@ -28,9 +28,9 @@ public class OI {
     Button toggleIntake = new JoystickButton(joy, Config.TOGGLE_INTAKE_BUTTON),
     		intaker = new JoystickButton(joy, Config.NEW_INTAKE_BUTTON),
     		toTurret = new JoystickButton(joy,Config.TO_TURRET_BUTTON),
-    		shoot = new JoystickButton(joy,Config.SHOOTER_BUTTON),
-    		scissorDown=new JoystickButton(joy,Config.SCISSOR_DOWN_BUTTON),
-    		scissorUp=new JoystickButton(joy,Config.SCISSOR_UP_BUTTON),
+    		shoot = new JoystickButton(joy,Config.SHOOT_BUTTON),
+    		scissorDown=new JoystickButton(joy,Config.SCISSORLIFT_DOWN_BUTTON),
+    		scissorUp=new JoystickButton(joy,Config.SCISSORLIFT_UP_BUTTON),
     		winch= new JoystickButton(joy,Config.WINCH_BUTTON),
     		ultrasonic = new JoystickButton(joy,Config.ULTRASONIC_BUTTON);
    UserControlledTilt UCTilt;

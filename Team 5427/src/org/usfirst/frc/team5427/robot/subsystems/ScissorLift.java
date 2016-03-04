@@ -9,11 +9,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class ScissorLift extends Subsystem
 {
 	
-	Relay motorScissorLift;
+	Relay motorRelay_ScissorLift;
 	
-	public ScissorLift(Relay motorScissorLift)
+	public ScissorLift(Relay motorRelay_ScissorLift)
 	{
-		this.motorScissorLift=motorScissorLift;
+		this.motorRelay_ScissorLift=motorRelay_ScissorLift;
 	}
 	
 	@Override
@@ -23,16 +23,16 @@ public class ScissorLift extends Subsystem
 	
 	public void stop()
 	{
-		motorScissorLift.set(Relay.Value.kOff);
+		motorRelay_ScissorLift.set(Relay.Value.kOff);
 	}
 	
 	public void move(int direction)
 	{
 		if(direction<0)
-			motorScissorLift.setDirection(Relay.Direction.kReverse);
+			motorRelay_ScissorLift.setDirection(Relay.Direction.kReverse);
 		else if(direction>0)
-			motorScissorLift.setDirection(Relay.Direction.kForward);
+			motorRelay_ScissorLift.setDirection(Relay.Direction.kForward);
 
-		motorScissorLift.set(Relay.Value.kOn);
+		motorRelay_ScissorLift.set(Relay.Value.kOn);
 	}
 }
