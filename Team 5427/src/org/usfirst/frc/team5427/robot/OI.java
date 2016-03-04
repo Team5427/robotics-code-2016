@@ -32,7 +32,10 @@ public class OI {
     		scissorDown=new JoystickButton(joy,Config.SCISSOR_DOWN_BUTTON),
     		scissorUp=new JoystickButton(joy,Config.SCISSOR_UP_BUTTON),
     		winch= new JoystickButton(joy,Config.WINCH_BUTTON),
+    		engageLeftArm= new JoystickButton(joy,Config.ENGAGE_LEFT_ARM_BUTTON),
+    		engageRightArm= new JoystickButton(joy,Config.ENGAGE_RIGHT_ARM_BUTTON),
     		ultrasonic = new JoystickButton(joy,Config.ULTRASONIC_BUTTON);
+    	
    UserControlledTilt UCTilt;
    UserControlledTurn UCTurn;
     		
