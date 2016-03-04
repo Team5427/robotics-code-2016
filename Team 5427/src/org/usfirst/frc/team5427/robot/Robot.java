@@ -8,6 +8,7 @@ import org.usfirst.frc.team5427.robot.commands.GetStuffIn;
 import org.usfirst.frc.team5427.robot.commands.SonicDist;
 import org.usfirst.frc.team5427.robot.commands.UserControlledTurn;
 import org.usfirst.frc.team5427.robot.subsystems.Intake;
+import org.usfirst.frc.team5427.robot.subsystems.DoorOpener;
 import org.usfirst.frc.team5427.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5427.robot.subsystems.Intake;
 import org.usfirst.frc.team5427.robot.subsystems.Launcher;
@@ -163,6 +164,8 @@ public class Robot extends IterativeRobot {
 	public static Intake intake;
 	
 	public static DriveTrain driveTrain;
+	public static DoorOpener doorOpener;
+
 	public static Ultrasonic mySonic;
 	
 	double turnDegrees;
@@ -213,7 +216,11 @@ public class Robot extends IterativeRobot {
 		motorPWM_WinchTwo = new SteelTalon(Config.WINCH_TWO_MOTOR);
 		winch = new Winch(motorPWM_WinchOne,motorPWM_WinchTwo);
 		Log.init("winch initialized!");
-
+		
+		motorPWM_LeftArm = new SteelTalon(Config.LEFT_ARM_MOTOR);
+		motorPWM_RightArm = new SteelTalon(Config.RIGHT_ARM_MOTOR);
+		doorOpener = new DoorOpener(motorPWM_LeftArm, motorPWM_RightArm);
+		Log.init("DoorOpener initialized!");
 
 		motorRelay_ScissorLift =new Relay(Config.SCISSOR_MOTOR);
 

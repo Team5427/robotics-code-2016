@@ -21,7 +21,10 @@ public class Config {
 	public static final int SCISSORLIFT_UP_BUTTON=3;
 	public static final int SCISSORLIFT_DOWN_BUTTON=4;
 	public static final int WINCH_BUTTON=5;
-	public static final int ULTRASONIC_BUTTON=11;
+	public static final int ULTRASONIC_BUTTON=8;
+	public static final int ENGAGE_LEFT_ARM_BUTTON=11;
+	public static final int ENGAGE_RIGHT_ARM_BUTTON=12;
+	
 	
 	//PORTS FOR VARIOUS THINGS
 	public static final int FRONT_LEFT_MOTOR = 0;
@@ -35,6 +38,10 @@ public class Config {
 	public static final int WINCH_ONE_MOTOR = 4;//Will be 4 & 5
 	public static final int WINCH_TWO_MOTOR = 5;
 	
+	public static final int LEFT_ARM_MOTOR=79;
+	public static final int RIGHT_ARM_MOTOR=83;
+	
+	
 	public static final int RELAY_PORT=1;
 	
 	public static final int SCISSOR_MOTOR=9;
@@ -45,6 +52,7 @@ public class Config {
 	public static final int JOYSTICK_PORT = 0;
 	
 	public static final int ALT_JOYSTICK_PORT = 0;
+	
 	
 	//OPTIONS
 	public static final double INTAKE_SPEED=0.5;
