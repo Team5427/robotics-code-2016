@@ -27,7 +27,7 @@ public class GetStuffIn extends Command {
     //makes the intaker go until told to stop this command
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intake.go();
+    	Robot.intake.intake();
     }
 
     //checks if button is pressed.  If it is, command continues to run.  If it is not, command 

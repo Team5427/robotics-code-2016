@@ -20,7 +20,7 @@ public class Intake extends Subsystem {
 	
 	
 	/**
-	 * BringInEr constructor -- as parameters takes each motor to initialise.
+	 * Intake constructor -- as parameters takes each motor to initialise.
 	 * @param motorRelay_Intake
 	 */
 	public Intake(Relay motorRelay_Intake)
@@ -34,12 +34,12 @@ public class Intake extends Subsystem {
 
 	}
 	/**
-	 *Makes it power on
+	 * turns on the intake motor
 	 */
-	public void go()
+	public void intake()
 	{motorRelay_Intake.set(Relay.Value.kOn);}
 	
-	 /** Makes it power off
+	 /** turns off the intake motor.
 	  */
 	public void stop()
 	{motorRelay_Intake.set(Relay.Value.kOff);}

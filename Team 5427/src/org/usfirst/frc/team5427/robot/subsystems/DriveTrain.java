@@ -26,15 +26,15 @@ public class DriveTrain extends Subsystem {
 	 * @param motorPWM_FrontLeft
 	 * @param motorPWM_RearLeft
 	 * @param motorPWM_FrontRight
-	 * @param MOTOR_PWM_BackRight
+	 * @param motorPWM_BackRight
 	 */
 	public DriveTrain(SpeedController motorPWM_FrontLeft, SpeedController motorPWM_RearLeft, SpeedController motorPWM_FrontRight, 
-			SpeedController MOTOR_PWM_BackRight)
+			SpeedController motorPWM_BackRight)
 	{
 		this.motorPWM_FrontLeft = motorPWM_FrontLeft;
 		this.motorPWM_RearLeft = motorPWM_RearLeft;
 		this.motorPWM_FrontRight = motorPWM_FrontRight;
-		this.MOTOR_PWM_BackRight = MOTOR_PWM_BackRight;
+		this.MOTOR_PWM_BackRight = motorPWM_BackRight;
 	}
 	@Override
 	protected void initDefaultCommand() {
