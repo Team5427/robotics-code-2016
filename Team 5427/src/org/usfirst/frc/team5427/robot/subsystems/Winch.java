@@ -8,7 +8,11 @@ public class Winch extends Subsystem
 	
 	SpeedController motorPWM_WinchOne;
 	SpeedController motorPWM_WinchTwo;
-	
+	/**
+	 * Winch constructor -- parameters are the winch motors.
+	 * @param motorPWM_Winch1
+	 * @param motorPWM_Winch2
+	 */
 	public Winch(SpeedController motorPWM_Winch1,SpeedController motorPWM_Winch2)
 	{
 		this.motorPWM_WinchOne = motorPWM_Winch1;
@@ -19,12 +23,17 @@ public class Winch extends Subsystem
 	protected void initDefaultCommand() {
 		
 	}
-	
+	/**
+	 * sets speed of winch motors to 0
+	 * 
+	 */
 	public void stop()
 	{
 		setSpeed(0);
 	}
-	
+	/**
+	 * @param speed
+	 */
 	public void setSpeed(double speed)
 	{
 		motorPWM_WinchOne.set(speed);
