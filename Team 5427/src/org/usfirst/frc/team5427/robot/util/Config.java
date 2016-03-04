@@ -3,8 +3,6 @@ package org.usfirst.frc.team5427.robot.util;
 public class Config {
 	//MISC
 	public static final String NAME = "Team5427RoboCode";
-	
-	
 	public static final boolean DEBUG_MODE = false; //displays 'Log.debug' in console
 	public static final boolean LOGGING = true; //only logs errors and fatals with this false
 	
@@ -26,34 +24,35 @@ public class Config {
 	public static final int ENGAGE_RIGHT_ARM_BUTTON=12;
 	
 	
-	//PORTS FOR VARIOUS THINGS
+	//PWM PORTS
 	public static final int FRONT_LEFT_MOTOR = 0;
 	public static final int REAR_LEFT_MOTOR = 1;
 	public static final int FRONT_RIGHT_MOTOR = 2;
 	public static final int REAR_RIGHT_MOTOR = 3;
-	public static final int TILT_TURRET_MOTOR = 6;
-	public static final int TURN_TURRET_MOTOR = 7;
-	public static final int SHOOTER_MOTOR = 8;
-
 	public static final int WINCH_ONE_MOTOR = 4;//Will be 4 & 5
 	public static final int WINCH_TWO_MOTOR = 5;
+	public static final int SHOOTER_MOTOR = 6;
+	public static final int LEFT_ARM_MOTOR=7;
+	public static final int RIGHT_ARM_MOTOR=8;
 	
-	public static final int LEFT_ARM_MOTOR=79;
-	public static final int RIGHT_ARM_MOTOR=83;
+	//RELAY PORTS
+	public static final int INTAKE_MOTOR=0;	
+	public static final int SCISSOR_MOTOR=1;
+	public static final int TILT_TURRET_MOTOR = 2;
+	public static final int TURN_TURRET_MOTOR = 3;
 	
+	//LIMIT PORTS
 	public static final int TILTER_LIMIT_SWITCH=789;
 	
+	//CONTROLLER PORTS
+	public static final int JOYSTICK_PORT = 0;
+	public static final int ALT_JOYSTICK_PORT = 0;
 	
-	public static final int RELAY_PORT=1;
-	
-	public static final int SCISSOR_MOTOR=9;
-	
+	//MISC PORTS
 	public static final int SONIC_PORT_TRIG=0;
 	public static final int SONIC_PORT_ECHO=1;
 	
-	public static final int JOYSTICK_PORT = 0;
 	
-	public static final int ALT_JOYSTICK_PORT = 0;
 	
 	
 	//OPTIONS
@@ -61,14 +60,13 @@ public class Config {
 	public static final double LAUNCH_SPEED=0.5;
 	public static final double WINCH_SPEED=0.5;
 	public static final double SCISSOR_SPEED=0.5;
+	public static final double TILT_TIMEOUT=1;
 	
-	//degree speeds
+	//ROTATION SPEEDS
 	public static final double TURNER_SECONDS_PER_DEGREE=.1;
 	public static final double TILTER_SECONDS_PER_DEGREE=.1;
 	
-	//other
-	
-	public static final double TILT_TIMEOUT=1;
+
 	//{Turn/Tild Speed inverse}
 	public static final double TURN_SPEED=.1;
 	public static final double TILT_SPEED=.1;

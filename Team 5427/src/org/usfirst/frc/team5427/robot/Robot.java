@@ -210,7 +210,7 @@ public class Robot extends IterativeRobot {
 		driveTrain = new DriveTrain(motorPWM_FrontLeft, motorPWM_RearLeft, motorPWM_FrontRight, motorPWM_RearRight);
 		Log.init("driveTrain initialized!");
 
-		motorRelay_Intake=new Relay(Config.RELAY_PORT, Relay.Direction.kReverse);
+		motorRelay_Intake=new Relay(Config.INTAKE_MOTOR, Relay.Direction.kReverse);
 		intake=new Intake(motorRelay_Intake);
 		Log.init("Intaker initialized");
 		
