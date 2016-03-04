@@ -6,14 +6,14 @@ import org.usfirst.frc.team5427.robot.util.Log;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class UserControlledTilt extends Command {
+public class NewUCTilt extends Command {
 	/**
 	 * sets the speed of the tilting mechanism in accordance with the Y axis of the joystick.
 	 */
-	public UserControlledTilt() {
+	public NewUCTilt() {
         // Use requires() here to declare subsystem dependencies
        requires(Robot.launcher);
-      // requires(Robot.driveTrain);
+       requires(Robot.driveTrain);
     }
 	
 	// Called just before this Command runs the first time
@@ -25,7 +25,7 @@ public class UserControlledTilt extends Command {
     
     protected void execute() {
     	//sets the speed of the turning motor
-    	if(Robot.oi.getJoy().getY()<-.2)
+    	if(Robot.oi.getJoy().getY()<-.2&&Robot.launcher.getIsTilterAtBottom()==false)
     	{
     		Robot.launcher.setTiltSpeed(-1*Config.TILT_SPEED);
     		super.setTimeout(Config.TILT_TIMEOUT);
@@ -33,6 +33,8 @@ public class UserControlledTilt extends Command {
     	if(Robot.oi.getJoy().getY()>.2)
     	{
     		Robot.launcher.setTiltSpeed(Config.TILT_SPEED);
+    		//if touching limit switch, setisTilterAtBottom to false
+    		
     	}
     }
 
@@ -41,7 +43,16 @@ public class UserControlledTilt extends Command {
     	if(Robot.oi.getJoy().getRawButton(Config.TO_TURRET_BUTTON) == false){
     		return true;
     	}
-    	
+    	if(isTimedOut())
+    	{
+    		Robot.launcher.setIsTilterAtBottom(true);
+    		return true;
+    	}
+    	if(Robot.tilterLimitSwitch.get())//!!!may need to make this ==false depending on how it is wired
+    	{
+    		Robot.launcher.setIsTilterAtBottom(false);
+    		return true;
+    	}
         return false;
     }
 

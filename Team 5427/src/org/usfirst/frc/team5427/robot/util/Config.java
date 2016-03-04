@@ -41,6 +41,8 @@ public class Config {
 	public static final int LEFT_ARM_MOTOR=79;
 	public static final int RIGHT_ARM_MOTOR=83;
 	
+	public static final int TILTER_LIMIT_SWITCH=789;
+	
 	
 	public static final int RELAY_PORT=1;
 	
@@ -64,7 +66,10 @@ public class Config {
 	public static final double TURNER_SECONDS_PER_DEGREE=.1;
 	public static final double TILTER_SECONDS_PER_DEGREE=.1;
 	
-	//other{Turn/Tild Speed inverse}
+	//other
+	
+	public static final double TILT_TIMEOUT=1;
+	//{Turn/Tild Speed inverse}
 	public static final double TURN_SPEED=.1;
 	public static final double TILT_SPEED=.1;
 	

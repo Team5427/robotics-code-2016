@@ -2,6 +2,8 @@ package org.usfirst.frc.team5427.robot;
 
 import org.usfirst.frc.team5427.robot.commands.ScissorUp;
 import org.usfirst.frc.team5427.robot.commands.Drive;
+import org.usfirst.frc.team5427.robot.commands.EngageLeftArm;
+import org.usfirst.frc.team5427.robot.commands.EngageRightArm;
 import org.usfirst.frc.team5427.robot.commands.GetStuffIn;
 //import org.usfirst.frc.team5427.robot.commands.GetStuffIn;
 import org.usfirst.frc.team5427.robot.commands.Scale;
@@ -28,9 +30,9 @@ public class OI {
     Button toggleIntake = new JoystickButton(joy, Config.TOGGLE_INTAKE_BUTTON),
     		intaker = new JoystickButton(joy, Config.NEW_INTAKE_BUTTON),
     		toTurret = new JoystickButton(joy,Config.TO_TURRET_BUTTON),
-    		shoot = new JoystickButton(joy,Config.SHOOT_BUTTON),
-    		scissorDown=new JoystickButton(joy,Config.SCISSORLIFT_DOWN_BUTTON),
-    		scissorUp=new JoystickButton(joy,Config.SCISSORLIFT_UP_BUTTON),
+    		shoot = new JoystickButton(joy,Config.SHOOTER_BUTTON),
+    		scissorDown=new JoystickButton(joy,Config.SCISSOR_DOWN_BUTTON),
+    		scissorUp=new JoystickButton(joy,Config.SCISSOR_UP_BUTTON),
     		winch= new JoystickButton(joy,Config.WINCH_BUTTON),
     		engageLeftArm= new JoystickButton(joy,Config.ENGAGE_LEFT_ARM_BUTTON),
     		engageRightArm= new JoystickButton(joy,Config.ENGAGE_RIGHT_ARM_BUTTON),
@@ -51,7 +53,9 @@ public class OI {
     	//toTurret.whenReleased(UCTurn.end());
     	//shoot.whenPressed(new Shoot());
     	ultrasonic.whenPressed(new SonicDist());
-    	intaker.whenPressed(new GetStuffIn());
+    	//intaker.whenPressed(new GetStuffIn());
+    	//engageLeftArm.whenPressed(new EngageLeftArm());
+    	//engageRightArm.whenPressed(new EngageRightArm());
     	//scissorUp.whenPressed(new ScissorUp());
     	//scissorDown.whenPressed(new ScissorDown());
     	//scissorDown.whenPressed(new ScissorDown());

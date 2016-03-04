@@ -24,6 +24,11 @@ public class Launcher extends Subsystem {
 	 * boulder out of the robot.
 	 */
 	SpeedController motorPWM_Flywheel;
+	
+	/**
+	 * Stores if the tilter is at teh bottom; if it is, the tilter won't go down further
+	 */
+	private boolean isTilterAtBottom;
 
 	/**
 	 * Relay which is responsible for rotating the turret mechanism to
@@ -106,11 +111,17 @@ public class Launcher extends Subsystem {
 		motorRotateVertical.set(Relay.Value.kOn);
 	}
 	public void setTiltSpeed(double speed) {
-		if(speed>0) tiltUp();
-		if(speed<0) tiltDown();
-		if(speed==0) stop();
+		if(speed<0) tiltUp();
+		if(speed>0&&isTilterAtBottom==false) tiltDown();
+		if(speed==0) stopTilt();
 	}
 
+	public void setIsTilterAtBottom(boolean t)
+	{isTilterAtBottom=t;}
+	
+	public boolean getIsTilterAtBottom()
+	{return isTilterAtBottom;}
+	
 	/**
 	 * sets the speed of the shooting motors to the specified speed.
 	 * 

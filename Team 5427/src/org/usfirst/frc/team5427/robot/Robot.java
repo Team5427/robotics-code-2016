@@ -38,6 +38,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
     
+	
+	
+	
+	
  // TODO fill in the blank in this comment after testing the robot.
  	/**
  	 * Motor utilized in the DriveTrain. It is located in the front left of the
@@ -171,6 +175,8 @@ public class Robot extends IterativeRobot {
 	double turnDegrees;
 	double tiltDegrees;
 	
+	public static DigitalInput tilterLimitSwitch;
+	
 	SendableChooser chooser;
 
 	
@@ -189,6 +195,8 @@ public class Robot extends IterativeRobot {
 		
 		Log.init("Robot initializing subsystems...");
 		
+		tilterLimitSwitch = new DigitalInput(Config.TILTER_LIMIT_SWITCH);
+		Log.init("TilterLimitSwitch initialized!");
 		
 		mySonic=new Ultrasonic(new DigitalOutput(Config.SONIC_PORT_TRIG),new DigitalInput(Config.SONIC_PORT_ECHO));
 		
