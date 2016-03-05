@@ -43,6 +43,8 @@ public class Config {
 	
 	//LIMIT PORTS
 	public static final int TILTER_LIMIT_SWITCH=789;
+	public static final int SCISSOR_LIMIT_UP=973;
+	public static final int SCISSOR_LIMIT_DOWN=888;
 	
 	//CONTROLLER PORTS
 	public static final int JOYSTICK_PORT = 0;
@@ -67,7 +69,7 @@ public class Config {
 	public static final double TILTER_SECONDS_PER_DEGREE=.1;
 	
 
-	//{Turn/Tild Speed inverse}
+	//{Turn/Tilt Speed inverse}
 	public static final double TURN_SPEED=.1;
 	public static final double TILT_SPEED=.1;
 	

@@ -176,7 +176,10 @@ public class Robot extends IterativeRobot {
 	double turnDegrees;
 	double tiltDegrees;
 	
+	//Limit switches
 	public static DigitalInput tilterLimitSwitch;
+	public static DigitalInput scissorUpLimitSwitch;
+	public static DigitalInput scissorDownLimitSwitch;
 	
 	SendableChooser chooser;
 
@@ -232,8 +235,10 @@ public class Robot extends IterativeRobot {
 		Log.init("DoorOpener initialized!");
 
 		motorRelay_ScissorLift =new Relay(Config.SCISSOR_MOTOR);
-
-		scissorLift=new ScissorLift(motorRelay_ScissorLift);
+		scissorUpLimitSwitch=new DigitalInput(Config.SCISSOR_LIMIT_UP);
+		scissorDownLimitSwitch= new DigitalInput(Config.SCISSOR_LIMIT_DOWN);
+		
+		scissorLift=new ScissorLift(motorRelay_ScissorLift, scissorUpLimitSwitch, scissorDownLimitSwitch );
 		Log.init("scissorLift initialized!");
 
 		
