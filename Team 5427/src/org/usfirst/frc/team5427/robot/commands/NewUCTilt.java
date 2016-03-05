@@ -36,7 +36,6 @@ public class NewUCTilt extends Command {
 	    	{
 	    		Robot.launcher.setTiltSpeed(Config.TILT_SPEED);
 	    		//if touching limit switch, setisTilterAtBottom to false
-	    		
 	    	}
     	}
     	else
