@@ -32,9 +32,8 @@ public class EngageRightArm extends Command{
 		if(Robot.oi.getJoy().getRawButton(Config.ENGAGE_RIGHT_ARM_BUTTON) == false)
 			return true;
 		//if at LimitSwitch, returns true and command stops
-				if(Robot.rightArmLimitSwitch.get())
+		if(Robot.rightArmLimitSwitch.get())
 					return true;
-		
 		return false;
 	}
 
