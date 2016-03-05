@@ -6,6 +6,10 @@ public class Config {
 	public static final boolean DEBUG_MODE = false; //displays 'Log.debug' in console
 	public static final boolean LOGGING = true; //only logs errors and fatals with this false
 	
+	//the amount of time AutoGetStuffIn runs
+	public static final double AUTO_INTAKE_TIME=5;
+	
+	
 	//Controls
 	public static final int JOYSTICK_MODE = 0;
 	public static final int ONE_JOYSTICK = 0;
@@ -41,29 +45,33 @@ public class Config {
 	public static final int TILT_TURRET_MOTOR = 2;
 	public static final int TURN_TURRET_MOTOR = 3;
 	
-	//LIMIT PORTS
+	//LIMIT SWITCH PORTS
 	public static final int TILTER_LIMIT_SWITCH=789;
 	public static final int SCISSOR_LIMIT_UP=973;
 	public static final int SCISSOR_LIMIT_DOWN=888;
+	public static final int LEFT_ARM_LIMIT=985;
+	public static final int RIGHT_ARM_LIMIT=895;
+	
+	
+	
+	
 	
 	//Potentiometer Analog input port
 	public static final int POTENTIOMETER_ANALOG_INPUT= 343;
-	
 	//Potentiometer offset
 	public static final int POTENTIOMETER_OFFSET=0;
-	
 	//Potentiometer's scale (EX: 0V-5V=0deg-360deg)
 	public static final int POTENTIOMETER_SCALE=360;
-	
 	//Potentiometer reference Degrees
 	public static final double POTENTIOMETER_RESET_DEGREES=0;
 	//Correct Degrees for tilter
 	public static final double TILTER_CORRECT_DEGREES=POTENTIOMETER_RESET_DEGREES+90;
 	public static final double TILTER_DEGREES_RANGE=1;
-	
 	//Ends of Potentiometer
 	public static final double POTENTIOMETER_END_ONE=POTENTIOMETER_RESET_DEGREES;
 	public static final double POTENTIOMETER_END_TWO=POTENTIOMETER_END_ONE+180;
+	
+	
 	
 	//CONTROLLER PORTS
 	public static final int JOYSTICK_PORT = 0;
