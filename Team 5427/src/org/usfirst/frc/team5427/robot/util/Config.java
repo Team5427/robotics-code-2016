@@ -61,7 +61,10 @@ public class Config {
 	//Potentiometer offset
 	public static final int POTENTIOMETER_OFFSET=0;
 	//Potentiometer's scale (EX: 0V-5V=0deg-360deg)
-	public static final int POTENTIOMETER_SCALE=360;
+	//large turret gear has 234 teeth, and the small gear for the potentiometer has 
+	//24 teeth.  234/24= 9.75 rotations for 360 degrees.  THerefore, the
+	// potentiometer's 10 rotations is equal to 369.231 degrees {360*10/9.75}
+	public static final double POTENTIOMETER_SCALE=369.2307692307692;
 	//Potentiometer reference Degrees
 	public static final double POTENTIOMETER_RESET_DEGREES=0;
 	//Correct Degrees for tilter
