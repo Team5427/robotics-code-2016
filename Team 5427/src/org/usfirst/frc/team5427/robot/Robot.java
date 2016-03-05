@@ -184,8 +184,6 @@ public class Robot extends IterativeRobot {
 	public static DigitalInput tilterLimitSwitch;
 	public static DigitalInput scissorUpLimitSwitch;
 	public static DigitalInput scissorDownLimitSwitch;
-	public static DigitalInput leftArmLimitSwitch;
-	public static DigitalInput rightArmLimitSwitch;
 	
 	
 	//Potentiometer
@@ -243,8 +241,7 @@ public class Robot extends IterativeRobot {
 		motorPWM_LeftArm = new SteelTalon(Config.LEFT_ARM_MOTOR);
 		motorPWM_RightArm = new SteelTalon(Config.RIGHT_ARM_MOTOR);
 		doorOpener = new DoorOpener(motorPWM_LeftArm, motorPWM_RightArm);
-		leftArmLimitSwitch=new DigitalInput(Config.LEFT_ARM_LIMIT);
-		rightArmLimitSwitch=new DigitalInput(Config.RIGHT_ARM_LIMIT);
+		
 		Log.init("DoorOpener initialized!");
 
 		motorRelay_ScissorLift =new Relay(Config.SCISSOR_MOTOR);
