@@ -12,11 +12,11 @@ public class resetTiltUp extends Command {
 	 * Resets the tilter to the up and straight position
 	 */
 	
-	public resetTiltUp(double targetDegrees) {
+	public resetTiltUp() {
         // Use requires() here to declare subsystem dependencies
        requires(Robot.launcher);
        //requires(Robot.pot);
-       this.targetDegrees=targetDegrees;
+       targetDegrees=Config.TILTER_CORRECT_DEGREES;
        initialize();
     }
 	
@@ -34,13 +34,21 @@ public class resetTiltUp extends Command {
         	Robot.launcher.stopTurn();
         if(Robot.tilterLimitSwitch.get()==false)
         	Robot.launcher.setTiltSpeed(-1);
-        Log.init("initialized reset");
+        Log.init("resetTiltUp done");
     }
 	
 // Called repeatedly when this Command is scheduled to run
     
     protected void execute() {
-   	
+    	if(getDegrees()-targetDegrees<0)
+    		Robot.launcher.turn(-1);
+        else if(getDegrees()-targetDegrees>0)
+        	Robot.launcher.turn(1);
+        if(getDegrees()-targetDegrees==0||Robot.pot.get()==Config.POTENTIOMETER_END_ONE||Robot.pot.get()==Config.POTENTIOMETER_END_TWO)
+        	Robot.launcher.stopTurn();
+        if(Robot.tilterLimitSwitch.get()==false)
+        	Robot.launcher.setTiltSpeed(-1);
+        Log.init("resetTiltUp done");
     }
 
     // Make this return true when this Command no longer needs to run execute()

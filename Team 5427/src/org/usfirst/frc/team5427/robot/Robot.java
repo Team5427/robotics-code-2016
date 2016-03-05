@@ -247,8 +247,8 @@ public class Robot extends IterativeRobot {
 		scissorLift=new ScissorLift(motorRelay_ScissorLift, scissorUpLimitSwitch, scissorDownLimitSwitch );
 		Log.init("scissorLift initialized!");
 
-		ai= new AnalogInput(Config.POTENTIOMETER_ANALOG_INPUT);
-		pot = new AnalogPotentiometer(ai, 360, Config.POTENTIOMETER_OFFSET);
+		Log.init("Resetting Potentiometer...");
+		resetPotentiometer();
 		Log.init("Potentiometer ready");
 		
 		Log.init("All subsystems ready!");
@@ -262,7 +262,7 @@ public class Robot extends IterativeRobot {
 		Log.init("All systems ready!");
 		
 		Log.init("Resetting Tilt to up");
-		new resetTiltUp(Config.TILTER_CORRECT_DEGREES);
+		new resetTiltUp();
 		// chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 	}
@@ -361,7 +361,11 @@ public class Robot extends IterativeRobot {
 	public static double getDistance()
 	{return distanceInInches;}
 	
-	
+	public void resetPotentiometer()
+	{
+		ai=new AnalogInput(Config.POTENTIOMETER_ANALOG_INPUT);
+		pot=new AnalogPotentiometer(ai,Config.POTENTIOMETER_SCALE,Config.POTENTIOMETER_OFFSET);
+	}
 	
 	//returns the Ultrasonic sensor
 	
