@@ -8,6 +8,7 @@ import org.usfirst.frc.team5427.robot.commands.Drive;
 import org.usfirst.frc.team5427.robot.commands.GetStuffIn;
 import org.usfirst.frc.team5427.robot.commands.SonicDist;
 import org.usfirst.frc.team5427.robot.commands.UserControlledTurn;
+import org.usfirst.frc.team5427.robot.commands.resetTiltUp;
 import org.usfirst.frc.team5427.robot.subsystems.Intake;
 import org.usfirst.frc.team5427.robot.subsystems.DoorOpener;
 import org.usfirst.frc.team5427.robot.subsystems.DriveTrain;
@@ -248,6 +249,7 @@ public class Robot extends IterativeRobot {
 
 		ai= new AnalogInput(Config.POTENTIOMETER_ANALOG_INPUT);
 		pot = new AnalogPotentiometer(ai, 360, Config.POTENTIOMETER_OFFSET);
+		Log.init("Potentiometer ready");
 		
 		Log.init("All subsystems ready!");
 		
@@ -258,6 +260,9 @@ public class Robot extends IterativeRobot {
 		Log.init("Interface loaded!...");
 
 		Log.init("All systems ready!");
+		
+		Log.init("Resetting Tilt to up");
+		new resetTiltUp(Config.TILTER_CORRECT_DEGREES);
 		// chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 	}

@@ -111,7 +111,7 @@ public class Launcher extends Subsystem {
 		motorRotateVertical.set(Relay.Value.kOn);
 	}
 	public void setTiltSpeed(double speed) {
-		if(speed<0) tiltUp();
+		if(speed<0&&Robot.tilterLimitSwitch.get()==false) tiltUp();
 		if(speed>0&&isTilterAtBottom==false) tiltDown();
 		if(speed==0) stopTilt();
 	}
