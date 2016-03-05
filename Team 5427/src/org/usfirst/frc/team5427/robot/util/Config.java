@@ -59,7 +59,8 @@ public class Config {
 	//Potentiometer Analog input port
 	public static final int POTENTIOMETER_ANALOG_INPUT= 343;
 	//Potentiometer offset
-	public static final int POTENTIOMETER_OFFSET=0;
+	//369-360=9/2=4.5 (see POTENTIOMETER_SCALE)
+	public static final double POTENTIOMETER_OFFSET=4.5;
 	//Potentiometer's scale (EX: 0V-5V=0deg-360deg)
 	//large turret gear has 234 teeth, and the small gear for the potentiometer has 
 	//24 teeth.  234/24= 9.75 rotations for 360 degrees.  THerefore, the
