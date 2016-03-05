@@ -19,6 +19,8 @@ import org.usfirst.frc.team5427.robot.subsystems.Winch;
 import org.usfirst.frc.team5427.robot.util.Config;
 import org.usfirst.frc.team5427.robot.util.Log;
 
+import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -26,6 +28,7 @@ import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -181,6 +184,9 @@ public class Robot extends IterativeRobot {
 	public static DigitalInput scissorUpLimitSwitch;
 	public static DigitalInput scissorDownLimitSwitch;
 	
+	AnalogInput ai;
+	public static Potentiometer pot;
+	
 	SendableChooser chooser;
 
 	
@@ -237,10 +243,11 @@ public class Robot extends IterativeRobot {
 		motorRelay_ScissorLift =new Relay(Config.SCISSOR_MOTOR);
 		scissorUpLimitSwitch=new DigitalInput(Config.SCISSOR_LIMIT_UP);
 		scissorDownLimitSwitch= new DigitalInput(Config.SCISSOR_LIMIT_DOWN);
-		
 		scissorLift=new ScissorLift(motorRelay_ScissorLift, scissorUpLimitSwitch, scissorDownLimitSwitch );
 		Log.init("scissorLift initialized!");
 
+		ai= new AnalogInput(Config.POTENTIOMETER_ANALOG_INPUT);
+		pot = new AnalogPotentiometer(ai, 360, Config.POTENTIOMETER_OFFSET);
 		
 		Log.init("All subsystems ready!");
 		

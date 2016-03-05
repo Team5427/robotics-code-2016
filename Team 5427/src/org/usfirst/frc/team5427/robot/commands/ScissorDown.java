@@ -31,6 +31,8 @@ public class ScissorDown extends Command{
 	protected boolean isFinished() {
 		if(Robot.oi.getJoy().getRawButton(Config.SCISSORLIFT_DOWN_BUTTON) == false)
 			return true;
+		if(Robot.scissorDownLimitSwitch.get())
+			return true;
 		
 		return false;
 	}

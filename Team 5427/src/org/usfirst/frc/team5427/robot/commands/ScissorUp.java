@@ -31,6 +31,8 @@ public class ScissorUp extends Command{
 	protected boolean isFinished() {
 		if(Robot.oi.getJoy().getRawButton(Config.SCISSORLIFT_UP_BUTTON) == false)
 			return true;
+		if(Robot.scissorUpLimitSwitch.get())
+			return true;
 		
 		return false;
 	}

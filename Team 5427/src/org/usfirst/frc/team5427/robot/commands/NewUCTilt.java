@@ -25,17 +25,22 @@ public class NewUCTilt extends Command {
     
     protected void execute() {
     	//sets the speed of the turning motor
-    	if(Robot.oi.getJoy().getY()<-.2&&Robot.launcher.getIsTilterAtBottom()==false)
+    	if(Robot.pot.get()<=Config.TILTER_CORRECT_DEGREES+Config.TILTER_DEGREES_RANGE&&Robot.pot.get()>=Config.TILTER_CORRECT_DEGREES-Config.TILTER_DEGREES_RANGE)
     	{
-    		Robot.launcher.setTiltSpeed(-1*Config.TILT_SPEED);
-    		super.setTimeout(Config.TILT_TIMEOUT);
+	    	if(Robot.oi.getJoy().getY()<-.2&&Robot.launcher.getIsTilterAtBottom()==false)
+	    	{
+	    		Robot.launcher.setTiltSpeed(-1*Config.TILT_SPEED);
+	    		super.setTimeout(Config.TILT_TIMEOUT);
+	    	}
+	    	if(Robot.oi.getJoy().getY()>.2)
+	    	{
+	    		Robot.launcher.setTiltSpeed(Config.TILT_SPEED);
+	    		//if touching limit switch, setisTilterAtBottom to false
+	    		
+	    	}
     	}
-    	if(Robot.oi.getJoy().getY()>.2)
-    	{
-    		Robot.launcher.setTiltSpeed(Config.TILT_SPEED);
-    		//if touching limit switch, setisTilterAtBottom to false
-    		
-    	}
+    	else
+    		Robot.launcher.stopTilt();
     }
 
     // Make this return true when this Command no longer needs to run execute()

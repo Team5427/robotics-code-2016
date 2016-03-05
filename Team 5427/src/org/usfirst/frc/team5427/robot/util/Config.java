@@ -46,6 +46,16 @@ public class Config {
 	public static final int SCISSOR_LIMIT_UP=973;
 	public static final int SCISSOR_LIMIT_DOWN=888;
 	
+	//Potentiometer Analog input port
+	public static final int POTENTIOMETER_ANALOG_INPUT= 343;
+	
+	//Potentiometer offset
+	public static final int POTENTIOMETER_OFFSET=0;
+	
+	//Correct Degrees for tilter
+	public static final double TILTER_CORRECT_DEGREES=90;
+	public static final double TILTER_DEGREES_RANGE=1;
+	
 	//CONTROLLER PORTS
 	public static final int JOYSTICK_PORT = 0;
 	public static final int ALT_JOYSTICK_PORT = 0;
