@@ -56,6 +56,10 @@ public class Config {
 	public static final double TILTER_CORRECT_DEGREES=90;
 	public static final double TILTER_DEGREES_RANGE=1;
 	
+	//Ends of Potentiometer
+	public static final double POTENTIOMETER_END_ONE=0;
+	public static final double POTENTIOMETER_END_TWO=360;
+	
 	//CONTROLLER PORTS
 	public static final int JOYSTICK_PORT = 0;
 	public static final int ALT_JOYSTICK_PORT = 0;
