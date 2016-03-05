@@ -9,14 +9,13 @@ import edu.wpi.first.wpilibj.command.Command;
 public class resetTiltUp extends Command {
 	private double targetDegrees;
 	/**
-	 * sets the speed of the tilting mechanism in accordance with the Y axis of the joystick.
-	 * @param targetDegrees - the degree value to reach before stopping command.
+	 * Resets the tilter to the up and straight position
 	 */
 	
 	public resetTiltUp(double targetDegrees) {
         // Use requires() here to declare subsystem dependencies
        requires(Robot.launcher);
-       requires(Robot.driveTrain);
+       //requires(Robot.pot);
        this.targetDegrees=targetDegrees;
        initialize();
     }
@@ -26,7 +25,7 @@ public class resetTiltUp extends Command {
 	 * sets the speed of the turn to turn the correct direction. the turn is stopped when the command ends.
 	 */
 	protected void initialize() {
-        Log.init("initialized reset");
+        
         if(getDegrees()-targetDegrees<0)
     		Robot.launcher.turn(-1);
         else if(getDegrees()-targetDegrees>0)
@@ -35,6 +34,7 @@ public class resetTiltUp extends Command {
         	Robot.launcher.stopTurn();
         if(Robot.tilterLimitSwitch.get()==false)
         	Robot.launcher.setTiltSpeed(-1);
+        Log.init("initialized reset");
     }
 	
 // Called repeatedly when this Command is scheduled to run
