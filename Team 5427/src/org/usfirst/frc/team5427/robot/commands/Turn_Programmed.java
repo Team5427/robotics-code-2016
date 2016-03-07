@@ -63,7 +63,7 @@ public class Turn_Programmed extends Command {
     
     protected double getDegrees(){
     	//return Config.getTurn();
-    	return Robot.pot.get();
+    	return Robot.potentiometer.get();
     }
 
 }
