@@ -1,3 +1,5 @@
+
+//this is an encoder comand that doesn't work.  Will work on later
 package org.usfirst.frc.team5427.robot.commands;
 
 import org.usfirst.frc.team5427.robot.Robot;
@@ -17,13 +19,13 @@ public class ResetArms extends Command{
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Log.init("initialized SallyPortSystem");
+		Log.init("initialized ResetArms");
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		
-		Robot.doorOpener.setLeftSpeed(Robot.oi.getJoy().getThrottle());
+		//if(degrees<Robot.leftEncoder.get)
 	}
 
     // Make this return true when this Command no longer needs to run execute()
