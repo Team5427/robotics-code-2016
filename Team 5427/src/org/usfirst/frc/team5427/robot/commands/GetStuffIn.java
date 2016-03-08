@@ -16,11 +16,13 @@ public class GetStuffIn extends Command {
         // Use requires() here to declare subsystem dependencies
     	//It needs the intake system
        requires(Robot.intake);
+       initialize();
     }
 
     //not used
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.launcher.stopShoot();
     	
     }
 

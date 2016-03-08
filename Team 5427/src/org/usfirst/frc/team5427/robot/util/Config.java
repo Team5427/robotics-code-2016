@@ -75,6 +75,16 @@ public class Config {
 	public static final double POTENTIOMETER_END_ONE=POTENTIOMETER_RESET_DEGREES;
 	public static final double POTENTIOMETER_END_TWO=POTENTIOMETER_END_ONE+180;
 	
+	//Encoder stuff
+	public static final int LEFT_ENCODER_PORT_ONE=1;
+	public static final int LEFT_ENCODER_PORT_TWO=1;
+	public static final int RIGHT_ENCODER_PORT_ONE=2;
+	public static final int RIGHT_ENCODER_PORT_TWO=2;
+	
+	//DoorOpeners positions 
+	public static final int STARTING_POSITION=90;
+	public static final int ENDING_POSITION=180;
+	
 	
 	
 	//CONTROLLER PORTS

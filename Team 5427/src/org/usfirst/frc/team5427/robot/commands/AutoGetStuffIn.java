@@ -11,18 +11,20 @@ import org.usfirst.frc.team5427.robot.util.Log;
  * Tells the Intake subsystem to go ON for Config.AUTO_INTAKE_TIME seconds
  */
 public class AutoGetStuffIn extends Command {
-	
+	//disable shhooter
 
     public AutoGetStuffIn() {
         // Use requires() here to declare subsystem dependencies
     	//It needs the intake system
        requires(Robot.intake);
        super.setTimeout(Config.AUTO_INTAKE_TIME);
+       initialize();
     }
 
     //not used
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.launcher.stopShoot();
     	
     }
 

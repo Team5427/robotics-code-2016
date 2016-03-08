@@ -24,6 +24,7 @@ import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DigitalOutput;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -190,6 +191,13 @@ public class Robot extends IterativeRobot {
 	AnalogInput ai;
 	public static Potentiometer pot;
 	
+	//Encoder stuff
+	public static Encoder leftEncoder;
+	public static Encoder rightEncoder;
+	DigitalInput leftEncoderOne,leftEncoderTwo;
+	DigitalInput rightEncoderOne,rightEncoderTwo;
+	
+	
 	SendableChooser chooser;
 
 	
@@ -250,9 +258,18 @@ public class Robot extends IterativeRobot {
 		scissorLift=new ScissorLift(motorRelay_ScissorLift, scissorUpLimitSwitch, scissorDownLimitSwitch );
 		Log.init("scissorLift initialized!");
 
-		Log.init("Resetting Potentiometer...");
-		resetPotentiometer();
+		//Log.init("Resetting Potentiometer...");
+		//resetPotentiometer();
 		Log.init("Potentiometer ready");
+		
+		//
+		leftEncoderOne=new DigitalInput(Config.LEFT_ENCODER_PORT_ONE);
+		leftEncoderTwo=new DigitalInput(Config.LEFT_ENCODER_PORT_TWO);
+		rightEncoderOne=new DigitalInput(Config.RIGHT_ENCODER_PORT_ONE);
+		rightEncoderOne=new DigitalInput(Config.RIGHT_ENCODER_PORT_TWO);
+		leftEncoder=new Encoder(leftEncoderOne,leftEncoderTwo,false);
+		rightEncoder=new Encoder(rightEncoderOne,rightEncoderTwo,false);
+		Log.init("Encoders ready");
 		
 		Log.init("All subsystems ready!");
 		

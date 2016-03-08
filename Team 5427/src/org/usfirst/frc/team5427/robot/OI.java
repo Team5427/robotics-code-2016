@@ -5,6 +5,7 @@ import org.usfirst.frc.team5427.robot.commands.Drive;
 import org.usfirst.frc.team5427.robot.commands.EngageLeftArm;
 import org.usfirst.frc.team5427.robot.commands.EngageRightArm;
 import org.usfirst.frc.team5427.robot.commands.GetStuffIn;
+import org.usfirst.frc.team5427.robot.commands.NewUCTilt;
 //import org.usfirst.frc.team5427.robot.commands.GetStuffIn;
 import org.usfirst.frc.team5427.robot.commands.Scale;
 import org.usfirst.frc.team5427.robot.commands.ScissorDown;
@@ -38,31 +39,24 @@ public class OI {
     		engageRightArm= new JoystickButton(joy,Config.ENGAGE_RIGHT_ARM_BUTTON),
     		ultrasonic = new JoystickButton(joy,Config.ULTRASONIC_BUTTON);
     	
-   UserControlledTilt UCTilt;
-   UserControlledTurn UCTurn;
+  
     		
     /**
      * constructor for the OI class, defines the button-press events.
      */
     public OI(){ 
-    	//toTurret.cancelWhenPressed(Robot.drive);
-    	//toTurret.whenPressed(UCTilt=new UserControlledTilt());
-    	//toTurret.whenPressed(UCTurn=new UserControlledTurn());
-    	//toTurret.whenReleased(Robot.drive=new Drive());
-    	//toTurret.whenReleased(UCTilt.end());
-    	//toTurret.whenReleased(UCTurn.end());
-    	//shoot.whenPressed(new Shoot());
+    	
+    	toTurret.whenPressed(new NewUCTilt());
+    	toTurret.whenPressed(new UserControlledTurn());
+    	shoot.whenPressed(new Shoot());
     	ultrasonic.whenPressed(new SonicDist());
-    	//intaker.whenPressed(new GetStuffIn());
-    	//engageLeftArm.whenPressed(new EngageLeftArm());
-    	//engageRightArm.whenPressed(new EngageRightArm());
-    	//scissorUp.whenPressed(new ScissorUp());
-    	//scissorDown.whenPressed(new ScissorDown());
-    	//scissorDown.whenPressed(new ScissorDown());
-    	//winch.whenPressed(new Scale());
-    	//ultrasonic.whenPressed(new UltrasonicLog());
-    	
-    	
+    	intaker.whenPressed(new GetStuffIn());
+    	engageLeftArm.whenPressed(new EngageLeftArm());
+    	engageRightArm.whenPressed(new EngageRightArm());
+    	scissorUp.whenPressed(new ScissorUp());
+    	scissorDown.whenPressed(new ScissorDown());
+    	scissorDown.whenPressed(new ScissorDown());
+    	winch.whenPressed(new Scale());
     }
     /**
      * returns the joystick object
