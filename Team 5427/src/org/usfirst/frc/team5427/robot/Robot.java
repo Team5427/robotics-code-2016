@@ -190,7 +190,7 @@ public class Robot extends IterativeRobot {
 	
 	//Potentiometer
 	AnalogInput ai;
-	public static Potentiometer pot;
+	public static Potentiometer potentiometer;
 	
 	//Encoder stuff
 	public static Encoder leftEncoder;
@@ -393,7 +393,7 @@ public class Robot extends IterativeRobot {
 	public void resetPotentiometer()
 	{
 		ai=new AnalogInput(Config.POTENTIOMETER_ANALOG_INPUT);
-		pot=new AnalogPotentiometer(ai,Config.POTENTIOMETER_SCALE,Config.POTENTIOMETER_OFFSET);
+		potentiometer=new AnalogPotentiometer(ai,Config.POTENTIOMETER_SCALE,Config.POTENTIOMETER_OFFSET);
 	}
 	
 	//returns the Ultrasonic sensor

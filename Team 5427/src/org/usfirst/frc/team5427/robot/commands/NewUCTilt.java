@@ -25,7 +25,7 @@ public class NewUCTilt extends Command {
     
     protected void execute() {
     	//sets the speed of the turning motor
-    	if(Robot.pot.get()<=Config.TILTER_CORRECT_DEGREES+Config.TILTER_DEGREES_RANGE&&Robot.pot.get()>=Config.TILTER_CORRECT_DEGREES-Config.TILTER_DEGREES_RANGE)
+    	if(Robot.potentiometer.get()<=Config.TILTER_CORRECT_DEGREES+Config.TILTER_DEGREES_RANGE&&Robot.potentiometer.get()>=Config.TILTER_CORRECT_DEGREES-Config.TILTER_DEGREES_RANGE)
     	{
 	    	if(Robot.oi.getJoy().getY()<-.2&&Robot.launcher.getIsTilterAtBottom()==false)
 	    	{
@@ -66,7 +66,7 @@ public class NewUCTilt extends Command {
     	if(Robot.launcher.getIsTilterAtBottom())
     		new AutoGetStuffIn();
     }
-
+    
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
