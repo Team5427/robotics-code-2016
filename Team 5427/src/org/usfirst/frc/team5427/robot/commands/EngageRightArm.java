@@ -22,7 +22,15 @@ public class EngageRightArm extends Command{
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		
+		Robot.rightEncoder.reset();
 		Robot.doorOpener.setRightSpeed(Robot.oi.getJoy().getThrottle());
+		if(Robot.rightEncoderDirection==Robot.rightEncoder.getDirection())
+			Robot.currentPosRight+=Robot.rightEncoder.getRaw();
+		else
+		{
+			Robot.currentPosRight-=Robot.rightEncoder.getRaw();
+			Robot.rightEncoderDirection=Robot.rightEncoder.getDirection();
+		}
 	}
 
     // Make this return true when this Command no longer needs to run execute()
@@ -30,6 +38,10 @@ public class EngageRightArm extends Command{
 		//If button not pressed, returns true and command stops running
 		//else returns true and command continues to run
 		if(Robot.oi.getJoy().getRawButton(Config.ENGAGE_RIGHT_ARM_BUTTON) == false)
+			return true;
+		if(Robot.currentPosRight+Config.MARGIN_TO_SHUT_DOWN >= Config.MAX_ENDING_POSITION)
+			return true;
+		if(Robot.currentPosRight-Config.MARGIN_TO_SHUT_DOWN >= Config.MAX_STARTING_POSITION)
 			return true;
 		
 		return false;

@@ -6,6 +6,7 @@ import org.usfirst.frc.team5427.robot.commands.AutoLaunchBoulder;
 import org.usfirst.frc.team5427.robot.commands.AutoLocateGoal;
 import org.usfirst.frc.team5427.robot.commands.Drive;
 import org.usfirst.frc.team5427.robot.commands.GetStuffIn;
+import org.usfirst.frc.team5427.robot.commands.ResetEncoders;
 import org.usfirst.frc.team5427.robot.commands.SonicDist;
 import org.usfirst.frc.team5427.robot.commands.UserControlledTurn;
 import org.usfirst.frc.team5427.robot.commands.resetTiltUp;
@@ -196,6 +197,11 @@ public class Robot extends IterativeRobot {
 	public static Encoder rightEncoder;
 	DigitalInput leftEncoderOne,leftEncoderTwo;
 	DigitalInput rightEncoderOne,rightEncoderTwo;
+	public static int currentPosLeft, currentPosRight;//stores each arm's current position. 
+	//We need to manually turn the arms back before the match, or all will be thrown off
+	public static boolean rightEncoderDirection,leftEncoderDirection;//stores the 
+	//encoders' current direction to let the program know whether to add or subtract the 
+	//raw encoder value
 	
 	
 	SendableChooser chooser;
@@ -267,9 +273,12 @@ public class Robot extends IterativeRobot {
 		leftEncoderTwo=new DigitalInput(Config.LEFT_ENCODER_PORT_TWO);
 		rightEncoderOne=new DigitalInput(Config.RIGHT_ENCODER_PORT_ONE);
 		rightEncoderOne=new DigitalInput(Config.RIGHT_ENCODER_PORT_TWO);
-		leftEncoder=new Encoder(leftEncoderOne,leftEncoderTwo,false);
-		rightEncoder=new Encoder(rightEncoderOne,rightEncoderTwo,false);
-		Log.init("Encoders ready");
+		leftEncoder=new Encoder(leftEncoderOne,leftEncoderTwo);
+		rightEncoder=new Encoder(rightEncoderOne,rightEncoderTwo);
+		leftEncoderDirection=leftEncoder.getDirection();
+		rightEncoderDirection=rightEncoder.getDirection();
+		new ResetEncoders();
+		Log.init("Encoders ready and reset");
 		
 		Log.init("All subsystems ready!");
 		

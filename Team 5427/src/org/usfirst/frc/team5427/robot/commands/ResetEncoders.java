@@ -1,4 +1,6 @@
-//This should reset the arms to the zero position
+//resets the CurrentPosLeft && CurrentPosRight to 0 in order to restart the count.
+//Also sets the encoders' counts to zero
+
 package org.usfirst.frc.team5427.robot.commands;
 
 import org.usfirst.frc.team5427.robot.Robot;
@@ -7,32 +9,28 @@ import org.usfirst.frc.team5427.robot.util.Log;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ResetArms extends Command{
+public class ResetEncoders extends Command{
 	
-	public ResetArms()
+	
+	public ResetEncoders()
 	{
-		requires(Robot.doorOpener);
+		initialize();
 	
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Log.init("initialized ResetArms");
+		Log.init("initialized ResetEncoders");
+		Robot.currentPosLeft=Robot.currentPosRight=0;
+		Robot.leftEncoderDirection=Robot.leftEncoder.getDirection();
+		Robot.rightEncoderDirection=Robot.rightEncoder.getDirection();
+		Robot.leftEncoder.reset();
+		Robot.rightEncoder.reset();
+		
 	}
 
-	//The correct current positions of the left and right arms 
-	//is used to determine how far the arms need to go back
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		//Sets the left encoder's value to zero
-		Robot.leftEncoder.reset();
-		while(Robot.currentPosLeft>Math.abs(Robot.leftEncoder.getRaw()))//if the new, turning value the 
-			//encoder gets is less than how much the thing needs to turn,it turns
-			Robot.doorOpener.setLeftSpeed(-.5);
-		//Same with right
-		Robot.rightEncoder.reset();
-		while(Robot.currentPosRight>Math.abs(Robot.rightEncoder.getRaw()))
-			Robot.doorOpener.setRightSpeed(.5);
 		
 		
 	}
