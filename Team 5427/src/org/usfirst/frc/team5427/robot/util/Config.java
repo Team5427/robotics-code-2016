@@ -81,10 +81,16 @@ public class Config {
 	public static final int RIGHT_ENCODER_PORT_ONE=2;
 	public static final int RIGHT_ENCODER_PORT_TWO=2;
 	
-	//DoorOpeners positions 
+	//DoorOpeners positions to be referenced in their respective commands based on
+	//the input from the encoders, and Robot.currentLeftPos/Robot.currentRightPos
 	public static final int MAX_STARTING_POSITION=0;
 	public static final int MAX_ENDING_POSITION=360;
 	public static final int MARGIN_TO_SHUT_DOWN=10;
+	//for the different obstacles
+	public static final int DRAWBRIDGE_START_POS=7789;
+	public static final int DRAWBRIDGE_END_POS=7789;
+	public static final int SALLY_START_POS=7789;
+	public static final int SALLY_END_POS=7789;
 	
 	
 	

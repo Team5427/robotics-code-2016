@@ -1,3 +1,6 @@
+//This should automatically move the arm to grab the door.  
+//I do not know if we want the wheels to move automatically 
+//to get around this obstacle, but I do not think so
 package org.usfirst.frc.team5427.robot.commands;
 
 import org.usfirst.frc.team5427.robot.Robot;
@@ -6,9 +9,9 @@ import org.usfirst.frc.team5427.robot.util.Log;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class EngageRightArm extends Command{
+public class DrawbridgeRight extends Command{
 	
-	public EngageRightArm()
+	public DrawbridgeRight()
 	{
 		requires(Robot.doorOpener);
 	
@@ -16,14 +19,17 @@ public class EngageRightArm extends Command{
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Log.init("initialized RightArm");
+		Log.init("initialized DrawbridgeRight");
 	}
 
+	
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		
 		Robot.rightEncoder.reset();
-		Robot.doorOpener.setRightSpeed(Robot.oi.getJoy().getThrottle());
+		while(Robot.currentPosRight>Config.DRAWBRIDGE_START_POS)
+		{
+			Robot.doorOpener.setRightSpeed(-.5);
+		}
 		if(Robot.rightEncoderDirection==Robot.rightEncoder.getDirection())
 			Robot.currentPosRight+=Robot.rightEncoder.getRaw();
 		else
@@ -31,20 +37,22 @@ public class EngageRightArm extends Command{
 			Robot.currentPosRight-=Robot.rightEncoder.getRaw();
 			//Robot.rightEncoderDirection=Robot.rightEncoder.getDirection();
 		}
+		while(Robot.currentPosRight<Config.DRAWBRIDGE_END_POS)
+			Robot.doorOpener.setRightSpeed(.5);
+		if(Robot.rightEncoderDirection==Robot.rightEncoder.getDirection())
+			Robot.currentPosRight+=Robot.rightEncoder.getRaw();
+		else
+		{
+			Robot.currentPosRight-=Robot.rightEncoder.getRaw();
+			//Robot.rightEncoderDirection=Robot.rightEncoder.getDirection();
+		}
+		
+		
 	}
 
     // Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		//If button not pressed, returns true and command stops running
-		//else returns true and command continues to run
-		if(Robot.oi.getJoy().getRawButton(Config.ENGAGE_RIGHT_ARM_BUTTON) == false)
-			return true;
-		if(Robot.currentPosRight+Config.MARGIN_TO_SHUT_DOWN >= Config.MAX_ENDING_POSITION)
-			return true;
-		if(Robot.currentPosRight-Config.MARGIN_TO_SHUT_DOWN >= Config.MAX_STARTING_POSITION)
-			return true;
-		
-		return false;
+		return true;
 	}
 
     // Called once after isFinished returns true

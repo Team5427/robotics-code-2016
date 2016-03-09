@@ -1,3 +1,6 @@
+//This should automatically move the arm to grab the door.  
+//I do not know if we want the wheels to move automatically 
+//to get around this obstacle, but I do not think so
 package org.usfirst.frc.team5427.robot.commands;
 
 import org.usfirst.frc.team5427.robot.Robot;
@@ -6,9 +9,9 @@ import org.usfirst.frc.team5427.robot.util.Log;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class EngageLeftArm extends Command{
+public class SallyLeft extends Command{
 	
-	public EngageLeftArm()
+	public SallyLeft()
 	{
 		requires(Robot.doorOpener);
 	
@@ -16,14 +19,17 @@ public class EngageLeftArm extends Command{
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Log.init("initialized LeftArm");
+		Log.init("initialized SallyLeft");
 	}
 
+	
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		
 		Robot.leftEncoder.reset();
-		Robot.doorOpener.setLeftSpeed(Robot.oi.getJoy().getThrottle());
+		while(Robot.currentPosLeft>Config.SALLY_START_POS)
+		{
+			Robot.doorOpener.setLeftSpeed(-.5);
+		}
 		if(Robot.leftEncoderDirection==Robot.leftEncoder.getDirection())
 			Robot.currentPosLeft+=Robot.leftEncoder.getRaw();
 		else
@@ -31,19 +37,22 @@ public class EngageLeftArm extends Command{
 			Robot.currentPosLeft-=Robot.leftEncoder.getRaw();
 			//Robot.leftEncoderDirection=Robot.leftEncoder.getDirection();
 		}
+		while(Robot.currentPosLeft<Config.SALLY_END_POS)
+			Robot.doorOpener.setLeftSpeed(.5);
+		if(Robot.leftEncoderDirection==Robot.leftEncoder.getDirection())
+			Robot.currentPosLeft+=Robot.leftEncoder.getRaw();
+		else
+		{
+			Robot.currentPosLeft-=Robot.leftEncoder.getRaw();
+			//Robot.leftEncoderDirection=Robot.leftEncoder.getDirection();
+		}
+		
+		
 	}
 
     // Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		//If button not pressed, returns true and command stops running
-		//else returns true and command continues to run
-		if(Robot.oi.getJoy().getRawButton(Config.ENGAGE_LEFT_ARM_BUTTON) == false)
-			return true;
-		if(Robot.currentPosLeft+Config.MARGIN_TO_SHUT_DOWN >= Config.MAX_ENDING_POSITION)
-			return true;
-		if(Robot.currentPosLeft-Config.MARGIN_TO_SHUT_DOWN >= Config.MAX_STARTING_POSITION)
-			return true;
-		return false;
+		return true;
 	}
 
     // Called once after isFinished returns true

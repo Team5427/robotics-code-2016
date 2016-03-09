@@ -32,7 +32,8 @@ public class ResetArms extends Command{
 		//Same with right
 		Robot.rightEncoder.reset();
 		while(Robot.currentPosRight>Math.abs(Robot.rightEncoder.getRaw()))
-			Robot.doorOpener.setRightSpeed(.5);
+			Robot.doorOpener.setRightSpeed(-.5);
+		new ResetEncoders();
 		
 		
 	}
