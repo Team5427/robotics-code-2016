@@ -23,7 +23,6 @@ public class Config {
 	public static final int SCISSORLIFT_UP_BUTTON=3;
 	public static final int SCISSORLIFT_DOWN_BUTTON=4;
 	public static final int WINCH_BUTTON=5;
-	public static final int ULTRASONIC_BUTTON=8;
 	public static final int ENGAGE_LEFT_ARM_BUTTON=11;
 	public static final int ENGAGE_RIGHT_ARM_BUTTON=12;
 	
@@ -98,9 +97,6 @@ public class Config {
 	public static final int JOYSTICK_PORT = 0;
 	public static final int ALT_JOYSTICK_PORT = 0;
 	
-	//MISC PORTS
-	public static final int SONIC_PORT_TRIG=0;
-	public static final int SONIC_PORT_ECHO=1;
 	
 	
 	
