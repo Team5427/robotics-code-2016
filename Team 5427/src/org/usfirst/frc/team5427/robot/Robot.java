@@ -3,11 +3,9 @@ package org.usfirst.frc.team5427.robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team5427.robot.commands.AutoLaunchBoulder;
-import org.usfirst.frc.team5427.robot.commands.AutoLocateGoal;
 import org.usfirst.frc.team5427.robot.commands.Drive;
 import org.usfirst.frc.team5427.robot.commands.GetStuffIn;
 import org.usfirst.frc.team5427.robot.commands.ResetEncoders;
-import org.usfirst.frc.team5427.robot.commands.SonicDist;
 import org.usfirst.frc.team5427.robot.commands.UserControlledTurn;
 import org.usfirst.frc.team5427.robot.commands.resetTiltUp;
 import org.usfirst.frc.team5427.robot.subsystems.Intake;
@@ -16,7 +14,6 @@ import org.usfirst.frc.team5427.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5427.robot.subsystems.Intake;
 import org.usfirst.frc.team5427.robot.subsystems.Launcher;
 import org.usfirst.frc.team5427.robot.subsystems.ScissorLift;
-import org.usfirst.frc.team5427.robot.subsystems.SteelUltrasonic;
 import org.usfirst.frc.team5427.robot.subsystems.Winch;
 import org.usfirst.frc.team5427.robot.util.Config;
 import org.usfirst.frc.team5427.robot.util.Log;
@@ -29,7 +26,6 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -155,10 +151,8 @@ public class Robot extends IterativeRobot {
  	static Relay motorRelay_ScissorLift;
 
 
-	Thread ultrasonicThread;
 	
 	 Drive drive;
-	 SonicDist sonicDist;
 	 //new intake system
 	 //public static GetStuffIn getStuff;
 	 //stores distance in inches from the object
@@ -171,13 +165,11 @@ public class Robot extends IterativeRobot {
 	public static Winch winch;
 	public static ScissorLift scissorLift;
 	public static OI oi;
-	public static SteelUltrasonic steelUltrasonic;
 	public static Intake intake;
 	
 	public static DriveTrain driveTrain;
 	public static DoorOpener doorOpener;
 
-	public static Ultrasonic mySonic;
 	
 	double turnDegrees;
 	double tiltDegrees;
@@ -224,10 +216,6 @@ public class Robot extends IterativeRobot {
 		
 		tilterLimitSwitch = new DigitalInput(Config.TILTER_LIMIT_SWITCH);
 		Log.init("TilterLimitSwitch initialized!");
-		
-		mySonic=new Ultrasonic(new DigitalOutput(Config.SONIC_PORT_TRIG),new DigitalInput(Config.SONIC_PORT_ECHO));
-		
-		Log.init("Ultrasonic initialized!");
 		
 		motorPWM_RearRight = new SteelTalon(Config.REAR_RIGHT_MOTOR);
 		motorPWM_FrontRight = new SteelTalon(Config.FRONT_RIGHT_MOTOR);
@@ -357,12 +345,6 @@ public class Robot extends IterativeRobot {
 		drive = new Drive();
 		drive.start();
 		
-		mySonic.setEnabled(true);
-		mySonic.setAutomaticMode(true);
-		sonicDist=new SonicDist();
-		
-		
-		
 		//if(oi.getJoy().getX()!=0)
 	
 		// This makes sure that the autonomous stops running when
@@ -396,6 +378,5 @@ public class Robot extends IterativeRobot {
 		potentiometer=new AnalogPotentiometer(ai,Config.POTENTIOMETER_SCALE,Config.POTENTIOMETER_OFFSET);
 	}
 	
-	//returns the Ultrasonic sensor
 	
 }
