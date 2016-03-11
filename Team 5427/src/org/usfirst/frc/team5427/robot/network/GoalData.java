@@ -1,61 +1,66 @@
 package org.usfirst.frc.team5427.robot.network;
 
+import java.io.Serializable;
+
+
+import java.io.Serializable;
+
 /**
- * The object that will be sent from the driver station and
- * will be received by the robot. This class only contains
- * data that may be useful for the robot.
+ * The object that will be sent from the driver station and will be received by
+ * the robot. This class only contains data that may be useful for the robot.
  */
-public class GoalData {
+public class GoalData implements Serializable {
 
-    /**
-     * Distance between the robot and the goal. The value is
-     */
-    private double distance;
-    /**
-     * The angle of elevation from the robot to the goal
-     */
-    private double angleOfElevation;
-    /**
-     * The horizontal angle from the camera to the
-     */
-    private double horizontalAngle;
+	/**
+	 * Distance between the robot and the goal. The value is
+	 */
+	private double distance;
+	/**
+	 * The angle of elevation from the robot to the goal
+	 */
+	private double angleOfElevation;
+	/**
+	 * The horizontal angle from the camera to the
+	 */
+	private double horizontalAngle;
 
-    public GoalData(double distance, double angleOfElevation, double horizontalAngle) {
-        this.distance = distance;
-        this.angleOfElevation = angleOfElevation;
-        this.horizontalAngle = horizontalAngle;
-    }
 
-    public double getDistance() {
-        return distance;
-    }
+	public GoalData(double distance, double angleOfElevation, double horizontalAngle) {
+		this.distance = distance;
+		this.angleOfElevation = angleOfElevation;
+		this.horizontalAngle = horizontalAngle;
+	}
 
-    public void setDistance(double distance) {
-        this.distance = distance;
-    }
+	public double getDistance() {
+		return distance;
+	}
 
-    public double getAngleOfElevation() {
-        return angleOfElevation;
-    }
+	public void setDistance(double distance) {
+		this.distance = distance;
+	}
 
-    public void setAngleOfElevation(double angleOfElevation) {
-        this.angleOfElevation = angleOfElevation;
-    }
+	public double getAngleOfElevation() {
+		return angleOfElevation;
+	}
 
-    public double getHorizontalAngle() {
-        return horizontalAngle;
-    }
+	public void setAngleOfElevation(double angleOfElevation) {
+		this.angleOfElevation = angleOfElevation;
+	}
 
-    public void setHorizontalAngle(double horizontalAngle) {
-        this.horizontalAngle = horizontalAngle;
-    }
+	public double getHorizontalAngle() {
+		return horizontalAngle;
+	}
 
-    /**
-     * The toString use by the network to identify the class type
-     *
-     * @return the class type for networking use
-     */
-    public String toString() {
-        return "Team 5427 - GoalData";
-    }
+	public void setHorizontalAngle(double horizontalAngle) {
+		this.horizontalAngle = horizontalAngle;
+	}
+
+	/**
+	 * The toString use by the network to identify the class type
+	 *
+	 * @return the class type for networking use
+	 */
+	public String toString() {
+		return "Team 5427 - GoalData";
+	}
 }
