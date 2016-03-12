@@ -9,9 +9,9 @@ import org.usfirst.frc.team5427.robot.util.Log;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class DrawbridgeRight extends Command{
+public class DrawbridgeRightReset extends Command{
 	
-	public DrawbridgeRight()
+	public DrawbridgeRightReset()
 	{
 		requires(Robot.doorOpener);
 	
@@ -19,20 +19,34 @@ public class DrawbridgeRight extends Command{
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Log.init("initialized DrawbridgeRight");
+		Log.init("initialized DrawbridgeRightReset");
+		Robot.rightEncoder.reset();
 	}
 
 	
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		new DrawbridgeRightReset();
-		new DrawbridgeRightGo();
+		
+		
+		{
+			Robot.doorOpener.setRightSpeed(-.5);
+		}
+		if(Robot.rightEncoderDirection==Robot.rightEncoder.getDirection())
+			Robot.currentPosRight+=Robot.rightEncoder.getRaw();
+		else
+		{
+			Robot.currentPosRight-=Robot.rightEncoder.getRaw();
+			//Robot.rightEncoderDirection=Robot.rightEncoder.getDirection();
+		}
+		
 		
 		
 	}
 
     // Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
+		if(Robot.currentPosRight>Config.DRAWBRIDGE_START_POS)
+			return false;
 		return true;
 	}
 

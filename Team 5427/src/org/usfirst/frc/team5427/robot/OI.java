@@ -10,7 +10,7 @@ import org.usfirst.frc.team5427.robot.commands.NewUCTilt;
 import org.usfirst.frc.team5427.robot.commands.Scale;
 import org.usfirst.frc.team5427.robot.commands.ScissorDown;
 import org.usfirst.frc.team5427.robot.commands.Shoot;
-import org.usfirst.frc.team5427.robot.commands.SonicDist;
+//import org.usfirst.frc.team5427.robot.commands.SonicDist;
 //import org.usfirst.frc.team5427.robot.commands.UltrasonicLog;
 import org.usfirst.frc.team5427.robot.commands.UserControlledTilt;
 import org.usfirst.frc.team5427.robot.commands.UserControlledTurn;
@@ -60,6 +60,7 @@ public class OI {
 	 * 
 	 * @return the joystick
 	 */
+
 	public Joystick getJoy() {
 		return joy;
 	}

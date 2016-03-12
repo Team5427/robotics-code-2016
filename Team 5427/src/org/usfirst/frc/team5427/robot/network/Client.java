@@ -1,77 +1,64 @@
 package org.usfirst.frc.team5427.robot.network;
 
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.Socket;
 import java.net.SocketException;
 import java.util.ArrayList;
 
-public class Client {
+public class Client implements Runnable {
 
 	public static final String DEFAULT_IP = "10.54.27.1";
 	public static final int DEFAULT_PORT = 25565;
 
-	private static Socket clientSocket;
-	private static ObjectInputStream in;
-	private static ObjectOutputStream out;
+	public static String ip;
+	public static int port;
 
-	private static boolean running = false;
+	Thread networkThread;
+	public ArrayList<Object> inputStreamData = null;
 
-	private static Thread networkThread = new Thread(new Runnable() {
+	private Socket clientSocket;
+	private ObjectInputStream is;
+	private ObjectOutputStream os;
 
-		@Override
-		public void run() {
+	private boolean running = false;
 
-			reconnect();
+	public Client() {
+		ip = DEFAULT_IP;
+		port = DEFAULT_PORT;
+	}
 
-			while (running && clientSocket != null && !clientSocket.isClosed() && is != null) {
-				try {
-					Object o = in.readObject();
+	public Client(String ip, int port) {
+		this.ip = ip;
+		this.port = port;
+	}
 
-					if (o.toString().contains("Task")) {
-						Task t = (Task) o;
+	/**
+	 * @deprecated Connects to the client server. This will prevent reconnection
+	 *             if connection is already established
+	 *
+	 * @return true if connection is successful, returns false if not or
+	 *         connection has already been established
+	 */
+	public boolean connect() {
+		if (clientSocket == null || clientSocket.isClosed())
+			return reconnect();
 
-						switch (t.getTask()) {
-						case GOAL_ATTACHED:
-							break;
-
-						case LOG:
-							break;
-
-						default:
-							System.out.println("TaskDescription \"" + t.getTask().toString() + "\" is not recognized.");
-
-						}
-					}
-
-				} catch (SocketException e) {
-					reset();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-				try {
-					Thread.sleep(10); // TODO not sure if this works, eclipse
-										// said that it had to be done.
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		}
-
-	});
+		return false;
+	}
 
 	/**
 	 * Reconnect to the client to the server
 	 *
 	 * @return true if connection is a success, false if failed
 	 */
-	public static boolean reconnect() {
+	public boolean reconnect() {
 		try {
-			clientSocket = new Socket(DEFAULT_IP, DEFAULT_PORT);
-			in = new ObjectInputStream(clientSocket.getInputStream());
-			out = new ObjectOutputStream(clientSocket.getOutputStream());
+			clientSocket = new Socket(ip, port);
+			is = new ObjectInputStream(clientSocket.getInputStream());
+			os = new ObjectOutputStream(clientSocket.getOutputStream());
 			System.out.println(clientSocket);
+
+			inputStreamData = new ArrayList<>();
 
 			System.out.println("Connection to the server has been established successfully.");
 
@@ -83,12 +70,89 @@ public class Client {
 	}
 
 	/**
+	 * Checks if the client is connected to a server
+	 *
+	 * @return true if server connection is established, false if not.
+	 */
+	public boolean isConnected() {
+		return clientSocket != null && !clientSocket.isClosed();
+	}
+
+	public static String getIp() {
+		return ip;
+	}
+
+	public static void setIp(String ip) {
+		Client.ip = ip;
+	}
+
+	public static int getPort() {
+		return port;
+	}
+
+	public static void setPort(int port) {
+		Client.port = port;
+	}
+
+	public ArrayList<Object> getInputStreamData() {
+		return inputStreamData;
+	}
+
+	/**
+	 * Sends an object to the server
+	 *
+	 * @param o
+	 *            object to be sent to the server
+	 * @return true if the object is sent successfully, false if otherwise.
+	 */
+	public synchronized boolean send(Serializable o) {
+
+		if (running) {
+			try {
+				if (os == null)
+					System.out.println("The output stream is null");
+				os.writeObject(o); // The error here is that writeObject is null
+				os.reset();
+				return true;
+			} catch (NotSerializableException e) {
+				System.err
+						.println(getClass() + ":: send(Serializable o)\n\tThe object to be sent is not serializable.");
+			} catch (SocketException e) {
+				System.err.println("Socket Exception");
+				reset();
+			} catch (NullPointerException e) {
+				System.err.println("\n\tThere was an error connecting to the server."); // This
+																						// error
+																						// occurs
+																						// when
+																						// the
+																						// client
+																						// attempts
+																						// to
+																						// connect
+																						// to
+																						// a
+																						// server,
+																						// but
+																						// the
+																						// running
+				stop(); // server is having a SocketException
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		return false;
+	}
+
+	/**
 	 * Enables the thread to start receiving data from a network
 	 *
 	 * @return true if the thread starts successfully, false if otherwise.
 	 */
-	public static synchronized boolean start() {
+	public synchronized boolean start() {
 		if (!running && (clientSocket == null || !clientSocket.isClosed())) {
+			networkThread = new Thread(this);
 			running = true;
 			networkThread.start();
 			return true;
@@ -102,20 +166,20 @@ public class Client {
 	 *
 	 * @return true if the thread is stopped successfully, false if otherwise.
 	 */
-	public static synchronized boolean stop() {
+	public synchronized boolean stop() {
 		running = false;
 
 		try {
 			clientSocket.close();
-			out.close();
-			in.close();
+			os.close();
+			is.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		clientSocket = null;
-		out = null;
-		in = null;
+		os = null;
+		is = null;
 
 		if (!networkThread.isAlive()) { // The thread is found running and is
 										// told to stop
@@ -125,11 +189,38 @@ public class Client {
 		}
 	}
 
-	public static synchronized boolean reset() {
+	public synchronized boolean reset() {
 		stop();
 		start();
 
 		return false;
+	}
+
+	/**
+	 * Running method that receives data from the server.
+	 */
+	@Override
+	public void run() {
+
+		reconnect();
+
+		while (running && clientSocket != null && !clientSocket.isClosed() && is != null) {
+			try {
+				inputStreamData.add(is.readObject());
+				// is.reset();
+
+			} catch (SocketException e) {
+				reset();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			try {
+				networkThread.sleep(10);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 }
