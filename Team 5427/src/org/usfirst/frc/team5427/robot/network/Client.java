@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5427.robot.network;
 
+import org.usfirst.frc.team5427.robot.util.Log;
+
 import java.io.*;
 import java.net.Socket;
 import java.net.SocketException;
@@ -20,8 +22,6 @@ public class Client implements Runnable {
 	private ObjectInputStream is;
 	private ObjectOutputStream os;
 
-	private boolean running = false;
-
 	public Client() {
 		ip = DEFAULT_IP;
 		port = DEFAULT_PORT;
@@ -30,20 +30,6 @@ public class Client implements Runnable {
 	public Client(String ip, int port) {
 		this.ip = ip;
 		this.port = port;
-	}
-
-	/**
-	 * @deprecated Connects to the client server. This will prevent reconnection
-	 *             if connection is already established
-	 *
-	 * @return true if connection is successful, returns false if not or
-	 *         connection has already been established
-	 */
-	public boolean connect() {
-		if (clientSocket == null || clientSocket.isClosed())
-			return reconnect();
-
-		return false;
 	}
 
 	/**
@@ -57,7 +43,7 @@ public class Client implements Runnable {
 			is = new ObjectInputStream(clientSocket.getInputStream());
 			os = new ObjectOutputStream(clientSocket.getOutputStream());
 			System.out.println(clientSocket);
-
+			
 			inputStreamData = new ArrayList<>();
 
 			System.out.println("Connection to the server has been established successfully.");
@@ -107,39 +93,20 @@ public class Client implements Runnable {
 	 */
 	public synchronized boolean send(Serializable o) {
 
-		if (running) {
+		if (networkThread != null && !networkThread.isInterrupted()) {
 			try {
-				if (os == null)
-					System.out.println("The output stream is null");
-				os.writeObject(o); // The error here is that writeObject is null
+				os.writeObject(o);
 				os.reset();
-				return true;
-			} catch (NotSerializableException e) {
-				System.err
-						.println(getClass() + ":: send(Serializable o)\n\tThe object to be sent is not serializable.");
-			} catch (SocketException e) {
-				System.err.println("Socket Exception");
-				reset();
+                return true;
+            } catch (NotSerializableException e) {
+				Log.error(getClass() + ":: send(Serializable o)\n\tThe object to be sent is not serializable.");
+            } catch (SocketException e) {
+				Log.error("Socket Exception");
 			} catch (NullPointerException e) {
-				System.err.println("\n\tThere was an error connecting to the server."); // This
-																						// error
-																						// occurs
-																						// when
-																						// the
-																						// client
-																						// attempts
-																						// to
-																						// connect
-																						// to
-																						// a
-																						// server,
-																						// but
-																						// the
-																						// running
-				stop(); // server is having a SocketException
+				Log.error("\n\tThere was an error connecting to the server.");					// This error occurs when the client attempts to connect to a server, but the running
 			} catch (Exception e) {
-				e.printStackTrace();
-			}
+                Log.error(e.getMessage());
+            }
 		}
 
 		return false;
@@ -151,9 +118,8 @@ public class Client implements Runnable {
 	 * @return true if the thread starts successfully, false if otherwise.
 	 */
 	public synchronized boolean start() {
-		if (!running && (clientSocket == null || !clientSocket.isClosed())) {
+		if (networkThread == null && (clientSocket == null || !clientSocket.isClosed())) {
 			networkThread = new Thread(this);
-			running = true;
 			networkThread.start();
 			return true;
 		}
@@ -167,24 +133,23 @@ public class Client implements Runnable {
 	 * @return true if the thread is stopped successfully, false if otherwise.
 	 */
 	public synchronized boolean stop() {
-		running = false;
+		networkThread.interrupt();
 
 		try {
 			clientSocket.close();
 			os.close();
 			is.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			Log.error(e.getMessage());
 		}
 
 		clientSocket = null;
 		os = null;
 		is = null;
 
-		if (!networkThread.isAlive()) { // The thread is found running and is
-										// told to stop
+		if (!networkThread.isAlive()) {		 	// The thread is found running and is told to stop
 			return true;
-		} else { // The thread is not running in the first place
+		} else {								// The thread is not running in the first place
 			return false;
 		}
 	}
@@ -204,21 +169,29 @@ public class Client implements Runnable {
 
 		reconnect();
 
-		while (running && clientSocket != null && !clientSocket.isClosed() && is != null) {
-			try {
-				inputStreamData.add(is.readObject());
-				// is.reset();
+		while (!networkThread.isInterrupted()) {
 
-			} catch (SocketException e) {
-				reset();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			if (clientSocket != null && !clientSocket.isClosed() && is != null) {
+				try {
+                    inputStreamData.add(is.readObject());
+                     is.reset();
 
-			try {
-				networkThread.sleep(10);
-			} catch (Exception e) {
-				e.printStackTrace();
+                } catch (SocketException e) {
+                    reset();
+                } catch (Exception e) {
+                    Log.error(e.getMessage());
+                }
+
+				try {
+                    networkThread.sleep(10);
+                } catch (InterruptedException e) {
+                    Log.info("Thread has been interrupted, client thread will stop.");
+                } catch (Exception e) {
+					Log.error(e.getMessage());;
+                }
+			} else {
+				Log.info("Connection lost, attempting to re-establish with driver station.");
+				reconnect();
 			}
 		}
 	}
