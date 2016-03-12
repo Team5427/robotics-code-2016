@@ -28,52 +28,50 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 	Joystick joy = new Joystick(Config.JOYSTICK_PORT);
 	Joystick altJoy = new Joystick(Config.ALT_JOYSTICK_PORT);
-    Button toggleIntake = new JoystickButton(joy, Config.TOGGLE_INTAKE_BUTTON),
-    		intaker = new JoystickButton(joy, Config.NEW_INTAKE_BUTTON),
-    		toTurret = new JoystickButton(joy,Config.TO_TURRET_BUTTON),
-    		shoot = new JoystickButton(joy,Config.SHOOT_BUTTON),
-    		scissorDown=new JoystickButton(joy,Config.SCISSORLIFT_DOWN_BUTTON),
-    		scissorUp=new JoystickButton(joy,Config.SCISSORLIFT_UP_BUTTON),
-    		winch= new JoystickButton(joy,Config.WINCH_BUTTON),
-    		engageLeftArm= new JoystickButton(joy,Config.ENGAGE_LEFT_ARM_BUTTON),
-    		engageRightArm= new JoystickButton(joy,Config.ENGAGE_RIGHT_ARM_BUTTON),
-    		ultrasonic = new JoystickButton(joy,Config.ULTRASONIC_BUTTON);
-    	
-  
-    		
-    /**
-     * constructor for the OI class, defines the button-press events.
-     */
-    public OI(){ 
-    	
-    	toTurret.whenPressed(new NewUCTilt());
-    	toTurret.whenPressed(new UserControlledTurn());
-    	shoot.whenPressed(new Shoot());
-    	intaker.whenPressed(new GetStuffIn());
-    	engageLeftArm.whenPressed(new EngageLeftArm());
-    	engageRightArm.whenPressed(new EngageRightArm());
-    	scissorUp.whenPressed(new ScissorUp());
-    	scissorDown.whenPressed(new ScissorDown());
-    	scissorDown.whenPressed(new ScissorDown());
-    	winch.whenPressed(new Scale());
-    }
-    /**
-     * returns the joystick object
-     * @return the joystick
-     */
+	Button toggleIntake = new JoystickButton(joy, Config.TOGGLE_INTAKE_BUTTON),
+			intaker = new JoystickButton(joy, Config.NEW_INTAKE_BUTTON),
+			toTurret = new JoystickButton(joy, Config.TO_TURRET_BUTTON),
+			shoot = new JoystickButton(joy, Config.SHOOT_BUTTON),
+			scissorDown = new JoystickButton(joy, Config.SCISSORLIFT_DOWN_BUTTON),
+			scissorUp = new JoystickButton(joy, Config.SCISSORLIFT_UP_BUTTON),
+			winch = new JoystickButton(joy, Config.WINCH_BUTTON),
+			engageLeftArm = new JoystickButton(joy, Config.ENGAGE_LEFT_ARM_BUTTON),
+			engageRightArm = new JoystickButton(joy, Config.ENGAGE_RIGHT_ARM_BUTTON);
+
+	/**
+	 * constructor for the OI class, defines the button-press events.
+	 */
+	public OI() {
+
+		toTurret.whenPressed(new NewUCTilt());
+		toTurret.whenPressed(new UserControlledTurn());
+		shoot.whenPressed(new Shoot());
+		intaker.whenPressed(new GetStuffIn());
+		engageLeftArm.whenPressed(new EngageLeftArm());
+		engageRightArm.whenPressed(new EngageRightArm());
+		scissorUp.whenPressed(new ScissorUp());
+		scissorDown.whenPressed(new ScissorDown());
+		scissorDown.whenPressed(new ScissorDown());
+		winch.whenPressed(new Scale());
+	}
+
+	/**
+	 * returns the joystick object
+	 * 
+	 * @return the joystick
+	 */
+
 	public Joystick getJoy() {
 		return joy;
 	}
-	
 
-
-	
 	/**
 	 * returns the right joystick if using 2
+	 * 
 	 * @return the other joystick
 	 */
-	public Joystick getAltJoy(){
+	public Joystick getAltJoy() {
 		return altJoy;
-		
+
 	}
 }
