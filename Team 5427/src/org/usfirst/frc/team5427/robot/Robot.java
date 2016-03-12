@@ -184,16 +184,11 @@ public class Robot extends IterativeRobot {
 	AnalogInput ai;
 	public static Potentiometer potentiometer;
 	
-	//Encoder stuff
-	public static Encoder leftEncoder;
-	public static Encoder rightEncoder;
-	DigitalInput leftEncoderOne,leftEncoderTwo;
-	DigitalInput rightEncoderOne,rightEncoderTwo;
-	public static int currentPosLeft, currentPosRight;//stores each arm's current position. 
-	//We need to manually turn the arms back before the match, or all will be thrown off
-	public static boolean rightEncoderDirection,leftEncoderDirection;//stores the 
-	//encoders' current direction to let the program know whether to add or subtract the 
-	//raw encoder value
+	//Arm pot stuff
+	public static Potentiometer leftArmPot;
+	public static Potentiometer rightArmPot;
+	AnalogInput leftPotPort, rightPotPort;
+	
 	
 	
 	SendableChooser chooser;
@@ -251,19 +246,13 @@ public class Robot extends IterativeRobot {
 		scissorLift=new ScissorLift(motorRelay_ScissorLift, scissorUpLimitSwitch, scissorDownLimitSwitch );
 		Log.init("scissorLift initialized!");
 
-		//Log.init("Resetting Potentiometer...");
-		//resetPotentiometer();
-		Log.init("Potentiometer ready");
+		Log.init("Resetting Potentiometer...");
+		resetPotentiometers();
+		Log.init("Potentiometers ready");
 		
 		//
-		leftEncoderOne=new DigitalInput(Config.LEFT_ENCODER_PORT_ONE);
-		leftEncoderTwo=new DigitalInput(Config.LEFT_ENCODER_PORT_TWO);
-		rightEncoderOne=new DigitalInput(Config.RIGHT_ENCODER_PORT_ONE);
-		rightEncoderOne=new DigitalInput(Config.RIGHT_ENCODER_PORT_TWO);
-		leftEncoder=new Encoder(leftEncoderOne,leftEncoderTwo);
-		rightEncoder=new Encoder(rightEncoderOne,rightEncoderTwo);
-		leftEncoderDirection=leftEncoder.getDirection();
-		rightEncoderDirection=rightEncoder.getDirection();
+		
+		
 		new ResetEncoders();
 		Log.init("Encoders ready and reset");
 		
@@ -373,10 +362,14 @@ public class Robot extends IterativeRobot {
 	public static double getDistance()
 	{return distanceInInches;}
 	
-	public void resetPotentiometer()
+	public void resetPotentiometers()
 	{
 		ai=new AnalogInput(Config.POTENTIOMETER_ANALOG_INPUT);
 		potentiometer=new AnalogPotentiometer(ai,Config.POTENTIOMETER_SCALE,Config.POTENTIOMETER_OFFSET);
+		leftPotPort=AnalogInput(Config.POTENTIOMETER_ANALOG_INPUT);
+		leftArmPot;
+		rightArmPot;
+		DigitalInput leftPotPort, rightPotPort;
 	}
 	
 	

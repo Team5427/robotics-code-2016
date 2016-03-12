@@ -49,7 +49,6 @@ public class OI {
     	toTurret.whenPressed(new NewUCTilt());
     	toTurret.whenPressed(new UserControlledTurn());
     	shoot.whenPressed(new Shoot());
-    	//ultrasonic.whenPressed(new SonicDist());
     	intaker.whenPressed(new GetStuffIn());
     	engageLeftArm.whenPressed(new EngageLeftArm());
     	engageRightArm.whenPressed(new EngageRightArm());

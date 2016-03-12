@@ -76,10 +76,13 @@ public class Config {
 	public static final double POTENTIOMETER_END_TWO=POTENTIOMETER_END_ONE+180;
 	
 	//Encoder ports
-	public static final int LEFT_ENCODER_PORT_ONE=1;
-	public static final int LEFT_ENCODER_PORT_TWO=1;
-	public static final int RIGHT_ENCODER_PORT_ONE=2;
-	public static final int RIGHT_ENCODER_PORT_TWO=2;
+	public static final int LEFT_POT_PORT=1;
+	public static final double LEFT_POT_SCALE=360;
+	public static final double LEFT_POT_OFFSET=0;
+	
+	public static final int RIGHT_POT_PORT=2;
+	public static final double RIGHT_POT_SCALE=360;
+	public static final double RIGHT_POT_OFFSET=0;
 	
 	//DoorOpeners positions to be referenced in their respective commands based on
 	//the input from the encoders, and Robot.currentLeftPos/Robot.currentRightPos
