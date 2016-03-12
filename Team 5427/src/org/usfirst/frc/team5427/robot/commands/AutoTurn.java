@@ -12,16 +12,16 @@ import org.usfirst.frc.team5427.robot.util.Log;
  */
 public class AutoTurn extends Command {
 
-	private boolean forward;
+	private boolean right;
 	
-	public AutoTurn(double distance, boolean forward) {
+	public AutoTurn(double degrees, boolean right) {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.driveTrain);
-		if(forward)
-			super.setTimeout(distance/Config.FULL_SPEED_FORWARD);
+		if(right)
+			super.setTimeout(degrees*Config.FULL_TURN_SPEED_RIGHT/360);
 		else
-			super.setTimeout(distance/Config.FULL_SPEED_BACKWARD);
-		this.forward=forward;
+			super.setTimeout(degrees*Config.FULL_TURN_SPEED_LEFT/360);
+		this.right=right;
 	}
 
 	// Called just before this Command runs the first time
@@ -33,15 +33,15 @@ public class AutoTurn extends Command {
 
 	@SuppressWarnings("all")
 	protected void execute() {
-		if(forward)
+		if(right)
 		{
 				Robot.driveTrain.setLeftSpeed(1);
-				Robot.driveTrain.setRightSpeed(1);
+				Robot.driveTrain.setRightSpeed(-1);
 		}	
 		else
 		{
 			Robot.driveTrain.setLeftSpeed(-1);
-			Robot.driveTrain.setRightSpeed(-1);
+			Robot.driveTrain.setRightSpeed(1);
 		}
 			
 			

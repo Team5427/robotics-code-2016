@@ -182,7 +182,6 @@ public class Robot extends IterativeRobot {
 	//Potentiometer
 	public static AnalogInput ai;
 	public static Potentiometer potentiometer;
-	
 	//Arm pot stuff
 	public static Potentiometer leftArmPot;
 	public static Potentiometer rightArmPot;

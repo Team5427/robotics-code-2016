@@ -102,9 +102,13 @@ public class Config {
 	public static final int ALT_JOYSTICK_PORT = 0;
 	
 	//stores the speed, in meters per second, that the Robot travels at full speed
+	//TODO time these values
 	public static final int FULL_SPEED_FORWARD=1;
 	public static final int FULL_SPEED_BACKWARD=1;
+	public static final int FULL_TURN_SPEED_RIGHT=1;
+	public static final int FULL_TURN_SPEED_LEFT=1;
 	//AUTO STUFF
+	//TODO time these values
 	public static final double OBSTACLE_TIME=3;
 	
 	
