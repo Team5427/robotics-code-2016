@@ -180,13 +180,13 @@ public class Robot extends IterativeRobot {
 	
 	
 	//Potentiometer
-	AnalogInput ai;
+	public static AnalogInput ai;
 	public static Potentiometer potentiometer;
 	
 	//Arm pot stuff
 	public static Potentiometer leftArmPot;
 	public static Potentiometer rightArmPot;
-	AnalogInput leftPotPort, rightPotPort;
+	public static AnalogInput leftPotPort, rightPotPort;
 	
 	
 	
@@ -356,7 +356,7 @@ public class Robot extends IterativeRobot {
 	public static double getDistance()
 	{return distanceInInches;}
 	
-	public void resetPotentiometers()
+	public static void resetPotentiometers()
 	{
 		ai=new AnalogInput(Config.POTENTIOMETER_ANALOG_INPUT);
 		potentiometer=new AnalogPotentiometer(ai,Config.POTENTIOMETER_SCALE,Config.POTENTIOMETER_OFFSET);
