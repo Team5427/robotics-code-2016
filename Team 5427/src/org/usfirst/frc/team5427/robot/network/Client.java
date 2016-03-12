@@ -24,7 +24,8 @@ public class Client {
 
 			reconnect();
 
-			while (running && clientSocket != null && !clientSocket.isClosed() && is != null) {
+			//"in" might e is___, but it was giving me an error, so I changed it to "in"
+			while (running && clientSocket != null && !clientSocket.isClosed() && in != null) {
 				try {
 					Object o = in.readObject();
 

@@ -10,7 +10,7 @@ import org.usfirst.frc.team5427.robot.commands.NewUCTilt;
 import org.usfirst.frc.team5427.robot.commands.Scale;
 import org.usfirst.frc.team5427.robot.commands.ScissorDown;
 import org.usfirst.frc.team5427.robot.commands.Shoot;
-import org.usfirst.frc.team5427.robot.commands.SonicDist;
+//import org.usfirst.frc.team5427.robot.commands.SonicDist;
 //import org.usfirst.frc.team5427.robot.commands.UltrasonicLog;
 import org.usfirst.frc.team5427.robot.commands.UserControlledTilt;
 import org.usfirst.frc.team5427.robot.commands.UserControlledTurn;
@@ -49,7 +49,7 @@ public class OI {
     	toTurret.whenPressed(new NewUCTilt());
     	toTurret.whenPressed(new UserControlledTurn());
     	shoot.whenPressed(new Shoot());
-    	ultrasonic.whenPressed(new SonicDist());
+    	//ultrasonic.whenPressed(new SonicDist());
     	intaker.whenPressed(new GetStuffIn());
     	engageLeftArm.whenPressed(new EngageLeftArm());
     	engageRightArm.whenPressed(new EngageRightArm());
