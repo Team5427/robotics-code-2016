@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5427.robot.util;
 
+import org.usfirst.frc.team5427.robot.Robot;
+
 public class Config {
 	//MISC
 	public static final String NAME = "Team5427RoboCode";
@@ -48,13 +50,9 @@ public class Config {
 	public static final int TILTER_LIMIT_SWITCH=789;
 	public static final int SCISSOR_LIMIT_UP=973;
 	public static final int SCISSOR_LIMIT_DOWN=888;
-	public static final int LEFT_ARM_LIMIT=985;
-	public static final int RIGHT_ARM_LIMIT=895;
-	
-	
-	
-	
-	
+	//DNE//public static final int LEFT_ARM_LIMIT=985;
+	//DNE//public static final int RIGHT_ARM_LIMIT=895;
+		
 	//Potentiometer Analog input port
 	public static final int POTENTIOMETER_ANALOG_INPUT= 343;
 	//Potentiometer offset
@@ -136,9 +134,8 @@ public class Config {
 	}
 	
 	public static double getTurn() {
-		//TODO get turn degrees from encoder
-		double turn = -1;
-		return turn;
+		
+		return Robot.potentiometer.get();
 	}
 	
 	
