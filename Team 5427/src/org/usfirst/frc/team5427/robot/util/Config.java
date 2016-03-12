@@ -101,8 +101,11 @@ public class Config {
 	public static final int JOYSTICK_PORT = 0;
 	public static final int ALT_JOYSTICK_PORT = 0;
 	
-	
-	
+	//stores the speed, in meters per second, that the Robot travels at full speed
+	public static final int FULL_SPEED_FORWARD=1;
+	public static final int FULL_SPEED_BACKWARD=1;
+	//AUTO STUFF
+	public static final double OBSTACLE_TIME=3;
 	
 	
 	//OPTIONS
@@ -110,7 +113,7 @@ public class Config {
 	public static final double LAUNCH_SPEED=0.5;
 	public static final double WINCH_SPEED=0.5;
 	public static final double SCISSOR_SPEED=0.5;
-	public static final double TILT_TIMEOUT=1;
+	public static final double TILT_TIMEOUT=.1;
 	
 	//ROTATION SPEEDS
 	public static final double TURNER_SECONDS_PER_DEGREE=.1;
@@ -122,7 +125,7 @@ public class Config {
 	public static final double TILT_SPEED=.1;
 	
 	//Shooter time run
-	public static final int SHOOTER_SECONDS=500;
+	public static final int SHOOTER_SECONDS=2;
 	
 	
 	//MEASUREMENTS
