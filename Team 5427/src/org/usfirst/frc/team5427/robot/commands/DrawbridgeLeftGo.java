@@ -26,25 +26,14 @@ public class DrawbridgeLeftGo extends Command{
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		Robot.doorOpener.setLeftSpeed(.5);
-		if(Robot.leftEncoderDirection==Robot.leftEncoder.getDirection())
-			Robot.currentPosLeft+=Robot.leftEncoder.getRaw();
-		else
-		{
-			Robot.currentPosLeft-=Robot.leftEncoder.getRaw();
-			//Robot.leftEncoderDirection=Robot.leftEncoder.getDirection();
-		}
 	}
 
     // Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if(Robot.currentPosLeft<Config.DRAWBRIDGE_END_POS)
+		if(Robot.leftArmPot.get()<Config.DRAWBRIDGE_END_POS)
 			return false;
 		else
-		{
-			
 			return true;
-			
-		}
 		
 	}
 

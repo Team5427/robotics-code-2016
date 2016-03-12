@@ -20,34 +20,21 @@ public class DrawbridgeLeftReset extends Command{
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		Log.init("initialized DrawbridgeLeftReset");
-		Robot.leftEncoder.reset();
+		
 	}
 
 	
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		
-		Robot.doorOpener.setLeftSpeed(-.5);
-		if(Robot.leftEncoderDirection==Robot.leftEncoder.getDirection())
-			Robot.currentPosLeft+=Robot.leftEncoder.getRaw();
-		else
-		{
-			Robot.currentPosLeft-=Robot.leftEncoder.getRaw();
-			//Robot.leftEncoderDirection=Robot.leftEncoder.getDirection();
-		}
-		
-		
+		Robot.doorOpener.setLeftSpeed(-.5);	
 	}
 
     // Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if(Robot.currentPosLeft>Config.DRAWBRIDGE_START_POS)
+		if(Robot.leftArmPot.get()>Config.DRAWBRIDGE_START_POS)
 			return false;
 		else
-		{
-			
 			return true;
-		}
 	}
 
     // Called once after isFinished returns true
