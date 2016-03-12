@@ -25,27 +25,8 @@ public class DrawbridgeRight extends Command{
 	
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.rightEncoder.reset();
-		while(Robot.currentPosRight>Config.DRAWBRIDGE_START_POS)
-		{
-			Robot.doorOpener.setRightSpeed(-.5);
-		}
-		if(Robot.rightEncoderDirection==Robot.rightEncoder.getDirection())
-			Robot.currentPosRight+=Robot.rightEncoder.getRaw();
-		else
-		{
-			Robot.currentPosRight-=Robot.rightEncoder.getRaw();
-			//Robot.rightEncoderDirection=Robot.rightEncoder.getDirection();
-		}
-		while(Robot.currentPosRight<Config.DRAWBRIDGE_END_POS)
-			Robot.doorOpener.setRightSpeed(.5);
-		if(Robot.rightEncoderDirection==Robot.rightEncoder.getDirection())
-			Robot.currentPosRight+=Robot.rightEncoder.getRaw();
-		else
-		{
-			Robot.currentPosRight-=Robot.rightEncoder.getRaw();
-			//Robot.rightEncoderDirection=Robot.rightEncoder.getDirection();
-		}
+		new DrawbridgeRightReset();
+		new DrawbridgeRightGo();
 		
 		
 	}

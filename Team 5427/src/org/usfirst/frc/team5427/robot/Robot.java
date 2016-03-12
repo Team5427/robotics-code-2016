@@ -243,7 +243,6 @@ public class Robot extends IterativeRobot {
 		motorPWM_LeftArm = new SteelTalon(Config.LEFT_ARM_MOTOR);
 		motorPWM_RightArm = new SteelTalon(Config.RIGHT_ARM_MOTOR);
 		doorOpener = new DoorOpener(motorPWM_LeftArm, motorPWM_RightArm);
-		
 		Log.init("DoorOpener initialized!");
 
 		motorRelay_ScissorLift =new Relay(Config.SCISSOR_MOTOR);
@@ -278,8 +277,10 @@ public class Robot extends IterativeRobot {
 
 		Log.init("All systems ready!");
 		
-		Log.init("Resetting Tilt to up");
-		new resetTiltUp();
+		//***Log.init("Resetting Tilt to up");
+		//***new resetTiltUp();
+		//Uncomment the above after Tilt has been tested
+		
 		// chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 	}
