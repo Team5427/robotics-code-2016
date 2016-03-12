@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team5427.robot.commands.AutoLaunchBoulder;
 import org.usfirst.frc.team5427.robot.commands.Drive;
 import org.usfirst.frc.team5427.robot.commands.GetStuffIn;
-import org.usfirst.frc.team5427.robot.commands.ResetEncoders;
 import org.usfirst.frc.team5427.robot.commands.UserControlledTurn;
 import org.usfirst.frc.team5427.robot.commands.resetTiltUp;
 import org.usfirst.frc.team5427.robot.subsystems.Intake;
@@ -246,15 +245,10 @@ public class Robot extends IterativeRobot {
 		scissorLift=new ScissorLift(motorRelay_ScissorLift, scissorUpLimitSwitch, scissorDownLimitSwitch );
 		Log.init("scissorLift initialized!");
 
-		Log.init("Resetting Potentiometer...");
+		Log.init("Resetting Potentiometers...");
 		resetPotentiometers();
 		Log.init("Potentiometers ready");
 		
-		//
-		
-		
-		new ResetEncoders();
-		Log.init("Encoders ready and reset");
 		
 		Log.init("All subsystems ready!");
 		
@@ -366,7 +360,7 @@ public class Robot extends IterativeRobot {
 	{
 		ai=new AnalogInput(Config.POTENTIOMETER_ANALOG_INPUT);
 		potentiometer=new AnalogPotentiometer(ai,Config.POTENTIOMETER_SCALE,Config.POTENTIOMETER_OFFSET);
-		leftPotPort=AnalogInput(Config.LEFT_POT_PORT);
+		leftPotPort= new AnalogInput(Config.LEFT_POT_PORT);
 		leftArmPot= new AnalogPotentiometer(leftPotPort,Config.LEFT_POT_SCALE, Config.LEFT_POT_OFFSET);
 		rightPotPort= new AnalogInput(Config.RIGHT_POT_PORT);
 		rightArmPot=new AnalogPotentiometer(rightPotPort, Config.RIGHT_POT_SCALE, Config.RIGHT_POT_OFFSET);

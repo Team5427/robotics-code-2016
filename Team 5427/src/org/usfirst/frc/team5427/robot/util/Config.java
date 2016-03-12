@@ -74,6 +74,9 @@ public class Config {
 	public static final double POTENTIOMETER_END_ONE=POTENTIOMETER_RESET_DEGREES;
 	public static final double POTENTIOMETER_END_TWO=POTENTIOMETER_END_ONE+180;
 	
+	//Arms' stop/end spots
+	public static final int ARM_START=0, ARM_END=ARM_START+180;
+	
 	//Encoder ports
 	public static final int LEFT_POT_PORT=1;
 	public static final double LEFT_POT_SCALE=360;

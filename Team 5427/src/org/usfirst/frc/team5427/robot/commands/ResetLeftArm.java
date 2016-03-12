@@ -1,3 +1,4 @@
+//This should reset the arms to the zero position
 package org.usfirst.frc.team5427.robot.commands;
 
 import org.usfirst.frc.team5427.robot.Robot;
@@ -6,9 +7,9 @@ import org.usfirst.frc.team5427.robot.util.Log;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class EngageLeftArm extends Command{
+public class ResetLeftArm extends Command{
 	
-	public EngageLeftArm()
+	public ResetLeftArm()
 	{
 		requires(Robot.doorOpener);
 	
@@ -16,28 +17,26 @@ public class EngageLeftArm extends Command{
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Log.init("initialized LeftArm");
+		Log.init("initialized ResetArms");
 	}
 
+	//The correct current positions of the left and right arms 
+	//is used to determine how far the arms need to go back
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		
 		
-		Robot.doorOpener.setLeftSpeed(Robot.oi.getJoy().getThrottle());
+			Robot.doorOpener.setLeftSpeed(-.5);
+	
+		
 		
 	}
 
     // Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		//If button not pressed, returns true and command stops running
-		//else returns true and command continues to run
-		if(Robot.oi.getJoy().getRawButton(Config.ENGAGE_LEFT_ARM_BUTTON) == false)
-			return true;
-		if(Robot.leftArmPot.get()+Config.MARGIN_TO_SHUT_DOWN >= Config.MAX_ENDING_POSITION)
-			return true;
-		if(Robot.leftArmPot.get()-Config.MARGIN_TO_SHUT_DOWN >= Config.MAX_STARTING_POSITION)
-			return true;
-		return false;
+		if(Robot.leftArmPot.get()>Config.ARM_START)
+			return false;
+		return true;
 	}
 
     // Called once after isFinished returns true

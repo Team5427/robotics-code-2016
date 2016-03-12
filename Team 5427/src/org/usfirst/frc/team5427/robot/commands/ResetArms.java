@@ -24,16 +24,11 @@ public class ResetArms extends Command{
 	//is used to determine how far the arms need to go back
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		//Sets the left encoder's value to zero
-		Robot.leftEncoder.reset();
-		while(Robot.currentPosLeft>Math.abs(Robot.leftEncoder.getRaw()))//if the new, turning value the 
-			//encoder gets is less than how much the thing needs to turn,it turns
-			Robot.doorOpener.setLeftSpeed(-.5);
+		
+		new ResetLeftArm();
 		//Same with right
-		Robot.rightEncoder.reset();
-		while(Robot.currentPosRight>Math.abs(Robot.rightEncoder.getRaw()))
-			Robot.doorOpener.setRightSpeed(-.5);
-		new ResetEncoders();
+		
+		new ResetRightArm();
 		
 		
 	}
