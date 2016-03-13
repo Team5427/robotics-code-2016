@@ -11,44 +11,46 @@ import org.usfirst.frc.team5427.robot.util.Log;
  * Tells the Intake subsystem to go on/off
  */
 public class GetStuffIn extends Command {
-	
-    public GetStuffIn() {
-        // Use requires() here to declare subsystem dependencies
-    	//It needs the intake system
-       requires(Robot.intake);
-       initialize();
-    }
 
-    //not used
-    // Called just before this Command runs the first time
-    protected void initialize() {
-    	Robot.launcher.stopShoot();
-    	
-    }
+	public GetStuffIn() {
+		// Use requires() here to declare subsystem dependencies
+		// It needs the intake system
+		requires(Robot.intake);
+		initialize();
+	}
 
-    //makes the intaker go until told to stop this command
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    	Robot.intake.intake();
-    }
+	// not used
+	// Called just before this Command runs the first time
+	protected void initialize() {
+		Robot.launcher.stopShoot();
 
-    //checks if button is pressed.  If it is, command continues to run.  If it is not, command 
-    //invokes end() and stops running
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-    	if(Robot.oi.getJoy().getRawButton(Config.NEW_INTAKE_BUTTON))
+	}
+
+	// makes the intaker go until told to stop this command
+	// Called repeatedly when this Command is scheduled to run
+	protected void execute() {
+		Robot.intake.intake();
+	}
+
+	// checks if button is pressed. If it is, command continues to run. If it is
+	// not, command
+	// invokes end() and stops running
+	// Make this return true when this Command no longer needs to run execute()
+	protected boolean isFinished() {
+		if (Robot.oi.getJoy().getRawButton(Config.NEW_INTAKE_BUTTON))
 			return false;
-    	return true;    }
+		return true;
+	}
 
-    // Called once after isFinished returns true
-    //stops the intake
-    public void end() {
-    	Robot.intake.stop();
-    	
-    }
+	// Called once after isFinished returns true
+	// stops the intake
+	public void end() {
+		Robot.intake.stop();
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    }
+	}
+
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	protected void interrupted() {
+	}
 }

@@ -2,7 +2,6 @@ package org.usfirst.frc.team5427.robot.network;
 
 import java.io.Serializable;
 
-
 import java.io.Serializable;
 
 /**
@@ -23,7 +22,6 @@ public class GoalData implements Serializable {
 	 * The horizontal angle from the camera to the
 	 */
 	private double horizontalAngle;
-
 
 	public GoalData(double distance, double angleOfElevation, double horizontalAngle) {
 		this.distance = distance;

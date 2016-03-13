@@ -9,12 +9,12 @@ public class AutoLocateGoal extends Command {
 	@Override
 	protected void initialize() {
 		Log.init("initialized AutoLocateGoal");
-				
+
 	}
 
 	@Override
 	protected void execute() {
-				
+
 	}
 
 	@Override
@@ -24,13 +24,13 @@ public class AutoLocateGoal extends Command {
 
 	@Override
 	protected void end() {
-		AutoLaunchBoulder autoLaunchBoulder= new AutoLaunchBoulder();
+		AutoLaunchBoulder autoLaunchBoulder = new AutoLaunchBoulder();
 		autoLaunchBoulder.start();
 	}
 
 	@Override
 	protected void interrupted() {
-				
+
 	}
 
 }

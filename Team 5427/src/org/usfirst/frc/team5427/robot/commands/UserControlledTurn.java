@@ -8,51 +8,54 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class UserControlledTurn extends Command {
 	/**
-	 * set the speed of the motor that rotates the launcher in accordance with the joystick twist axis.
+	 * set the speed of the motor that rotates the launcher in accordance with
+	 * the joystick twist axis.
 	 */
 	public UserControlledTurn() {
-        // Use requires() here to declare subsystem dependencies
-       requires(Robot.launcher);
-    }
-	
+		// Use requires() here to declare subsystem dependencies
+		requires(Robot.launcher);
+	}
+
 	// Called just before this Command runs the first time
 	protected void initialize() {
-        Log.init("initialized turner");
-    }
-	
-// Called repeatedly when this Command is scheduled to run
-    
-    protected void execute() {
+		Log.init("initialized turner");
+	}
 
-    	//sets the speed of the turning motor MANUALLY
-    	 if(Robot.potentiometer.get()==Config.POTENTIOMETER_END_ONE||Robot.potentiometer.get()==Config.POTENTIOMETER_END_TWO)
-         	end();
-    	if(Robot.oi.getJoy().getTwist()<-.2)
-    		Robot.launcher.turn(-1);
-    	else if(Robot.oi.getJoy().getTwist()>.2)
-    		Robot.launcher.turn(1);
+	// Called repeatedly when this Command is scheduled to run
 
-    }
+	protected void execute() {
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-    	if(Robot.oi.getJoy().getRawButton(Config.TO_TURRET_BUTTON) == false){
-    		return true;
-    	}
-    	if(Robot.potentiometer.get()==Config.POTENTIOMETER_END_ONE||Robot.potentiometer.get()==Config.POTENTIOMETER_END_TWO)
-        	return true;
-        return false;
-    }
+		// sets the speed of the turning motor MANUALLY
+		if (Robot.potentiometer.get() == Config.POTENTIOMETER_END_ONE
+				|| Robot.potentiometer.get() == Config.POTENTIOMETER_END_TWO)
+			end();
+		if (Robot.oi.getJoy().getTwist() < -.2)
+			Robot.launcher.turn(-1);
+		else if (Robot.oi.getJoy().getTwist() > .2)
+			Robot.launcher.turn(1);
 
-    // Called once after isFinished returns true
-    protected void end() {
-    	Robot.launcher.stopTurn();
-    }
+	}
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    	end();
-    }
+	// Make this return true when this Command no longer needs to run execute()
+	protected boolean isFinished() {
+		if (Robot.oi.getJoy().getRawButton(Config.TO_TURRET_BUTTON) == false) {
+			return true;
+		}
+		if (Robot.potentiometer.get() == Config.POTENTIOMETER_END_ONE
+				|| Robot.potentiometer.get() == Config.POTENTIOMETER_END_TWO)
+			return true;
+		return false;
+	}
+
+	// Called once after isFinished returns true
+	protected void end() {
+		Robot.launcher.stopTurn();
+	}
+
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	protected void interrupted() {
+		end();
+	}
 
 }

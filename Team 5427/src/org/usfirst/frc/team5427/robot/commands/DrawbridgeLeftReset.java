@@ -9,41 +9,39 @@ import org.usfirst.frc.team5427.robot.util.Log;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class DrawbridgeLeftReset extends Command{
-	
-	public DrawbridgeLeftReset()
-	{
+public class DrawbridgeLeftReset extends Command {
+
+	public DrawbridgeLeftReset() {
 		requires(Robot.doorOpener);
-	
+
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		Log.init("initialized DrawbridgeLeftReset");
-		
+
 	}
 
-	
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.doorOpener.setLeftSpeed(-.5);	
+		Robot.doorOpener.setLeftSpeed(-.5);
 	}
 
-    // Make this return true when this Command no longer needs to run execute()
+	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if(Robot.leftArmPot.get()>Config.DRAWBRIDGE_START_POS)
+		if (Robot.leftArmPot.get() > Config.DRAWBRIDGE_START_POS)
 			return false;
 		else
 			return true;
 	}
 
-    // Called once after isFinished returns true
+	// Called once after isFinished returns true
 	protected void end() {
 		Robot.doorOpener.stop();
 	}
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
 	protected void interrupted() {
 		end();
 	}

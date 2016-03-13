@@ -9,12 +9,11 @@ import org.usfirst.frc.team5427.robot.util.Log;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class DrawbridgeLeftGo extends Command{
-	
-	public DrawbridgeLeftGo()
-	{
+public class DrawbridgeLeftGo extends Command {
+
+	public DrawbridgeLeftGo() {
 		requires(Robot.doorOpener);
-	
+
 	}
 
 	// Called just before this Command runs the first time
@@ -22,28 +21,27 @@ public class DrawbridgeLeftGo extends Command{
 		Log.init("initialized DrawbridgeLeftGo");
 	}
 
-	
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		Robot.doorOpener.setLeftSpeed(.5);
 	}
 
-    // Make this return true when this Command no longer needs to run execute()
+	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if(Robot.leftArmPot.get()<Config.DRAWBRIDGE_END_POS)
+		if (Robot.leftArmPot.get() < Config.DRAWBRIDGE_END_POS)
 			return false;
 		else
 			return true;
-		
+
 	}
 
-    // Called once after isFinished returns true
+	// Called once after isFinished returns true
 	protected void end() {
 		Robot.doorOpener.stop();
 	}
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
 	protected void interrupted() {
 		end();
 	}

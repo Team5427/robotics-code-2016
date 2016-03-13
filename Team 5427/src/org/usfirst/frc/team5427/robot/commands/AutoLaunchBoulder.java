@@ -12,7 +12,7 @@ public class AutoLaunchBoulder extends Command {
 
 	@Override
 	protected void execute() {
-		
+
 	}
 
 	@Override
@@ -22,12 +22,12 @@ public class AutoLaunchBoulder extends Command {
 
 	@Override
 	protected void end() {
-		
+
 	}
 
 	@Override
 	protected void interrupted() {
-		
+
 	}
 
 }

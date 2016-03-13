@@ -38,14 +38,14 @@ public class OI {
 			leftFront = new JoystickButton(joy, Config.LEFT_FRONT),
 			leftBack = new JoystickButton(joy, Config.LEFT_BACK),
 			rightFront = new JoystickButton(joy, Config.RIGHT_FRONT),
-			rightBack= new JoystickButton(joy, Config.RIGHT_BACK);
+			rightBack = new JoystickButton(joy, Config.RIGHT_BACK);
 
 	/**
 	 * constructor for the OI class, defines the button-press events.
 	 */
 	public OI() {
 
-		//DO WE NEED TO ACTIVATE start() on these??????????
+		// DO WE NEED TO ACTIVATE start() on these??????????
 		toTurret.whenPressed(new NewUCTilt());
 		toTurret.whenPressed(new UserControlledTurn());
 		shoot.whenPressed(new Shoot());

@@ -6,13 +6,12 @@ import org.usfirst.frc.team5427.robot.util.Log;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class EngageRightArm extends Command{
+public class EngageRightArm extends Command {
 	boolean forward;
-	
-	public EngageRightArm(boolean forward)
-	{
+
+	public EngageRightArm(boolean forward) {
 		requires(Robot.doorOpener);
-		this.forward=forward;
+		this.forward = forward;
 	}
 
 	// Called just before this Command runs the first time
@@ -22,34 +21,34 @@ public class EngageRightArm extends Command{
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		if(forward)
+		if (forward)
 			Robot.doorOpener.setRightSpeed(.2);
 		else
 			Robot.doorOpener.setRightSpeed(-.2);
 	}
 
-    // Make this return true when this Command no longer needs to run execute()
+	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		//If button not pressed, returns true and command stops running
-		//else returns true and command continues to run
-		if(forward&&Robot.oi.getJoy().getRawButton(Config.RIGHT_FRONT) == false)
+		// If button not pressed, returns true and command stops running
+		// else returns true and command continues to run
+		if (forward && Robot.oi.getJoy().getRawButton(Config.RIGHT_FRONT) == false)
 			return true;
-		if(forward==false&&Robot.oi.getJoy().getRawButton(Config.RIGHT_BACK) == false)
+		if (forward == false && Robot.oi.getJoy().getRawButton(Config.RIGHT_BACK) == false)
 			return true;
-		if(Robot.rightArmPot.get()+Config.MARGIN_TO_SHUT_DOWN >= Config.MAX_ENDING_POSITION)
+		if (Robot.rightArmPot.get() + Config.MARGIN_TO_SHUT_DOWN >= Config.MAX_ENDING_POSITION)
 			return true;
-		if(Robot.rightArmPot.get()-Config.MARGIN_TO_SHUT_DOWN >= Config.MAX_STARTING_POSITION)
+		if (Robot.rightArmPot.get() - Config.MARGIN_TO_SHUT_DOWN >= Config.MAX_STARTING_POSITION)
 			return true;
 		return false;
 	}
 
-    // Called once after isFinished returns true
+	// Called once after isFinished returns true
 	protected void end() {
 		Robot.doorOpener.stop();
 	}
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
 	protected void interrupted() {
 		end();
 	}

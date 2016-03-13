@@ -8,20 +8,21 @@ import org.usfirst.frc.team5427.robot.util.Config;
 import org.usfirst.frc.team5427.robot.util.Log;
 
 /**
- * this class constantly inputs the Joystick axis into the driveTrain file, causing the robot to move.
+ * this class constantly inputs the Joystick axis into the driveTrain file,
+ * causing the robot to move.
  */
 public class AutoDrive extends Command {
 
 	private boolean forward;
-	
+
 	public AutoDrive(double distance, boolean forward) {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.driveTrain);
-		if(forward)
-			super.setTimeout(distance/Config.FULL_SPEED_FORWARD);
+		if (forward)
+			super.setTimeout(distance / Config.FULL_SPEED_FORWARD);
 		else
-			super.setTimeout(distance/Config.FULL_SPEED_BACKWARD);
-		this.forward=forward;
+			super.setTimeout(distance / Config.FULL_SPEED_BACKWARD);
+		this.forward = forward;
 	}
 
 	// Called just before this Command runs the first time
@@ -33,24 +34,19 @@ public class AutoDrive extends Command {
 
 	@SuppressWarnings("all")
 	protected void execute() {
-		if(forward)
-		{
-				Robot.driveTrain.setLeftSpeed(1);
-				Robot.driveTrain.setRightSpeed(1);
-		}	
-		else
-		{
+		if (forward) {
+			Robot.driveTrain.setLeftSpeed(1);
+			Robot.driveTrain.setRightSpeed(1);
+		} else {
 			Robot.driveTrain.setLeftSpeed(-1);
 			Robot.driveTrain.setRightSpeed(-1);
 		}
-			
-			
-		
+
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if(isTimedOut())
+		if (isTimedOut())
 			return true;
 		return false;
 	}
