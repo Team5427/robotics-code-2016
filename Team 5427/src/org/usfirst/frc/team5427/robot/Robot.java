@@ -237,7 +237,6 @@ public class Robot extends IterativeRobot {
 		intake=new Intake(motorRelay_Intake);
 		Log.init("Intaker initialized");
 		
-		
 		motorRelay_RotateTurret = new Relay(Config.TURN_TURRET_MOTOR);
 		motorRelay_TiltTurret = new Relay(Config.TILT_TURRET_MOTOR);
 		motorPWM_Flywheel = new SteelTalon(Config.SHOOTER_MOTOR);
