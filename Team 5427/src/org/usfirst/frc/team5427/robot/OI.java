@@ -52,8 +52,8 @@ public class OI {
 		intaker.whenPressed(new GetStuffIn());
 		leftFront.whenPressed(new EngageLeftArm(true));
 		leftBack.whenPressed(new EngageLeftArm(false));
-		rightFront.whenPressed(new EngageLeftArm(true));
-		rightBack.whenPressed(new EngageLeftArm(false));
+		rightFront.whenPressed(new EngageRightArm(true));
+		rightBack.whenPressed(new EngageRightArm(false));
 //		scissorUp.whenPressed(new ScissorUp());
 //		scissorDown.whenPressed(new ScissorDown());
 //		scissorDown.whenPressed(new ScissorDown());
