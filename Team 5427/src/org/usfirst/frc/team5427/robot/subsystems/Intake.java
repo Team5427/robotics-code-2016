@@ -26,7 +26,7 @@ public class Intake extends Subsystem {
 	 */
 	public Intake(Relay motorRelay_Intake) {
 		this.motorRelay_Intake = motorRelay_Intake;
-		motorRelay_Intake.setDirection(Relay.Direction.kReverse);
+		motorRelay_Intake.setDirection(Relay.Direction.kForward);
 	}
 
 	@Override
@@ -37,7 +37,11 @@ public class Intake extends Subsystem {
 	/**
 	 * turns on the intake motor
 	 */
-	public void intake() {
+	public void go(boolean in) {
+		if(in)
+			motorRelay_Intake.setDirection(Relay.Direction.kForward);
+		else
+			motorRelay_Intake.setDirection(Relay.Direction.kForward);
 		motorRelay_Intake.set(Relay.Value.kOn);
 	}
 
