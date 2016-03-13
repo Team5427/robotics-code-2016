@@ -42,15 +42,15 @@ public class Client implements Runnable {
 			clientSocket = new Socket(ip, port);
 			is = new ObjectInputStream(clientSocket.getInputStream());
 			os = new ObjectOutputStream(clientSocket.getOutputStream());
-			System.out.println(clientSocket);
+			Log.debug(clientSocket.toString());
 
 			inputStreamData = new ArrayList<>();
 
-			System.out.println("Connection to the server has been established successfully.");
+			Log.info("Connection to the server has been established successfully.");
 
 			return true;
 		} catch (Exception e) {
-			System.out.println("Connection failed to establish.");
+			Log.info("Connection failed to establish.");
 			return false;
 		}
 	}
@@ -87,37 +87,22 @@ public class Client implements Runnable {
 	/**
 	 * Sends an object to the server
 	 *
-	 * @param o
-	 *            object to be sent to the server
+	 * @param t object to be sent to the server
 	 * @return true if the object is sent successfully, false if otherwise.
 	 */
-	public synchronized boolean send(Serializable o) {
+	public synchronized boolean send(Task t) {
 
 		if (networkThread != null && !networkThread.isInterrupted()) {
 			try {
-				os.writeObject(o);
+				os.writeObject(t);
 				os.reset();
 				return true;
 			} catch (NotSerializableException e) {
-				Log.error(getClass() + ":: send(Serializable o)\n\tThe object to be sent is not serializable.");
+				Log.error(getClass() + ":: send(Task t)\n\tThe object to be sent is not serializable.");
 			} catch (SocketException e) {
 				Log.error("Socket Exception");
 			} catch (NullPointerException e) {
-				Log.error("\n\tThere was an error connecting to the server."); // This
-																				// error
-																				// occurs
-																				// when
-																				// the
-																				// client
-																				// attempts
-																				// to
-																				// connect
-																				// to
-																				// a
-																				// server,
-																				// but
-																				// the
-																				// running
+				Log.error("\n\tThere was an error connecting to the server.");					// This error occurs when the client attempts to connect to a server, but the running
 			} catch (Exception e) {
 				Log.error(e.getMessage());
 			}
@@ -161,10 +146,9 @@ public class Client implements Runnable {
 		os = null;
 		is = null;
 
-		if (!networkThread.isAlive()) { // The thread is found running and is
-										// told to stop
+		if (!networkThread.isAlive()) {		 	// The thread is found running and is told to stop
 			return true;
-		} else { // The thread is not running in the first place
+		} else {								// The thread is not running in the first place
 			return false;
 		}
 	}
