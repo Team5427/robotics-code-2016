@@ -29,7 +29,7 @@ public class OI {
 	Joystick joy = new Joystick(Config.JOYSTICK_PORT);
 	Joystick altJoy = new Joystick(Config.ALT_JOYSTICK_PORT);
 	Button toggleIntake = new JoystickButton(joy, Config.TOGGLE_INTAKE_BUTTON),
-			intaker = new JoystickButton(joy, Config.NEW_INTAKE_BUTTON),
+			intaker = new JoystickButton(joy, Config.INTAKE_IN_BUTTON),
 			toTurret = new JoystickButton(joy, Config.TO_TURRET_BUTTON),
 			shoot = new JoystickButton(joy, Config.SHOOT_BUTTON),
 			scissorDown = new JoystickButton(joy, Config.SCISSORLIFT_DOWN_BUTTON),
@@ -54,9 +54,9 @@ public class OI {
 		leftBack.whenPressed(new EngageLeftArm(false));
 		rightFront.whenPressed(new EngageRightArm(true));
 		rightBack.whenPressed(new EngageRightArm(false));
-//		scissorUp.whenPressed(new ScissorUp());
-//		scissorDown.whenPressed(new ScissorDown());
-//		scissorDown.whenPressed(new ScissorDown());
+		// scissorUp.whenPressed(new ScissorUp());
+		// scissorDown.whenPressed(new ScissorDown());
+		// scissorDown.whenPressed(new ScissorDown());
 		winch.whenPressed(new Scale());
 	}
 

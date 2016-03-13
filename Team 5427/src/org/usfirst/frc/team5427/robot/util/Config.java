@@ -32,12 +32,13 @@ public class Config {
 
 	// Buttons
 	public static final int TOGGLE_INTAKE_BUTTON = 2;
-	public static final int NEW_INTAKE_BUTTON = 10;
+	public static final int INTAKE_IN_BUTTON = 11;
+	public static final int INTAKE_OUT_BUTTON = 9;
 
 	public static final int TO_TURRET_BUTTON=2;
 	public static final int SHOOT_BUTTON=1;
-	public static final int SCISSORLIFT_UP_BUTTON=12;
-	public static final int SCISSORLIFT_DOWN_BUTTON=11;
+	public static final int SCISSORLIFT_UP_BUTTON=10;
+	public static final int SCISSORLIFT_DOWN_BUTTON=12
 	public static final int WINCH_BUTTON=8;
 	public static final int LEFT_FRONT=5,LEFT_BACK=3;
 	public static final int RIGHT_FRONT=6,RIGHT_BACK=4;
