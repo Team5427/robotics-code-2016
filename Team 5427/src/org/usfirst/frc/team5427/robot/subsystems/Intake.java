@@ -26,7 +26,7 @@ public class Intake extends Subsystem {
 	 */
 	public Intake(Relay motorRelay_Intake) {
 		this.motorRelay_Intake = motorRelay_Intake;
-		motorRelay_Intake.setDirection(Relay.Direction.kReverse);
+		motorRelay_Intake.setDirection(Relay.Direction.kForward);
 	}
 
 	@Override
