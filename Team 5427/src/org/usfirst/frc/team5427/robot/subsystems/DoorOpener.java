@@ -45,7 +45,7 @@ public class DoorOpener extends Subsystem {
 	 * @param speed - the speed you want to set
 	 */
 	public void setRightSpeed(double speed){
-		//AAA
+		//AAA 
 		motorPWM_RightArm.set(-speed);
 	}
 	/**

@@ -2,7 +2,11 @@
 package org.usfirst.frc.team5427.robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+
+import org.usfirst.frc.team5427.robot.commands.AutoDrive;
 import org.usfirst.frc.team5427.robot.commands.AutoLaunchBoulder;
+import org.usfirst.frc.team5427.robot.commands.AutoObstacle;
+import org.usfirst.frc.team5427.robot.commands.AutoTurn;
 import org.usfirst.frc.team5427.robot.commands.Drive;
 import org.usfirst.frc.team5427.robot.commands.GetStuffIn;
 import org.usfirst.frc.team5427.robot.commands.UserControlledTurn;
@@ -183,7 +187,6 @@ public class Robot extends IterativeRobot {
 	//Potentiometer
 	public static AnalogInput ai;
 	public static Potentiometer potentiometer;
-	
 	//Arm pot stuff
 	public static Potentiometer leftArmPot;
 	public static Potentiometer rightArmPot;
@@ -309,12 +312,22 @@ public class Robot extends IterativeRobot {
 		
 		turnDegrees = 0;
 		tiltDegrees = 0;
+		
+		//^^^Change variables for specific Autonomous
+		double distance=1, turnDegrees=90;
+		boolean forward=true, right =true, forwardObs=true;
 
 		Command autonomousCommand = null;
 //		autonomousCommand = (Command) chooser.getSelected();
 
 		//AutoLocateGoal autoLocateGoal = new AutoLocateGoal();
 		//autoLocateGoal.start();
+//		AutoDrive autoDrive=new AutoDrive(distance, forward);
+//		autoDrive.start();
+//		AutoObstacle autoObstacle=new AutoObstacle(forwardObs);
+//		autoObstacle.start();
+//		AutoTurn autoTurn=new AutoTurn(turnDegrees, right);
+//		autoTurn.start();
 		// autonomousCommand = (Command) chooser.getSelected();
 
 		/*

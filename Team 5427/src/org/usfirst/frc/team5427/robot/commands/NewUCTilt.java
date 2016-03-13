@@ -13,18 +13,21 @@ public class NewUCTilt extends Command {
 	public NewUCTilt() {
         // Use requires() here to declare subsystem dependencies
        requires(Robot.launcher);
-       requires(Robot.driveTrain);
+       initialize();
     }
 	
 	// Called just before this Command runs the first time
 	protected void initialize() {
         Log.init("initialized tilter");
+        Robot.launcher.setIsTilterAtBottom(true);
     }
 	
 // Called repeatedly when this Command is scheduled to run
     
     protected void execute() {
     	//sets the speed of the turning motor
+    	if(Robot.tilterLimitSwitch.get())
+    		Robot.launcher.setIsTilterAtBottom(false);
     	if(Robot.potentiometer.get()<=Config.TILTER_CORRECT_DEGREES+Config.TILTER_DEGREES_RANGE&&Robot.potentiometer.get()>=Config.TILTER_CORRECT_DEGREES-Config.TILTER_DEGREES_RANGE)
     	{
 	    	if(Robot.oi.getJoy().getY()<-.2&&Robot.launcher.getIsTilterAtBottom()==false)
@@ -44,6 +47,7 @@ public class NewUCTilt extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+    	
     	if(Robot.oi.getJoy().getRawButton(Config.TO_TURRET_BUTTON) == false){
     		return true;
     	}
