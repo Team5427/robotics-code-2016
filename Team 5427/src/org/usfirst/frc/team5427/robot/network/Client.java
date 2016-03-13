@@ -42,16 +42,17 @@ public class Client implements Runnable {
 			clientSocket = new Socket(ip, port);
 			is = new ObjectInputStream(clientSocket.getInputStream());
 			os = new ObjectOutputStream(clientSocket.getOutputStream());
-			System.out.println(clientSocket);
+			Log.debug(clientSocket.toString());
 
 			inputStreamData = new ArrayList<>();
 
-			System.out.println("Connection to the server has been established successfully.");
+			Log.info("Connection to the server has been established successfully.");
 
 			return true;
 		} catch (Exception e) {
-			//TODO removed due to spam
-//			System.out.println("Connection failed to establish.");
+			// TODO removed due to spam
+			// System.out.println("Connection failed to establish.");
+
 			return false;
 		}
 	}
@@ -88,19 +89,19 @@ public class Client implements Runnable {
 	/**
 	 * Sends an object to the server
 	 *
-	 * @param o
+	 * @param t
 	 *            object to be sent to the server
 	 * @return true if the object is sent successfully, false if otherwise.
 	 */
-	public synchronized boolean send(Serializable o) {
+	public synchronized boolean send(Task t) {
 
 		if (networkThread != null && !networkThread.isInterrupted()) {
 			try {
-				os.writeObject(o);
+				os.writeObject(t);
 				os.reset();
 				return true;
 			} catch (NotSerializableException e) {
-				Log.error(getClass() + ":: send(Serializable o)\n\tThe object to be sent is not serializable.");
+				Log.error(getClass() + ":: send(Task t)\n\tThe object to be sent is not serializable.");
 			} catch (SocketException e) {
 				Log.error("Socket Exception");
 			} catch (NullPointerException e) {
@@ -199,8 +200,9 @@ public class Client implements Runnable {
 					Log.error(e.getMessage());
 				}
 			} else {
-				//TODO commented out due to spam
-//				Log.info("Connection lost, attempting to re-establish with driver station.");
+				// TODO commented out due to spam
+				// Log.info("Connection lost, attempting to re-establish with
+				// driver station.");
 				reconnect();
 			}
 		}

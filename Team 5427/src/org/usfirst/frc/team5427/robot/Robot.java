@@ -12,6 +12,8 @@ import org.usfirst.frc.team5427.robot.commands.GetStuffIn;
 import org.usfirst.frc.team5427.robot.commands.UserControlledTurn;
 import org.usfirst.frc.team5427.robot.commands.resetTiltUp;
 import org.usfirst.frc.team5427.robot.network.Client;
+import org.usfirst.frc.team5427.robot.network.Task;
+import org.usfirst.frc.team5427.robot.network.TaskDescription;
 import org.usfirst.frc.team5427.robot.subsystems.Intake;
 import org.usfirst.frc.team5427.robot.subsystems.DoorOpener;
 import org.usfirst.frc.team5427.robot.subsystems.DriveTrain;
@@ -295,6 +297,9 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		Log.info("Autonomous Start!~");
 
+		if (Config.client != null && Config.client.isConnected())
+			Config.client.send(new Task(TaskDescription.AUTO_START));
+
 		turnDegrees = 0;
 		tiltDegrees = 0;
 
@@ -337,8 +342,13 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 
 		Log.info("Teleop Start!~");
-//		drive = new Drive();
-//		drive.start();
+
+		if (Config.client != null && Config.client.isConnected())
+			Config.client.send(new Task(TaskDescription.TELEOP_START));
+
+		// drive = new Drive();
+		// drive.start();
+>>>>>>> fbea167dcc744802d1f6edef1be8bc45005fc3b4
 
 		// if(oi.getJoy().getX()!=0)
 
