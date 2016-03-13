@@ -237,10 +237,10 @@ public class Robot extends IterativeRobot {
 		doorOpener = new DoorOpener(motorPWM_LeftArm, motorPWM_RightArm);
 		Log.init("DoorOpener initialized!");
 
-		motorRelay_ScissorLift = new Relay(Config.SCISSOR_MOTOR);
-		scissorUpLimitSwitch = new DigitalInput(Config.SCISSOR_LIMIT_UP);
-		scissorDownLimitSwitch = new DigitalInput(Config.SCISSOR_LIMIT_DOWN);
-		scissorLift = new ScissorLift(motorRelay_ScissorLift, scissorUpLimitSwitch, scissorDownLimitSwitch);
+//		motorRelay_ScissorLift = new Relay(Config.SCISSOR_MOTOR);
+//		scissorUpLimitSwitch = new DigitalInput(Config.SCISSOR_LIMIT_UP);
+//		scissorDownLimitSwitch = new DigitalInput(Config.SCISSOR_LIMIT_DOWN);
+//		scissorLift = new ScissorLift(motorRelay_ScissorLift, scissorUpLimitSwitch, scissorDownLimitSwitch);
 		Log.init("scissorLift initialized!");
 
 		Log.init("Resetting Potentiometers...");
@@ -337,8 +337,8 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 
 		Log.info("Teleop Start!~");
-		// drive = new Drive();
-		// drive.start();
+//		drive = new Drive();
+//		drive.start();
 
 		// if(oi.getJoy().getX()!=0)
 
@@ -354,7 +354,13 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-
+		Log.info(leftArmPot.get()+"");
+		try{
+			Thread.sleep(150);
+			
+		}catch(Exception e){
+			
+		}
 	}
 
 	/**

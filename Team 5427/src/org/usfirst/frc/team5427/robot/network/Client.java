@@ -50,7 +50,8 @@ public class Client implements Runnable {
 
 			return true;
 		} catch (Exception e) {
-			System.out.println("Connection failed to establish.");
+			//TODO removed due to spam
+//			System.out.println("Connection failed to establish.");
 			return false;
 		}
 	}
@@ -198,7 +199,8 @@ public class Client implements Runnable {
 					Log.error(e.getMessage());
 				}
 			} else {
-				Log.info("Connection lost, attempting to re-establish with driver station.");
+				//TODO commented out due to spam
+//				Log.info("Connection lost, attempting to re-establish with driver station.");
 				reconnect();
 			}
 		}

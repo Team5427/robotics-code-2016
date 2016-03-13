@@ -33,28 +33,18 @@ public class Config {
 	// Buttons
 	public static final int TOGGLE_INTAKE_BUTTON = 2;
 	public static final int NEW_INTAKE_BUTTON = 10;
-<<<<<<< HEAD
+
 	public static final int TO_TURRET_BUTTON=2;
 	public static final int SHOOT_BUTTON=1;
 	public static final int SCISSORLIFT_UP_BUTTON=12;
 	public static final int SCISSORLIFT_DOWN_BUTTON=11;
-	public static final int WINCH_BUTTON=5;
+	public static final int WINCH_BUTTON=8;
 	public static final int LEFT_FRONT=5,LEFT_BACK=3;
-	public static final int RIGHT_FRONT=5,RIGHT_BACK=3;
+	public static final int RIGHT_FRONT=6,RIGHT_BACK=4;
 	
 	
 	//PWM PORTS
-=======
-	public static final int TO_TURRET_BUTTON = 2;
-	public static final int SHOOT_BUTTON = 1;
-	public static final int SCISSORLIFT_UP_BUTTON = 3;
-	public static final int SCISSORLIFT_DOWN_BUTTON = 4;
-	public static final int WINCH_BUTTON = 5;
-	public static final int ENGAGE_LEFT_ARM_BUTTON = 11;
-	public static final int ENGAGE_RIGHT_ARM_BUTTON = 12;
 
-	// PWM PORTS
->>>>>>> 09536c75976a639e9adb5b67f9f4c14cc85ea348
 	public static final int FRONT_LEFT_MOTOR = 0;
 	public static final int REAR_LEFT_MOTOR = 1;
 	public static final int FRONT_RIGHT_MOTOR = 2;
@@ -72,7 +62,7 @@ public class Config {
 	public static final int TURN_TURRET_MOTOR = 3;
 
 	// LIMIT SWITCH PORTS
-	public static final int TILTER_LIMIT_SWITCH = 789;
+	public static final int TILTER_LIMIT_SWITCH = 0;
 	public static final int SCISSOR_LIMIT_UP = 973;
 	public static final int SCISSOR_LIMIT_DOWN = 888;
 	// DNE//public static final int LEFT_ARM_LIMIT=985;
