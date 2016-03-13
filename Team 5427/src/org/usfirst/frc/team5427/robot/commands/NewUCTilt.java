@@ -7,6 +7,7 @@ import org.usfirst.frc.team5427.robot.util.Log;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class NewUCTilt extends Command {
+	boolean up;
 	/**
 	 * sets the speed of the tilting mechanism in accordance with the Y axis of
 	 * the joystick.
@@ -17,46 +18,36 @@ public class NewUCTilt extends Command {
 		requires(Robot.launcher);
 		initialize();
 		System.out.println("made the new uctilt");
+		
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		up=Robot.tilterLimitSwitch.get();
+		if(up)
+			super.setTimeout(Config.TILT_TIMEOUT);
 		Log.init("initialized tilter");
-		Robot.launcher.setIsTilterAtBottom(true);
+		
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 
 	protected void execute() {
 		// sets the speed of the turning motor
-		if (Robot.tilterLimitSwitch.get())
-			Robot.launcher.setIsTilterAtBottom(false);
-		if (Robot.potentiometer.get() <= Config.TILTER_CORRECT_DEGREES + Config.TILTER_DEGREES_RANGE
-				&& Robot.potentiometer.get() >= Config.TILTER_CORRECT_DEGREES - Config.TILTER_DEGREES_RANGE) {
-			if (Robot.oi.getJoy().getY() < -.2 && Robot.launcher.getIsTilterAtBottom() == false) {
-				Robot.launcher.setTiltSpeed(-1 * Config.TILT_SPEED);
-				super.setTimeout(Config.TILT_TIMEOUT);
-			}
-			if (Robot.oi.getJoy().getY() > .2) {
-				Robot.launcher.setTiltSpeed(Config.TILT_SPEED);
-				// if touching limit switch, setisTilterAtBottom to false
-			}
-		} else
-			Robot.launcher.stopTilt();
+		if(up)
+			Robot.launcher.tiltDown();
+		else
+			Robot.launcher.tiltUp();
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-
-		if (Robot.oi.getJoy().getRawButton(Config.TO_TURRET_BUTTON) == false) {
-			return true;
-		}
-		if (isTimedOut()) {
+		if(up&&isTimedOut())
+		{
 			Robot.launcher.setIsTilterAtBottom(true);
 			return true;
 		}
-		if (Robot.tilterLimitSwitch.get())// !!!may need to make this ==false
-											// depending on how it is wired
+		if(up==false&&Robot.tilterLimitSwitch.get())
 		{
 			Robot.launcher.setIsTilterAtBottom(false);
 			return true;
