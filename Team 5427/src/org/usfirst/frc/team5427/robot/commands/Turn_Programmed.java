@@ -31,7 +31,7 @@ public class Turn_Programmed extends Command {
 	 */
 	protected void initialize() {
 		Log.init("initialized ProgrammedTurner");
-		if (getDegrees() == Config.POTENTIOMETER_END_ONE || getDegrees() == Config.POTENTIOMETER_END_TWO)
+		if (getDegrees() <= Config.POTENTIOMETER_END_ONE || getDegrees() >= Config.POTENTIOMETER_END_TWO)
 			end();
 		if (getDegrees() - targetDegrees < 0)
 			Robot.launcher.turn(-1);
@@ -50,7 +50,7 @@ public class Turn_Programmed extends Command {
 		if (getDegrees() - targetDegrees == 0) {
 			return true;
 		}
-		if (getDegrees() == Config.POTENTIOMETER_END_ONE || getDegrees() == Config.POTENTIOMETER_END_TWO)
+		if (getDegrees() <= Config.POTENTIOMETER_END_ONE || getDegrees() >= Config.POTENTIOMETER_END_TWO)
 			return true;
 		return false;
 	}

@@ -38,9 +38,9 @@ public class Config {
 	public static final int SHOOT_BUTTON=1;
 	public static final int SCISSORLIFT_UP_BUTTON=12;
 	public static final int SCISSORLIFT_DOWN_BUTTON=11;
-	public static final int WINCH_BUTTON=5;
+	public static final int WINCH_BUTTON=8;
 	public static final int LEFT_FRONT=5,LEFT_BACK=3;
-	public static final int RIGHT_FRONT=5,RIGHT_BACK=3;
+	public static final int RIGHT_FRONT=6,RIGHT_BACK=4;
 	
 	
 	//PWM PORTS
@@ -89,11 +89,11 @@ public class Config {
 	// Potentiometer reference Degrees
 	public static final double POTENTIOMETER_RESET_DEGREES = 0;
 	// Correct Degrees for tilter
-	public static final double TILTER_CORRECT_DEGREES = POTENTIOMETER_RESET_DEGREES + 90;
+	public static final double TILTER_CORRECT_DEGREES = 267.5;
 	public static final double TILTER_DEGREES_RANGE = 1;
 	// Ends of Potentiometer
-	public static final double POTENTIOMETER_END_ONE = POTENTIOMETER_RESET_DEGREES;
-	public static final double POTENTIOMETER_END_TWO = POTENTIOMETER_END_ONE + 180;
+	public static final double POTENTIOMETER_END_ONE = 174;
+	public static final double POTENTIOMETER_END_TWO = 360;
 
 	// Arms' stop/end spots
 	public static final int ARM_START = 0, ARM_END = ARM_START + 180;
