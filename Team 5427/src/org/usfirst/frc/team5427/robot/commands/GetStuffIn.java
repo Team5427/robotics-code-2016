@@ -37,7 +37,7 @@ public class GetStuffIn extends Command {
 	// invokes end() and stops running
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if (Robot.oi.getJoy().getRawButton(Config.NEW_INTAKE_BUTTON))
+		if (Robot.oi.getJoy().getRawButton(Config.INTAKE_IN_BUTTON))
 			return false;
 		return true;
 	}

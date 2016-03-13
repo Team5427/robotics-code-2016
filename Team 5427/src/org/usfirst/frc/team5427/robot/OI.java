@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5427.robot;
 
 import org.usfirst.frc.team5427.robot.commands.ScissorUp;
+import org.usfirst.frc.team5427.robot.commands.SendOut;
 import org.usfirst.frc.team5427.robot.commands.Drive;
 import org.usfirst.frc.team5427.robot.commands.EngageLeftArm;
 import org.usfirst.frc.team5427.robot.commands.EngageRightArm;
@@ -30,6 +31,7 @@ public class OI {
 	Joystick altJoy = new Joystick(Config.ALT_JOYSTICK_PORT);
 	Button toggleIntake = new JoystickButton(joy, Config.TOGGLE_INTAKE_BUTTON),
 			intaker = new JoystickButton(joy, Config.INTAKE_IN_BUTTON),
+			outGo= new JoystickButton(joy, Config.INTAKE_OUT_BUTTON),
 			toTurret = new JoystickButton(joy, Config.TO_TURRET_BUTTON),
 			shoot = new JoystickButton(joy, Config.SHOOT_BUTTON),
 			scissorDown = new JoystickButton(joy, Config.SCISSORLIFT_DOWN_BUTTON),
@@ -50,6 +52,7 @@ public class OI {
 		toTurret.whenPressed(new UserControlledTurn());
 		shoot.whenPressed(new Shoot());
 		intaker.whenPressed(new GetStuffIn());
+		outGo.whenPressed(new SendOut());
 		leftFront.whenPressed(new EngageLeftArm(true));
 		leftBack.whenPressed(new EngageLeftArm(false));
 		rightFront.whenPressed(new EngageRightArm(true));
