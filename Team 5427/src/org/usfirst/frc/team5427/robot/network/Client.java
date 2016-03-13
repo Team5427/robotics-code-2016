@@ -154,13 +154,6 @@ public class Client implements Runnable {
 		}
 	}
 
-	public synchronized boolean reset() {
-		stop();
-		start();
-
-		return false;
-	}
-
 	/**
 	 * Running method that receives data from the server.
 	 */
@@ -177,7 +170,7 @@ public class Client implements Runnable {
                      is.reset();
 
                 } catch (SocketException e) {
-                    reset();
+                    reconnect();
                 } catch (Exception e) {
                     Log.error(e.getMessage());
                 }
@@ -187,7 +180,7 @@ public class Client implements Runnable {
                 } catch (InterruptedException e) {
                     Log.info("Thread has been interrupted, client thread will stop.");
                 } catch (Exception e) {
-					Log.error(e.getMessage());;
+					Log.error(e.getMessage());
                 }
 			} else {
 				Log.info("Connection lost, attempting to re-establish with driver station.");

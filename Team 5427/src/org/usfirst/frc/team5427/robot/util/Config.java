@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5427.robot.util;
 
 import org.usfirst.frc.team5427.robot.Robot;
+import org.usfirst.frc.team5427.robot.network.Client;
 
 public class Config {
 	//MISC
@@ -138,7 +139,8 @@ public class Config {
 		return Robot.potentiometer.get();
 	}
 	
-	
+	// Client
+	public static Client client;
 	
 
 	}

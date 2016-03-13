@@ -7,6 +7,7 @@ import org.usfirst.frc.team5427.robot.commands.Drive;
 import org.usfirst.frc.team5427.robot.commands.GetStuffIn;
 import org.usfirst.frc.team5427.robot.commands.UserControlledTurn;
 import org.usfirst.frc.team5427.robot.commands.resetTiltUp;
+import org.usfirst.frc.team5427.robot.network.Client;
 import org.usfirst.frc.team5427.robot.subsystems.Intake;
 import org.usfirst.frc.team5427.robot.subsystems.DoorOpener;
 import org.usfirst.frc.team5427.robot.subsystems.DriveTrain;
@@ -203,9 +204,20 @@ public class Robot extends IterativeRobot {
 		Log.init("Robot initializing operator interface...");
 		oi = new OI();
 		Log.init("Operator interface initialized!");
-		
-		
-		
+
+
+
+		try {
+			Log.init("Initializing connection to the driver station...");
+			Config.client = new Client();
+			Config.client.start();
+			if (Config.client.isConnected())
+				Log.init("Connection successfully established with the driver station.");
+			else
+				Log.init("Connection failed to establish. Client will continue to connect with the driver station.");
+		} catch (Exception e) {
+			Log.error(e.getMessage());
+		}
 		Log.init("Robot initializing subsystems...");
 		
 		tilterLimitSwitch = new DigitalInput(Config.TILTER_LIMIT_SWITCH);
