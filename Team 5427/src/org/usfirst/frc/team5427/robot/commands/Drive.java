@@ -8,7 +8,8 @@ import org.usfirst.frc.team5427.robot.util.Config;
 import org.usfirst.frc.team5427.robot.util.Log;
 
 /**
- * this class constantly inputs the Joystick axis into the driveTrain file, causing the robot to move.
+ * this class constantly inputs the Joystick axis into the driveTrain file,
+ * causing the robot to move.
  */
 public class Drive extends Command {
 
@@ -33,13 +34,12 @@ public class Drive extends Command {
 			if (Config.JOYSTICK_MODE == Config.TWO_JOYSTICKS) {
 				Robot.driveTrain.driveDualJoystick(Robot.oi.getJoy().getY(), Robot.oi.getAltJoy().getY());
 			}
-			//Log.init("DRIVING");
-		} else
-		{
+			// Log.init("DRIVING");
+		} else {
 			Robot.driveTrain.stop();
-			//Log.init("NOT");
+			// Log.init("NOT");
 		}
-		
+
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

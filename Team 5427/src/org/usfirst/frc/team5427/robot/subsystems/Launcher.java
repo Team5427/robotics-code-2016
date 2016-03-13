@@ -55,6 +55,7 @@ public class Launcher extends Subsystem {
 		this.motorPWM_Flywheel = motorFlyWheel;
 		this.motorRotateHorizontal = motorRotateHorizontal;
 		this.motorRotateVertical = motorRelay_TiltTurret;
+		System.out.println("FINISHED MAKING A NEW LAUNCHER");
 	}
 
 	@Override

@@ -7,12 +7,11 @@ import org.usfirst.frc.team5427.robot.util.Log;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ResetRightArm extends Command{
-	
-	public ResetRightArm()
-	{
+public class ResetRightArm extends Command {
+
+	public ResetRightArm() {
 		requires(Robot.doorOpener);
-	
+
 	}
 
 	// Called just before this Command runs the first time
@@ -20,33 +19,29 @@ public class ResetRightArm extends Command{
 		Log.init("initialized ResetArms");
 	}
 
-	//The correct current positions of the left and right arms 
-	//is used to determine how far the arms need to go back
+	// The correct current positions of the left and right arms
+	// is used to determine how far the arms need to go back
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		
-	
-		
-			Robot.doorOpener.setRightSpeed(-.5);
-		
-		
-		
+
+		Robot.doorOpener.setRightSpeed(-.5);
+
 	}
 
-    // Make this return true when this Command no longer needs to run execute()
+	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if(Robot.rightArmPot.get()>Config.ARM_START)
+		if (Robot.rightArmPot.get() > Config.ARM_START)
 			return false;
 		return true;
 	}
 
-    // Called once after isFinished returns true
+	// Called once after isFinished returns true
 	protected void end() {
 		Robot.doorOpener.stop();
 	}
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
 	protected void interrupted() {
 		end();
 	}
