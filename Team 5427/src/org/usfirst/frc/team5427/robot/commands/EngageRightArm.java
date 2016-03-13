@@ -40,7 +40,6 @@ public class EngageRightArm extends Command{
 			return true;
 		if(Robot.rightArmPot.get()-Config.MARGIN_TO_SHUT_DOWN >= Config.MAX_STARTING_POSITION)
 			return true;
-		
 		return false;
 	}
 
