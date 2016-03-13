@@ -7,7 +7,7 @@ public class Config {
 
 	/*
 	 * things TODO defining all of the motors and stuff is fine, however, we
-	 * need to properly define the potentiometeres, and clean up the old/useless
+	 * need to properly define the potentiometers, and clean up the old/useless
 	 * stuff. This file also needs to be documented so that someone reading it
 	 * can easily figure out what every value is for: ex- pretty much everything
 	 * to do with potentiometers. It is a huge pain to try to decipher what
@@ -68,12 +68,11 @@ public class Config {
 	// POTENTIOMETER PORTS
 	// TODO USE THESE PORTS INSTEAD OF WHATEVER ELSE THERE WAS
 	public static final int POTENTIOMETER_TURRET = 0;
-	public static final int POTENTIOMETER_LEFT_ARM = 1;
-	public static final int POTENTIOMETER_RIGHT_ARM = 2;
+
 
 	// Potentiometer Analog input port
 	// TODO what is this for????
-	public static final int POTENTIOMETER_ANALOG_INPUT = 343;
+	public static final int POTENTIOMETER_ANALOG_INPUT = 0;
 
 	// TODO rename variables. We have three potentiometers...
 	// Potentiometer offset

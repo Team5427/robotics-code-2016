@@ -351,8 +351,8 @@ public class Robot extends IterativeRobot {
 
 	public void teleopInit() {
 		Log.info("Teleop Start!~");
-		drive = new Drive();
-		drive.start();
+		//drive = new Drive();
+		//drive.start();
 		
 		//if(oi.getJoy().getX()!=0)
 	

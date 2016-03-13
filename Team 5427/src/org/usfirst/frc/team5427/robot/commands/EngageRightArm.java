@@ -23,7 +23,7 @@ public class EngageRightArm extends Command{
 	protected void execute() {
 		
 		
-		Robot.doorOpener.setRightSpeed(Robot.oi.getJoy().getThrottle());
+		Robot.doorOpener.setRightSpeed(Robot.oi.getJoy().getThrottle()*.2);
 		
 	}
 

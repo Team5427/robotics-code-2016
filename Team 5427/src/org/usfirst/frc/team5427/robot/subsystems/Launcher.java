@@ -24,15 +24,16 @@ public class Launcher extends Subsystem {
 	 * boulder out of the robot.
 	 */
 	SpeedController motorPWM_Flywheel;
-	
+
 	/**
-	 * Stores if the tilter is at teh bottom; if it is, the tilter won't go down further
+	 * Stores if the tilter is at teh bottom; if it is, the tilter won't go down
+	 * further
 	 */
 	private boolean isTilterAtBottom;
 
 	/**
-	 * Relay which is responsible for rotating the turret mechanism to
-	 * the left and right, on the horizontal axis.
+	 * Relay which is responsible for rotating the turret mechanism to the left
+	 * and right, on the horizontal axis.
 	 */
 	Relay motorRotateHorizontal;
 
@@ -50,8 +51,7 @@ public class Launcher extends Subsystem {
 	 * @param turner
 	 * @param tilter
 	 */
-	public Launcher(SpeedController motorFlyWheel, Relay motorRotateHorizontal,
-			Relay motorRelay_TiltTurret) {
+	public Launcher(SpeedController motorFlyWheel, Relay motorRotateHorizontal, Relay motorRelay_TiltTurret) {
 		this.motorPWM_Flywheel = motorFlyWheel;
 		this.motorRotateHorizontal = motorRotateHorizontal;
 		this.motorRotateVertical = motorRelay_TiltTurret;
@@ -85,14 +85,15 @@ public class Launcher extends Subsystem {
 	}
 
 	/**
-	 * makes the turning motor turn L/R. if direction<0, goes one way; if direction>0, 
-	 * goes the other way 
+	 * makes the turning motor turn L/R. if direction<0, goes one way; if
+	 * direction>0, goes the other way
+	 * 
 	 * @param direction
 	 */
 	public void turn(int direction) {
-		if(direction<0)
+		if (direction < 0)
 			motorRotateHorizontal.setDirection(Relay.Direction.kReverse);
-		else if(direction>0)
+		else if (direction > 0)
 			motorRotateHorizontal.setDirection(Relay.Direction.kForward);
 		motorRotateHorizontal.set(Relay.Value.kOn);
 	}
@@ -102,26 +103,33 @@ public class Launcher extends Subsystem {
 	 * 
 	 * @param speed
 	 */
-	public void tiltUp(){
+	public void tiltUp() {
 		motorRotateVertical.setDirection(Relay.Direction.kForward);
 		motorRotateVertical.set(Relay.Value.kOn);
 	}
-	public void tiltDown(){
+
+	public void tiltDown() {
 		motorRotateVertical.setDirection(Relay.Direction.kReverse);
 		motorRotateVertical.set(Relay.Value.kOn);
 	}
+
 	public void setTiltSpeed(double speed) {
-		if(speed<0&&Robot.tilterLimitSwitch.get()==false) tiltUp();
-		if(speed>0&&isTilterAtBottom==false) tiltDown();
-		if(speed==0) stopTilt();
+		if (speed < 0 && Robot.tilterLimitSwitch.get() == false)
+			tiltUp();
+		if (speed > 0 && isTilterAtBottom == false)
+			tiltDown();
+		if (speed == 0)
+			stopTilt();
 	}
 
-	public void setIsTilterAtBottom(boolean t)
-	{isTilterAtBottom=t;}
-	
-	public boolean getIsTilterAtBottom()
-	{return isTilterAtBottom;}
-	
+	public void setIsTilterAtBottom(boolean t) {
+		isTilterAtBottom = t;
+	}
+
+	public boolean getIsTilterAtBottom() {
+		return isTilterAtBottom;
+	}
+
 	/**
 	 * sets the speed of the shooting motors to the specified speed.
 	 * 
