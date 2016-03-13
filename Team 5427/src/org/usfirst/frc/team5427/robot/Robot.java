@@ -192,8 +192,6 @@ public class Robot extends IterativeRobot {
 	 */
 	public void robotInit() {
 
-		Log.init("Robot initializing operator interface...");
-		oi = new OI();
 		Log.init("Operator interface initialized!");
 
 		try {
@@ -256,6 +254,9 @@ public class Robot extends IterativeRobot {
 
 		SmartDashboard.putData("Auto mode", chooser);
 		Log.init("Interface loaded!...");
+
+		Log.init("Robot initializing operator interface...");
+		oi = new OI();
 
 		Log.init("All systems ready!");
 
@@ -334,6 +335,7 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void teleopInit() {
+
 		Log.info("Teleop Start!~");
 		// drive = new Drive();
 		// drive.start();
