@@ -7,7 +7,7 @@ import org.usfirst.frc.team5427.robot.util.Log;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class NewUCTilt extends Command {
-	boolean up;
+	boolean up = false;
 	/**
 	 * sets the speed of the tilting mechanism in accordance with the Y axis of
 	 * the joystick.

@@ -142,7 +142,7 @@ public class Config {
 	public static final double LAUNCH_SPEED = 0.5;
 	public static final double WINCH_SPEED = 0.5;
 	public static final double SCISSOR_SPEED = 0.5;
-	public static final double TILT_TIMEOUT = .1;
+	public static final double TILT_TIMEOUT = 6;
 
 	// ROTATION SPEEDS
 	public static final double TURNER_SECONDS_PER_DEGREE = .1;

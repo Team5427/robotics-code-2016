@@ -29,7 +29,7 @@ public class Launcher extends Subsystem {
 	 * Stores if the tilter is at teh bottom; if it is, the tilter won't go down
 	 * further
 	 */
-	private boolean isTilterAtBottom;
+	private boolean isTilterAtBottom = false;
 
 	/**
 	 * Relay which is responsible for rotating the turret mechanism to the left
@@ -78,8 +78,8 @@ public class Launcher extends Subsystem {
 	}
 
 	public void stopTilt() {
-		setTiltSpeed(0);
-	}
+		motorRotateVertical.set(Relay.Value.kOff);
+		}
 
 	public void stopShoot() {
 		setShootSpeed(0);
