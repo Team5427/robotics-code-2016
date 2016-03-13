@@ -92,7 +92,7 @@ public class Config {
 	public static final double POTENTIOMETER_RESET_DEGREES = 0;
 	// Correct Degrees for tilter
 	public static final double TILTER_CORRECT_DEGREES = 267.5;
-	public static final double TILTER_DEGREES_RANGE = 1;
+	public static final double TILTER_DEGREES_RANGE = 6;
 	// Ends of Potentiometer
 	public static final double POTENTIOMETER_END_ONE = 174;
 	public static final double POTENTIOMETER_END_TWO = 360;

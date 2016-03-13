@@ -41,7 +41,7 @@ public class Intake extends Subsystem {
 		if(in)
 			motorRelay_Intake.setDirection(Relay.Direction.kForward);
 		else
-			motorRelay_Intake.setDirection(Relay.Direction.kForward);
+			motorRelay_Intake.setDirection(Relay.Direction.kReverse);
 		motorRelay_Intake.set(Relay.Value.kOn);
 	}
 
