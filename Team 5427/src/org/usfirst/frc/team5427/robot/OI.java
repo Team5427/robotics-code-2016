@@ -35,8 +35,10 @@ public class OI {
 			scissorDown = new JoystickButton(joy, Config.SCISSORLIFT_DOWN_BUTTON),
 			scissorUp = new JoystickButton(joy, Config.SCISSORLIFT_UP_BUTTON),
 			winch = new JoystickButton(joy, Config.WINCH_BUTTON),
-			engageLeftArm = new JoystickButton(joy, Config.ENGAGE_LEFT_ARM_BUTTON),
-			engageRightArm = new JoystickButton(joy, Config.ENGAGE_RIGHT_ARM_BUTTON);
+			leftFront = new JoystickButton(joy, Config.LEFT_FRONT),
+			leftBack = new JoystickButton(joy, Config.LEFT_BACK),
+			rightFront = new JoystickButton(joy, Config.RIGHT_FRONT),
+			rightBack= new JoystickButton(joy, Config.RIGHT_BACK);
 
 	/**
 	 * constructor for the OI class, defines the button-press events.
@@ -48,8 +50,10 @@ public class OI {
 		toTurret.whenPressed(new UserControlledTurn());
 		shoot.whenPressed(new Shoot());
 		intaker.whenPressed(new GetStuffIn());
-		engageLeftArm.whenPressed(new EngageLeftArm());
-		engageRightArm.whenPressed(new EngageRightArm());
+		leftFront.whenPressed(new EngageLeftArm(true));
+		leftBack.whenPressed(new EngageLeftArm(false));
+		rightFront.whenPressed(new EngageLeftArm(true));
+		rightBack.whenPressed(new EngageLeftArm(false));
 		scissorUp.whenPressed(new ScissorUp());
 		scissorDown.whenPressed(new ScissorDown());
 		scissorDown.whenPressed(new ScissorDown());

@@ -22,11 +22,11 @@ public class Config {
 	public static final int NEW_INTAKE_BUTTON = 10;
 	public static final int TO_TURRET_BUTTON=2;
 	public static final int SHOOT_BUTTON=1;
-	public static final int SCISSORLIFT_UP_BUTTON=3;
-	public static final int SCISSORLIFT_DOWN_BUTTON=4;
+	public static final int SCISSORLIFT_UP_BUTTON=12;
+	public static final int SCISSORLIFT_DOWN_BUTTON=11;
 	public static final int WINCH_BUTTON=5;
-	public static final int ENGAGE_LEFT_ARM_BUTTON=11;
-	public static final int ENGAGE_RIGHT_ARM_BUTTON=12;
+	public static final int LEFT_FRONT=5,LEFT_BACK=3;
+	public static final int RIGHT_FRONT=5,RIGHT_BACK=3;
 	
 	
 	//PWM PORTS

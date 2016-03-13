@@ -8,10 +8,11 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class EngageLeftArm extends Command{
 	
-	public EngageLeftArm()
+	boolean forward;
+	public EngageLeftArm(boolean forward)
 	{
 		requires(Robot.doorOpener);
-	
+		this.forward=forward;
 	}
 
 	// Called just before this Command runs the first time
@@ -21,17 +22,19 @@ public class EngageLeftArm extends Command{
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		
-		
-		Robot.doorOpener.setLeftSpeed(Robot.oi.getJoy().getThrottle());
-		
+		if(forward)
+			Robot.doorOpener.setLeftSpeed(.2);
+		else
+			Robot.doorOpener.setLeftSpeed(-.2);
 	}
 
     // Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
 		//If button not pressed, returns true and command stops running
 		//else returns true and command continues to run
-		if(Robot.oi.getJoy().getRawButton(Config.ENGAGE_LEFT_ARM_BUTTON) == false)
+		if(forward&&Robot.oi.getJoy().getRawButton(Config.LEFT_FRONT) == false)
+			return true;
+		if(forward==false&&Robot.oi.getJoy().getRawButton(Config.LEFT_BACK) == false)
 			return true;
 		if(Robot.leftArmPot.get()+Config.MARGIN_TO_SHUT_DOWN >= Config.MAX_ENDING_POSITION)
 			return true;
