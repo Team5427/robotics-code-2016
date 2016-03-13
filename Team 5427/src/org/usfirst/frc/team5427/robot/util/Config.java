@@ -91,16 +91,16 @@ public class Config {
 	// Potentiometer reference Degrees
 	public static final double POTENTIOMETER_RESET_DEGREES = 0;
 	// Correct Degrees for tilter
-	public static final double TILTER_CORRECT_DEGREES = POTENTIOMETER_RESET_DEGREES + 90;
+	public static final double TILTER_CORRECT_DEGREES = 267.5;
 	public static final double TILTER_DEGREES_RANGE = 1;
 	// Ends of Potentiometer
-	public static final double POTENTIOMETER_END_ONE = POTENTIOMETER_RESET_DEGREES;
-	public static final double POTENTIOMETER_END_TWO = POTENTIOMETER_END_ONE + 180;
+	public static final double POTENTIOMETER_END_ONE = 174;
+	public static final double POTENTIOMETER_END_TWO = 360;
 
 	// Arms' stop/end spots
 	public static final int ARM_START = 0, ARM_END = ARM_START + 180;
 
-	// Encoder ports
+	// Arm potentiometer ports
 	public static final int LEFT_POT_PORT = 1;
 	public static final double LEFT_POT_SCALE = 360;
 	public static final double LEFT_POT_OFFSET = 0;
