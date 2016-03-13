@@ -44,6 +44,7 @@ public class Config {
 	
 	
 	//PWM PORTS
+
 	public static final int FRONT_LEFT_MOTOR = 0;
 	public static final int REAR_LEFT_MOTOR = 1;
 	public static final int FRONT_RIGHT_MOTOR = 2;
@@ -61,7 +62,7 @@ public class Config {
 	public static final int TURN_TURRET_MOTOR = 3;
 
 	// LIMIT SWITCH PORTS
-	public static final int TILTER_LIMIT_SWITCH = 789;
+	public static final int TILTER_LIMIT_SWITCH = 0;
 	public static final int SCISSOR_LIMIT_UP = 973;
 	public static final int SCISSOR_LIMIT_DOWN = 888;
 	// DNE//public static final int LEFT_ARM_LIMIT=985;

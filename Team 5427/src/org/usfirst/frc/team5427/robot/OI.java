@@ -54,9 +54,9 @@ public class OI {
 		leftBack.whenPressed(new EngageLeftArm(false));
 		rightFront.whenPressed(new EngageLeftArm(true));
 		rightBack.whenPressed(new EngageLeftArm(false));
-		scissorUp.whenPressed(new ScissorUp());
-		scissorDown.whenPressed(new ScissorDown());
-		scissorDown.whenPressed(new ScissorDown());
+//		scissorUp.whenPressed(new ScissorUp());
+//		scissorDown.whenPressed(new ScissorDown());
+//		scissorDown.whenPressed(new ScissorDown());
 		winch.whenPressed(new Scale());
 	}
 

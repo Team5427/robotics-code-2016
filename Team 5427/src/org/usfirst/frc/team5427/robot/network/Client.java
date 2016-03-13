@@ -50,7 +50,9 @@ public class Client implements Runnable {
 
 			return true;
 		} catch (Exception e) {
-			Log.info("Connection failed to establish.");
+			// TODO removed due to spam
+			// System.out.println("Connection failed to establish.");
+
 			return false;
 		}
 	}
@@ -87,7 +89,8 @@ public class Client implements Runnable {
 	/**
 	 * Sends an object to the server
 	 *
-	 * @param t object to be sent to the server
+	 * @param t
+	 *            object to be sent to the server
 	 * @return true if the object is sent successfully, false if otherwise.
 	 */
 	public synchronized boolean send(Task t) {
@@ -102,7 +105,21 @@ public class Client implements Runnable {
 			} catch (SocketException e) {
 				Log.error("Socket Exception");
 			} catch (NullPointerException e) {
-				Log.error("\n\tThere was an error connecting to the server.");					// This error occurs when the client attempts to connect to a server, but the running
+				Log.error("\n\tThere was an error connecting to the server."); // This
+																				// error
+																				// occurs
+																				// when
+																				// the
+																				// client
+																				// attempts
+																				// to
+																				// connect
+																				// to
+																				// a
+																				// server,
+																				// but
+																				// the
+																				// running
 			} catch (Exception e) {
 				Log.error(e.getMessage());
 			}
@@ -146,9 +163,10 @@ public class Client implements Runnable {
 		os = null;
 		is = null;
 
-		if (!networkThread.isAlive()) {		 	// The thread is found running and is told to stop
+		if (!networkThread.isAlive()) { // The thread is found running and is
+										// told to stop
 			return true;
-		} else {								// The thread is not running in the first place
+		} else { // The thread is not running in the first place
 			return false;
 		}
 	}
@@ -182,7 +200,9 @@ public class Client implements Runnable {
 					Log.error(e.getMessage());
 				}
 			} else {
-				Log.info("Connection lost, attempting to re-establish with driver station.");
+				// TODO commented out due to spam
+				// Log.info("Connection lost, attempting to re-establish with
+				// driver station.");
 				reconnect();
 			}
 		}
