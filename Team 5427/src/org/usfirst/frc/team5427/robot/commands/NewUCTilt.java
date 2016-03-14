@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class NewUCTilt extends Command {
 	boolean up=false;
+
 	/**
 	 * sets the speed of the tilting mechanism in accordance with the Y axis of
 	 * the joystick.
@@ -25,7 +26,7 @@ public class NewUCTilt extends Command {
 	protected void initialize() {
 		up=Robot.tilterLimitSwitch.get();
 		if(up)
-			super.setTimeout(Config.TILT_TIMEOUT);
+			super.setTimeout(Config.TILT_COLLECT_TIMEOUT);
 		Log.init("initialized tilter");
 		
 	}

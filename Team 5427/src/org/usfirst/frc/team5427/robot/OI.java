@@ -31,7 +31,7 @@ public class OI {
 	Joystick altJoy = new Joystick(Config.ALT_JOYSTICK_PORT);
 	Button toggleIntake = new JoystickButton(joy, Config.TOGGLE_INTAKE_BUTTON),
 			intaker = new JoystickButton(joy, Config.INTAKE_IN_BUTTON),
-			outGo= new JoystickButton(joy, Config.INTAKE_OUT_BUTTON),
+			outGo = new JoystickButton(joy, Config.INTAKE_OUT_BUTTON),
 			toTurret = new JoystickButton(joy, Config.TO_TURRET_BUTTON),
 			shoot = new JoystickButton(joy, Config.SHOOT_BUTTON),
 			scissorDown = new JoystickButton(joy, Config.SCISSORLIFT_DOWN_BUTTON),

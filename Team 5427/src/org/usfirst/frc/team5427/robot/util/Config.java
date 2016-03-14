@@ -35,16 +35,15 @@ public class Config {
 	public static final int INTAKE_IN_BUTTON = 11;
 	public static final int INTAKE_OUT_BUTTON = 9;
 
-	public static final int TO_TURRET_BUTTON=2;
-	public static final int SHOOT_BUTTON=1;
-	public static final int SCISSORLIFT_UP_BUTTON=10;
-	public static final int SCISSORLIFT_DOWN_BUTTON=12;
-	public static final int WINCH_BUTTON=8;
-	public static final int LEFT_FRONT=5,LEFT_BACK=3;
-	public static final int RIGHT_FRONT=6,RIGHT_BACK=4;
-	
-	
-	//PWM PORTS
+	public static final int TO_TURRET_BUTTON = 2;
+	public static final int SHOOT_BUTTON = 1;
+	public static final int SCISSORLIFT_UP_BUTTON = 10;
+	public static final int SCISSORLIFT_DOWN_BUTTON = 12;
+	public static final int WINCH_BUTTON = 8;
+	public static final int LEFT_FRONT = 5, LEFT_BACK = 3;
+	public static final int RIGHT_FRONT = 6, RIGHT_BACK = 4;
+
+	// PWM PORTS
 
 	public static final int FRONT_LEFT_MOTOR = 0;
 	public static final int REAR_LEFT_MOTOR = 1;
@@ -72,7 +71,6 @@ public class Config {
 	// POTENTIOMETER PORTS
 	// TODO USE THESE PORTS INSTEAD OF WHATEVER ELSE THERE WAS
 	public static final int POTENTIOMETER_TURRET = 0;
-
 
 	// Potentiometer Analog input port
 	// TODO what is this for????
@@ -144,7 +142,8 @@ public class Config {
 	public static final double LAUNCH_SPEED = 0.5;
 	public static final double WINCH_SPEED = 0.5;
 	public static final double SCISSOR_SPEED = 0.5;
-	public static final double TILT_TIMEOUT = .1;
+	public static final double TILT_COLLECT_TIMEOUT = 6;
+	public static final double TILT_LOW_BAR_TIMEOUT = 6;
 
 	// ROTATION SPEEDS
 	public static final double TURNER_SECONDS_PER_DEGREE = .1;

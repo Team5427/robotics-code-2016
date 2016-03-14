@@ -35,7 +35,7 @@ public class UCTilt2 extends Command {
 				&& Robot.potentiometer.get() >= Config.TILTER_CORRECT_DEGREES - Config.TILTER_DEGREES_RANGE) {
 			if (Robot.oi.getJoy().getY() < -.2 && Robot.launcher.getIsTilterAtBottom() == false) {
 				Robot.launcher.setTiltSpeed(-1 * Config.TILT_SPEED);
-				super.setTimeout(Config.TILT_TIMEOUT);
+				super.setTimeout(Config.TILT_COLLECT_TIMEOUT);
 			}
 			if (Robot.oi.getJoy().getY() > .2) {
 				Robot.launcher.setTiltSpeed(Config.TILT_SPEED);

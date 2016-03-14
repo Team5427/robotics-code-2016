@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class Client implements Runnable {
 
-	public static final String DEFAULT_IP = "10.54.27.1";
+	public static final String DEFAULT_IP = "10.54.27.236";
 	public static final int DEFAULT_PORT = 25565;
 
 	public static String ip;
@@ -50,9 +50,7 @@ public class Client implements Runnable {
 
 			return true;
 		} catch (Exception e) {
-			// TODO removed due to spam
-			// System.out.println("Connection failed to establish.");
-
+			Log.info("Connection failed to establish.");
 			return false;
 		}
 	}
@@ -89,8 +87,7 @@ public class Client implements Runnable {
 	/**
 	 * Sends an object to the server
 	 *
-	 * @param t
-	 *            object to be sent to the server
+	 * @param t object to be sent to the server
 	 * @return true if the object is sent successfully, false if otherwise.
 	 */
 	public synchronized boolean send(Task t) {
@@ -101,25 +98,11 @@ public class Client implements Runnable {
 				os.reset();
 				return true;
 			} catch (NotSerializableException e) {
-				Log.error(getClass() + ":: send(Task t)\n\tThe object to be sent is not serializable.");
+				Log.error(getClass() + ":: send(Serializable o)\n\tThe object to be sent is not serializable.");
 			} catch (SocketException e) {
 				Log.error("Socket Exception");
 			} catch (NullPointerException e) {
-				Log.error("\n\tThere was an error connecting to the server."); // This
-																				// error
-																				// occurs
-																				// when
-																				// the
-																				// client
-																				// attempts
-																				// to
-																				// connect
-																				// to
-																				// a
-																				// server,
-																				// but
-																				// the
-																				// running
+				Log.error("\n\tThere was an error connecting to the server.");					// This error occurs when the client attempts to connect to a server, but the running
 			} catch (Exception e) {
 				Log.error(e.getMessage());
 			}
@@ -163,10 +146,9 @@ public class Client implements Runnable {
 		os = null;
 		is = null;
 
-		if (!networkThread.isAlive()) { // The thread is found running and is
-										// told to stop
+		if (!networkThread.isAlive()) {		 	// The thread is found running and is told to stop
 			return true;
-		} else { // The thread is not running in the first place
+		} else {								// The thread is not running in the first place
 			return false;
 		}
 	}
@@ -200,9 +182,7 @@ public class Client implements Runnable {
 					Log.error(e.getMessage());
 				}
 			} else {
-				// TODO commented out due to spam
-				// Log.info("Connection lost, attempting to re-establish with
-				// driver station.");
+				Log.info("Connection lost, attempting to re-establish with driver station.");
 				reconnect();
 			}
 		}
