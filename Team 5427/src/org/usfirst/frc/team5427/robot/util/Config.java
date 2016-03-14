@@ -35,7 +35,9 @@ public class Config {
 	public static final int INTAKE_IN_BUTTON = 11;
 	public static final int INTAKE_OUT_BUTTON = 9;
 
+
 	public static final int TO_TURRET_BUTTON = 2;
+	public static final int TO_TILT_BUTTON = 7;
 	public static final int SHOOT_BUTTON = 1;
 	public static final int SCISSORLIFT_UP_BUTTON = 10;
 	public static final int SCISSORLIFT_DOWN_BUTTON = 12;
@@ -92,8 +94,8 @@ public class Config {
 	public static final double TILTER_CORRECT_DEGREES = 267.5;
 	public static final double TILTER_DEGREES_RANGE = 6;
 	// Ends of Potentiometer
-	public static final double POTENTIOMETER_END_ONE = 174;
-	public static final double POTENTIOMETER_END_TWO = 360;
+	public static final double POTENTIOMETER_END_ONE = 220;
+	public static final double POTENTIOMETER_END_TWO = 313;
 
 	// Arms' stop/end spots
 	public static final int ARM_START = 0, ARM_END = ARM_START + 180;

@@ -26,13 +26,13 @@ public class UserControlledTurn extends Command {
 	protected void execute() {
 
 		// sets the speed of the turning motor MANUALLY
-		if (Robot.potentiometer.get() <= Config.POTENTIOMETER_END_ONE
-				|| Robot.potentiometer.get() >= Config.POTENTIOMETER_END_TWO)
+		if ((Robot.potentiometer.get() <= Config.POTENTIOMETER_END_ONE&&Robot.oi.getJoy().getTwist() > .2)
+				|| (Robot.potentiometer.get() >= Config.POTENTIOMETER_END_TWO&&Robot.oi.getJoy().getTwist() < -.2))
 			end();
 		if (Robot.oi.getJoy().getTwist() < -.2)
-			Robot.launcher.turn(-1);
-		else if (Robot.oi.getJoy().getTwist() > .2)
 			Robot.launcher.turn(1);
+		else if (Robot.oi.getJoy().getTwist() > .2)
+			Robot.launcher.turn(-1);
 
 	}
 
@@ -41,8 +41,8 @@ public class UserControlledTurn extends Command {
 		if (Robot.oi.getJoy().getRawButton(Config.TO_TURRET_BUTTON) == false) {
 			return true;
 		}
-		if (Robot.potentiometer.get() <= Config.POTENTIOMETER_END_ONE
-				|| Robot.potentiometer.get() >= Config.POTENTIOMETER_END_TWO)
+		if ((Robot.potentiometer.get() <= Config.POTENTIOMETER_END_ONE&&Robot.oi.getJoy().getTwist() > .2)
+				|| (Robot.potentiometer.get() >= Config.POTENTIOMETER_END_TWO&&Robot.oi.getJoy().getTwist() < -.2))
 			return true;
 		return false;
 	}

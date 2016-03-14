@@ -33,6 +33,7 @@ public class OI {
 			intaker = new JoystickButton(joy, Config.INTAKE_IN_BUTTON),
 			outGo = new JoystickButton(joy, Config.INTAKE_OUT_BUTTON),
 			toTurret = new JoystickButton(joy, Config.TO_TURRET_BUTTON),
+			toTilt= new JoystickButton(joy, Config.TO_TILT_BUTTON),
 			shoot = new JoystickButton(joy, Config.SHOOT_BUTTON),
 			scissorDown = new JoystickButton(joy, Config.SCISSORLIFT_DOWN_BUTTON),
 			scissorUp = new JoystickButton(joy, Config.SCISSORLIFT_UP_BUTTON),
@@ -48,7 +49,7 @@ public class OI {
 	public OI() {
 
 		// DO WE NEED TO ACTIVATE start() on these??????????
-		toTurret.whenPressed(new NewUCTilt());
+		toTilt.whenPressed(new NewUCTilt());
 		toTurret.whenPressed(new UserControlledTurn());
 		shoot.whenPressed(new Shoot());
 		intaker.whenPressed(new GetStuffIn());
