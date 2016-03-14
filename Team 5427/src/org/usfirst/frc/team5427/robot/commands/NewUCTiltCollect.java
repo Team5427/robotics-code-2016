@@ -6,18 +6,19 @@ import org.usfirst.frc.team5427.robot.util.Log;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class NewUCTilt extends Command {
-	boolean up = false;
+public class NewUCTiltCollect extends Command {
+	boolean up=false;
+
 	/**
 	 * sets the speed of the tilting mechanism in accordance with the Y axis of
 	 * the joystick.
 	 */
-	public NewUCTilt() {
+	public NewUCTiltCollect() {
 		// Use requires() here to declare subsystem dependencies
-		System.out.println("starting a new uctilt");
+		System.out.println("starting a new uctilt COLLECT");
 		requires(Robot.launcher);
 		initialize();
-		System.out.println("made the new uctilt");
+		System.out.println("made the new uctilt COLLECT");
 		
 	}
 
@@ -25,7 +26,7 @@ public class NewUCTilt extends Command {
 	protected void initialize() {
 		up=Robot.tilterLimitSwitch.get();
 		if(up)
-			super.setTimeout(Config.TILT_TIMEOUT);
+			super.setTimeout(Config.TILT_COLLECT_TIMEOUT);
 		Log.init("initialized tilter");
 		
 	}

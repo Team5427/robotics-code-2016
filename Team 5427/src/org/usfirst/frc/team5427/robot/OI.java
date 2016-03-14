@@ -6,7 +6,7 @@ import org.usfirst.frc.team5427.robot.commands.Drive;
 import org.usfirst.frc.team5427.robot.commands.EngageLeftArm;
 import org.usfirst.frc.team5427.robot.commands.EngageRightArm;
 import org.usfirst.frc.team5427.robot.commands.GetStuffIn;
-import org.usfirst.frc.team5427.robot.commands.NewUCTilt;
+import org.usfirst.frc.team5427.robot.commands.NewUCTiltCollect;
 //import org.usfirst.frc.team5427.robot.commands.GetStuffIn;
 import org.usfirst.frc.team5427.robot.commands.Scale;
 import org.usfirst.frc.team5427.robot.commands.ScissorDown;
@@ -33,7 +33,7 @@ public class OI {
 			intaker = new JoystickButton(joy, Config.INTAKE_IN_BUTTON),
 			outGo = new JoystickButton(joy, Config.INTAKE_OUT_BUTTON),
 			toTurret = new JoystickButton(joy, Config.TO_TURRET_BUTTON),
-			toTilt= new JoystickButton(joy, Config.TO_TILT_BUTTON),
+			toTilt = new JoystickButton(joy, Config.TO_TILT_BUTTON),
 			shoot = new JoystickButton(joy, Config.SHOOT_BUTTON),
 			scissorDown = new JoystickButton(joy, Config.SCISSORLIFT_DOWN_BUTTON),
 			scissorUp = new JoystickButton(joy, Config.SCISSORLIFT_UP_BUTTON),
@@ -49,7 +49,8 @@ public class OI {
 	public OI() {
 
 		// DO WE NEED TO ACTIVATE start() on these??????????
-		toTilt.whenPressed(new NewUCTilt());
+		toTilt.whenPressed(new NewUCTiltCollect());
+		toTurret.whenPressed(new NewUCTiltCollect());
 		toTurret.whenPressed(new UserControlledTurn());
 		shoot.whenPressed(new Shoot());
 		intaker.whenPressed(new GetStuffIn());
