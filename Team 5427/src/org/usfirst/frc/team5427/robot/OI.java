@@ -6,7 +6,7 @@ import org.usfirst.frc.team5427.robot.commands.Drive;
 import org.usfirst.frc.team5427.robot.commands.EngageLeftArm;
 import org.usfirst.frc.team5427.robot.commands.EngageRightArm;
 import org.usfirst.frc.team5427.robot.commands.GetStuffIn;
-import org.usfirst.frc.team5427.robot.commands.NewUCTilt;
+import org.usfirst.frc.team5427.robot.commands.NewUCTiltCollect;
 //import org.usfirst.frc.team5427.robot.commands.GetStuffIn;
 import org.usfirst.frc.team5427.robot.commands.Scale;
 import org.usfirst.frc.team5427.robot.commands.ScissorDown;
@@ -48,7 +48,7 @@ public class OI {
 	public OI() {
 
 		// DO WE NEED TO ACTIVATE start() on these??????????
-		toTurret.whenPressed(new NewUCTilt());
+		toTurret.whenPressed(new NewUCTiltCollect());
 		toTurret.whenPressed(new UserControlledTurn());
 		shoot.whenPressed(new Shoot());
 		intaker.whenPressed(new GetStuffIn());
