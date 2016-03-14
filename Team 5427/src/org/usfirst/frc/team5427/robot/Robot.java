@@ -135,7 +135,7 @@ public class Robot extends IterativeRobot {
 	 * A small motor that is meant to rotate the turret. Setting the motor to
 	 * forwards will make the turret turn ________
 	 */
-	static Relay motorRelay_RotateTurret;
+	static SteelTalon motorPWM_RotateTurret;
 
 	// TODO fill in the blank in this comment after testing the robot.
 	/**
@@ -223,10 +223,10 @@ public class Robot extends IterativeRobot {
 		intake = new Intake(motorRelay_Intake);
 		Log.init("Intaker initialized");
 
-		motorRelay_RotateTurret = new Relay(Config.TURN_TURRET_MOTOR);
+		motorPWM_RotateTurret = new SteelTalon(Config.TURN_TURRET_MOTOR);
 		motorRelay_TiltTurret = new Relay(Config.TILT_TURRET_MOTOR);
 		motorPWM_Flywheel = new SteelTalon(Config.SHOOTER_MOTOR);
-		launcher = new Launcher(motorPWM_Flywheel, motorRelay_RotateTurret, motorRelay_TiltTurret);
+		launcher = new Launcher(motorPWM_Flywheel, motorPWM_RotateTurret, motorRelay_TiltTurret);
 		Log.init("launcher initialized!");
 
 		motorPWM_WinchOne = new SteelTalon(Config.WINCH_ONE_MOTOR);

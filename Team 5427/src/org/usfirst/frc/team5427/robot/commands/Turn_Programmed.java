@@ -31,18 +31,20 @@ public class Turn_Programmed extends Command {
 	 */
 	protected void initialize() {
 		Log.init("initialized ProgrammedTurner");
-		if (getDegrees() <= Config.POTENTIOMETER_END_ONE || getDegrees() >= Config.POTENTIOMETER_END_TWO)
-			end();
-		if (getDegrees() - targetDegrees < 0)
-			Robot.launcher.turn(-1);
-		else if (getDegrees() - targetDegrees > 0)
-			Robot.launcher.turn(1);
+	
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 
 	protected void execute() {
-
+		
+		if ((Robot.potentiometer.get() <= Config.POTENTIOMETER_END_ONE && Robot.oi.getJoy().getTwist() > .2)
+				|| (Robot.potentiometer.get() >= Config.POTENTIOMETER_END_TWO && Robot.oi.getJoy().getTwist() < -.2))
+			end();
+		if (getDegrees() - targetDegrees < 0)
+			Robot.launcher.turn(-.2);
+		else if (getDegrees() - targetDegrees > 0)
+			Robot.launcher.turn(.2);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -50,7 +52,8 @@ public class Turn_Programmed extends Command {
 		if (getDegrees() - targetDegrees == 0) {
 			return true;
 		}
-		if (getDegrees() <= Config.POTENTIOMETER_END_ONE || getDegrees() >= Config.POTENTIOMETER_END_TWO)
+		if ((Robot.potentiometer.get() <= Config.POTENTIOMETER_END_ONE && Robot.oi.getJoy().getTwist() > .2)
+				|| (Robot.potentiometer.get() >= Config.POTENTIOMETER_END_TWO && Robot.oi.getJoy().getTwist() < -.2))
 			return true;
 		return false;
 	}

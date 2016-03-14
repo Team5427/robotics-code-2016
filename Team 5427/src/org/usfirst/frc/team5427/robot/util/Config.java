@@ -34,8 +34,6 @@ public class Config {
 	public static final int TOGGLE_INTAKE_BUTTON = 2;
 	public static final int INTAKE_IN_BUTTON = 11;
 	public static final int INTAKE_OUT_BUTTON = 9;
-
-
 	public static final int TO_TURRET_BUTTON = 2;
 	public static final int TO_TILT_BUTTON = 7;
 	public static final int SHOOT_BUTTON = 1;
@@ -56,6 +54,7 @@ public class Config {
 	public static final int SHOOTER_MOTOR = 6;
 	public static final int LEFT_ARM_MOTOR = 7;
 	public static final int RIGHT_ARM_MOTOR = 8;
+	public static final int TURRET_MOTOR = 9;
 
 	// RELAY PORTS
 	public static final int INTAKE_MOTOR = 0;

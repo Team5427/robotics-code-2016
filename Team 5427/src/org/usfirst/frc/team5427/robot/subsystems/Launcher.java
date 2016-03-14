@@ -32,10 +32,10 @@ public class Launcher extends Subsystem {
 	private boolean isTilterAtBottom = false;
 
 	/**
-	 * Relay which is responsible for rotating the turret mechanism to the left
+	 * SpeedController which is responsible for rotating the turret mechanism to the left
 	 * and right, on the horizontal axis.
 	 */
-	Relay motorRotateHorizontal;
+	SpeedController motorRotateHorizontal;
 
 	/**
 	 * SpeedController which is responsible for rotating the turret up and down,
@@ -51,7 +51,7 @@ public class Launcher extends Subsystem {
 	 * @param turner
 	 * @param tilter
 	 */
-	public Launcher(SpeedController motorFlyWheel, Relay motorRotateHorizontal, Relay motorRelay_TiltTurret) {
+	public Launcher(SpeedController motorFlyWheel, SpeedController motorRotateHorizontal, Relay motorRelay_TiltTurret) {
 		this.motorPWM_Flywheel = motorFlyWheel;
 		this.motorRotateHorizontal = motorRotateHorizontal;
 		this.motorRotateVertical = motorRelay_TiltTurret;
@@ -74,7 +74,7 @@ public class Launcher extends Subsystem {
 	}
 
 	public void stopTurn() {
-		motorRotateHorizontal.set(Relay.Value.kOff);
+		motorRotateHorizontal.set(0);
 	}
 
 	public void stopTilt() {
@@ -91,12 +91,8 @@ public class Launcher extends Subsystem {
 	 * 
 	 * @param direction
 	 */
-	public void turn(int direction) {
-		if (direction < 0)
-			motorRotateHorizontal.setDirection(Relay.Direction.kReverse);
-		else if (direction > 0)
-			motorRotateHorizontal.setDirection(Relay.Direction.kForward);
-		motorRotateHorizontal.set(Relay.Value.kOn);
+	public void turn(double speed) {
+			motorRotateHorizontal.set(speed);
 	}
 
 	/**
