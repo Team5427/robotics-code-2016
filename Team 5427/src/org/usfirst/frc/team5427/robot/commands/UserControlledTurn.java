@@ -29,8 +29,8 @@ public class UserControlledTurn extends Command {
 		if ((Robot.potentiometer.get() <= Config.POTENTIOMETER_END_ONE && Robot.oi.getJoy().getTwist() > .2)
 				|| (Robot.potentiometer.get() >= Config.POTENTIOMETER_END_TWO && Robot.oi.getJoy().getTwist() < -.2))
 			end();
-			Robot.launcher.turn(Robot.oi.getJoy().getTwist()*.5);
-		
+
+		Robot.launcher.turn(Robot.oi.getJoy().getTwist() * -.5);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
