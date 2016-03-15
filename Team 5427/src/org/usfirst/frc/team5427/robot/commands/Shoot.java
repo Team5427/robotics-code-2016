@@ -27,14 +27,13 @@ public class Shoot extends Command {
 	// Called repeatedly when this Command is scheduled to run
 
 	protected void execute() {
-		Robot.launcher.setShootSpeed(Config.LAUNCH_SPEED);
+		Robot.launcher.setShootSpeed(-1*Config.LAUNCH_SPEED);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if (super.isTimedOut())
-			return true;
-		return false;
+		if(!Robot.oi.getJoy().getRawButton(Config.SHOOT_BUTTON)) return true;
+		else return false;
 	}
 
 	// Called once after isFinished returns true

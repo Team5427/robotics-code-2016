@@ -141,7 +141,7 @@ public class Config {
 	// OPTIONS
 	// TODO a lot of these things can't have their speed changed.
 	public static final double INTAKE_SPEED = 0.5;
-	public static final double LAUNCH_SPEED = 0.5;
+	public static final double LAUNCH_SPEED = 1;
 	public static final double WINCH_SPEED = 0.5;
 	public static final double SCISSOR_SPEED = 0.5;
 	public static final double TILT_COLLECT_TIMEOUT = 6;
