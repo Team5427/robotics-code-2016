@@ -166,6 +166,7 @@ public class Client implements Runnable {
 			if (clientSocket != null && !clientSocket.isClosed() && is != null) {
 				try {
 					inputStreamData.add(is.readObject());
+					System.out.println("recieved an object");
 					is.reset();
 
 				} catch (SocketException e) {
