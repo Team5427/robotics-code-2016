@@ -7,13 +7,14 @@ import org.usfirst.frc.team5427.robot.commands.EngageLeftArm;
 import org.usfirst.frc.team5427.robot.commands.EngageRightArm;
 import org.usfirst.frc.team5427.robot.commands.GetStuffIn;
 import org.usfirst.frc.team5427.robot.commands.NewUCTiltCollect;
+import org.usfirst.frc.team5427.robot.commands.NewUCTiltLowBar;
 //import org.usfirst.frc.team5427.robot.commands.GetStuffIn;
 import org.usfirst.frc.team5427.robot.commands.Scale;
 import org.usfirst.frc.team5427.robot.commands.ScissorDown;
 import org.usfirst.frc.team5427.robot.commands.Shoot;
 //import org.usfirst.frc.team5427.robot.commands.SonicDist;
 //import org.usfirst.frc.team5427.robot.commands.UltrasonicLog;
-
+import org.usfirst.frc.team5427.robot.commands.Test;
 import org.usfirst.frc.team5427.robot.commands.UserControlledTurn;
 import org.usfirst.frc.team5427.robot.subsystems.Winch;
 import org.usfirst.frc.team5427.robot.util.Config;
@@ -21,6 +22,7 @@ import org.usfirst.frc.team5427.robot.util.Config;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -29,11 +31,10 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 	Joystick joy = new Joystick(Config.JOYSTICK_PORT);
 	Joystick altJoy = new Joystick(Config.ALT_JOYSTICK_PORT);
-	Button toggleIntake = new JoystickButton(joy, Config.TOGGLE_INTAKE_BUTTON),
-			intaker = new JoystickButton(joy, Config.INTAKE_IN_BUTTON),
+	Button intaker = new JoystickButton(joy, Config.INTAKE_IN_BUTTON),
 			outGo = new JoystickButton(joy, Config.INTAKE_OUT_BUTTON),
-			toTurret = new JoystickButton(joy, Config.TO_TURRET_BUTTON),
-			toTilt = new JoystickButton(joy, Config.TO_TILT_BUTTON),
+			tiltCollect = new JoystickButton(joy, Config.TILT_COLLECT_BUTTON),
+			tiltLowBar = new JoystickButton(joy, Config.TILT_LOW_BAR_BUTTON),
 			shoot = new JoystickButton(joy, Config.SHOOT_BUTTON),
 			scissorDown = new JoystickButton(joy, Config.SCISSORLIFT_DOWN_BUTTON),
 			scissorUp = new JoystickButton(joy, Config.SCISSORLIFT_UP_BUTTON),
@@ -47,11 +48,9 @@ public class OI {
 	 * constructor for the OI class, defines the button-press events.
 	 */
 	public OI() {
-
-		// DO WE NEED TO ACTIVATE start() on these??????????
-		toTilt.whenPressed(new NewUCTiltCollect());
-		toTurret.whenPressed(new NewUCTiltCollect());
-		toTurret.whenPressed(new UserControlledTurn());
+		
+		tiltCollect.whenPressed(new NewUCTiltCollect());
+		tiltLowBar.whenPressed(new NewUCTiltLowBar());
 		shoot.whenPressed(new Shoot());
 		intaker.whenPressed(new GetStuffIn());
 		outGo.whenPressed(new SendOut());
@@ -61,8 +60,8 @@ public class OI {
 		rightBack.whenPressed(new EngageRightArm(false));
 		// scissorUp.whenPressed(new ScissorUp());
 		// scissorDown.whenPressed(new ScissorDown());
-		// scissorDown.whenPressed(new ScissorDown());
-		winch.whenPressed(new Scale());
+		winch.whenPressed(new UserControlledTurn());//change to "new Winch()" after testing and making sure the GRIP works
+		SmartDashboard.putData("TEST", new Test());
 	}
 
 	/**
