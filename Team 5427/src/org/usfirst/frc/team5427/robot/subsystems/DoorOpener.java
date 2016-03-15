@@ -38,7 +38,7 @@ public class DoorOpener extends Subsystem {
 	 * Sets the speed of the left Arm motor
 	 */
 	public void setLeftSpeed(double speed) {
-		motorPWM_LeftArm.set(speed);
+		motorPWM_LeftArm.set(-speed);
 
 	}
 
