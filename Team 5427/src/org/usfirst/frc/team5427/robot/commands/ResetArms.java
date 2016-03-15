@@ -10,7 +10,8 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ResetArms extends Command {
 
 	public ResetArms() {
-		requires(Robot.doorOpener);
+		requires(Robot.rightArm);
+		requires(Robot.leftArm);
 
 	}
 
@@ -38,7 +39,8 @@ public class ResetArms extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.doorOpener.stop();
+		Robot.leftArm.stop();
+		Robot.rightArm.stop();
 	}
 
 	// Called when another command which requires one or more of the same

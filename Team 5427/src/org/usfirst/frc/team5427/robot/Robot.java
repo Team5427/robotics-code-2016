@@ -15,7 +15,8 @@ import org.usfirst.frc.team5427.robot.network.Client;
 import org.usfirst.frc.team5427.robot.network.Task;
 import org.usfirst.frc.team5427.robot.network.TaskDescription;
 import org.usfirst.frc.team5427.robot.subsystems.Intake;
-import org.usfirst.frc.team5427.robot.subsystems.DoorOpener;
+import org.usfirst.frc.team5427.robot.subsystems.LeftArm;
+import org.usfirst.frc.team5427.robot.subsystems.RightArm;
 import org.usfirst.frc.team5427.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5427.robot.subsystems.Intake;
 import org.usfirst.frc.team5427.robot.subsystems.Launcher;
@@ -168,7 +169,8 @@ public class Robot extends IterativeRobot {
 	public static Intake intake;
 
 	public static DriveTrain driveTrain;
-	public static DoorOpener doorOpener;
+	public static LeftArm leftArm;
+	public static RightArm rightArm;
 
 	double turnDegrees;
 	double tiltDegrees;
@@ -236,8 +238,9 @@ public class Robot extends IterativeRobot {
 
 		motorPWM_LeftArm = new SteelTalon(Config.LEFT_ARM_MOTOR);
 		motorPWM_RightArm = new SteelTalon(Config.RIGHT_ARM_MOTOR);
-		doorOpener = new DoorOpener(motorPWM_LeftArm, motorPWM_RightArm);
-		Log.init("DoorOpener initialized!");
+		leftArm = new LeftArm(motorPWM_LeftArm);
+		rightArm = new RightArm(motorPWM_RightArm);
+		Log.init("Arms initialized!");
 
 		// motorRelay_ScissorLift = new Relay(Config.SCISSOR_MOTOR);
 		// scissorUpLimitSwitch = new DigitalInput(Config.SCISSOR_LIMIT_UP);
@@ -364,10 +367,10 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		Log.info(potentiometer.get()+"");
+		Log.info(potentiometer.get() + "");
 		// Log.info("LEFT ARM "+leftArmPot.get()+"");
 		// Log.info("RIGHT ARM "+ rightArmPot.get()+"");
-//		Log.info("limit switch "+tilterLimitSwitch.get() + "\n");
+		// Log.info("limit switch "+tilterLimitSwitch.get() + "\n");
 		try {
 			Thread.sleep(150);
 

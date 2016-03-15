@@ -11,7 +11,7 @@ public class EngageLeftArm extends Command {
 	boolean forward;
 
 	public EngageLeftArm(boolean forward) {
-		requires(Robot.doorOpener);
+		requires(Robot.leftArm);
 		this.forward = forward;
 	}
 
@@ -24,9 +24,9 @@ public class EngageLeftArm extends Command {
 	protected void execute() {
 
 		if (forward)
-			Robot.doorOpener.setLeftSpeed(.2);
+			Robot.leftArm.setLeftSpeed(.2);
 		else
-			Robot.doorOpener.setLeftSpeed(-.2);
+			Robot.leftArm.setLeftSpeed(-.2);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -46,7 +46,7 @@ public class EngageLeftArm extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.doorOpener.stop();
+		Robot.leftArm.stop();
 	}
 
 	// Called when another command which requires one or more of the same

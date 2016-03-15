@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ResetPotentiometers extends Command {
 
 	public ResetPotentiometers() {
-		requires(Robot.doorOpener);
+		requires(Robot.leftArm);
 
 	}
 
@@ -34,7 +34,8 @@ public class ResetPotentiometers extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.doorOpener.stop();
+		Robot.leftArm.stop();
+		Robot.rightArm.stop();
 	}
 
 	// Called when another command which requires one or more of the same
