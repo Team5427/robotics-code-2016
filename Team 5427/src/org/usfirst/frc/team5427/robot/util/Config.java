@@ -71,7 +71,6 @@ public class Config {
 	// DNE//public static final int RIGHT_ARM_LIMIT=895;
 
 	// POTENTIOMETER PORTS
-	// TODO USE THESE PORTS INSTEAD OF WHATEVER ELSE THERE WAS
 	public static final int POTENTIOMETER_TURRET = 0;
 
 	// Potentiometer Analog input port
@@ -113,9 +112,16 @@ public class Config {
 	// on
 	// the input from the encoders, and
 	// Robot.currentLeftPos/Robot.currentRightPos
-	public static final int MAX_STARTING_POSITION = 0;
-	public static final int MAX_ENDING_POSITION = 360;
-	public static final int MARGIN_TO_SHUT_DOWN = 10;
+	
+	
+	//MIN = 127
+	public static final int RIGHT_ARM_MAX_STARTING_POSITION = 0;
+	public static final int RIGHT_ARM_MAX_ENDING_POSITION = 360;
+	public static final int RIGHT_ARM_MARGIN_TO_SHUT_DOWN = 10;
+	
+	public static final int LEFT_ARM_MAX_STARTING_POSITION = 0;
+	public static final int LEFT_ARM_MAX_ENDING_POSITION = 360;
+	public static final int LEFT_ARM_MARGIN_TO_SHUT_DOWN = 10;
 	// for the different obstacles
 	public static final int DRAWBRIDGE_START_POS = 7789;
 	public static final int DRAWBRIDGE_END_POS = 7789;
@@ -141,7 +147,7 @@ public class Config {
 	// OPTIONS
 	// TODO a lot of these things can't have their speed changed.
 	public static final double INTAKE_SPEED = 0.5;
-	public static final double LAUNCH_SPEED = 1;
+	public static final double LAUNCH_SPEED = -1;
 	public static final double WINCH_SPEED = 0.5;
 	public static final double SCISSOR_SPEED = 0.5;
 	public static final double TILT_COLLECT_TIMEOUT = 6;

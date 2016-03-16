@@ -21,7 +21,7 @@ public class EngageRightArm extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		if (forward)
+		if (forward) 
 			Robot.rightArm.setRightSpeed(.2);
 		else
 			Robot.rightArm.setRightSpeed(-.2);
@@ -35,10 +35,15 @@ public class EngageRightArm extends Command {
 			return true;
 		if (forward == false && Robot.oi.getJoy().getRawButton(Config.RIGHT_BACK) == false)
 			return true;
+		
+		if(!forward && Robot.rightArmPot.get() < 165)
+			return true;
+		/*
 		if (Robot.rightArmPot.get() + Config.MARGIN_TO_SHUT_DOWN >= Config.MAX_ENDING_POSITION)
 			return true;
 		if (Robot.rightArmPot.get() - Config.MARGIN_TO_SHUT_DOWN >= Config.MAX_STARTING_POSITION)
 			return true;
+			*/
 		return false;
 	}
 

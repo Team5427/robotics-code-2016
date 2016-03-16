@@ -22,6 +22,8 @@ public class Client implements Runnable {
 	private ObjectInputStream is;
 	private ObjectOutputStream os;
 
+	public static GoalData lastRecievedGoal = null;
+
 	public Client() {
 		ip = DEFAULT_IP;
 		port = DEFAULT_PORT;
@@ -87,7 +89,8 @@ public class Client implements Runnable {
 	/**
 	 * Sends an object to the server
 	 *
-	 * @param t object to be sent to the server
+	 * @param t
+	 *            object to be sent to the server
 	 * @return true if the object is sent successfully, false if otherwise.
 	 */
 	public synchronized boolean send(Task t) {
@@ -102,7 +105,21 @@ public class Client implements Runnable {
 			} catch (SocketException e) {
 				Log.error("Socket Exception");
 			} catch (NullPointerException e) {
-				Log.error("\n\tThere was an error connecting to the server.");					// This error occurs when the client attempts to connect to a server, but the running
+				Log.error("\n\tThere was an error connecting to the server."); // This
+																				// error
+																				// occurs
+																				// when
+																				// the
+																				// client
+																				// attempts
+																				// to
+																				// connect
+																				// to
+																				// a
+																				// server,
+																				// but
+																				// the
+																				// running
 			} catch (Exception e) {
 				Log.error(e.getMessage());
 			}
@@ -146,9 +163,10 @@ public class Client implements Runnable {
 		os = null;
 		is = null;
 
-		if (!networkThread.isAlive()) {		 	// The thread is found running and is told to stop
+		if (!networkThread.isAlive()) { // The thread is found running and is
+										// told to stop
 			return true;
-		} else {								// The thread is not running in the first place
+		} else { // The thread is not running in the first place
 			return false;
 		}
 	}
@@ -165,9 +183,40 @@ public class Client implements Runnable {
 
 			if (clientSocket != null && !clientSocket.isClosed() && is != null) {
 				try {
-					inputStreamData.add(is.readObject());
-					System.out.println("recieved an object");
-					is.reset();
+					/*
+					 * inputStreamData.add(is.readObject()); System.out.println(
+					 * "recieved an object"); is.reset();
+					 */
+
+					Object o = is.readObject();
+					if (o.toString().contains("Team 5427 - Task ")) {
+						Task t = (Task) o;
+						switch (t.getTask()) {
+						case AUTO_START:
+							Log.warn("driver station has told the robot AUTO_START, and this should not happen.");
+							break;
+						case DEFAULT_MODE:
+							Log.warn("driver station has told the robot DEFAULT_MODE, and this should not happen.");
+							break;
+						case GOAL_ATTACHED:
+							lastRecievedGoal = (GoalData) t.getObject();
+							break;
+						case LOG:
+							Log.vision((String) t.getObject());
+							break;
+						case MESSAGE:
+							break;
+						case TELEOP_START:
+							Log.warn("driver station has told the robot TELEOP_START, and this should not happen.");
+							break;
+						default:
+							Log.warn("driver station has sent the robot " + t.getTask()
+									+ ", and is unrecognized by the robot.");
+							break;
+
+						}
+
+					}
 
 				} catch (SocketException e) {
 					reconnect();

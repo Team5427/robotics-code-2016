@@ -42,6 +42,15 @@ public class Log {
 	}
 
 	/**
+	 * Any messages that the vision processing will send to the robot.
+	 * 
+	 * @param text
+	 */
+	public static void vision(String text) {
+		log("[Vision Processing]", text);
+	}
+
+	/**
 	 * Logging semi-important warnings
 	 * 
 	 * @param text

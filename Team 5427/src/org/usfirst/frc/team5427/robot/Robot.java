@@ -156,8 +156,6 @@ public class Robot extends IterativeRobot {
 	Drive drive;
 	// new intake system
 	// public static GetStuffIn getStuff;
-	// stores distance in inches from the object
-	public static double distanceInInches;
 
 	// UserControlledTurn turn;
 	AutoLaunchBoulder autoLaunchBoulder;
@@ -367,9 +365,9 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		Log.info(potentiometer.get() + "");
-		// Log.info("LEFT ARM "+leftArmPot.get()+"");
-		// Log.info("RIGHT ARM "+ rightArmPot.get()+"");
+//		Log.info(potentiometer.get() + "");
+		Log.info("LEFT ARM "+leftArmPot.get()+"");
+//		Log.info("RIGHT ARM "+ rightArmPot.get()+"");
 		// Log.info("limit switch "+tilterLimitSwitch.get() + "\n");
 		try {
 			Thread.sleep(150);
@@ -385,11 +383,7 @@ public class Robot extends IterativeRobot {
 	public void testPeriodic() {
 		LiveWindow.run();
 	}
-
-	public static double getDistance() {
-		return distanceInInches;
-	}
-
+	
 	public static void resetPotentiometers() {
 		ai = new AnalogInput(Config.POTENTIOMETER_ANALOG_INPUT);
 		potentiometer = new AnalogPotentiometer(ai, Config.POTENTIOMETER_SCALE, Config.POTENTIOMETER_OFFSET);

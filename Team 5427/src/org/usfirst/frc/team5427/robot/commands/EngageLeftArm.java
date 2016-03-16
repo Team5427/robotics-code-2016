@@ -37,9 +37,9 @@ public class EngageLeftArm extends Command {
 			return true;
 		if (forward == false && Robot.oi.getJoy().getRawButton(Config.LEFT_BACK) == false)
 			return true;
-		if (Robot.leftArmPot.get() + Config.MARGIN_TO_SHUT_DOWN >= Config.MAX_ENDING_POSITION)
+		if (Robot.leftArmPot.get() + Config.LEFT_ARM_MARGIN_TO_SHUT_DOWN >= Config.LEFT_ARM_MAX_ENDING_POSITION)
 			return true;
-		if (Robot.leftArmPot.get() - Config.MARGIN_TO_SHUT_DOWN >= Config.MAX_STARTING_POSITION)
+		if (Robot.leftArmPot.get() - Config.LEFT_ARM_MARGIN_TO_SHUT_DOWN >= Config.LEFT_ARM_MAX_STARTING_POSITION)
 			return true;
 		return false;
 	}

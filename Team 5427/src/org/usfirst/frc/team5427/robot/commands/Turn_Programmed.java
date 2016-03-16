@@ -71,7 +71,8 @@ public class Turn_Programmed extends Command {
 
 	protected double getDegrees() {
 		// return Config.getTurn();
-		return Robot.potentiometer.get();
+		//TODO set this up with the value in the config, which needs a better name
+		return 267.5-Robot.potentiometer.get();
 	}
 
 }

@@ -1,50 +1,52 @@
 package org.usfirst.frc.team5427.robot.commands;
 
 import org.usfirst.frc.team5427.robot.Robot;
+import org.usfirst.frc.team5427.robot.network.Client;
 import org.usfirst.frc.team5427.robot.util.Config;
 import org.usfirst.frc.team5427.robot.util.Log;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class Shoot extends Command {
+public class AutoShoot extends Command{
 
 	/**
-	 * sets the speed of the launching mechanism to the speed defined in the
-	 * configuration file.
+	 * automatically launches a boulder if there is a goal in sight
 	 */
-	public Shoot() {
+	public AutoShoot() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.launcher);
-		super.setTimeout(Config.SHOOTER_SECONDS);
 	}
 
-	// Called just before this Command runs the first time
+	@Override
 	protected void initialize() {
 		Log.init("initialized Shoot");
-		Robot.launcher.setShootSpeed(Config.LAUNCH_SPEED);
+		Robot.launcher.setShootSpeed(Config.LAUNCH_SPEED);		
 	}
 
-	// Called repeatedly when this Command is scheduled to run
-
+	@Override
 	protected void execute() {
+		new Turn_Programmed(Client.lastRecievedGoal.getHorizontalAngle());
+		new GetStuffIn();
 		Robot.launcher.setShootSpeed(Config.LAUNCH_SPEED);
+		
 	}
 
-	// Make this return true when this Command no longer needs to run execute()
+	@Override
 	protected boolean isFinished() {
 		if(!Robot.oi.getJoy().getRawButton(Config.SHOOT_BUTTON)) return true;
 		else return false;
 	}
 
-	// Called once after isFinished returns true
+	@Override
 	protected void end() {
-		Robot.launcher.stopShoot();
+		Robot.launcher.stopShoot();	
+		Robot.intake.stop();
+		new Turn_Programmed(0);
 	}
 
-	// Called when another command which requires one or more of the same
-	// subsystems is scheduled to run
+	@Override
 	protected void interrupted() {
-		end();
+		
 	}
-
+	
 }
