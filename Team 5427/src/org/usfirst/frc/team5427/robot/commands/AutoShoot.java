@@ -7,7 +7,7 @@ import org.usfirst.frc.team5427.robot.util.Log;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class AutoShoot extends Command{
+public class AutoShoot extends Command {
 
 	/**
 	 * automatically launches a boulder if there is a goal in sight
@@ -20,7 +20,7 @@ public class AutoShoot extends Command{
 	@Override
 	protected void initialize() {
 		Log.init("initialized Shoot");
-		Robot.launcher.setShootSpeed(Config.LAUNCH_SPEED);		
+		Robot.launcher.setShootSpeed(Config.LAUNCH_SPEED);
 	}
 
 	@Override
@@ -28,25 +28,28 @@ public class AutoShoot extends Command{
 		new Turn_Programmed(Client.lastRecievedGoal.getHorizontalAngle());
 		new GetStuffIn();
 		Robot.launcher.setShootSpeed(Config.LAUNCH_SPEED);
-		
+		//TODO change the setShootSpeed to use a value from goalData when that is finished
+
 	}
 
 	@Override
 	protected boolean isFinished() {
-		if(!Robot.oi.getJoy().getRawButton(Config.SHOOT_BUTTON)) return true;
-		else return false;
+		if (!Robot.oi.getJoy().getRawButton(Config.SHOOT_BUTTON))
+			return true;
+		else
+			return false;
 	}
 
 	@Override
 	protected void end() {
-		Robot.launcher.stopShoot();	
+		Robot.launcher.stopShoot();
 		Robot.intake.stop();
 		new Turn_Programmed(0);
 	}
 
 	@Override
 	protected void interrupted() {
-		
+
 	}
-	
+
 }

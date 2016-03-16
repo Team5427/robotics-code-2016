@@ -46,6 +46,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * creating this project, you must also update the manifest file in the resource
  * directory.
  */
+@SuppressWarnings("unused")
 public class Robot extends IterativeRobot {
 
 	// TODO fill in the blank in this comment after testing the robot.
@@ -296,6 +297,7 @@ public class Robot extends IterativeRobot {
 	 * chooser code above (like the commented example) or additional comparisons
 	 * to the switch structure below with additional strings & commands.
 	 */
+	@SuppressWarnings("unused")
 	public void autonomousInit() {
 		Log.info("Autonomous Start!~");
 
