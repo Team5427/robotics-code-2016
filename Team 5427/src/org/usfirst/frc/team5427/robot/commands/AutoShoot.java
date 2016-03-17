@@ -19,16 +19,18 @@ public class AutoShoot extends Command {
 
 	@Override
 	protected void initialize() {
+		new SendOutTimed();
 		Log.init("initialized Shoot");
-		Robot.launcher.setShootSpeed(Config.LAUNCH_SPEED);
+		
 	}
 
 	@Override
 	protected void execute() {
+		
 		new Turn_Programmed(Client.lastRecievedGoal.getHorizontalAngle());
 		Robot.launcher.setShootSpeed(Config.LAUNCH_SPEED);
 		//TODO change the setShootSpeed to use a value from goalData when that is finished
-		new GetStuffIn();
+		new GetStuffInTimed();
 		
 
 	}

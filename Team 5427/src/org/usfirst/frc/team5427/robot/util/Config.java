@@ -90,7 +90,7 @@ public class Config {
 	public static final double POTENTIOMETER_RESET_DEGREES = 0;
 	// Correct Degrees for tilter
 	public static final double TURRET_CENTER = 267.5;
-	public static final double TILTER_DEGREES_RANGE = 6;
+	public static final double TURRET_CENTER_DEGREES_RANGE = 6;
 	// Ends of Potentiometer
 	public static final double POTENTIOMETER_END_ONE = 220;
 	public static final double POTENTIOMETER_END_TWO = 313;
@@ -111,8 +111,7 @@ public class Config {
 	
 	
 	// DoorOpeners positions to be referenced in their respective commands based
-	// on
-	// the input from the encoders, and
+	// on the input from the potentiometers, and
 	// Robot.currentLeftPos/Robot.currentRightPos
 	
 	
