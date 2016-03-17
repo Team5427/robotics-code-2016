@@ -350,8 +350,8 @@ public class Robot extends IterativeRobot {
 		if (Config.client != null && Config.client.isConnected())
 			Config.client.send(new Task(TaskDescription.TELEOP_START));
 
-		// drive = new Drive();
-		// drive.start();
+		drive = new Drive();
+		drive.start();
 
 		// if(oi.getJoy().getX()!=0)
 
@@ -367,9 +367,9 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-//		Log.info(potentiometer.get() + "");
-		Log.info("LEFT ARM "+leftArmPot.get()+"");
-//		Log.info("RIGHT ARM "+ rightArmPot.get()+"");
+		// Log.info(potentiometer.get() + "");
+		Log.info("LEFT ARM " + leftArmPot.get() + "");
+		// Log.info("RIGHT ARM "+ rightArmPot.get()+"");
 		// Log.info("limit switch "+tilterLimitSwitch.get() + "\n");
 		try {
 			Thread.sleep(150);
@@ -385,7 +385,7 @@ public class Robot extends IterativeRobot {
 	public void testPeriodic() {
 		LiveWindow.run();
 	}
-	
+
 	public static void resetPotentiometers() {
 		ai = new AnalogInput(Config.POTENTIOMETER_ANALOG_INPUT);
 		potentiometer = new AnalogPotentiometer(ai, Config.POTENTIOMETER_SCALE, Config.POTENTIOMETER_OFFSET);
