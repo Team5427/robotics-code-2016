@@ -31,7 +31,7 @@ public class Config {
 	public static final int TWO_JOYSTICKS = 1;
 
 	// Buttons
-	//public static final int TOGGLE_INTAKE_BUTTON = 2;
+	
 	public static final int INTAKE_IN_BUTTON = 8;
 	public static final int INTAKE_OUT_BUTTON = 7;
 	public static final int TILT_COLLECT_BUTTON = 9;
@@ -67,16 +67,15 @@ public class Config {
 	public static final int TILTER_LIMIT_SWITCH = 0;
 	public static final int SCISSOR_LIMIT_UP = 973;
 	public static final int SCISSOR_LIMIT_DOWN = 888;
-	// DNE//public static final int LEFT_ARM_LIMIT=985;
-	// DNE//public static final int RIGHT_ARM_LIMIT=895;
+	
 
 	// POTENTIOMETER PORTS
+	
+	//***THE BELOW POTENTIOMETER IS FOR THE TURRET
 	public static final int POTENTIOMETER_TURRET = 0;
-
 	// Potentiometer Analog input port
 	// TODO what is this for????
 	public static final int POTENTIOMETER_ANALOG_INPUT = 0;
-
 	// TODO rename variables. We have three potentiometers...
 	// Potentiometer offset
 	// 369-360=9/2=4.5 (see POTENTIOMETER_SCALE)
@@ -95,19 +94,22 @@ public class Config {
 	// Ends of Potentiometer
 	public static final double POTENTIOMETER_END_ONE = 220;
 	public static final double POTENTIOMETER_END_TWO = 313;
+	//***THE ABOVE POTENTIOMETER IS FOR THE TURRET
+	// Arm potentiometer stuff for the DoorOpener(s) {LeftArm/RightArm}
+		public static final int LEFT_POT_PORT = 1;
+		public static final double LEFT_POT_SCALE = 360;
+		public static final double LEFT_POT_OFFSET = 0;
+		public static final int RIGHT_POT_PORT = 2;
+		public static final double RIGHT_POT_SCALE = 360;
+		public static final double RIGHT_POT_OFFSET = 0;
+
 
 	// Arms' stop/end spots
 	public static final int ARM_START = 0, ARM_END = ARM_START + 180;
-
-	// Arm potentiometer ports
-	public static final int LEFT_POT_PORT = 1;
-	public static final double LEFT_POT_SCALE = 360;
-	public static final double LEFT_POT_OFFSET = 0;
-
-	public static final int RIGHT_POT_PORT = 2;
-	public static final double RIGHT_POT_SCALE = 360;
-	public static final double RIGHT_POT_OFFSET = 0;
-
+	
+	
+	
+	
 	// DoorOpeners positions to be referenced in their respective commands based
 	// on
 	// the input from the encoders, and
