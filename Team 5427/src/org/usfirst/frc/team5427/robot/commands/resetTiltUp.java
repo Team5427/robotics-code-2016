@@ -17,7 +17,7 @@ public class resetTiltUp extends Command {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.launcher);
 		// requires(Robot.pot);
-		targetDegrees = Config.TILTER_CORRECT_DEGREES;
+		targetDegrees = Config.TURRET_CENTER;
 		initialize();
 	}
 
