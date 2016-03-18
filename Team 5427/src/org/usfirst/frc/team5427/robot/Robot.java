@@ -368,11 +368,11 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		// Log.info(potentiometer.get() + "");
-		Log.info("LEFT ARM " + leftArmPot.get() + "");
+		//Log.info("LEFT ARM " + leftArmPot.get() + "");
 		// Log.info("RIGHT ARM "+ rightArmPot.get()+"");
 		// Log.info("limit switch "+tilterLimitSwitch.get() + "\n");
 		try {
-			Thread.sleep(150);
+		//	Thread.sleep(150);
 
 		} catch (Exception e) {
 

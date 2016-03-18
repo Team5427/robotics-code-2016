@@ -2,6 +2,7 @@ package org.usfirst.frc.team5427.robot;
 
 import org.usfirst.frc.team5427.robot.commands.ScissorUp;
 import org.usfirst.frc.team5427.robot.commands.SendOut;
+import org.usfirst.frc.team5427.robot.commands.AutoShoot;
 import org.usfirst.frc.team5427.robot.commands.Drive;
 import org.usfirst.frc.team5427.robot.commands.EngageLeftArm;
 import org.usfirst.frc.team5427.robot.commands.EngageRightArm;
@@ -51,7 +52,8 @@ public class OI {
 		
 		tiltCollect.whenPressed(new NewUCTiltCollect());
 		tiltLowBar.whenPressed(new NewUCTiltLowBar());
-		shoot.whenPressed(new Shoot());
+//		shoot.whenPressed(new Shoot());
+		shoot.whenPressed(new AutoShoot());
 		intaker.whenPressed(new GetStuffIn());
 		outGo.whenPressed(new SendOut());
 		leftFront.whenPressed(new EngageLeftArm(true));

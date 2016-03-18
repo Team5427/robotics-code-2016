@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5427.robot.network;
 
 import org.usfirst.frc.team5427.robot.util.Log;
+import org.usfirst.frc.team5427.robot.network.Task;
 
 import java.io.*;
 import java.net.Socket;
@@ -188,8 +189,12 @@ public class Client implements Runnable {
 					 * "recieved an object"); is.reset();
 					 */
 
-					Object o = is.readObject();
+					
+				Object o = is.readObject(); //TODO makes a strange error
+					System.out.println("recieved a bad object");
+					
 					if (o.toString().contains("Team 5427 - Task ")) {
+						System.out.println("recieved a valid object");
 						Task t = (Task) o;
 						switch (t.getTask()) {
 						case AUTO_START:

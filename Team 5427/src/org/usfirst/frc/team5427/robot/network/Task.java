@@ -1,8 +1,9 @@
 package org.usfirst.frc.team5427.robot.network;
 
+
 import java.io.Serializable;
 
-public class Task implements Serializable {
+public class Task implements Serializable{
 
 	private TaskDescription t;
 	private Object o;
@@ -23,9 +24,8 @@ public class Task implements Serializable {
 	public Object getObject() {
 		return o;
 	}
-
 	@Override
-	public String toString() {
+	public String toString(){
 		return "Team 5427 - Task " + t.toString();
 	}
 
