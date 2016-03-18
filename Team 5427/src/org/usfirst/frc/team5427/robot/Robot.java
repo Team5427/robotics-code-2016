@@ -12,6 +12,7 @@ import org.usfirst.frc.team5427.robot.commands.GetStuffIn;
 import org.usfirst.frc.team5427.robot.commands.UserControlledTurn;
 import org.usfirst.frc.team5427.robot.commands.resetTiltUp;
 import org.usfirst.frc.team5427.robot.network.Client;
+import org.usfirst.frc.team5427.robot.network.StringDictionary;
 import org.usfirst.frc.team5427.robot.network.Task;
 import org.usfirst.frc.team5427.robot.network.TaskDescription;
 import org.usfirst.frc.team5427.robot.subsystems.Intake;
@@ -199,9 +200,9 @@ public class Robot extends IterativeRobot {
 
 		try {
 			Log.init("Initializing connection to the driver station...");
-			Config.client = new Client();
-			Config.client.start();
-			if (Config.client.isConnected())
+			new Client();
+			Client.start();
+			if (Client.isConnected())
 				Log.init("Connection successfully established with the driver station.");
 			else
 				Log.init("Connection failed to establish. Client will continue to connect with the driver station.");
@@ -301,8 +302,8 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		Log.info("Autonomous Start!~");
 
-		if (Config.client != null && Config.client.isConnected())
-			Config.client.send(new Task(TaskDescription.AUTO_START));
+		if (Client.isConnected())
+			Client.send(StringDictionary.AUTO_START);
 
 		turnDegrees = 0;
 		tiltDegrees = 0;
@@ -347,8 +348,8 @@ public class Robot extends IterativeRobot {
 
 		Log.info("Teleop Start!~");
 
-		if (Config.client != null && Config.client.isConnected())
-			Config.client.send(new Task(TaskDescription.TELEOP_START));
+		if (Client.isConnected())
+			Client.send(StringDictionary.TELEOP_START);
 
 		drive = new Drive();
 		drive.start();
