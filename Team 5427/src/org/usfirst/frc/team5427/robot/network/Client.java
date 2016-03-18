@@ -7,6 +7,7 @@ import java.io.*;
 import java.net.Socket;
 import java.net.SocketException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Client implements Runnable {
 
@@ -106,21 +107,7 @@ public class Client implements Runnable {
 			} catch (SocketException e) {
 				Log.error("Socket Exception");
 			} catch (NullPointerException e) {
-				Log.error("\n\tThere was an error connecting to the server."); // This
-																				// error
-																				// occurs
-																				// when
-																				// the
-																				// client
-																				// attempts
-																				// to
-																				// connect
-																				// to
-																				// a
-																				// server,
-																				// but
-																				// the
-																				// running
+				Log.error("\n\tThere was an error connecting to the server.");
 			} catch (Exception e) {
 				Log.error(e.getMessage());
 			}
@@ -179,49 +166,69 @@ public class Client implements Runnable {
 	public void run() {
 
 		reconnect();
+		Scanner taskReader;
 
 		while (!networkThread.isInterrupted()) {
 
 			if (clientSocket != null && !clientSocket.isClosed() && is != null) {
 				try {
-					/*
-					 * inputStreamData.add(is.readObject()); System.out.println(
-					 * "recieved an object"); is.reset();
-					 */
 
-					
-				Object o = is.readObject(); //TODO makes a strange error
-					System.out.println("recieved a bad object");
-					
-					if (o.toString().contains("Team 5427 - Task ")) {
-						System.out.println("recieved a valid object");
-						Task t = (Task) o;
-						switch (t.getTask()) {
-						case AUTO_START:
-							Log.warn("driver station has told the robot AUTO_START, and this should not happen.");
-							break;
-						case DEFAULT_MODE:
-							Log.warn("driver station has told the robot DEFAULT_MODE, and this should not happen.");
-							break;
-						case GOAL_ATTACHED:
-							lastRecievedGoal = (GoalData) t.getObject();
-							break;
-						case LOG:
-							Log.vision((String) t.getObject());
-							break;
-						case MESSAGE:
-							break;
-						case TELEOP_START:
-							Log.warn("driver station has told the robot TELEOP_START, and this should not happen.");
-							break;
-						default:
-							Log.warn("driver station has sent the robot " + t.getTask()
-									+ ", and is unrecognized by the robot.");
-							break;
+					String s = is.readUTF();
 
+					if (s.contains(StringDictionary.TASK)) {
+
+						s = s.substring(StringDictionary.TASK.length(), s.length() - 1);
+
+						if (s.contains(StringDictionary.GOAL_ATTACHED)) {
+
+							s = s.substring(StringDictionary.GOAL_ATTACHED.length(), s.length() - 1);
+							taskReader = new Scanner(s);
+
+							lastRecievedGoal = new GoalData(taskReader.nextDouble(), taskReader.nextDouble(),
+									taskReader.nextDouble(), taskReader.nextDouble());
+
+						} else if (s.contains(StringDictionary.LOG)) {
+
+						} else if (s.contains(StringDictionary.MESSAGE)) {
+
+						} else if (s.contains(StringDictionary.TELEOP_START)) {
+							
+							Log.warn("Driver station has told the robot TELEOP_START, and that should not happen.");
+
+						} else if (s.contains(StringDictionary.AUTO_START)) {
+							
+							Log.warn("Driver station has told the robot AUTO_START, and that should not happen.");
+
+						} else {
+							System.out.println("Valid task was recieved, but with unrecognized contents.");
 						}
 
+					} else {
+						System.out.println("unrecognized task");
 					}
+
+					/*
+					 * Object o = is.readObject(); if (o.toString().contains(
+					 * "Team 5427 - Task ")) { System.out.println(
+					 * "recieved a valid object"); Task t = (Task) o; switch
+					 * (t.getTask()) { case AUTO_START: Log.warn(
+					 * "driver station has told the robot AUTO_START, and this should not happen."
+					 * ); break; case DEFAULT_MODE: Log.warn(
+					 * "driver station has told the robot DEFAULT_MODE, and this should not happen."
+					 * ); break; case GOAL_ATTACHED: lastRecievedGoal =
+					 * (GoalData) t.getObject(); break; case LOG:
+					 * Log.vision((String) t.getObject()); break; case MESSAGE:
+					 * break; case TELEOP_START: Log.warn(
+					 * "driver station has told the robot TELEOP_START, and this should not happen."
+					 * ); break; default: Log.warn(
+					 * "driver station has sent the robot " + t.getTask() +
+					 * ", and is unrecognized by the robot."); break;
+					 * 
+					 * }
+					 * 
+					 * 
+					 * }
+					 */
 
 				} catch (SocketException e) {
 					reconnect();
