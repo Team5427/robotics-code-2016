@@ -38,8 +38,8 @@ public class RotateTurret extends Command {
 
 	protected void execute() {
 		
-		if ((Robot.potentiometer.get() <= Config.POTENTIOMETER_END_ONE && targetDegrees<= Config.POTENTIOMETER_END_ONE)
-				|| (Robot.potentiometer.get() >= Config.POTENTIOMETER_END_TWO && targetDegrees >= Config.POTENTIOMETER_END_TWO))
+		if ((Robot.potentiometer.get() <= Config.TURRET_POTENTIOMETER_END_ONE && targetDegrees<= Config.TURRET_POTENTIOMETER_END_ONE)
+				|| (Robot.potentiometer.get() >= Config.TURRET_POTENTIOMETER_END_TWO && targetDegrees >= Config.TURRET_POTENTIOMETER_END_TWO))
 			end();
 		if (getDegrees() - targetDegrees < 0)
 			Robot.launcher.turn(-.2);
@@ -52,8 +52,8 @@ public class RotateTurret extends Command {
 		if (getDegrees() - targetDegrees == 0) {
 			return true;
 		}
-		if ((Robot.potentiometer.get() <= Config.POTENTIOMETER_END_ONE && targetDegrees<= Config.POTENTIOMETER_END_ONE)
-				|| (Robot.potentiometer.get() >= Config.POTENTIOMETER_END_TWO && targetDegrees >= Config.POTENTIOMETER_END_TWO))
+		if ((Robot.potentiometer.get() <= Config.TURRET_POTENTIOMETER_END_ONE && targetDegrees<= Config.TURRET_POTENTIOMETER_END_ONE)
+				|| (Robot.potentiometer.get() >= Config.TURRET_POTENTIOMETER_END_TWO && targetDegrees >= Config.TURRET_POTENTIOMETER_END_TWO))
 			return true;
 		return false;
 	}

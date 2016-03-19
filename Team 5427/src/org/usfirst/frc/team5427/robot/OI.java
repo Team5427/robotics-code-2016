@@ -2,11 +2,13 @@ package org.usfirst.frc.team5427.robot;
 
 import org.usfirst.frc.team5427.robot.commands.Test;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoShoot;
+import org.usfirst.frc.team5427.robot.commands.auto.AutoTurn;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.Drive;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.EngageLeftArm;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.EngageRightArm;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.IntakeIn;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.IntakeOut;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.RotateTurret;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.Scale;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.ScissorDown;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.ScissorUp;
@@ -57,7 +59,7 @@ public class OI {
 		leftBack.whenPressed(new EngageLeftArm(false));
 		rightFront.whenPressed(new EngageRightArm(true));
 		rightBack.whenPressed(new EngageRightArm(false));
-		// scissorUp.whenPressed(new ScissorUp());
+		scissorUp.whenPressed(new RotateTurret(Config.TURRET_CENTER));
 		// scissorDown.whenPressed(new ScissorDown());
 		winch.whenPressed(new UserControlledTurn());//change to "new Winch()" after testing and making sure the GRIP works
 		SmartDashboard.putData("TEST", new Test());

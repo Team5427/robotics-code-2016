@@ -32,8 +32,8 @@ public class resetTiltUp extends Command {
 			Robot.launcher.turn(-1);
 		else if (getDegrees() - targetDegrees > 0)
 			Robot.launcher.turn(1);
-		if (getDegrees() - targetDegrees == 0 || Robot.potentiometer.get() == Config.POTENTIOMETER_END_ONE
-				|| Robot.potentiometer.get() == Config.POTENTIOMETER_END_TWO)
+		if (getDegrees() - targetDegrees == 0 || Robot.potentiometer.get() == Config.TURRET_POTENTIOMETER_END_ONE
+				|| Robot.potentiometer.get() == Config.TURRET_POTENTIOMETER_END_TWO)
 			Robot.launcher.stopTurn();
 		if (getDegrees() == targetDegrees && Robot.tilterLimitSwitch.get() == false)
 			Robot.launcher.tiltUp();
@@ -47,8 +47,8 @@ public class resetTiltUp extends Command {
 			Robot.launcher.turn(-1);
 		else if (getDegrees() - targetDegrees > 0)
 			Robot.launcher.turn(1);
-		if (getDegrees() - targetDegrees == 0 || Robot.potentiometer.get() == Config.POTENTIOMETER_END_ONE
-				|| Robot.potentiometer.get() == Config.POTENTIOMETER_END_TWO)
+		if (getDegrees() - targetDegrees == 0 || Robot.potentiometer.get() == Config.TURRET_POTENTIOMETER_END_ONE
+				|| Robot.potentiometer.get() == Config.TURRET_POTENTIOMETER_END_TWO)
 			Robot.launcher.stopTurn();
 		if (getDegrees() == targetDegrees && Robot.tilterLimitSwitch.get() == false)
 			Robot.launcher.tiltUp();
