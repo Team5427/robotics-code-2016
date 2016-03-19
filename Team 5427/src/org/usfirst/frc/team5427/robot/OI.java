@@ -1,14 +1,12 @@
 package org.usfirst.frc.team5427.robot;
 
-import org.usfirst.frc.team5427.robot.commands.SendOut;
-//import org.usfirst.frc.team5427.robot.commands.SonicDist;
-//import org.usfirst.frc.team5427.robot.commands.UltrasonicLog;
 import org.usfirst.frc.team5427.robot.commands.Test;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoShoot;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.Drive;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.EngageLeftArm;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.EngageRightArm;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.IntakeIn;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.IntakeOut;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.Scale;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.ScissorDown;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.ScissorUp;
@@ -54,7 +52,7 @@ public class OI {
 //		shoot.whenPressed(new Shoot());
 		shoot.whenPressed(new AutoShoot());
 		intaker.whenPressed(new IntakeIn());
-		outGo.whenPressed(new SendOut());
+		outGo.whenPressed(new IntakeOut());
 		leftFront.whenPressed(new EngageLeftArm(true));
 		leftBack.whenPressed(new EngageLeftArm(false));
 		rightFront.whenPressed(new EngageRightArm(true));

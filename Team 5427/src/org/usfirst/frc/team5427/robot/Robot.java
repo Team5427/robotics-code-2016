@@ -3,7 +3,6 @@ package org.usfirst.frc.team5427.robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-import org.usfirst.frc.team5427.robot.commands.AutoLaunchBoulder;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoDrive;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoObstacle;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoTurn;
@@ -158,7 +157,6 @@ public class Robot extends IterativeRobot {
 	// public static GetStuffIn getStuff;
 
 	// UserControlledTurn turn;
-	AutoLaunchBoulder autoLaunchBoulder;
 
 	public static Launcher launcher;
 	public static Winch winch;
