@@ -137,34 +137,40 @@ public class Config {
 		public static final int FULL_SPEED_BACKWARD = 1;
 		public static final int FULL_TURN_SPEED_RIGHT = 1;
 		public static final int FULL_TURN_SPEED_LEFT = 1;
-	
-		//Stuff to change the arm speed
-		//Changeable Arm speed
-		public static double moveSpeed=.2;
-		/**
-		 * Max speed of the arm to move
-		 */
-		public static final double MAX_SPEED 	  = .4;
-		/**
-		 * Minimum speed of the arm to move
-		 */
-		public static final double MIN_SPEED 	  = .1;
-		/**
-		 * The interval of the speed that will change
-		 */
-		public static final double SPEED_INTERVAL = .1;
 
-		
+	// Variables involving the speed of the robot's arms
+	/**
+	 * The axis on the joystick that will be used to increase or decrease the speed
+	 * of the robot's arms
+	 */
+	public static final int ARM_AXIS 		  = 5;
+	/**
+	 * Max speed of the arm to move
+	 */
+	public static final double MAX_SPEED 	  = .4;
+	/**
+	 * Minimum speed of the arm to move
+	 */
+	public static final double MIN_SPEED 	  = .1;
+	/**
+	 * The interval of the speed that will change
+	 */
+	public static final double SPEED_INTERVAL = .1;
+	/**
+	 * The current arm speed of the arms
+	 */
+	public static double moveSpeed 			  = .2;
 
-	
-	
 
-	
-	
+
+
+
+
+
 	/**
 	 * Increases the speed of the arm based on the interval
 	 */
-	public static void speedUp() {
+	public static void increaseArmSpeed() {
 		moveSpeed += SPEED_INTERVAL;
 
 		if (moveSpeed > MAX_SPEED)
@@ -174,7 +180,7 @@ public class Config {
 	/**
 	 * Decreases the speed of the arm based on the interval
 	 */
-	public static void speedDown() {
+	public static void decreaseArmSpeed() {
 		moveSpeed -= SPEED_INTERVAL;
 
 		if (moveSpeed < MIN_SPEED)

@@ -6,10 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoDrive;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoObstacle;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoTurn;
-import org.usfirst.frc.team5427.robot.commands.subsystemControl.Drive;
-import org.usfirst.frc.team5427.robot.commands.subsystemControl.IntakeIn;
-import org.usfirst.frc.team5427.robot.commands.subsystemControl.UserControlledTurn;
-import org.usfirst.frc.team5427.robot.commands.subsystemControl.resetTiltUp;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.*;
 import org.usfirst.frc.team5427.robot.network.Client;
 import org.usfirst.frc.team5427.robot.network.StringDictionary;
 import org.usfirst.frc.team5427.robot.subsystems.Intake;
@@ -153,6 +150,9 @@ public class Robot extends IterativeRobot {
 	static Relay motorRelay_ScissorLift;
 
 	Drive drive;
+
+	ArmSpeedModifier armSpeedModifier;
+
 	// new intake system
 	// public static GetStuffIn getStuff;
 
