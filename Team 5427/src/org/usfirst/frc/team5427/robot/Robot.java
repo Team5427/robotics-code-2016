@@ -355,6 +355,9 @@ public class Robot extends IterativeRobot {
 		drive = new Drive();
 		drive.start();
 
+		armSpeedModifier = new ArmSpeedModifier();
+		armSpeedModifier.start();
+
 		// if(oi.getJoy().getX()!=0)
 
 		// This makes sure that the autonomous stops running when

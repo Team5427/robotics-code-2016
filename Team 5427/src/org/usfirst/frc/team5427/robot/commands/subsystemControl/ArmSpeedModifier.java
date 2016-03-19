@@ -48,8 +48,9 @@ public class ArmSpeedModifier extends Command {
                 Config.increaseArmSpeed();
 
             modifiable = false;
-        } else if (Robot.oi.getJoy().getRawAxis(axis) == 0)
+        } else if (Robot.oi.getJoy().getRawAxis(axis) == 0) {
             modifiable = true;
+        }
     }
 
     /**
