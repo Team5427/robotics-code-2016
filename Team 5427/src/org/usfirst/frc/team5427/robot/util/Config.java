@@ -162,11 +162,6 @@ public class Config {
 	public static double moveSpeed 			  = .2;
 
 
-
-
-
-
-
 	/**
 	 * Increases the speed of the arm based on the interval
 	 */

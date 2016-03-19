@@ -14,7 +14,7 @@ public class ArmSpeedModifier extends Command {
     private int axis = Config.ARM_AXIS;
 
     /**
-     * Used to enable 
+     * Used to prevent the speed to change until axis is 0
      */
     private boolean modifiable = false;
 

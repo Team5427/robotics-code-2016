@@ -3,6 +3,8 @@ package org.usfirst.frc.team5427.robot;
 import org.usfirst.frc.team5427.robot.commands.Test;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoShoot;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoTurn;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.ArmSpeedDown;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.ArmSpeedUp;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.Drive;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.EngageLeftArm;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.EngageRightArm;
@@ -63,6 +65,11 @@ public class OI {
 		// scissorDown.whenPressed(new ScissorDown());
 		winch.whenPressed(new UserControlledTurn());//change to "new Winch()" after testing and making sure the GRIP works
 		SmartDashboard.putData("TEST", new Test());
+		SmartDashboard.putData("ArmSpeedDown", new ArmSpeedDown());
+		SmartDashboard.putData("ArmSpeedUp", new ArmSpeedUp());
+		SmartDashboard.putNumber("Turret Potentiometer Value:", Robot.potentiometer.get());
+		SmartDashboard.putNumber("Left Arm Potentiometer Value:", Robot.leftArmPot.get());
+		SmartDashboard.putNumber("Right Arm Potentiometer Value:", Robot.rightArmPot.get());
 	}
 
 	/**

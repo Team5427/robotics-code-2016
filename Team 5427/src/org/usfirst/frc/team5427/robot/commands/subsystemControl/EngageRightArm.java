@@ -23,9 +23,9 @@ public class EngageRightArm extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		if (forward) 
-			Robot.rightArm.setRightSpeed(Config.moveSpeed);
+			Robot.rightArm.setRightSpeed(Config.CHANGEABLE_MOVE_SPEED);
 		else
-			Robot.rightArm.setRightSpeed(-Config.moveSpeed);
+			Robot.rightArm.setRightSpeed(-Config.CHANGEABLE_MOVE_SPEED);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
