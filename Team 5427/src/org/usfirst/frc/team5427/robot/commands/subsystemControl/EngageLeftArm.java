@@ -24,9 +24,9 @@ public class EngageLeftArm extends Command {
 	protected void execute() {
 
 		if (forward)
-			Robot.leftArm.setLeftSpeed(-.2);
+			Robot.leftArm.setLeftSpeed(-.3);
 		else
-			Robot.leftArm.setLeftSpeed(.2);
+			Robot.leftArm.setLeftSpeed(.3);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -38,7 +38,7 @@ public class EngageLeftArm extends Command {
 		if (forward == false && Robot.oi.getJoy().getRawButton(Config.LEFT_BACK) == false)
 			return true;
 		
-		if(!forward && Robot.leftArmPot.get() > 180)
+		if(!forward && Robot.leftArmPot.get() > 190)
 			return true;
 		/*
 		if (Robot.leftArmPot.get() + Config.LEFT_ARM_MARGIN_TO_SHUT_DOWN >= Config.LEFT_ARM_MAX_ENDING_POSITION)
