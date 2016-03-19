@@ -20,12 +20,13 @@ public class ArmSpeedUp extends Command {
 	 */
 	protected void initialize() {
 		Log.init("initialized speedUp");
-		Config.speedUp();
+		Config.increaseArmSpeed();
 	}
 
 	/**
 	 * Called repeatedly when this Command is scheduled to run
 	 */
+	@SuppressWarnings("all")
 	protected void execute() {
 
 	}

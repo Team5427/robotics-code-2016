@@ -20,7 +20,7 @@ public class ArmSpeedDown extends Command {
 	 */
 	protected void initialize() {
 		Log.init("initialized SpeedDown");
-		Config.speedDown();
+		Config.decreaseArmSpeed();
 	}
 
 	/**
