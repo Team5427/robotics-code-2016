@@ -167,6 +167,9 @@ public class Config {
 	}
 
 	// Client
+	/**
+	 * The client used for the robot for connecting to the driver station
+	 */
 	public static Client client;
 
 }
