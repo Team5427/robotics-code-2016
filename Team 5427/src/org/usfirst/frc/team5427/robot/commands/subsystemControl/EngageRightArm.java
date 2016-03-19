@@ -8,12 +8,6 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class EngageRightArm extends Command {
 
-	
-	/**
-	 * Current speed of the right arm to move
-	 */
-	public static double moveSpeed = .2;
-
 	boolean forward;
 
 	public EngageRightArm(boolean forward) {
@@ -29,9 +23,9 @@ public class EngageRightArm extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		if (forward) 
-			Robot.rightArm.setRightSpeed(moveSpeed);
+			Robot.rightArm.setRightSpeed(Config.moveSpeed);
 		else
-			Robot.rightArm.setRightSpeed(-moveSpeed);
+			Robot.rightArm.setRightSpeed(-Config.moveSpeed);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

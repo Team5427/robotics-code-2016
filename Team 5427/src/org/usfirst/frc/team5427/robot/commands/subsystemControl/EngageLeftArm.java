@@ -8,24 +8,6 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class EngageLeftArm extends Command {
 
-	/**
-	 * Max speed of the arm to move
-	 */
-	public static final double MAX_SPEED 	  = .4;
-	/**
-	 * Minimum speed of the arm to move
-	 */
-	public static final double MIN_SPEED 	  = .1;
-	/**
-	 * The interval of the speed that will change
-	 */
-	public static final double SPEED_INTERVAL = .1;
-
-	/**
-	 * Current speed of the right arm to move
-	 */
-	public static double moveSpeed = .2;
-
 	boolean forward;
 
 	public EngageLeftArm(boolean forward) {
@@ -46,9 +28,9 @@ public class EngageLeftArm extends Command {
 	protected void execute() {
 
 		if (forward)
-			Robot.leftArm.setLeftSpeed(-moveSpeed);
+			Robot.leftArm.setLeftSpeed(-Config.moveSpeed);
 		else
-			Robot.leftArm.setLeftSpeed(moveSpeed);
+			Robot.leftArm.setLeftSpeed(Config.moveSpeed);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -80,25 +62,5 @@ public class EngageLeftArm extends Command {
 	// subsystems is scheduled to run
 	protected void interrupted() {
 		end();
-	}
-
-	/**
-	 * Increases the speed of the arm based on the interval
-	 */
-	public static void speedUp() {
-		moveSpeed += SPEED_INTERVAL;
-
-		if (moveSpeed > MAX_SPEED)
-			moveSpeed = MAX_SPEED;
-	}
-
-	/**
-	 * Decreases the speed of the arm based on the interval
-	 */
-	public static void speedDown() {
-		moveSpeed -= SPEED_INTERVAL;
-
-		if (moveSpeed < MIN_SPEED)
-			moveSpeed = MIN_SPEED;
 	}
 }
