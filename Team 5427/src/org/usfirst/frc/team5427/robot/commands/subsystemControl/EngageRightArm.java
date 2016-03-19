@@ -8,19 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class EngageRightArm extends Command {
 
-	/**
-	 * Max speed of the arm to move
-	 */
-	public static final double MAX_SPEED 	  = .4;
-	/**
-	 * Minimum speed of the arm to move
-	 */
-	public static final double MIN_SPEED 	  = .1;
-	/**
-	 * The interval of the speed that will change
-	 */
-	public static final double SPEED_INTERVAL = .1;
-
+	
 	/**
 	 * Current speed of the right arm to move
 	 */
@@ -77,23 +65,5 @@ public class EngageRightArm extends Command {
 		end();
 	}
 
-	/**
-	 * Increases the speed of the arm based on the interval
-	 */
-	public static void speedUp() {
-		moveSpeed += SPEED_INTERVAL;
-
-		if (moveSpeed > MAX_SPEED)
-			moveSpeed = MAX_SPEED;
-	}
-
-	/**
-	 * Decreases the speed of the arm based on the interval
-	 */
-	public static void speedDown() {
-		moveSpeed -= SPEED_INTERVAL;
-
-		if (moveSpeed < MIN_SPEED)
-			moveSpeed = MIN_SPEED;
-	}
+	
 }

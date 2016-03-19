@@ -126,7 +126,23 @@ public class Config {
 		public static final int SALLY_START_POS = 7789;
 		public static final int SALLY_END_POS = 7789;
 	
-	
+		//Stuff to change the arm speed
+		//Changeable Arm speed
+		public static double moveSpeed=.2;
+		/**
+		 * Max speed of the arm to move
+		 */
+		public static final double MAX_SPEED 	  = .4;
+		/**
+		 * Minimum speed of the arm to move
+		 */
+		public static final double MIN_SPEED 	  = .1;
+		/**
+		 * The interval of the speed that will change
+		 */
+		public static final double SPEED_INTERVAL = .1;
+
+		
 	//MIN = 127
 	/*public static final int RIGHT_ARM_MAX_STARTING_POSITION = 0;
 	public static final int RIGHT_ARM_MAX_ENDING_POSITION = 360;
@@ -153,7 +169,25 @@ public class Config {
 
 	
 	
-	
+	/**
+	 * Increases the speed of the arm based on the interval
+	 */
+	public static void speedUp() {
+		moveSpeed += SPEED_INTERVAL;
+
+		if (moveSpeed > MAX_SPEED)
+			moveSpeed = MAX_SPEED;
+	}
+
+	/**
+	 * Decreases the speed of the arm based on the interval
+	 */
+	public static void speedDown() {
+		moveSpeed -= SPEED_INTERVAL;
+
+		if (moveSpeed < MIN_SPEED)
+			moveSpeed = MIN_SPEED;
+	}
 
 
 //	public static double getTilt() {
