@@ -90,14 +90,14 @@ public class Config {
 	// Soft stop values of Potentiometers
 		public static final double TURRET_POTENTIOMETER_END_ONE = 220;
 		public static final double TURRET_POTENTIOMETER_END_TWO = 313;
-		public static final int ARM_START = 0, ARM_END = ARM_START + 180;
-		public static final int RIGHT_ARM_MAX_STARTING_POSITION = 0;
-		public static final int RIGHT_ARM_MAX_ENDING_POSITION = 180;
-		public static final int RIGHT_ARM_MARGIN = 10;
 		
-		public static final int LEFT_ARM_MAX_STARTING_POSITION = 0;
-		public static final int LEFT_ARM_MAX_ENDING_POSITION = 180;
-		public static final int LEFT_ARM_MARGIN = 10;
+		public static final double RIGHT_ARM_MAX_STARTING_POSITION = 0;
+		public static final double RIGHT_ARM_MAX_ENDING_POSITION = 180;
+		public static final double RIGHT_ARM_MARGIN = .1;//Margin of error
+		
+		public static final double LEFT_ARM_MAX_STARTING_POSITION = 0;
+		public static final double LEFT_ARM_MAX_ENDING_POSITION = 180;
+		public static final double LEFT_ARM_MARGIN = .1;//Margin of error
 	// Center of the Turret
 	public static final double TURRET_CENTER = 267.5;
 	public static final double TURRET_CENTER_DEGREES_RANGE = 6;
@@ -117,9 +117,14 @@ public class Config {
 	public static final double WINCH_SPEED = 0.5;
 	public static final double SCISSOR_SPEED = 0.5;	
 	
-	// DoorOpeners positions to be referenced in their respective commands based
+	// DoorOpeners positions to be referenced in their respective automatic commands based
 	// on the input from the potentiometers, and
 	// Robot.currentLeftPos/Robot.currentRightPos
+	// allows the arms to automatically turn in a specific sequence for the different obstacles
+		public static final int DRAWBRIDGE_START_POS = 7789;
+		public static final int DRAWBRIDGE_END_POS = 7789;
+		public static final int SALLY_START_POS = 7789;
+		public static final int SALLY_END_POS = 7789;
 	
 	
 	//MIN = 127
@@ -130,11 +135,7 @@ public class Config {
 	public static final int LEFT_ARM_MAX_STARTING_POSITION = 0;
 	public static final int LEFT_ARM_MAX_ENDING_POSITION = 360;
 	public static final int LEFT_ARM_MARGIN = 10;*/
-	// for the different obstacles
-	public static final int DRAWBRIDGE_START_POS = 7789;
-	public static final int DRAWBRIDGE_END_POS = 7789;
-	public static final int SALLY_START_POS = 7789;
-	public static final int SALLY_END_POS = 7789;
+	
 
 	
 

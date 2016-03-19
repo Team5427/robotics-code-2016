@@ -11,7 +11,7 @@ public class EngageLeftArm extends Command {
 	/**
 	 * Max speed of the arm to move
 	 */
-	public static final double MAX_SPEED 	  = .7;
+	public static final double MAX_SPEED 	  = .4;
 	/**
 	 * Minimum speed of the arm to move
 	 */

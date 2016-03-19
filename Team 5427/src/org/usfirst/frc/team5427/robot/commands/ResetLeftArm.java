@@ -33,7 +33,7 @@ public class ResetLeftArm extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if (Robot.leftArmPot.get() > Config.ARM_START)
+		if (Robot.leftArmPot.get() > Config.LEFT_ARM_MAX_STARTING_POSITION)
 			return false;
 		return true;
 	}
