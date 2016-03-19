@@ -8,16 +8,7 @@ import org.usfirst.frc.team5427.robot.commands.Test;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoDrive;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoObstacle;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoTurn;
-<<<<<<< HEAD
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.*;
-=======
-import org.usfirst.frc.team5427.robot.commands.subsystemControl.ArmSpeedDown;
-import org.usfirst.frc.team5427.robot.commands.subsystemControl.ArmSpeedUp;
-import org.usfirst.frc.team5427.robot.commands.subsystemControl.Drive;
-import org.usfirst.frc.team5427.robot.commands.subsystemControl.IntakeIn;
-import org.usfirst.frc.team5427.robot.commands.subsystemControl.UserControlledTurn;
-import org.usfirst.frc.team5427.robot.commands.subsystemControl.resetTiltUp;
->>>>>>> 7d8698a1cde3b4d9cf7b62b7bfb9a1a28286a72f
 import org.usfirst.frc.team5427.robot.network.Client;
 import org.usfirst.frc.team5427.robot.network.StringDictionary;
 import org.usfirst.frc.team5427.robot.subsystems.Intake;
