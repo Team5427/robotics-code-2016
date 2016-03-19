@@ -90,7 +90,8 @@ public class Config {
 	// Soft stop values of Potentiometers
 		public static final double TURRET_POTENTIOMETER_END_ONE = 220;
 		public static final double TURRET_POTENTIOMETER_END_TWO = 313;
-		
+		//MIN = 127
+		//TODO figure out what MIN=127 means...
 		public static final double RIGHT_ARM_MAX_STARTING_POSITION = 0;
 		public static final double RIGHT_ARM_MAX_ENDING_POSITION = 180;
 		public static final double RIGHT_ARM_MARGIN = .1;//Margin of error
@@ -125,6 +126,17 @@ public class Config {
 		public static final int DRAWBRIDGE_END_POS = 7789;
 		public static final int SALLY_START_POS = 7789;
 		public static final int SALLY_END_POS = 7789;
+		//stores the timeout for the obstacles (how long the command automatically runs)
+		public static final double OBSTACLE_TIME = 3;
+		
+		// AUTO STUFF
+		// stores the speed, in meters per second, that the Robot travels at full speed
+		// TODO time these values
+		// TODO use feet, nobody uses meters....
+		public static final int FULL_SPEED_FORWARD = 1;
+		public static final int FULL_SPEED_BACKWARD = 1;
+		public static final int FULL_TURN_SPEED_RIGHT = 1;
+		public static final int FULL_TURN_SPEED_LEFT = 1;
 	
 		//Stuff to change the arm speed
 		//Changeable Arm speed
@@ -143,29 +155,9 @@ public class Config {
 		public static final double SPEED_INTERVAL = .1;
 
 		
-	//MIN = 127
-	/*public static final int RIGHT_ARM_MAX_STARTING_POSITION = 0;
-	public static final int RIGHT_ARM_MAX_ENDING_POSITION = 360;
-	public static final int RIGHT_ARM_MARGIN = 10;
-	
-	public static final int LEFT_ARM_MAX_STARTING_POSITION = 0;
-	public static final int LEFT_ARM_MAX_ENDING_POSITION = 360;
-	public static final int LEFT_ARM_MARGIN = 10;*/
-	
 
 	
-
-	// stores the speed, in feet per second, that the Robot travels at full
-	// speed
-	// TODO time these values
-	// TODO use feet, nobody uses meters....
-	public static final int FULL_SPEED_FORWARD = 1;
-	public static final int FULL_SPEED_BACKWARD = 1;
-	public static final int FULL_TURN_SPEED_RIGHT = 1;
-	public static final int FULL_TURN_SPEED_LEFT = 1;
-	// AUTO STUFF
-	// TODO time these values
-	public static final double OBSTACLE_TIME = 3;
+	
 
 	
 	
