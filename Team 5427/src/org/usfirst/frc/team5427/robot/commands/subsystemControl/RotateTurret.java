@@ -1,4 +1,4 @@
-package org.usfirst.frc.team5427.robot.commands;
+package org.usfirst.frc.team5427.robot.commands.subsystemControl;
 
 import org.usfirst.frc.team5427.robot.Robot;
 import org.usfirst.frc.team5427.robot.util.Config;
@@ -6,7 +6,7 @@ import org.usfirst.frc.team5427.robot.util.Log;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class Turn_Programmed extends Command {
+public class RotateTurret extends Command {
 	private double targetDegrees;
 	Config config;
 
@@ -17,7 +17,7 @@ public class Turn_Programmed extends Command {
 	 * @param targetDegrees
 	 *            - the degree value to reach before stopping command.
 	 */
-	public Turn_Programmed(double targetDegrees) {
+	public RotateTurret(double targetDegrees) {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.launcher);
 		this.targetDegrees = targetDegrees;

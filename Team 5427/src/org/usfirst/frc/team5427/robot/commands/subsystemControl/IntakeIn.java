@@ -1,23 +1,18 @@
 //This command takes care of running the intake
-package org.usfirst.frc.team5427.robot.commands;
+package org.usfirst.frc.team5427.robot.commands.subsystemControl;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team5427.robot.Robot;
 import org.usfirst.frc.team5427.robot.util.Config;
-import org.usfirst.frc.team5427.robot.util.Log;
 
 /**
- * Tells the Intake subsystem to go ON for Config.AUTO_INTAKE_TIME seconds
+ * Tells the Intake subsystem to go on/off
  */
-public class AutoGetStuffIn extends Command {
-	// disable shhooter
+public class IntakeIn extends Command {
 
-	public AutoGetStuffIn() {
-		// Use requires() here to declare subsystem dependencies
-		// It needs the intake system
+	public IntakeIn() {
 		requires(Robot.intake);
-		super.setTimeout(Config.AUTO_INTAKE_TIME);
 		initialize();
 	}
 
@@ -34,15 +29,15 @@ public class AutoGetStuffIn extends Command {
 		Robot.intake.go(true);
 	}
 
-	/**
-	 * checks if timed out. If it is, command invokes end() and stops running.
-	 * If it is not, command keeps running
-	 */
+	// checks if button is pressed. If it is, command continues to run. If it is
+	// not, command
+	// invokes end() and stops running
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if (isTimedOut())
-			return true;
-		return false;
+		if (Robot.oi.getJoy().getRawButton(Config.INTAKE_IN_BUTTON)
+				|| Robot.oi.getJoy().getRawButton(Config.INTAKE_OUT_BUTTON))
+			return false;
+		return true;
 	}
 
 	// Called once after isFinished returns true

@@ -9,6 +9,9 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class ResetArms extends Command {
 
+	/**
+	 * @deprecated do not use: the arms will go too far back
+	 */
 	public ResetArms() {
 		requires(Robot.rightArm);
 		requires(Robot.leftArm);

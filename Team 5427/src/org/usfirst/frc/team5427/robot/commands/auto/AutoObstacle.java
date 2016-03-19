@@ -1,5 +1,5 @@
 //this command is given a distance(in meters) and uses full speed to travel the distance
-package org.usfirst.frc.team5427.robot.commands;
+package org.usfirst.frc.team5427.robot.commands.auto;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -11,18 +11,15 @@ import org.usfirst.frc.team5427.robot.util.Log;
  * this class constantly inputs the Joystick axis into the driveTrain file,
  * causing the robot to move.
  */
-public class AutoTurn extends Command {
+public class AutoObstacle extends Command {
 
-	private boolean right;
+	private boolean forward;
 
-	public AutoTurn(double degrees, boolean right) {
+	public AutoObstacle(boolean forward) {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.driveTrain);
-		if (right)
-			super.setTimeout(degrees * Config.FULL_TURN_SPEED_RIGHT / 360);
-		else
-			super.setTimeout(degrees * Config.FULL_TURN_SPEED_LEFT / 360);
-		this.right = right;
+		super.setTimeout(Config.OBSTACLE_TIME);
+		this.forward = forward;
 	}
 
 	// Called just before this Command runs the first time
@@ -34,12 +31,12 @@ public class AutoTurn extends Command {
 
 	@SuppressWarnings("all")
 	protected void execute() {
-		if (right) {
+		if (forward) {
 			Robot.driveTrain.setLeftSpeed(1);
-			Robot.driveTrain.setRightSpeed(-1);
+			Robot.driveTrain.setRightSpeed(1);
 		} else {
 			Robot.driveTrain.setLeftSpeed(-1);
-			Robot.driveTrain.setRightSpeed(1);
+			Robot.driveTrain.setRightSpeed(-1);
 		}
 
 	}

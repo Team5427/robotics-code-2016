@@ -1,4 +1,4 @@
-package org.usfirst.frc.team5427.robot.commands;
+package org.usfirst.frc.team5427.robot.commands.subsystemControl;
 
 import org.usfirst.frc.team5427.robot.Robot;
 import org.usfirst.frc.team5427.robot.util.Config;

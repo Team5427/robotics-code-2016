@@ -1,5 +1,5 @@
-//this command is given a distance(in meters) and uses full speed to travel the distance
-package org.usfirst.frc.team5427.robot.commands;
+
+package org.usfirst.frc.team5427.robot.commands.subsystemControl;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -11,15 +11,11 @@ import org.usfirst.frc.team5427.robot.util.Log;
  * this class constantly inputs the Joystick axis into the driveTrain file,
  * causing the robot to move.
  */
-public class AutoObstacle extends Command {
+public class Drive extends Command {
 
-	private boolean forward;
-
-	public AutoObstacle(boolean forward) {
+	public Drive() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.driveTrain);
-		super.setTimeout(Config.OBSTACLE_TIME);
-		this.forward = forward;
 	}
 
 	// Called just before this Command runs the first time
@@ -31,20 +27,23 @@ public class AutoObstacle extends Command {
 
 	@SuppressWarnings("all")
 	protected void execute() {
-		if (forward) {
-			Robot.driveTrain.setLeftSpeed(1);
-			Robot.driveTrain.setRightSpeed(1);
+		if (Robot.oi.getJoy().getRawButton(Config.TO_TURRET_BUTTON) == false) {
+			if (Config.JOYSTICK_MODE == Config.ONE_JOYSTICK) {
+				Robot.driveTrain.driveJoystick(Robot.oi.getJoy().getTwist(), Robot.oi.getJoy().getY());
+			}
+			if (Config.JOYSTICK_MODE == Config.TWO_JOYSTICKS) {
+				Robot.driveTrain.driveDualJoystick(Robot.oi.getJoy().getY(), Robot.oi.getAltJoy().getY());
+			}
+			// Log.init("DRIVING");
 		} else {
-			Robot.driveTrain.setLeftSpeed(-1);
-			Robot.driveTrain.setRightSpeed(-1);
+			Robot.driveTrain.stop();
+			// Log.init("NOT");
 		}
 
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if (isTimedOut())
-			return true;
 		return false;
 	}
 

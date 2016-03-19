@@ -1,6 +1,8 @@
-package org.usfirst.frc.team5427.robot.commands;
+package org.usfirst.frc.team5427.robot.commands.auto;
 
 import org.usfirst.frc.team5427.robot.Robot;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.IntakeIn;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.RotateTurret;
 import org.usfirst.frc.team5427.robot.network.Client;
 import org.usfirst.frc.team5427.robot.util.Config;
 import org.usfirst.frc.team5427.robot.util.Log;
@@ -19,7 +21,7 @@ public class AutoShoot extends Command {
 
 	@Override
 	protected void initialize() {
-		new SendOutTimed();
+		new MoveBallAwayFromFlyWheels();
 		Log.init("initialized Shoot");
 
 	}
@@ -27,11 +29,11 @@ public class AutoShoot extends Command {
 	@Override
 	protected void execute() {
 		
-		new Turn_Programmed(Client.lastRecievedGoal.getHorizontalAngle());
+		new RotateTurret(Client.lastRecievedGoal.getHorizontalAngle());
 		Robot.launcher.setShootSpeed(Client.lastRecievedGoal.getMotorValue());
 		// TODO change the setShootSpeed to use a value from goalData when that
 		// is finished
-		new GetStuffIn();
+		new IntakeIn();
 
 	}
 
@@ -47,7 +49,7 @@ public class AutoShoot extends Command {
 	protected void end() {
 		Robot.launcher.stopShoot();
 		Robot.intake.stop();
-		new Turn_Programmed(0);
+		new RotateTurret(0);
 	}
 
 	@Override

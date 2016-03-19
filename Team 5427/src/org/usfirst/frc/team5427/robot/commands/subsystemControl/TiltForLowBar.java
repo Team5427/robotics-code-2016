@@ -1,55 +1,57 @@
-//never used, will not work because there getTilt() in Config doesn't work.
-//Need to code lots of things to make getTilt() work, and I don't think we're going to use this command anyway
-
-package org.usfirst.frc.team5427.robot.commands;
+package org.usfirst.frc.team5427.robot.commands.subsystemControl;
 
 import org.usfirst.frc.team5427.robot.Robot;
+import org.usfirst.frc.team5427.robot.commands.auto.AutoGetStuffIn;
 import org.usfirst.frc.team5427.robot.util.Config;
 import org.usfirst.frc.team5427.robot.util.Log;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class Tilt_Programmed extends Command {
-	private double targetDegrees;
+public class TiltForLowBar extends Command {
+	boolean up=false;
 
 	/**
 	 * sets the speed of the tilting mechanism in accordance with the Y axis of
 	 * the joystick.
-	 * 
-	 * @param targetDegrees
-	 *            - the degree value to reach before stopping command.
 	 */
-
-	public Tilt_Programmed(double targetDegrees) {
+	public TiltForLowBar() {
 		// Use requires() here to declare subsystem dependencies
+		System.out.println("starting a new uctilt LOW BAR");
 		requires(Robot.launcher);
-		requires(Robot.driveTrain);
-		this.targetDegrees = targetDegrees;
 		initialize();
+		System.out.println("made the new uctilt LOW BAR");
+		
 	}
 
 	// Called just before this Command runs the first time
-	/**
-	 * sets the speed of the tilt to tilt the correct direction. the tilt is
-	 * stopped when the command ends.
-	 */
 	protected void initialize() {
+		up=Robot.tilterLimitSwitch.get();
+		if(up)
+			super.setTimeout(Config.TILT_LOW_BAR_TIMEOUT);
 		Log.init("initialized tilter");
-		if (getDegrees() - targetDegrees < 0)
-			Robot.launcher.setTiltSpeed(-1 * Config.TILT_SPEED);
-		else if (getDegrees() - targetDegrees > 0)
-			Robot.launcher.setTiltSpeed(Config.TILT_SPEED);
+		
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 
 	protected void execute() {
-
+		// sets the speed of the turning motor
+		if(up)
+			Robot.launcher.tiltDown();
+		else
+			Robot.launcher.tiltUp();
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if (getDegrees() - targetDegrees == 0) {
+		if(up&&isTimedOut())
+		{
+			Robot.launcher.setIsTilterAtBottom(true);
+			return true;
+		}
+		if(up==false&&Robot.tilterLimitSwitch.get())
+		{
+			Robot.launcher.setIsTilterAtBottom(false);
 			return true;
 		}
 		return false;
@@ -58,16 +60,14 @@ public class Tilt_Programmed extends Command {
 	// Called once after isFinished returns true
 	protected void end() {
 		Robot.launcher.stopTilt();
+		if (Robot.launcher.getIsTilterAtBottom())
+			new AutoGetStuffIn();
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
 		end();
-	}
-
-	protected double getDegrees() {
-		return Config.getTilt();
 	}
 
 }

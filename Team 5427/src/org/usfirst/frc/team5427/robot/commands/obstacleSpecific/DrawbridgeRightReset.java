@@ -1,5 +1,7 @@
-//This should reset the arms to the zero position
-package org.usfirst.frc.team5427.robot.commands;
+//This should automatically move the arm to grab the door.  
+//I do not know if we want the wheels to move automatically 
+//to get around this obstacle, but I do not think so
+package org.usfirst.frc.team5427.robot.commands.obstacleSpecific;
 
 import org.usfirst.frc.team5427.robot.Robot;
 import org.usfirst.frc.team5427.robot.util.Config;
@@ -7,34 +9,32 @@ import org.usfirst.frc.team5427.robot.util.Log;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ResetPotentiometers extends Command {
+public class DrawbridgeRightReset extends Command {
 
-	public ResetPotentiometers() {
-		requires(Robot.leftArm);
+	public DrawbridgeRightReset() {
+		requires(Robot.rightArm);
 
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Log.init("resetting pots");
-		Robot.resetPotentiometers();
+		Log.init("initialized DrawbridgeRightReset");
 	}
 
-	// The correct current positions of the left and right arms
-	// is used to determine how far the arms need to go back
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-
+		Robot.rightArm.setRightSpeed(-.5);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
+		if (Robot.rightArmPot.get() > Config.DRAWBRIDGE_START_POS)
+			return false;
 		return true;
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.leftArm.stop();
 		Robot.rightArm.stop();
 	}
 

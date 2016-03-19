@@ -1,12 +1,10 @@
 package org.usfirst.frc.team5427.robot.network;
 
 import org.usfirst.frc.team5427.robot.util.Log;
-import org.usfirst.frc.team5427.robot.network.Task;
 
 import java.io.*;
 import java.net.Socket;
 import java.net.SocketException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Client {
@@ -31,8 +29,8 @@ public class Client {
 	}
 
 	public Client(String ip, int port) {
-		this.ip = ip;
-		this.port = port;
+		Client.ip = ip;
+		Client.port = port;
 	}
 
 	/**
@@ -46,7 +44,6 @@ public class Client {
 			in = new ObjectInputStream(clientSocket.getInputStream());
 			out = new ObjectOutputStream(clientSocket.getOutputStream());
 			Log.debug(clientSocket.toString());
-
 
 			Log.info("Connection to the server has been established successfully.");
 
@@ -82,7 +79,6 @@ public class Client {
 		Client.port = port;
 	}
 
-
 	/**
 	 * Sends an String to the server
 	 *
@@ -116,7 +112,7 @@ public class Client {
 	 */
 	public static synchronized boolean start() {
 		if (networkThread == null && (clientSocket == null || !clientSocket.isClosed())) {
-			networkThread = new Thread(new Runnable(){
+			networkThread = new Thread(new Runnable() {
 
 				/**
 				 * Running method that receives data from the server.
@@ -134,6 +130,8 @@ public class Client {
 
 								String s = in.readUTF();
 
+								
+								//TODO make sure that these are all working
 								if (s.contains(StringDictionary.TASK)) {
 
 									s = s.substring(StringDictionary.TASK.length(), s.length() - 1);
@@ -143,20 +141,27 @@ public class Client {
 										s = s.substring(StringDictionary.GOAL_ATTACHED.length(), s.length() - 1);
 										taskReader = new Scanner(s);
 
-										lastRecievedGoal = new GoalData(taskReader.nextDouble(), taskReader.nextDouble(),
-												taskReader.nextDouble(), taskReader.nextDouble());
+										lastRecievedGoal = new GoalData(taskReader.nextDouble(),
+												taskReader.nextDouble(), taskReader.nextDouble(),
+												taskReader.nextDouble());
 
 									} else if (s.contains(StringDictionary.LOG)) {
+
+										s = s.substring(StringDictionary.LOG.length(), s.length() - 1);
+
+										Log.info(s);
 
 									} else if (s.contains(StringDictionary.MESSAGE)) {
 
 									} else if (s.contains(StringDictionary.TELEOP_START)) {
 
-										Log.warn("Driver station has told the robot TELEOP_START, and that should not happen.");
+										Log.warn(
+												"Driver station has told the robot TELEOP_START, and that should not happen.");
 
 									} else if (s.contains(StringDictionary.AUTO_START)) {
 
-										Log.warn("Driver station has told the robot AUTO_START, and that should not happen.");
+										Log.warn(
+												"Driver station has told the robot AUTO_START, and that should not happen.");
 
 									} else {
 										System.out.println("Valid task was recieved, but with unrecognized contents.");
@@ -173,7 +178,7 @@ public class Client {
 							}
 
 							try {
-							Thread.sleep(10);
+								Thread.sleep(10);
 							} catch (InterruptedException e) {
 								Log.info("Thread has been interrupted, client thread will stop.");
 							} catch (Exception e) {
@@ -220,6 +225,5 @@ public class Client {
 			return false;
 		}
 	}
-
 
 }

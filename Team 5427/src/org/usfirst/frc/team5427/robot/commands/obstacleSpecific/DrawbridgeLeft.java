@@ -1,4 +1,7 @@
-package org.usfirst.frc.team5427.robot.commands;
+//This should automatically move the arm to grab the door.  
+//I do not know if we want the wheels to move automatically 
+//to get around this obstacle, but I do not think so
+package org.usfirst.frc.team5427.robot.commands.obstacleSpecific;
 
 import org.usfirst.frc.team5427.robot.Robot;
 import org.usfirst.frc.team5427.robot.util.Config;
@@ -6,39 +9,33 @@ import org.usfirst.frc.team5427.robot.util.Log;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class Shoot extends Command {
+public class DrawbridgeLeft extends Command {
 
-	/**
-	 * sets the speed of the launching mechanism to the speed defined in the
-	 * configuration file.
-	 */
-	public Shoot() {
-		// Use requires() here to declare subsystem dependencies
-		requires(Robot.launcher);
-		super.setTimeout(Config.SHOOTER_SECONDS);
+	public DrawbridgeLeft() {
+		requires(Robot.leftArm);
+
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Log.init("initialized Shoot");
-		Robot.launcher.setShootSpeed(Config.LAUNCH_SPEED);
+		Log.init("initialized DrawbridgeLeft");
 	}
 
 	// Called repeatedly when this Command is scheduled to run
-
 	protected void execute() {
-		Robot.launcher.setShootSpeed(Config.LAUNCH_SPEED);
+		new DrawbridgeLeftReset();
+		new DrawbridgeLeftGo();
+
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if(!Robot.oi.getJoy().getRawButton(Config.SHOOT_BUTTON)) return true;
-		else return false;
+		return true;
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.launcher.stopShoot();
+		Robot.leftArm.stop();
 	}
 
 	// Called when another command which requires one or more of the same
@@ -46,5 +43,4 @@ public class Shoot extends Command {
 	protected void interrupted() {
 		end();
 	}
-
 }

@@ -1,22 +1,21 @@
 package org.usfirst.frc.team5427.robot;
 
-import org.usfirst.frc.team5427.robot.commands.ScissorUp;
 import org.usfirst.frc.team5427.robot.commands.SendOut;
-import org.usfirst.frc.team5427.robot.commands.AutoShoot;
-import org.usfirst.frc.team5427.robot.commands.Drive;
-import org.usfirst.frc.team5427.robot.commands.EngageLeftArm;
-import org.usfirst.frc.team5427.robot.commands.EngageRightArm;
-import org.usfirst.frc.team5427.robot.commands.GetStuffIn;
-import org.usfirst.frc.team5427.robot.commands.NewUCTiltCollect;
-import org.usfirst.frc.team5427.robot.commands.NewUCTiltLowBar;
-//import org.usfirst.frc.team5427.robot.commands.GetStuffIn;
-import org.usfirst.frc.team5427.robot.commands.Scale;
-import org.usfirst.frc.team5427.robot.commands.ScissorDown;
-import org.usfirst.frc.team5427.robot.commands.Shoot;
 //import org.usfirst.frc.team5427.robot.commands.SonicDist;
 //import org.usfirst.frc.team5427.robot.commands.UltrasonicLog;
 import org.usfirst.frc.team5427.robot.commands.Test;
-import org.usfirst.frc.team5427.robot.commands.UserControlledTurn;
+import org.usfirst.frc.team5427.robot.commands.auto.AutoShoot;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.Drive;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.EngageLeftArm;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.EngageRightArm;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.IntakeIn;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.Scale;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.ScissorDown;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.ScissorUp;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.Shoot;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.TiltForCollecting;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.TiltForLowBar;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.UserControlledTurn;
 import org.usfirst.frc.team5427.robot.subsystems.Winch;
 import org.usfirst.frc.team5427.robot.util.Config;
 
@@ -50,11 +49,11 @@ public class OI {
 	 */
 	public OI() {
 		
-		tiltCollect.whenPressed(new NewUCTiltCollect());
-		tiltLowBar.whenPressed(new NewUCTiltLowBar());
+		tiltCollect.whenPressed(new TiltForCollecting());
+		tiltLowBar.whenPressed(new TiltForLowBar());
 //		shoot.whenPressed(new Shoot());
 		shoot.whenPressed(new AutoShoot());
-		intaker.whenPressed(new GetStuffIn());
+		intaker.whenPressed(new IntakeIn());
 		outGo.whenPressed(new SendOut());
 		leftFront.whenPressed(new EngageLeftArm(true));
 		leftBack.whenPressed(new EngageLeftArm(false));

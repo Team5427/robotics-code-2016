@@ -1,29 +1,24 @@
 //This command takes care of running the intake
-package org.usfirst.frc.team5427.robot.commands;
+package org.usfirst.frc.team5427.robot.commands.subsystemControl;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team5427.robot.Robot;
 import org.usfirst.frc.team5427.robot.util.Config;
-import org.usfirst.frc.team5427.robot.util.Log;
 
 /**
  * Tells the Intake subsystem to go on/off
  */
-public class SendOutTimed extends Command {
+public class IntakeOut extends Command {
 
-	public SendOutTimed() {
-		// Use requires() here to declare subsystem dependencies
-		// It needs the intake system
+	public IntakeOut() {
 		requires(Robot.intake);
 		initialize();
-		super.setTimeout(.5);
 	}
 
 	// not used
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		
 		Robot.launcher.stopShoot();
 
 	}
@@ -39,10 +34,10 @@ public class SendOutTimed extends Command {
 	// invokes end() and stops running
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if(isTimedOut())	
-			return true;
-		
-		return false;
+		if (Robot.oi.getJoy().getRawButton(Config.INTAKE_IN_BUTTON)
+				|| Robot.oi.getJoy().getRawButton(Config.INTAKE_OUT_BUTTON))
+			return false;
+		return true;
 	}
 
 	// Called once after isFinished returns true

@@ -3,18 +3,16 @@ package org.usfirst.frc.team5427.robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-import org.usfirst.frc.team5427.robot.commands.AutoDrive;
 import org.usfirst.frc.team5427.robot.commands.AutoLaunchBoulder;
-import org.usfirst.frc.team5427.robot.commands.AutoObstacle;
-import org.usfirst.frc.team5427.robot.commands.AutoTurn;
-import org.usfirst.frc.team5427.robot.commands.Drive;
-import org.usfirst.frc.team5427.robot.commands.GetStuffIn;
-import org.usfirst.frc.team5427.robot.commands.UserControlledTurn;
-import org.usfirst.frc.team5427.robot.commands.resetTiltUp;
+import org.usfirst.frc.team5427.robot.commands.auto.AutoDrive;
+import org.usfirst.frc.team5427.robot.commands.auto.AutoObstacle;
+import org.usfirst.frc.team5427.robot.commands.auto.AutoTurn;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.Drive;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.IntakeIn;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.UserControlledTurn;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.resetTiltUp;
 import org.usfirst.frc.team5427.robot.network.Client;
 import org.usfirst.frc.team5427.robot.network.StringDictionary;
-import org.usfirst.frc.team5427.robot.network.Task;
-import org.usfirst.frc.team5427.robot.network.TaskDescription;
 import org.usfirst.frc.team5427.robot.subsystems.Intake;
 import org.usfirst.frc.team5427.robot.subsystems.LeftArm;
 import org.usfirst.frc.team5427.robot.subsystems.RightArm;

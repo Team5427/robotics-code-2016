@@ -1,5 +1,5 @@
 //this command is given a distance(in meters) and uses full speed to travel the distance
-package org.usfirst.frc.team5427.robot.commands;
+package org.usfirst.frc.team5427.robot.commands.auto;
 
 import edu.wpi.first.wpilibj.command.Command;
 

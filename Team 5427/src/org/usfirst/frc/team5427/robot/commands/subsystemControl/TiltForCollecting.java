@@ -1,19 +1,20 @@
-package org.usfirst.frc.team5427.robot.commands;
+package org.usfirst.frc.team5427.robot.commands.subsystemControl;
 
 import org.usfirst.frc.team5427.robot.Robot;
+import org.usfirst.frc.team5427.robot.commands.auto.AutoGetStuffIn;
 import org.usfirst.frc.team5427.robot.util.Config;
 import org.usfirst.frc.team5427.robot.util.Log;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class NewUCTiltCollect extends Command {
+public class TiltForCollecting extends Command {
 	boolean up=false;
 
 	/**
 	 * sets the speed of the tilting mechanism in accordance with the Y axis of
 	 * the joystick.
 	 */
-	public NewUCTiltCollect() {
+	public TiltForCollecting() {
 		// Use requires() here to declare subsystem dependencies
 		System.out.println("starting a new uctilt COLLECT");
 		requires(Robot.launcher);
