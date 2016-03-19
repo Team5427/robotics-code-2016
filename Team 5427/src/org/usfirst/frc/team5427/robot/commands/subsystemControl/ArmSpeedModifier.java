@@ -42,12 +42,14 @@ public class ArmSpeedModifier extends Command {
     @Override
     protected void execute() {
         if (modifiable) {
-            if (Robot.oi.getJoy().getRawAxis(axis) == -1)
+            if (Robot.oi.getJoy().getRawAxis(axis) == -1) {
                 Config.decreaseArmSpeed();
-            else if (Robot.oi.getJoy().getRawAxis(axis) == 1)
+                modifiable = false;
+            }
+            else if (Robot.oi.getJoy().getRawAxis(axis) == 1) {
                 Config.increaseArmSpeed();
-
-            modifiable = false;
+                modifiable = false;
+            }
         } else if (Robot.oi.getJoy().getRawAxis(axis) == 0) {
             modifiable = true;
         }
