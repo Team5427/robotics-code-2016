@@ -3,9 +3,13 @@ package org.usfirst.frc.team5427.robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+import org.usfirst.frc.team5427.robot.commands.SmartDashboardStuff;
+import org.usfirst.frc.team5427.robot.commands.Test;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoDrive;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoObstacle;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoTurn;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.ArmSpeedDown;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.ArmSpeedUp;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.Drive;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.IntakeIn;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.UserControlledTurn;
@@ -185,7 +189,6 @@ public class Robot extends IterativeRobot {
 	public static AnalogInput leftPotPort, rightPotPort;
 
 	SendableChooser chooser;
-
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -257,8 +260,12 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto mode", chooser);
 		Log.init("Interface loaded!...");
 
+		//Log.init("Robot initializing SmartDashboard...");
+		//new SmartDashboardStuff();
+		
 		Log.init("Robot initializing operator interface...");
 		oi = new OI();
+		
 
 		Log.init("All systems ready!");
 

@@ -140,7 +140,7 @@ public class Config {
 	
 		//Stuff to change the arm speed
 		//Changeable Arm speed
-		public static double moveSpeed=.2;
+		public static double CHANGEABLE_MOVE_SPEED=.2;
 		/**
 		 * Max speed of the arm to move
 		 */
@@ -154,10 +154,6 @@ public class Config {
 		 */
 		public static final double SPEED_INTERVAL = .1;
 
-		
-
-	
-	
 
 	
 	
@@ -165,20 +161,20 @@ public class Config {
 	 * Increases the speed of the arm based on the interval
 	 */
 	public static void speedUp() {
-		moveSpeed += SPEED_INTERVAL;
+		CHANGEABLE_MOVE_SPEED += SPEED_INTERVAL;
 
-		if (moveSpeed > MAX_SPEED)
-			moveSpeed = MAX_SPEED;
+		if (CHANGEABLE_MOVE_SPEED > MAX_SPEED)
+			CHANGEABLE_MOVE_SPEED = MAX_SPEED;
 	}
 
 	/**
 	 * Decreases the speed of the arm based on the interval
 	 */
 	public static void speedDown() {
-		moveSpeed -= SPEED_INTERVAL;
+		CHANGEABLE_MOVE_SPEED -= SPEED_INTERVAL;
 
-		if (moveSpeed < MIN_SPEED)
-			moveSpeed = MIN_SPEED;
+		if (CHANGEABLE_MOVE_SPEED < MIN_SPEED)
+			CHANGEABLE_MOVE_SPEED = MIN_SPEED;
 	}
 
 
