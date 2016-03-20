@@ -31,7 +31,7 @@ public class Config {
 	public static final int TWO_JOYSTICKS = 1;
 
 	// Buttons
-	
+
 	public static final int INTAKE_IN_BUTTON = 8;
 	public static final int INTAKE_OUT_BUTTON = 7;
 	public static final int TILT_COLLECT_BUTTON = 9;
@@ -67,104 +67,110 @@ public class Config {
 	public static final int TILTER_LIMIT_SWITCH = 0;
 	public static final int SCISSOR_LIMIT_UP = 973;
 	public static final int SCISSOR_LIMIT_DOWN = 888;
-	
 
 	// Potentiometer Analog input ports
 	public static final int POTENTIOMETER_ANALOG_INPUT = 0;
 	public static final int LEFT_POT_PORT = 1;
 	public static final int RIGHT_POT_PORT = 2;
 	// Potentiometer offsets
-	public static final double TURRET_POTENTIOMETER_OFFSET = 4.5;//WHY: 369-360=9/2=4.5 (see POTENTIOMETER_SCALE)
+	public static final double TURRET_POTENTIOMETER_OFFSET = 4.5;// WHY:
+																	// 369-360=9/2=4.5
+																	// (see
+																	// POTENTIOMETER_SCALE)
 	public static final double LEFT_POT_OFFSET = 0;
 	public static final double RIGHT_POT_OFFSET = 0;
 	// Potentiometer scales (EX: 0V-5V=0deg-360deg)
-	public static final double LEFT_POT_SCALE = 360;	
+	public static final double LEFT_POT_SCALE = 360;
 	public static final double RIGHT_POT_SCALE = 360;
 	public static final double TURRET_POTENTIOMETER_SCALE = 369.2307692307692;
-	// WHY::large turret gear has 234 teeth, and the small gear for the potentiometer
+	// WHY::large turret gear has 234 teeth, and the small gear for the
+	// potentiometer
 	// has 24 teeth. 234/24= 9.75 rotations for 360 degrees. THerefore, the
 	// potentiometer's 10 rotations is equal to 369.231 degrees {360*10/9.75}
-	
-	
-	// Potentiometers'  Degree references
+
+	// Potentiometers' Degree references
 	// Soft stop values of Potentiometers
-		public static final double TURRET_POTENTIOMETER_END_ONE = 220;
-		public static final double TURRET_POTENTIOMETER_END_TWO = 313;
-		//MIN = 127
-		//TODO figure out what MIN=127 means...
-		public static final double RIGHT_ARM_MAX_STARTING_POSITION = 0;
-		public static final double RIGHT_ARM_MAX_ENDING_POSITION = 180;
-		public static final double RIGHT_ARM_MARGIN = .1;//Margin of error
-		
-		public static final double LEFT_ARM_MAX_STARTING_POSITION = 0;
-		public static final double LEFT_ARM_MAX_ENDING_POSITION = 180;
-		public static final double LEFT_ARM_MARGIN = .1;//Margin of error
+	public static final double TURRET_POTENTIOMETER_END_ONE = 220;
+	public static final double TURRET_POTENTIOMETER_END_TWO = 313;
+	// MIN = 127
+	// TODO figure out what MIN=127 means...
+	public static final double RIGHT_ARM_MAX_STARTING_POSITION = 0;
+	public static final double RIGHT_ARM_MAX_ENDING_POSITION = 180;
+	public static final double RIGHT_ARM_MARGIN = .1;// Margin of error
+
+	public static final double LEFT_ARM_MAX_STARTING_POSITION = 0;
+	public static final double LEFT_ARM_MAX_ENDING_POSITION = 180;
+	public static final double LEFT_ARM_MARGIN = .1;// Margin of error
 	// Center of the Turret
 	public static final double TURRET_CENTER = 267.5;
 	public static final double TURRET_CENTER_DEGREES_RANGE = 6;
 
-	//Timeouts for the different types of tilts
-		public static final double TILT_COLLECT_TIMEOUT = 6;
-		public static final double TILT_LOW_BAR_TIMEOUT = 3;
-	
+	// Timeouts for the different types of tilts
+	public static final double TILT_COLLECT_TIMEOUT = 6;
+	public static final double TILT_LOW_BAR_TIMEOUT = 3;
+
 	// CONTROLLER PORTS
-		public static final int JOYSTICK_PORT = 0;
-		public static final int ALT_JOYSTICK_PORT = 0;
-		
+	public static final int JOYSTICK_PORT = 0;
+	public static final int ALT_JOYSTICK_PORT = 0;
+
 	// Speeds for the different things that the robot needs to do
 	// TODO a lot of these things can't have their speed changed.
 	public static final double INTAKE_SPEED = 0.5;
 	public static final double LAUNCH_SPEED = -1;
 	public static final double WINCH_SPEED = 0.5;
-	public static final double SCISSOR_SPEED = 0.5;	
-	
-	// DoorOpeners positions to be referenced in their respective automatic commands based
+	public static final double SCISSOR_SPEED = 0.5;
+
+	// DoorOpeners positions to be referenced in their respective automatic
+	// commands based
 	// on the input from the potentiometers, and
 	// Robot.currentLeftPos/Robot.currentRightPos
-	// allows the arms to automatically turn in a specific sequence for the different obstacles
-		public static final int DRAWBRIDGE_START_POS = 7789;
-		public static final int DRAWBRIDGE_END_POS = 7789;
-		public static final int SALLY_START_POS = 7789;
-		public static final int SALLY_END_POS = 7789;
-		//stores the timeout for the obstacles (how long the command automatically runs)
-		public static final double OBSTACLE_TIME = 3;
-		
-		// AUTO STUFF
-		// stores the speed, in meters per second, that the Robot travels at full speed
-		// TODO time these values
-		// TODO use feet, nobody uses meters....
-		public static final int FULL_SPEED_FORWARD = 1;
-		public static final int FULL_SPEED_BACKWARD = 1;
-		public static final int FULL_TURN_SPEED_RIGHT = 1;
-		public static final int FULL_TURN_SPEED_LEFT = 1;
-	
-		//Stuff to change the arm speed
-		//Changeable Arm speed
-		public static double moveSpeed=.3;
-		/**
-		 * Max speed of the arm to move
-		 */
-		public static final double MAX_SPEED 	  = .4;
-		/**
-		 * Minimum speed of the arm to move
-		 */
-		public static final double MIN_SPEED 	  = .1;
-		/**
-		 * The interval of the speed that will change
-		 */
-		public static final double SPEED_INTERVAL = .1;
+	// allows the arms to automatically turn in a specific sequence for the
+	// different obstacles
+	public static final int DRAWBRIDGE_START_POS = 7789;
+	public static final int DRAWBRIDGE_END_POS = 7789;
+	public static final int SALLY_START_POS = 7789;
+	public static final int SALLY_END_POS = 7789;
+	// stores the timeout for the obstacles (how long the command automatically
+	// runs)
+	public static final double OBSTACLE_TIME = 3;
 
-		
+	// AUTO STUFF
+	// stores the speed, in meters per second, that the Robot travels at full
+	// speed
+	// TODO time these values
+	// TODO use feet, nobody uses meters....
+	public static final int FULL_SPEED_FORWARD = 1;
+	public static final int FULL_SPEED_BACKWARD = 1;
+	public static final int FULL_TURN_SPEED_RIGHT = 1;
+	public static final int FULL_TURN_SPEED_LEFT = 1;
 
-	
-	
+	// Variables involving the speed of the robot's arms
+	/**
+	 * The axis on the joystick that will be used to increase or decrease the
+	 * speed of the robot's arms
+	 */
+	public static final int ARM_AXIS = 5;
+	/**
+	 * Max speed of the arm to move
+	 */
+	public static final double MAX_SPEED = .6;
+	/**
+	 * Minimum speed of the arm to move
+	 */
+	public static final double MIN_SPEED = .2;
+	/**
+	 * The interval of the speed that will change
+	 */
+	public static final double SPEED_INTERVAL = .1;
+	/**
+	 * The current arm speed of the arms
+	 */
+	public static double moveSpeed = .3;
 
-	
-	
 	/**
 	 * Increases the speed of the arm based on the interval
 	 */
-	public static void speedUp() {
+	public static void increaseArmSpeed() {
 		moveSpeed += SPEED_INTERVAL;
 
 		if (moveSpeed > MAX_SPEED)
@@ -174,19 +180,18 @@ public class Config {
 	/**
 	 * Decreases the speed of the arm based on the interval
 	 */
-	public static void speedDown() {
+	public static void decreaseArmSpeed() {
 		moveSpeed -= SPEED_INTERVAL;
 
 		if (moveSpeed < MIN_SPEED)
 			moveSpeed = MIN_SPEED;
 	}
 
-
-//	public static double getTilt() {
-//		// TODO get tilt degrees from encoder...which we don't have
-//		double tilt = -1;
-//		return tilt;
-//	}
+	// public static double getTilt() {
+	// // TODO get tilt degrees from encoder...which we don't have
+	// double tilt = -1;
+	// return tilt;
+	// }
 
 	public static double getTurn() {
 

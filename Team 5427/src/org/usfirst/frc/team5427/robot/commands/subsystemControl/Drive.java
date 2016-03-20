@@ -38,6 +38,7 @@ public class Drive extends Command {
 		} else {
 			Robot.driveTrain.stop();
 			// Log.init("NOT");
+
 		}
 
 	}
