@@ -73,83 +73,71 @@ public class DriveTrain extends Subsystem {
 	}
 
 	/**
-	 * sets the left and right stick in occordance with the joystick inputs for
-	 * a single joystick
+	 * Takes the input of the joystick, and uses it to drive the robot. It
+	 * currently uses six variables: the Z axis of the joystick, the Y axis of
+	 * the joystick, the speed which the left (left) side should move, the speed
+	 * at which the right side should move (right), the right side plus the left
+	 * side (v), and the right side minus the left side (w).
 	 * 
-	 * @param joyX
+	 * @param joyZ
 	 *            - Z axis of joystick
 	 * @param joyY
 	 *            - Y axis of joystick
 	 */
-	public void driveJoystick(double joyZ, double joyY) {
+	public void driveJoystick(double z, double y) {
 
-		double y = joyY;
-		double z = joyZ;
-		double left = 0;
-		double right = 0;
-		boolean b = false;
-		if (z >= 0) {
-			z = 1 - z;
-			b = true;
-		} else {
-			z = z + 1;
-			b = false;
-		}
-		if (b) {
-			right = y * z;
-			left = y;
-		} else {
-			left = y * z;
-			right = y;
-		}
-		if (z != 0 && Math.abs(y) < .1) {
-		 
-			if (joyZ > .05) {
+		/**
+		 * inverting the Z axis in order to make the equations work.
+		 */
+		z = -z;
 
-				
-				right = joyZ * .7 ;
-				left = -joyZ * .7;
-				
-
-			} else if (joyZ < -.05) {
-
-				right = joyZ * .7 ;
-				left = -joyZ * .7;
-
-			}
-
-		}
-
-		Robot.driveTrain.setLeftSpeed(left);
-		Robot.driveTrain.setRightSpeed(right);
+		/**
+		 * This variable will be equal to the speed of the right side + the
+		 * speed of the left side. It will be used in a systems of equations in
+		 * order to calculate the right side.
+		 */
+		double v = (1 - Math.abs(z)) * y + y;
+		/**
+		 * This variable will be equal to the speed of the right side - the
+		 * speed of the left side. It will be used in a systems of equations in
+		 * order to calculate the left side.
+		 */
+		double w = (1 - Math.abs(y)) * z + z;
+		/**
+		 * Since v = R + L, and w = R - L we add the two variables together in
+		 * order to get 2R + 0L, which we divide by two in order to get R.
+		 */
+		Robot.driveTrain.setRightSpeed((v + w) / 2);
+		/**
+		 * Since v = R + L, and w = R - L, we subtract the two variables in
+		 * order to get 0R + 2L, which we then divide by two in order to get L.
+		 */
+		Robot.driveTrain.setLeftSpeed((v - w) / 2);
 
 		/*
-		 * double leftSpeed = -joyY; double rightSpeed = -joyY;
-		 * 
-		 * if (joyY > .05 || joyY < -.05) {
+		 * //TODO delete old code once the new code is proven to work. double y
+		 * = joyY; double z = joyZ; double left = 0; double right = 0; boolean b
+		 * = false; if (z >= 0) { z = 1 - z; b = true; } else { z = z + 1; b =
+		 * false; } if (b) { right = y * z; left = y; } else { left = y * z;
+		 * right = y; } if (z != 0 && Math.abs(y) < .1) {
 		 * 
 		 * if (joyZ > .05) {
 		 * 
-		 * rightSpeed = -Math.abs(joyZ); leftSpeed = Math.abs(joyZ);
+		 * 
+		 * right = joyZ * .7 ; left = -joyZ * .7;
+		 * 
 		 * 
 		 * } else if (joyZ < -.05) {
 		 * 
-		 * rightSpeed = Math.abs(joyZ); leftSpeed = -Math.abs(joyZ);
+		 * right = joyZ * .7 ; left = -joyZ * .7;
 		 * 
 		 * }
 		 * 
-		 * } else {
+		 * }
 		 * 
-		 * if (joyZ > .05) {
 		 * 
-		 * rightSpeed *= (1 - Math.abs(joyZ)); leftSpeed *= (Math.abs(joyZ));
-		 * 
-		 * } else if (joyZ < -.05) {
-		 * 
-		 * rightSpeed *= (Math.abs(joyZ)); leftSpeed *= (1 - Math.abs(joyZ));
-		 * 
-		 * } } Robot.driveTrain.setLeftSpeed(leftSpeed);
-		 * Robot.driveTrain.setRightSpeed(rightSpeed);
+		 * Robot.driveTrain.setLeftSpeed(left);
+		 * Robot.driveTrain.setRightSpeed(right);
 		 */
 
 		/*
@@ -166,7 +154,7 @@ public class DriveTrain extends Subsystem {
 	}
 
 	/**
-	 * sets the left and right stick in occordance with the joystick inputs for
+	 * sets the left and right stick in accordance with the joystick inputs for
 	 * dual joysticks
 	 * 
 	 * @param y
