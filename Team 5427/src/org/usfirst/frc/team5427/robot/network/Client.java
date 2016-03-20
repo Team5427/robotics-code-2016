@@ -174,7 +174,7 @@ public class Client {
 							} catch (SocketException e) {
 								reconnect();
 							} catch (Exception e) {
-								Log.error(e.getMessage());
+							Log.error(e.getMessage());
 							}
 
 							try {

@@ -49,8 +49,8 @@ public class DriveTrain extends Subsystem {
 	 *            - the speed you want to set
 	 */
 	public void setLeftSpeed(double speed) {
-		motorPWM_FrontLeft.set(speed);
-		motorPWM_RearLeft.set(speed);
+		motorPWM_FrontLeft.set(-speed);
+		motorPWM_RearLeft.set(-speed);
 	}
 
 	/**
@@ -77,25 +77,91 @@ public class DriveTrain extends Subsystem {
 	 * a single joystick
 	 * 
 	 * @param joyX
-	 *            - X axis of joystick
+	 *            - Z axis of joystick
 	 * @param joyY
 	 *            - Y axis of joystick
 	 */
-	public void driveJoystick(double joyX, double joyY) {
+	public void driveJoystick(double joyZ, double joyY) {
 
-		double leftSpeed = (-1 * joyY) + joyX;
-		double rightSpeed = (-1 * joyY) - joyX;
-
-		rightSpeed = 0 - rightSpeed;
-		double max = Math.abs(leftSpeed);
-		if (max < Math.abs(rightSpeed))
-			max = Math.abs(rightSpeed);
-		if (max > 1) {
-			leftSpeed = leftSpeed / max;
-			rightSpeed = rightSpeed / max;
+		double y = joyY;
+		double z = joyZ;
+		double left = 0;
+		double right = 0;
+		boolean b = false;
+		if (z >= 0) {
+			z = 1 - z;
+			b = true;
+		} else {
+			z = z + 1;
+			b = false;
 		}
-		Robot.driveTrain.setLeftSpeed(leftSpeed);
-		Robot.driveTrain.setRightSpeed(rightSpeed);
+		if (b) {
+			right = y * z;
+			left = y;
+		} else {
+			left = y * z;
+			right = y;
+		}
+		if (z != 0 && Math.abs(y) < .1) {
+		 
+			if (joyZ > .05) {
+
+				
+				right = joyZ * .7 ;
+				left = -joyZ * .7;
+				
+
+			} else if (joyZ < -.05) {
+
+				right = joyZ * .7 ;
+				left = -joyZ * .7;
+
+			}
+
+		}
+
+		Robot.driveTrain.setLeftSpeed(left);
+		Robot.driveTrain.setRightSpeed(right);
+
+		/*
+		 * double leftSpeed = -joyY; double rightSpeed = -joyY;
+		 * 
+		 * if (joyY > .05 || joyY < -.05) {
+		 * 
+		 * if (joyZ > .05) {
+		 * 
+		 * rightSpeed = -Math.abs(joyZ); leftSpeed = Math.abs(joyZ);
+		 * 
+		 * } else if (joyZ < -.05) {
+		 * 
+		 * rightSpeed = Math.abs(joyZ); leftSpeed = -Math.abs(joyZ);
+		 * 
+		 * }
+		 * 
+		 * } else {
+		 * 
+		 * if (joyZ > .05) {
+		 * 
+		 * rightSpeed *= (1 - Math.abs(joyZ)); leftSpeed *= (Math.abs(joyZ));
+		 * 
+		 * } else if (joyZ < -.05) {
+		 * 
+		 * rightSpeed *= (Math.abs(joyZ)); leftSpeed *= (1 - Math.abs(joyZ));
+		 * 
+		 * } } Robot.driveTrain.setLeftSpeed(leftSpeed);
+		 * Robot.driveTrain.setRightSpeed(rightSpeed);
+		 */
+
+		/*
+		 * double leftSpeed = (-1 * joyY) + joyX; double rightSpeed = (-1 *
+		 * joyY) - joyX;
+		 * 
+		 * rightSpeed = 0 - rightSpeed; double max = Math.abs(leftSpeed); if
+		 * (max < Math.abs(rightSpeed)) max = Math.abs(rightSpeed); if (max > 1)
+		 * { leftSpeed = leftSpeed / max; rightSpeed = rightSpeed / max; }
+		 * Robot.driveTrain.setLeftSpeed(leftSpeed);
+		 * Robot.driveTrain.setRightSpeed(rightSpeed);
+		 */
 
 	}
 

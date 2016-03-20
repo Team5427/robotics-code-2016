@@ -7,6 +7,7 @@ import org.usfirst.frc.team5427.robot.util.Log;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class EngageRightArm extends Command {
+
 	boolean forward;
 
 	public EngageRightArm(boolean forward) {
@@ -21,10 +22,10 @@ public class EngageRightArm extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		if (forward) 
-			Robot.rightArm.setRightSpeed(.3);
+		if (forward)
+			Robot.rightArm.setRightSpeed(Config.moveSpeed);
 		else
-			Robot.rightArm.setRightSpeed(-.3);
+			Robot.rightArm.setRightSpeed(-Config.moveSpeed);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -35,15 +36,15 @@ public class EngageRightArm extends Command {
 			return true;
 		if (forward == false && Robot.oi.getJoy().getRawButton(Config.RIGHT_BACK) == false)
 			return true;
-		
-		if(!forward && Robot.rightArmPot.get() < 165)
+
+		if (!forward && Robot.rightArmPot.get() < 165)
 			return true;
 		/*
-		if (Robot.rightArmPot.get() + Config.MARGIN_TO_SHUT_DOWN >= Config.MAX_ENDING_POSITION)
-			return true;
-		if (Robot.rightArmPot.get() - Config.MARGIN_TO_SHUT_DOWN >= Config.MAX_STARTING_POSITION)
-			return true;
-			*/
+		 * if (Robot.rightArmPot.get() + Config.MARGIN_TO_SHUT_DOWN >=
+		 * Config.MAX_ENDING_POSITION) return true; if (Robot.rightArmPot.get()
+		 * - Config.MARGIN_TO_SHUT_DOWN >= Config.MAX_STARTING_POSITION) return
+		 * true;
+		 */
 		return false;
 	}
 
@@ -57,4 +58,5 @@ public class EngageRightArm extends Command {
 	protected void interrupted() {
 		end();
 	}
+
 }

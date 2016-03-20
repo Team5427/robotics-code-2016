@@ -15,18 +15,22 @@ public class EngageLeftArm extends Command {
 		this.forward = forward;
 	}
 
-	// Called just before this Command runs the first time
+	/**
+	 * Called just before this Command runs the first time
+	 */
 	protected void initialize() {
 		Log.init("initialized LeftArm");
 	}
 
-	// Called repeatedly when this Command is scheduled to run
+	/**
+	 * Called repeatedly when this Command is scheduled to run
+	 */
 	protected void execute() {
 
 		if (forward)
-			Robot.leftArm.setLeftSpeed(-.3);
+			Robot.leftArm.setLeftSpeed(-Config.moveSpeed);
 		else
-			Robot.leftArm.setLeftSpeed(.3);
+			Robot.leftArm.setLeftSpeed(Config.moveSpeed);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
