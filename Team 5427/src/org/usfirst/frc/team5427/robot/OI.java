@@ -41,10 +41,10 @@ public class OI {
 			scissorDown = new JoystickButton(joy, Config.SCISSORLIFT_DOWN_BUTTON),
 			scissorUp = new JoystickButton(joy, Config.SCISSORLIFT_UP_BUTTON),
 			winch = new JoystickButton(joy, Config.WINCH_BUTTON),
-			leftFront = new JoystickButton(joy, Config.LEFT_FRONT),
-			leftBack = new JoystickButton(joy, Config.LEFT_BACK),
-			rightFront = new JoystickButton(joy, Config.RIGHT_FRONT),
-			rightBack = new JoystickButton(joy, Config.RIGHT_BACK);
+			leftFront = new JoystickButton(joy, Config.LEFT_FRONT_ARM_BUTTON),
+			leftBack = new JoystickButton(joy, Config.LEFT_BACK_ARM_BUTTON),
+			rightFront = new JoystickButton(joy, Config.RIGHT_FRONT_ARM_BUTTON),
+			rightBack = new JoystickButton(joy, Config.RIGHT_BACK_ARM_BUTTON);
 
 	/**
 	 * constructor for the OI class, defines the button-press events.
