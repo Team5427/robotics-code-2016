@@ -1,4 +1,4 @@
-
+//this command is given a distance(in meters) and uses full speed to travel the distance
 package org.usfirst.frc.team5427.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -8,32 +8,26 @@ import org.usfirst.frc.team5427.robot.util.Config;
 import org.usfirst.frc.team5427.robot.util.Log;
 
 /**
- * this class constantly inputs the Joystick axis into the driveTrain file, causing the robot to move.
+ * this class constantly inputs the Joystick axis into the driveTrain file,
+ * causing the robot to move.
  */
-public class Drive extends Command {
+public class Test extends Command {
 
-	public Drive() {
+	public Test() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.driveTrain);
+		Log.init("Test command initialized");
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Log.info("initialized Drive");
+		Log.init("Test command initialized");
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 
+	@SuppressWarnings("all")
 	protected void execute() {
-		if (Robot.oi.getJoy().getRawButton(Config.TO_TILT_BUTTON) == false) {
-			if (Config.JOYSTICK_MODE == Config.ONE_JOYSTICK) {
-				Robot.driveTrain.driveJoystick(Robot.oi.getJoy().getX(), Robot.oi.getJoy().getY());
-			}
-			if (Config.JOYSTICK_MODE == Config.TWO_JOYSTICKS) {
-				Robot.driveTrain.driveDualJoystick(Robot.oi.getJoy().getY(), Robot.oi.getAltJoy().getY());
-			}
-		} else
-			Robot.driveTrain.stop();
+		Log.init("Test command doing...");
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -43,7 +37,7 @@ public class Drive extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.driveTrain.stop();
+		
 	}
 
 	// Called when another command which requires one or more of the same

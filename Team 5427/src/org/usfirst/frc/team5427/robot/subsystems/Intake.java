@@ -1,44 +1,54 @@
 package org.usfirst.frc.team5427.robot.subsystems;
 
+import org.usfirst.frc.team5427.robot.Robot;
+import org.usfirst.frc.team5427.robot.SteelTalon;
+import org.usfirst.frc.team5427.robot.util.Config;
+
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Intake extends Subsystem{
-	
-	SpeedController intakeLeft;
-	SpeedController intakeRight;
-	
+/**
+ * This Subsystem will be responsible for managing all four SIM motors that are
+ * responsible for controlling the wheels. //TODO expand on this description
+ * once more is known about the robot.
+ * 
+ * @author team5427
+ */
+public class Intake extends Subsystem {
+
+	Relay motorRelay_Intake;
+
 	/**
-	 * constructor for the intake subsystem
-	 * @param left - left intake motor
-	 * @param right - right intake motor
+	 * Intake constructor -- as parameters takes each motor to initialise.
+	 * 
+	 * @param motorRelay_Intake
 	 */
-	public Intake(SpeedController left, SpeedController right){
-		intakeLeft = left;
-		intakeRight = right;
+	public Intake(Relay motorRelay_Intake) {
+		this.motorRelay_Intake = motorRelay_Intake;
+		motorRelay_Intake.setDirection(Relay.Direction.kForward);
 	}
-	
+
 	@Override
 	protected void initDefaultCommand() {
-		// TODO Auto-generated method stub
-		
-	}
-	/**
-	 * sets both intake motors to 0 speed
-	 */
-	public void stop(){
-		intakeLeft.set(0);
-		intakeRight.set(0);
-	}
-	/**
-	 * sets the speed of the intake motors to the value specified. the right motor is reversed to cause them both to spin same direction.
-	 * @param speed - the speed to set the motors to (0-1)
-	 */
-	public void setSpeed(double speed){
-		intakeLeft.set(speed);
-		intakeRight.set(speed*-1);
-	}
-	
-	
 
+	}
+
+	/**
+	 * turns on the intake motor
+	 */
+	public void go(boolean in) {
+		if(in)
+			motorRelay_Intake.setDirection(Relay.Direction.kForward);
+		else
+			motorRelay_Intake.setDirection(Relay.Direction.kReverse);
+		motorRelay_Intake.set(Relay.Value.kOn);
+	}
+
+	/**
+	 * turns off the intake motor.
+	 */
+	public void stop() {
+		motorRelay_Intake.set(Relay.Value.kOff);
+	}
 }

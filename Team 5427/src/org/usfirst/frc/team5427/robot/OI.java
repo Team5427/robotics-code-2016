@@ -1,13 +1,30 @@
 package org.usfirst.frc.team5427.robot;
 
-import org.usfirst.frc.team5427.robot.commands.Shoot;
-import org.usfirst.frc.team5427.robot.commands.Tilt;
-import org.usfirst.frc.team5427.robot.commands.intakeControl;
+import org.usfirst.frc.team5427.robot.commands.Test;
+import org.usfirst.frc.team5427.robot.commands.auto.AutoShoot;
+import org.usfirst.frc.team5427.robot.commands.auto.AutoTurn;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.ArmSpeedDown;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.ArmSpeedUp;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.Drive;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.EngageLeftArm;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.EngageRightArm;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.IntakeIn;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.IntakeOut;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.RotateTurret;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.Scale;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.ScissorDown;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.ScissorUp;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.Shoot;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.TiltForCollecting;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.TiltForLowBar;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.UserControlledTurn;
+import org.usfirst.frc.team5427.robot.subsystems.Winch;
 import org.usfirst.frc.team5427.robot.util.Config;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -16,96 +33,65 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 	Joystick joy = new Joystick(Config.JOYSTICK_PORT);
 	Joystick altJoy = new Joystick(Config.ALT_JOYSTICK_PORT);
-    Button toggleIntake = new JoystickButton(joy, Config.TOGGLE_INTAKE_BUTTON),
-    		toTilt = new JoystickButton(joy,Config.TO_TILT_BUTTON),
-    		shoot = new JoystickButton(joy,Config.SHOOTER_BUTTON),
-    		button4 = new JoystickButton(joy,4),
-    		button5 = new JoystickButton(joy,5),
-    		button6 = new JoystickButton(joy,6),
-    		button7 = new JoystickButton(joy,7),
-    		button8 = new JoystickButton(joy,8);
-    /**
-     * constructor for the OI class, defines the button-press events.
-     */
-    public OI(){ 
-    	toggleIntake.toggleWhenPressed(new intakeControl());
-    	toTilt.whenPressed(new Tilt());
-    	shoot.toggleWhenPressed(new Shoot());
-    	
-    }
-    /**
-     * returns the joystick object
-     * @return the joystick
-     */
+	Button intaker = new JoystickButton(joy, Config.INTAKE_IN_BUTTON),
+			outGo = new JoystickButton(joy, Config.INTAKE_OUT_BUTTON),
+			tiltCollect = new JoystickButton(joy, Config.TILT_COLLECT_BUTTON),
+			tiltLowBar = new JoystickButton(joy, Config.TILT_LOW_BAR_BUTTON),
+			shoot = new JoystickButton(joy, Config.SHOOT_BUTTON),
+			scissorDown = new JoystickButton(joy, Config.SCISSORLIFT_DOWN_BUTTON),
+			scissorUp = new JoystickButton(joy, Config.SCISSORLIFT_UP_BUTTON),
+			winch = new JoystickButton(joy, Config.WINCH_BUTTON),
+			leftFront = new JoystickButton(joy, Config.LEFT_FRONT_ARM_BUTTON),
+			leftBack = new JoystickButton(joy, Config.LEFT_BACK_ARM_BUTTON),
+			rightFront = new JoystickButton(joy, Config.RIGHT_FRONT_ARM_BUTTON),
+			rightBack = new JoystickButton(joy, Config.RIGHT_BACK_ARM_BUTTON);
+
+	/**
+	 * constructor for the OI class, defines the button-press events.
+	 */
+	public OI() {
+
+		tiltCollect.whenPressed(new TiltForCollecting());
+		tiltLowBar.whenPressed(new TiltForLowBar());
+		shoot.whenPressed(new Shoot());
+		//shoot.whenPressed(new AutoShoot());
+		intaker.whenPressed(new IntakeIn());
+		outGo.whenPressed(new IntakeOut());
+		leftFront.whenPressed(new EngageLeftArm(true));
+		leftBack.whenPressed(new EngageLeftArm(false));
+		rightFront.whenPressed(new EngageRightArm(true));
+		rightBack.whenPressed(new EngageRightArm(false));
+		// scissorUp.whenPressed(new ScissorUp());
+		scissorUp.whenPressed(new RotateTurret(Config.TURRET_CENTER));
+		// scissorDown.whenPressed(new ScissorDown());
+		winch.whenPressed(new UserControlledTurn());// change to "new Winch()"
+													// after testing and making
+													// sure the GRIP works
+		SmartDashboard.putData("TEST", new Test());
+		SmartDashboard.putData("ArmSpeedDown", new ArmSpeedDown());
+		SmartDashboard.putData("ArmSpeedUp", new ArmSpeedUp());
+		SmartDashboard.putNumber("Turret Potentiometer Value:", Robot.potentiometer.get());
+		SmartDashboard.putNumber("Left Arm Potentiometer Value:", Robot.leftArmPot.get());
+		SmartDashboard.putNumber("Right Arm Potentiometer Value:", Robot.rightArmPot.get());
+	}
+
+	/**
+	 * returns the joystick object
+	 * 
+	 * @return the joystick
+	 */
+
 	public Joystick getJoy() {
 		return joy;
 	}
-	
 
-//	public Button getButton(int i){
-//		if(1==i)
-//			return button1;
-//		else if(2==i)
-//			return button2;
-//		else if(3==i)
-//			return button3;
-//		else if(4==i)
-//			return button4;
-//		else if(5==i)
-//			return button5;
-//		else if(6==i)
-//			return button6;
-//		else if(7==i)
-//			return button7;
-//		else if(8==i)
-//			return button8;
-//		return null;
-//	}
-	
 	/**
 	 * returns the right joystick if using 2
+	 * 
 	 * @return the other joystick
 	 */
-	public Joystick getAltJoy(){
+	public Joystick getAltJoy() {
 		return altJoy;
-		
+
 	}
 }
-	
-	
-	
-	
-	
-	
-	
-	//// CREATING BUTTONS
-    // One type of button is a joystick button which is any button on a joystick.
-    // You create one by telling it which joystick it's on and which button
-    // number it is.
-    // Joystick stick = new Joystick(port);
-    // Button button = new JoystickButton(stick, buttonNumber);
-	
-	
-	
-    
-    // There are a few additional built in buttons you can use. Additionally,
-    // by subclassing Button you can create custom triggers and bind those to
-    // commands the same as any other Button.
-    
-    //// TRIGGERING COMMANDS WITH BUTTONS
-    // Once you have a button, it's trivial to bind it to a button in one of
-    // three ways:
-    
-    // Start the command when the button is pressed and let it run the command
-    // until it is finished as determined by it's isFinished method.
-    // button.whenPressed(new ExampleCommand());
-    
-    // Run the command while the button is being held down and interrupt it once
-    // the button is released.
-    // button.whileHeld(new ExampleCommand());
-    
-    // Start the command when the button is released  and let it run the command
-    // until it is finished as determined by it's isFinished method.
-    // button.whenReleased(new ExampleCommand());
-
-
