@@ -42,7 +42,7 @@ public class EngageLeftArm extends Command {
 		if (forward == false && Robot.oi.getJoy().getRawButton(Config.LEFT_BACK) == false)
 			return true;
 		
-		if(!forward && Robot.leftArmPot.get() > 190)
+		if(!forward && Robot.leftArmPot.get() > 195)
 			return true;
 		/*
 		if (Robot.leftArmPot.get() + Config.LEFT_ARM_MARGIN_TO_SHUT_DOWN >= Config.LEFT_ARM_MAX_ENDING_POSITION)

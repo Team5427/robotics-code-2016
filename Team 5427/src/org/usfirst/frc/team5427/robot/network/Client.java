@@ -1,27 +1,27 @@
 package org.usfirst.frc.team5427.robot.network;
 
-import org.usfirst.frc.team5427.robot.util.Log;
-
 import java.io.*;
 import java.net.Socket;
 import java.net.SocketException;
-import java.util.Scanner;
 
-public class Client {
+import org.usfirst.frc.team5427.robot.util.Log;
+
+public class Client implements Runnable {
 
 	public static final String DEFAULT_IP = "10.54.27.236";
 	public static final int DEFAULT_PORT = 25565;
+	public static int MAX_BYTE_BUFFER = 256;
 
 	public static String ip;
 	public static int port;
 
-	static Thread networkThread;
+	public static GoalData lastRecievedGoal;
 
-	private static Socket clientSocket;
-	private static ObjectInputStream in;
-	private static ObjectOutputStream out;
+	Thread networkThread;
 
-	public static GoalData lastRecievedGoal = null;
+	private Socket clientSocket;
+	private ObjectInputStream is;
+	private ObjectOutputStream os;
 
 	public Client() {
 		ip = DEFAULT_IP;
@@ -38,17 +38,19 @@ public class Client {
 	 *
 	 * @return true if connection is a success, false if failed
 	 */
-	public static boolean reconnect() {
+	public boolean reconnect() {
 		try {
 			clientSocket = new Socket(ip, port);
-			in = new ObjectInputStream(clientSocket.getInputStream());
-			out = new ObjectOutputStream(clientSocket.getOutputStream());
+			is = new ObjectInputStream(clientSocket.getInputStream());
+			os = new ObjectOutputStream(clientSocket.getOutputStream());
 			Log.debug(clientSocket.toString());
 
 			Log.info("Connection to the server has been established successfully.");
 
 			return true;
 		} catch (Exception e) {
+			// TODO removed due to spam
+			// System.out.println("Connection failed to establish.");
 			Log.info("Connection failed to establish.");
 			return false;
 		}
@@ -59,7 +61,7 @@ public class Client {
 	 *
 	 * @return true if server connection is established, false if not.
 	 */
-	public static boolean isConnected() {
+	public boolean isConnected() {
 		return clientSocket != null && !clientSocket.isClosed();
 	}
 
@@ -80,25 +82,47 @@ public class Client {
 	}
 
 	/**
-	 * Sends an String to the server
+	 * Sends a command to the server
 	 *
-	 * @param s
-	 *            String to be sent to the server
-	 * @return true if the String is sent successfully, false if otherwise.
+	 * @param byteType
+	 *            the command from ByteDictionary
+	 * @return true if byte sent successfully, false if otherwise
 	 */
-	public synchronized static boolean send(String s) {
+	public synchronized boolean sendCommand(byte byteType) {
+		if (byteType == ByteDictionary.TELEOP_START || byteType == ByteDictionary.AUTO_START) {
+			byte[] buff = new byte[1];
+			buff[0] = byteType;
+			send(buff);
+		}
 
-		if (networkThread != null && !networkThread.isInterrupted()) {
+		return false;
+	}
+
+	public synchronized boolean send(byte[] buff) {
+
+		if (isConnected()) {
+
 			try {
-				out.writeUTF(s);
-				out.reset();
+				os.write(buff);
+				os.reset();
+				os.flush();
 				return true;
-			} catch (SocketException e) {
-				Log.error("Socket Exception");
-			} catch (NullPointerException e) {
-				Log.error("\n\tThere was an error connecting to the server.");
 			} catch (Exception e) {
-				Log.error(e.getMessage());
+				e.printStackTrace();
+			}
+		}
+
+		return false;
+	}
+
+	public synchronized boolean send(String s) {
+		if (isConnected()) {
+			try {
+				os.writeChars(s);
+				os.reset();
+				return true;
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
 
@@ -110,87 +134,9 @@ public class Client {
 	 *
 	 * @return true if the thread starts successfully, false if otherwise.
 	 */
-	public static synchronized boolean start() {
+	public synchronized boolean start() {
 		if (networkThread == null && (clientSocket == null || !clientSocket.isClosed())) {
-			networkThread = new Thread(new Runnable() {
-
-				/**
-				 * Running method that receives data from the server.
-				 */
-				@Override
-				public void run() {
-
-					reconnect();
-					Scanner taskReader;
-
-					while (!networkThread.isInterrupted()) {
-
-						if (clientSocket != null && !clientSocket.isClosed() && in != null) {
-							try {
-
-								String s = in.readUTF();
-
-								
-								//TODO make sure that these are all working
-								if (s.contains(StringDictionary.TASK)) {
-
-									s = s.substring(StringDictionary.TASK.length(), s.length() - 1);
-
-									if (s.contains(StringDictionary.GOAL_ATTACHED)) {
-
-										s = s.substring(StringDictionary.GOAL_ATTACHED.length(), s.length() - 1);
-										taskReader = new Scanner(s);
-
-										lastRecievedGoal = new GoalData(taskReader.nextDouble(),
-												taskReader.nextDouble(), taskReader.nextDouble(),
-												taskReader.nextDouble());
-
-									} else if (s.contains(StringDictionary.LOG)) {
-
-										s = s.substring(StringDictionary.LOG.length(), s.length() - 1);
-
-										Log.info(s);
-
-									} else if (s.contains(StringDictionary.MESSAGE)) {
-
-									} else if (s.contains(StringDictionary.TELEOP_START)) {
-
-										Log.warn(
-												"Driver station has told the robot TELEOP_START, and that should not happen.");
-
-									} else if (s.contains(StringDictionary.AUTO_START)) {
-
-										Log.warn(
-												"Driver station has told the robot AUTO_START, and that should not happen.");
-
-									} else {
-										System.out.println("Valid task was recieved, but with unrecognized contents.");
-									}
-
-								} else {
-									System.out.println("unrecognized task");
-								}
-
-							} catch (SocketException e) {
-								reconnect();
-							} catch (Exception e) {
-							Log.error(e.getMessage());
-							}
-
-							try {
-								Thread.sleep(10);
-							} catch (InterruptedException e) {
-								Log.info("Thread has been interrupted, client thread will stop.");
-							} catch (Exception e) {
-								Log.error(e.getMessage());
-							}
-						} else {
-							Log.info("Connection lost, attempting to re-establish with driver station.");
-							reconnect();
-						}
-					}
-				}
-			});
+			networkThread = new Thread(this);
 			networkThread.start();
 			return true;
 		}
@@ -203,20 +149,20 @@ public class Client {
 	 *
 	 * @return true if the thread is stopped successfully, false if otherwise.
 	 */
-	public static synchronized boolean stop() {
+	public synchronized boolean stop() {
 		networkThread.interrupt();
 
 		try {
 			clientSocket.close();
-			out.close();
-			in.close();
+			os.close();
+			is.close();
 		} catch (Exception e) {
 			Log.error(e.getMessage());
 		}
 
 		clientSocket = null;
-		out = null;
-		in = null;
+		os = null;
+		is = null;
 
 		if (!networkThread.isAlive()) { // The thread is found running and is
 										// told to stop
@@ -224,6 +170,87 @@ public class Client {
 		} else { // The thread is not running in the first place
 			return false;
 		}
+	}
+
+	public void interpretData(byte[] buff, int numFromStream) {
+
+		switch (buff[0]) {
+		case ByteDictionary.GOAL_ATTACHED:
+
+			lastRecievedGoal = new GoalData(buff);
+			Log.debug("Data from goal: Motor Value-" + lastRecievedGoal.getMotorValue() + " X Angle-"
+					+ Math.toDegrees(lastRecievedGoal.getHorizontalAngle()));
+			Log.debug("Data from received bytes: " + getStringByteBuffer(buff));
+
+			break;
+
+		case ByteDictionary.LOG:
+
+			Log.vision(new String(getBufferedSegment(buff, 1, numFromStream - 1)));
+
+			break;
+
+		}
+
+	}
+
+	/**
+	 * Running method that receives data from the server.
+	 */
+	@Override
+	public void run() {
+
+		reconnect();
+
+		while (!networkThread.isInterrupted()) {
+
+			if (clientSocket != null && !clientSocket.isClosed() && is != null) {
+				try {
+					byte buffer[] = new byte[MAX_BYTE_BUFFER];
+					int numFromStream = is.read(buffer, 0, buffer.length);
+
+					Log.debug("num from stream: " + numFromStream);
+					interpretData(buffer, numFromStream);
+					Log.debug("\n===========================\n");
+
+				} catch (SocketException e) {
+					reconnect();
+				} catch (Exception e) {
+					Log.error(e.getMessage());
+				}
+
+				try {
+					networkThread.sleep(10);
+				} catch (InterruptedException e) {
+					Log.info("Thread has been interrupted, client thread will stop.");
+				} catch (Exception e) {
+					Log.error(e.getMessage());
+				}
+			} else {
+				Log.info("Connection lost, attempting to re-establish with driver station.");
+				reconnect();
+			}
+		}
+	}
+
+	public static String getStringByteBuffer(byte[] buff) {
+		String str = "[";
+
+		for (int i = 0; i < buff.length; i++)
+			str += buff[i] + ",";
+
+		return str + "]";
+	}
+
+	public static byte[] getBufferedSegment(byte[] buff, int startPos, int length) {
+		byte[] temp = new byte[length];
+
+		for (int i = 0; i < length; i++) {
+			System.out.println("buffereing");
+			temp[i] = buff[startPos + i];
+		}
+		return temp;
+
 	}
 
 }

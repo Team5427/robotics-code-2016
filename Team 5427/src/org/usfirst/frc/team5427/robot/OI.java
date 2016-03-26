@@ -17,6 +17,7 @@ import org.usfirst.frc.team5427.robot.commands.subsystemControl.ScissorUp;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.Shoot;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.TiltForCollecting;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.TiltForLowBar;
+import org.usfirst.frc.team5427.robot.commands.subsystemControl.UserControlledWinch;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.UserControlledTurn;
 import org.usfirst.frc.team5427.robot.subsystems.Winch;
 import org.usfirst.frc.team5427.robot.util.Config;
@@ -54,19 +55,20 @@ public class OI {
 		tiltCollect.whenPressed(new TiltForCollecting());
 		tiltLowBar.whenPressed(new TiltForLowBar());
 		shoot.whenPressed(new Shoot());
-		//shoot.whenPressed(new AutoShoot());
+//		shoot.whenPressed(new AutoShoot());
 		intaker.whenPressed(new IntakeIn());
 		outGo.whenPressed(new IntakeOut());
 		leftFront.whenPressed(new EngageLeftArm(true));
 		leftBack.whenPressed(new EngageLeftArm(false));
 		rightFront.whenPressed(new EngageRightArm(true));
 		rightBack.whenPressed(new EngageRightArm(false));
-		// scissorUp.whenPressed(new ScissorUp());
-		scissorUp.whenPressed(new RotateTurret(Config.TURRET_CENTER));
-		// scissorDown.whenPressed(new ScissorDown());
+//		scissorUp.whenPressed(new ScissorUp());
+		scissorUp.whenPressed(new RotateTurret(0));
+//		scissorDown.whenPressed(new ScissorDown());
 		winch.whenPressed(new UserControlledTurn());// change to "new Winch()"
 													// after testing and making
 													// sure the GRIP works
+//		winch.whenPressed(new UserControlledWinch());
 		SmartDashboard.putData("TEST", new Test());
 		SmartDashboard.putData("ArmSpeedDown", new ArmSpeedDown());
 		SmartDashboard.putData("ArmSpeedUp", new ArmSpeedUp());

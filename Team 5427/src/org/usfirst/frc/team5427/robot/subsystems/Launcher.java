@@ -5,8 +5,6 @@ import org.usfirst.frc.team5427.robot.util.Config;
 
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -134,6 +132,11 @@ public class Launcher extends Subsystem {
 	 */
 	public void setShootSpeed(double speed) {
 		motorPWM_Flywheel.set(speed);
+	}
+	
+	public double getDegrees() {
+	
+		return Config.TURRET_CENTER - Robot.potentiometer.get();
 	}
 
 }

@@ -86,10 +86,9 @@ public class DriveTrain extends Subsystem {
 	 */
 	public void driveJoystick(double z, double y) {
 
-		/**
-		 * inverting the Z axis in order to make the equations work.
-		 */
-		z = -z;
+		z *= .5;
+
+		y *= .7;
 
 		/**
 		 * This variable will be equal to the speed of the right side + the

@@ -10,7 +10,7 @@ import org.usfirst.frc.team5427.robot.commands.auto.AutoObstacle;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoTurn;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.*;
 import org.usfirst.frc.team5427.robot.network.Client;
-import org.usfirst.frc.team5427.robot.network.StringDictionary;
+import org.usfirst.frc.team5427.robot.network.ByteDictionary;
 import org.usfirst.frc.team5427.robot.subsystems.Intake;
 import org.usfirst.frc.team5427.robot.subsystems.LeftArm;
 import org.usfirst.frc.team5427.robot.subsystems.RightArm;
@@ -155,6 +155,8 @@ public class Robot extends IterativeRobot {
 
 	ArmSpeedModifier armSpeedModifier;
 
+	public Client c;
+
 	// new intake system
 	// public static GetStuffIn getStuff;
 
@@ -187,6 +189,7 @@ public class Robot extends IterativeRobot {
 	public static AnalogInput leftPotPort, rightPotPort;
 
 	SendableChooser chooser;
+
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -197,9 +200,9 @@ public class Robot extends IterativeRobot {
 
 		try {
 			Log.init("Initializing connection to the driver station...");
-			new Client();
-			Client.start();
-			if (Client.isConnected())
+			c = new Client();
+			c.start();
+			if (c.isConnected())
 				Log.init("Connection successfully established with the driver station.");
 			else
 				Log.init("Connection failed to establish. Client will continue to connect with the driver station.");
@@ -211,10 +214,10 @@ public class Robot extends IterativeRobot {
 		tilterLimitSwitch = new DigitalInput(Config.TILTER_LIMIT_SWITCH);
 		Log.init("TilterLimitSwitch initialized!");
 
-		motorPWM_RearRight = new SteelTalon(Config.REAR_RIGHT_MOTOR);
-		motorPWM_FrontRight = new SteelTalon(Config.FRONT_RIGHT_MOTOR);
-		motorPWM_RearLeft = new SteelTalon(Config.REAR_LEFT_MOTOR);
-		motorPWM_FrontLeft = new SteelTalon(Config.FRONT_LEFT_MOTOR);
+		motorPWM_RearRight = new SteelTalon(Config.REAR_RIGHT_MOTOR, 0, 0);
+		motorPWM_FrontRight = new SteelTalon(Config.FRONT_RIGHT_MOTOR, 0, 0);
+		motorPWM_RearLeft = new SteelTalon(Config.REAR_LEFT_MOTOR, 0, 0);
+		motorPWM_FrontLeft = new SteelTalon(Config.FRONT_LEFT_MOTOR, 0, 0);
 		driveTrain = new DriveTrain(motorPWM_FrontLeft, motorPWM_RearLeft, motorPWM_FrontRight, motorPWM_RearRight);
 		Log.init("driveTrain initialized!");
 
@@ -239,11 +242,11 @@ public class Robot extends IterativeRobot {
 		rightArm = new RightArm(motorPWM_RightArm);
 		Log.init("Arms initialized!");
 
-		// motorRelay_ScissorLift = new Relay(Config.SCISSOR_MOTOR);
-		// scissorUpLimitSwitch = new DigitalInput(Config.SCISSOR_LIMIT_UP);
-		// scissorDownLimitSwitch = new DigitalInput(Config.SCISSOR_LIMIT_DOWN);
-		// scissorLift = new ScissorLift(motorRelay_ScissorLift,
-		// scissorUpLimitSwitch, scissorDownLimitSwitch);
+		motorRelay_ScissorLift = new Relay(Config.SCISSOR_MOTOR);
+		scissorUpLimitSwitch = new DigitalInput(Config.SCISSOR_LIMIT_UP);
+		scissorDownLimitSwitch = new DigitalInput(Config.SCISSOR_LIMIT_DOWN);
+		scissorLift = new ScissorLift(motorRelay_ScissorLift,
+		scissorUpLimitSwitch, scissorDownLimitSwitch);
 		Log.init("scissorLift initialized!");
 
 		Log.init("Resetting Potentiometers...");
@@ -258,12 +261,11 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto mode", chooser);
 		Log.init("Interface loaded!...");
 
-		//Log.init("Robot initializing SmartDashboard...");
-		//new SmartDashboardStuff();
-		
+		// Log.init("Robot initializing SmartDashboard...");
+		// new SmartDashboardStuff();
+
 		Log.init("Robot initializing operator interface...");
 		oi = new OI();
-		
 
 		Log.init("All systems ready!");
 
@@ -303,8 +305,8 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		Log.info("Autonomous Start!~");
 
-		if (Client.isConnected())
-			Client.send(StringDictionary.AUTO_START);
+		// if (Client.isConnected())
+		// Client.send(StringDictionary.AUTO_START);
 
 		turnDegrees = 0;
 		tiltDegrees = 0;
@@ -349,8 +351,8 @@ public class Robot extends IterativeRobot {
 
 		Log.info("Teleop Start!~");
 
-		if (Client.isConnected())
-			Client.send(StringDictionary.TELEOP_START);
+		// if (Client.isConnected())
+		// Client.send(StringDictionary.TELEOP_START);
 
 		drive = new Drive();
 		drive.start();
@@ -372,9 +374,13 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		// Log.info(potentiometer.get() + "");
-		//Log.info("LEFT ARM " + leftArmPot.get() + "");
-		// Log.info("RIGHT ARM "+ rightArmPot.get()+"");
+		//Log.info(Robot.oi.getJoy().getPOV(0) + "");
+		// Log.info(tilterLimitSwitch.get() + "");
+		//Log.info(potentiometer.get() + "");
+		//Log.info(launcher.getDegrees()+"");
+		// Log.info("LEFT ARM " + leftArmPot.get() + "");
+		//Log.info(launcher.getDegrees()+"");
+		//Log.info("RIGHT ARM "+ rightArmPot.get()+"");
 		// Log.info("limit switch "+tilterLimitSwitch.get() + "\n");
 		try {
 			// Thread.sleep(150);

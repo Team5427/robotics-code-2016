@@ -28,8 +28,9 @@ public class AutoShoot extends Command {
 
 	@Override
 	protected void execute() {
-		
+
 		new RotateTurret(Client.lastRecievedGoal.getHorizontalAngle());
+		new MoveBallAwayFromFlyWheels();
 		Robot.launcher.setShootSpeed(Client.lastRecievedGoal.getMotorValue());
 		// TODO change the setShootSpeed to use a value from goalData when that
 		// is finished
