@@ -354,8 +354,8 @@ public class Robot extends IterativeRobot {
 		// if (Client.isConnected())
 		// Client.send(StringDictionary.TELEOP_START);
 
-//		drive = new Drive();
-//		drive.start();
+		drive = new Drive();
+		drive.start();
 
 		armSpeedModifier = new ArmSpeedModifier();
 		armSpeedModifier.start();
@@ -374,7 +374,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		Log.info(Robot.oi.getJoy().getPOV(0) + "");
+		//Log.info(Robot.oi.getJoy().getPOV(0) + "");
 		// Log.info(tilterLimitSwitch.get() + "");
 		//Log.info(potentiometer.get() + "");
 		//Log.info(launcher.getDegrees()+"");

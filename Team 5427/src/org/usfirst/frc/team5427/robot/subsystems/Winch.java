@@ -36,6 +36,7 @@ public class Winch extends Subsystem {
 	 * @param speed
 	 */
 	public void setSpeed(double speed) {
+		System.out.println(speed);
 		motorPWM_WinchOne.set(speed);
 		motorPWM_WinchTwo.set(speed);
 	}
