@@ -143,11 +143,6 @@ public class Config {
 
 	// Variables involving the speed of the robot's arms
 	/**
-	 * The axis on the joystick that will be used to increase or decrease the
-	 * speed of the robot's arms
-	 */
-	public static final int ARM_AXIS = 5;
-	/**
 	 * Max speed of the arm to move
 	 */
 	public static final double MAX_SPEED = .6;

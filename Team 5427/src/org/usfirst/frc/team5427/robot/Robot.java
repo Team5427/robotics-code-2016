@@ -353,7 +353,7 @@ public class Robot extends IterativeRobot {
 			Client.send(StringDictionary.TELEOP_START);
 
 		drive = new Drive();
-		drive.start();
+//		drive.start();
 
 		armSpeedModifier = new ArmSpeedModifier();
 		armSpeedModifier.start();
