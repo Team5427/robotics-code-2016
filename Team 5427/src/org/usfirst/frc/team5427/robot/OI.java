@@ -54,16 +54,16 @@ public class OI {
 		tiltCollect.whenPressed(new TiltForCollecting());
 		tiltLowBar.whenPressed(new TiltForLowBar());
 		shoot.whenPressed(new Shoot());
-		//shoot.whenPressed(new AutoShoot());
+//		shoot.whenPressed(new AutoShoot());
 		intaker.whenPressed(new IntakeIn());
 		outGo.whenPressed(new IntakeOut());
 		leftFront.whenPressed(new EngageLeftArm(true));
 		leftBack.whenPressed(new EngageLeftArm(false));
 		rightFront.whenPressed(new EngageRightArm(true));
 		rightBack.whenPressed(new EngageRightArm(false));
-		// scissorUp.whenPressed(new ScissorUp());
+//		scissorUp.whenPressed(new ScissorUp());
 		scissorUp.whenPressed(new RotateTurret(Config.TURRET_CENTER));
-		// scissorDown.whenPressed(new ScissorDown());
+//		scissorDown.whenPressed(new ScissorDown());
 		winch.whenPressed(new UserControlledTurn());// change to "new Winch()"
 													// after testing and making
 													// sure the GRIP works

@@ -31,29 +31,26 @@ public class RotateTurret extends Command {
 	 */
 	protected void initialize() {
 		Log.init("initialized ProgrammedTurner");
-	
+
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 
 	protected void execute() {
-		
-		if ((Robot.potentiometer.get() <= Config.TURRET_POTENTIOMETER_END_ONE && targetDegrees<= Config.TURRET_POTENTIOMETER_END_ONE)
-				|| (Robot.potentiometer.get() >= Config.TURRET_POTENTIOMETER_END_TWO && targetDegrees >= Config.TURRET_POTENTIOMETER_END_TWO))
-			end();
-		if (getDegrees() - targetDegrees < 0)
-			Robot.launcher.turn(-.2);
-		else if (getDegrees() - targetDegrees > 0)
-			Robot.launcher.turn(.2);
+
+		if (getDegrees() - targetDegrees < .5)
+			Robot.launcher.turn(-.4);
+		else if (getDegrees() - targetDegrees > .5)
+			Robot.launcher.turn(.4);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if (getDegrees() - targetDegrees == 0) {
+		if (Math.abs(getDegrees() - targetDegrees) < .3) {
 			return true;
 		}
-		if ((Robot.potentiometer.get() <= Config.TURRET_POTENTIOMETER_END_ONE && targetDegrees<= Config.TURRET_POTENTIOMETER_END_ONE)
-				|| (Robot.potentiometer.get() >= Config.TURRET_POTENTIOMETER_END_TWO && targetDegrees >= Config.TURRET_POTENTIOMETER_END_TWO))
+		else if ((Robot.potentiometer.get() <= Config.TURRET_POTENTIOMETER_END_ONE)
+				|| (Robot.potentiometer.get() >= Config.TURRET_POTENTIOMETER_END_TWO))
 			return true;
 		return false;
 	}
@@ -71,8 +68,9 @@ public class RotateTurret extends Command {
 
 	protected double getDegrees() {
 		// return Config.getTurn();
-		//TODO set this up with the value in the config, which needs a better name
-		return 267.5-Robot.potentiometer.get();
+		// TODO set this up with the value in the config, which needs a better
+		// name
+		return Config.TURRET_CENTER - Robot.potentiometer.get();
 	}
 
 }

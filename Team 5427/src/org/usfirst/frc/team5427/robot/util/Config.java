@@ -65,8 +65,8 @@ public class Config {
 
 	// LIMIT SWITCH PORTS
 	public static final int TILTER_LIMIT_SWITCH = 0;
-	public static final int SCISSOR_LIMIT_UP = 973;
-	public static final int SCISSOR_LIMIT_DOWN = 888;
+	public static final int SCISSOR_LIMIT_UP = 1;
+	public static final int SCISSOR_LIMIT_DOWN = 2;
 
 	// Potentiometer Analog input ports
 	public static final int POTENTIOMETER_ANALOG_INPUT = 0;
@@ -90,8 +90,8 @@ public class Config {
 
 	// Potentiometers' Degree references
 	// Soft stop values of Potentiometers
-	public static final double TURRET_POTENTIOMETER_END_ONE = 220;
-	public static final double TURRET_POTENTIOMETER_END_TWO = 313;
+	public static final double TURRET_POTENTIOMETER_END_ONE = 174;
+	public static final double TURRET_POTENTIOMETER_END_TWO = 360;
 	// MIN = 127
 	// TODO figure out what MIN=127 means...
 	public static final double RIGHT_ARM_MAX_STARTING_POSITION = 0;
@@ -102,12 +102,13 @@ public class Config {
 	public static final double LEFT_ARM_MAX_ENDING_POSITION = 180;
 	public static final double LEFT_ARM_MARGIN = .1;// Margin of error
 	// Center of the Turret
-	public static final double TURRET_CENTER = 267.5;
+	public static final double TURRET_CENTER = 265.5;
 	public static final double TURRET_CENTER_DEGREES_RANGE = 6;
 
 	// Timeouts for the different types of tilts
 	public static final double TILT_COLLECT_TIMEOUT = 6;
 	public static final double TILT_LOW_BAR_TIMEOUT = 3;
+	public static final double TILT_MAX_TURRET_ANGLE = 6; //TODO implement
 
 	// CONTROLLER PORTS
 	public static final int JOYSTICK_PORT = 0;

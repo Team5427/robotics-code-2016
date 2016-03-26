@@ -37,7 +37,7 @@ public class EngageRightArm extends Command {
 		if (forward == false && Robot.oi.getJoy().getRawButton(Config.RIGHT_BACK) == false)
 			return true;
 
-		if (!forward && Robot.rightArmPot.get() < 165)
+		if (!forward && Robot.rightArmPot.get() < 140)
 			return true;
 		/*
 		 * if (Robot.rightArmPot.get() + Config.MARGIN_TO_SHUT_DOWN >=
