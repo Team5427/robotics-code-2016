@@ -8,23 +8,14 @@ import org.usfirst.frc.team5427.robot.util.Log;
 public class ArmSpeedModifier extends Command {
 
 	/**
-	 * The axis used to determine speed changes to the arm
-	 */
-	private int axis = Config.ARM_AXIS;
-
-	/**
 	 * Used to prevent the speed to change until axis is 0
 	 */
-	private boolean modifiable = false;
+	private boolean modifiable = true;
 
 	/**
 	 * This is used if the axis used is as listed from the config
 	 */
 	public ArmSpeedModifier() {
-	}
-
-	public ArmSpeedModifier(int axis) {
-		this.axis = axis;
 	}
 
 	/**
@@ -33,26 +24,6 @@ public class ArmSpeedModifier extends Command {
 	@Override
 	protected void initialize() {
 		Log.info("Initializing Arm Speed Modifier");
-	}
-
-	/**
-	 * Method is called periodically during execution. This is intentionally
-	 * empty.
-	 */
-	@Override
-	protected void execute() {
-		
-		if (modifiable) {
-			if (Robot.oi.getJoy().getRawAxis(axis) == -1) {
-				Config.decreaseArmSpeed();
-				modifiable = false;
-			} else if (Robot.oi.getJoy().getRawAxis(axis) == 1) {
-				Config.increaseArmSpeed();
-				modifiable = false;
-			}
-		} else if (Robot.oi.getJoy().getRawAxis(axis) == 0) {
-			modifiable = true;
-		}
 	}
 
 	/**
@@ -71,6 +42,28 @@ public class ArmSpeedModifier extends Command {
 	@Override
 	protected void end() {
 
+	}
+
+	/**
+	 * Method is called periodically during execution. This is intentionally
+	 * empty.
+	 */
+	@Override
+	protected void execute() {
+		// Log.info("Executing arm speed");
+		if (modifiable) {
+			if (Robot.oi.getJoy().getPOV(0) == 270) {
+				Log.info("Decreasing arm speed");
+				Config.decreaseArmSpeed();
+				modifiable = false;
+			} else if (Robot.oi.getJoy().getPOV(0) == 90) {
+				Log.info("Increasing arm speed");
+				Config.increaseArmSpeed();
+				modifiable = false;
+			}
+		} else if (Robot.oi.getJoy().getPOV(0) == -1) {
+			modifiable = true;
+		}
 	}
 
 	/**

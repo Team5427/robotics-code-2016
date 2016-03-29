@@ -26,9 +26,9 @@ public class Config {
 	public static final double AUTO_INTAKE_TIME = 5;
 
 	// Controls
-	public static final int JOYSTICK_MODE = 0;
-	public static final int ONE_JOYSTICK = 0;
-	public static final int TWO_JOYSTICKS = 1;
+	public static final int ONE_JOYSTICK = 0; //static var for above
+	public static final int TWO_JOYSTICKS = 1; //static var for above
+	public static final int JOYSTICK_MODE = ONE_JOYSTICK; //Set this to either ONE_JOYSTICK or TWO_JOYSTICKS
 
 	// Buttons
 
@@ -41,8 +41,8 @@ public class Config {
 	public static final int SCISSORLIFT_DOWN_BUTTON = 11;
 	public static final int WINCH_BUTTON = 2;
 	public static final int TO_TURRET_BUTTON = 2;
-	public static final int LEFT_FRONT = 5, LEFT_BACK = 3;
-	public static final int RIGHT_FRONT = 6, RIGHT_BACK = 4;
+	public static final int LEFT_FRONT_ARM_BUTTON = 5, LEFT_BACK_ARM_BUTTON = 3;
+	public static final int RIGHT_FRONT_ARM_BUTTON = 6, RIGHT_BACK_ARM_BUTTON = 4;
 
 	// PWM PORTS
 
@@ -115,11 +115,8 @@ public class Config {
 	public static final int ALT_JOYSTICK_PORT = 0;
 
 	// Speeds for the different things that the robot needs to do
-	// TODO a lot of these things can't have their speed changed.
-	public static final double INTAKE_SPEED = 0.5;
-	public static final double LAUNCH_SPEED = -1;
+	public static final double LAUNCH_SPEED = -1; //Controlled by grip
 	public static final double WINCH_SPEED = 0.5;
-	public static final double SCISSOR_SPEED = 0.5;
 
 	// DoorOpeners positions to be referenced in their respective automatic
 	// commands based
@@ -139,18 +136,13 @@ public class Config {
 	// stores the speed, in meters per second, that the Robot travels at full
 	// speed
 	// TODO time these values
-	// TODO use feet, nobody uses meters....
+	// TODO use feet, nobody uses meters.... //TODO please don't use feet... smart ppl use meters.
 	public static final int FULL_SPEED_FORWARD = 1;
 	public static final int FULL_SPEED_BACKWARD = 1;
 	public static final int FULL_TURN_SPEED_RIGHT = 1;
 	public static final int FULL_TURN_SPEED_LEFT = 1;
 
 	// Variables involving the speed of the robot's arms
-	/**
-	 * The axis on the joystick that will be used to increase or decrease the
-	 * speed of the robot's arms
-	 */
-	public static final int ARM_AXIS = 5;
 	/**
 	 * Max speed of the arm to move
 	 */
@@ -166,26 +158,26 @@ public class Config {
 	/**
 	 * The current arm speed of the arms
 	 */
-	public static double moveSpeed = .3;
+	public static double MOVE_SPEED = .3;
 
 	/**
 	 * Increases the speed of the arm based on the interval
 	 */
 	public static void increaseArmSpeed() {
-		moveSpeed += SPEED_INTERVAL;
+		MOVE_SPEED += SPEED_INTERVAL;
 
-		if (moveSpeed > MAX_SPEED)
-			moveSpeed = MAX_SPEED;
+		if (MOVE_SPEED > MAX_SPEED)
+			MOVE_SPEED = MAX_SPEED;
 	}
 
 	/**
 	 * Decreases the speed of the arm based on the interval
 	 */
 	public static void decreaseArmSpeed() {
-		moveSpeed -= SPEED_INTERVAL;
+		MOVE_SPEED -= SPEED_INTERVAL;
 
-		if (moveSpeed < MIN_SPEED)
-			moveSpeed = MIN_SPEED;
+		if (MOVE_SPEED < MIN_SPEED)
+			MOVE_SPEED = MIN_SPEED;
 	}
 
 	// public static double getTilt() {

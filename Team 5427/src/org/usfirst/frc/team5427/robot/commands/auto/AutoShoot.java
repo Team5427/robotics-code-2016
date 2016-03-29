@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class AutoShoot extends Command {
 
 	/**
-	 * automatically launches a boulder if there is a goal in sight
+	 * does not automatically launch a boulder if there is a goal in sight
 	 */
 	public AutoShoot() {
 		// Use requires() here to declare subsystem dependencies
@@ -21,6 +21,7 @@ public class AutoShoot extends Command {
 
 	@Override
 	protected void initialize() {
+<<<<<<< HEAD
 		new MoveBallAwayFromFlyWheels();
 		Log.init("initialized Shoot");
 
@@ -29,12 +30,21 @@ public class AutoShoot extends Command {
 	@Override
 	protected void execute() {
 
+=======
+>>>>>>> ff90cb41b6ea6374b0e39f40c5665cb8afb6075f
 		new RotateTurret(Client.lastRecievedGoal.getHorizontalAngle());
 		new MoveBallAwayFromFlyWheels();
 		Robot.launcher.setShootSpeed(Client.lastRecievedGoal.getMotorValue());
 		// TODO change the setShootSpeed to use a value from goalData when that
 		// is finished
 		new IntakeIn();
+		
+	}
+
+	@Override
+	protected void execute() {
+		new MoveBallAwayFromFlyWheels();
+		Log.init("initialized Shoot");
 
 	}
 

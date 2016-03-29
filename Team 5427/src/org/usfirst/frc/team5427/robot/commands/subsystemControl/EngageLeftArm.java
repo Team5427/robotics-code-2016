@@ -28,18 +28,18 @@ public class EngageLeftArm extends Command {
 	protected void execute() {
 
 		if (forward)
-			Robot.leftArm.setLeftSpeed(-Config.moveSpeed);
+			Robot.leftArm.setLeftSpeed(-Config.MOVE_SPEED);
 		else
-			Robot.leftArm.setLeftSpeed(Config.moveSpeed);
+			Robot.leftArm.setLeftSpeed(Config.MOVE_SPEED);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
 		// If button not pressed, returns true and command stops running
 		// else returns true and command continues to run
-		if (forward && Robot.oi.getJoy().getRawButton(Config.LEFT_FRONT) == false)
+		if (forward && Robot.oi.getJoy().getRawButton(Config.LEFT_FRONT_ARM_BUTTON) == false)
 			return true;
-		if (forward == false && Robot.oi.getJoy().getRawButton(Config.LEFT_BACK) == false)
+		if (forward == false && Robot.oi.getJoy().getRawButton(Config.LEFT_BACK_ARM_BUTTON) == false)
 			return true;
 		
 		if(!forward && Robot.leftArmPot.get() > 195)

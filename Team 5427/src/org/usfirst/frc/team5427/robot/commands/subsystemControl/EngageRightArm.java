@@ -23,18 +23,18 @@ public class EngageRightArm extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		if (forward)
-			Robot.rightArm.setRightSpeed(Config.moveSpeed);
+			Robot.rightArm.setRightSpeed(Config.MOVE_SPEED);
 		else
-			Robot.rightArm.setRightSpeed(-Config.moveSpeed);
+			Robot.rightArm.setRightSpeed(-Config.MOVE_SPEED);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
 		// If button not pressed, returns true and command stops running
 		// else returns true and command continues to run
-		if (forward && Robot.oi.getJoy().getRawButton(Config.RIGHT_FRONT) == false)
+		if (forward && Robot.oi.getJoy().getRawButton(Config.RIGHT_FRONT_ARM_BUTTON) == false)
 			return true;
-		if (forward == false && Robot.oi.getJoy().getRawButton(Config.RIGHT_BACK) == false)
+		if (forward == false && Robot.oi.getJoy().getRawButton(Config.RIGHT_BACK_ARM_BUTTON) == false)
 			return true;
 
 		if (!forward && Robot.rightArmPot.get() < 140)
