@@ -50,7 +50,7 @@ public class AutoShoot extends Command {
 		// motorValue is used so that when the flywheels are spinning, the shake of the turret
 		// will not distort the distance, thus changing the motorValue sent by the server.
 		if (motorValue == Double.MIN_VALUE)
-			motorValue = Client.lastRecievedGoal.getMotorValue();
+			motorValue = Client.getMotorValue();
 
 		Robot.launcher.setShootSpeed(motorValue);
 
@@ -63,7 +63,7 @@ public class AutoShoot extends Command {
 			moveInCommand.forceExecute();
 		}
 
-//		new RotateTurret(Client.lastRecievedGoal.getHorizontalAngle());
+//		new RotateTurret(Client.lastReceivedGoal.getHorizontalAngle());
 
 	}
 

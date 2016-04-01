@@ -65,7 +65,7 @@ public class OI {
 		rightBack.whenPressed(new EngageRightArm(false));
 //		scissorUp.whenPressed(new ScissorUp());
 		scissorUp.whenPressed(new RotateTurret(0));
-//		scissorDown.whenPressed(new RotateTurret(Client.lastRecievedGoal.getHorizontalAngle()));
+//		scissorDown.whenPressed(new RotateTurret(Client.lastReceivedGoal.getHorizontalAngle()));
 //		scissorDown.whenPressed(new ScissorDown());
 	winch.whenPressed(new UserControlledTurn());// change to "new Winch()"
 													// after testing and making

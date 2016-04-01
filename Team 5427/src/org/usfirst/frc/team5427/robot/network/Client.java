@@ -15,7 +15,7 @@ public class Client implements Runnable {
 	public static String ip;
 	public static int port;
 
-	public static GoalData lastRecievedGoal;
+	public static GoalData lastReceivedGoal = null;
 
 	Thread networkThread;
 
@@ -177,9 +177,9 @@ public class Client implements Runnable {
 		switch (buff[0]) {
 		case ByteDictionary.GOAL_ATTACHED:
 
-			lastRecievedGoal = new GoalData(buff);
-			Log.debug("Data from goal: Motor Value-" + lastRecievedGoal.getMotorValue() + " X Angle-"
-					+ Math.toDegrees(lastRecievedGoal.getHorizontalAngle()));
+			lastReceivedGoal = new GoalData(buff);
+			Log.debug("Data from goal: Motor Value-" + lastReceivedGoal.getMotorValue() + " X Angle-"
+					+ Math.toDegrees(lastReceivedGoal.getHorizontalAngle()));
 			Log.debug("Data from received bytes: " + getStringByteBuffer(buff));
 
 			break;
@@ -253,4 +253,10 @@ public class Client implements Runnable {
 
 	}
 
+	public static double getMotorValue() {
+		if (lastReceivedGoal == null)
+			return 1;
+
+		return lastReceivedGoal.getMotorValue();
+	}
 }
