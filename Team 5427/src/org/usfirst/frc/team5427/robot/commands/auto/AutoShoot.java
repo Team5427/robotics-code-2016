@@ -9,7 +9,19 @@ import org.usfirst.frc.team5427.robot.util.Log;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+/**
+ * This class shoots the ball at an appropriate speed. This assumes that the turret is already centered
+ * to the goal
+ */
 public class AutoShoot extends Command {
+
+	public static double timeout = .3;
+
+	private MoveBallAwayFromFlyWheels moveAwayCommand;
+	private IntakeIn moveInCommand;
+
+	private long startTime = Long.MIN_VALUE;
+	private double motorValue = Double.MIN_VALUE;
 
 	/**
 	 * does not automatically launch a boulder if there is a goal in sight
@@ -21,42 +33,65 @@ public class AutoShoot extends Command {
 
 	@Override
 	protected void initialize() {
-		new MoveBallAwayFromFlyWheels();
 		Log.init("initialized Shoot");
+		moveInCommand = new IntakeIn();
+		moveAwayCommand = new MoveBallAwayFromFlyWheels(.3);			// The intake will move away for .3 seconds
+		moveAwayCommand.start();
 
 	}
 
 	@Override
 	protected void execute() {
-		new RotateTurret(Client.lastRecievedGoal.getHorizontalAngle());
-		new MoveBallAwayFromFlyWheels();
-		Robot.launcher.setShootSpeed(Client.lastRecievedGoal.getMotorValue());
-		// TODO change the setShootSpeed to use a value from goalData when that
-		// is finished
-		new IntakeIn();
-		
+
+		// Prevents the ball to shoot until the the ball is not in contact with the fly wheels
+		if (!moveAwayCommand.isFinished())
+			return;
+
+		// motorValue is used so that when the flywheels are spinning, the shake of the turret
+		// will not distort the distance, thus changing the motorValue sent by the server.
+		if (motorValue == Double.MIN_VALUE)
+			motorValue = Client.lastRecievedGoal.getMotorValue();
+
+		Robot.launcher.setShootSpeed(motorValue);
+
+		if (startTime == Long.MIN_VALUE) {
+			startTime = System.nanoTime();
+		}
+
+		// If the time passed is greater than the spin up time, then the ball will be shot
+		if (System.nanoTime() - startTime > Config.SPIN_UP_TIME) {
+			moveInCommand.forceExecute();
+		}
+
+//		new RotateTurret(Client.lastRecievedGoal.getHorizontalAngle());
+
 	}
 
 
 
 	@Override
 	protected boolean isFinished() {
+		return !Robot.oi.getJoy().getRawButton(Config.SHOOT_BUTTON);
+
+
+/*
 		if (!Robot.oi.getJoy().getRawButton(Config.SHOOT_BUTTON))
 			return true;
 		else
 			return false;
+*/
 	}
 
 	@Override
 	protected void end() {
 		Robot.launcher.stopShoot();
 		Robot.intake.stop();
-		new RotateTurret(0);
+		new RotateTurret(0).start();
 	}
 
 	@Override
 	protected void interrupted() {
-
+		end();
 	}
 
 }

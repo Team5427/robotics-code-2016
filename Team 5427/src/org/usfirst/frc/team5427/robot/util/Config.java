@@ -85,7 +85,7 @@ public class Config {
 	public static final double TURRET_POTENTIOMETER_SCALE = 369.2307692307692;
 	// WHY::large turret gear has 234 teeth, and the small gear for the
 	// potentiometer
-	// has 24 teeth. 234/24= 9.75 rotations for 360 degrees. THerefore, the
+	// has 24 teeth. 234/24= 9.75 rotations for 360 degrees. Therefore, the
 	// potentiometer's 10 rotations is equal to 369.231 degrees {360*10/9.75}
 
 	// Potentiometers' Degree references
@@ -191,10 +191,25 @@ public class Config {
 		return Robot.potentiometer.get();
 	}
 
+	/**
+	 * Time for the flywheels to spin up in nanoseconds
+	 *
+	 * To change the time, change the value after the '*'. This number
+	 * is the time in seconds. The seconds will be converted automatically
+	 * to nanoseconds (1000000000L).
+	 *
+	 * NOTE: The L in 1000000000L indicates that the value is a long type.
+	 * 		 Without it, java will continue to assume that the value is an
+	 * 		 int, causing the int type to run out of values if the product
+	 * 		 between the two numbers is too large.
+	 */
+	public static final double SPIN_UP_TIME = 1000000000L * .7;
+
 	// Client
 	/**
 	 * The client used for the robot for connecting to the driver station
 	 */
 	public static Client client;
+
 
 }

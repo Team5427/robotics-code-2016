@@ -45,9 +45,9 @@ public class Launcher extends Subsystem {
 	 * launcher constructor -- takes motors for various parts of the launcher as
 	 * parameters
 	 * 
-	 * @param shooter
-	 * @param turner
-	 * @param tilter
+	 * @param motorFlyWheel
+	 * @param motorRotateHorizontal
+	 * @param motorRelay_TiltTurret
 	 */
 	public Launcher(SpeedController motorFlyWheel, SpeedController motorRotateHorizontal, Relay motorRelay_TiltTurret) {
 		this.motorPWM_Flywheel = motorFlyWheel;
@@ -87,7 +87,7 @@ public class Launcher extends Subsystem {
 	 * makes the turning motor turn L/R. if direction<0, goes one way; if
 	 * direction>0, goes the other way
 	 * 
-	 * @param direction
+	 * @param speed
 	 */
 	public void turn(double speed) {
 			motorRotateHorizontal.set(speed);
@@ -95,8 +95,6 @@ public class Launcher extends Subsystem {
 
 	/**
 	 * sets the speed of the tilting motors to the specified speed.
-	 * 
-	 * @param speed
 	 */
 	public void tiltUp() {
 		motorRotateVertical.setDirection(Relay.Direction.kForward);
@@ -131,6 +129,12 @@ public class Launcher extends Subsystem {
 	 * @param speed
 	 */
 	public void setShootSpeed(double speed) {
+		// Prevent speed from gonig to fast
+		if (speed > 1)
+			speed = 1;
+		else if (speed < -1)
+			speed = -1;
+
 		motorPWM_Flywheel.set(speed);
 	}
 	

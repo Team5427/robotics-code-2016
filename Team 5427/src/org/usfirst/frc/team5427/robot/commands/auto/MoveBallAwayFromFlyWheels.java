@@ -17,7 +17,21 @@ public class MoveBallAwayFromFlyWheels extends Command {
 		// It needs the intake system
 		requires(Robot.intake);
 		initialize();
-		super.setTimeout(.5);
+		setTimeout(.5);
+	}
+
+	/**
+	 * Used when the timeout for spinning the intake out is determined
+	 * by another class
+	 *
+	 * @param timeOut the timeout until the command is finished
+     */
+	public MoveBallAwayFromFlyWheels(double timeOut) {
+		// Use requires() here to declare subsystem dependencies
+		// It needs the intake system
+		requires(Robot.intake);
+		initialize();
+		setTimeout(timeOut);
 	}
 
 	// not used
