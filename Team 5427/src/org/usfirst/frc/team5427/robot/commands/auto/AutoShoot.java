@@ -21,7 +21,6 @@ public class AutoShoot extends Command {
 
 	@Override
 	protected void initialize() {
-<<<<<<< HEAD
 		new MoveBallAwayFromFlyWheels();
 		Log.init("initialized Shoot");
 
@@ -29,9 +28,6 @@ public class AutoShoot extends Command {
 
 	@Override
 	protected void execute() {
-
-=======
->>>>>>> ff90cb41b6ea6374b0e39f40c5665cb8afb6075f
 		new RotateTurret(Client.lastRecievedGoal.getHorizontalAngle());
 		new MoveBallAwayFromFlyWheels();
 		Robot.launcher.setShootSpeed(Client.lastRecievedGoal.getMotorValue());
@@ -41,12 +37,7 @@ public class AutoShoot extends Command {
 		
 	}
 
-	@Override
-	protected void execute() {
-		new MoveBallAwayFromFlyWheels();
-		Log.init("initialized Shoot");
 
-	}
 
 	@Override
 	protected boolean isFinished() {

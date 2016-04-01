@@ -18,6 +18,7 @@ import org.usfirst.frc.team5427.robot.commands.subsystemControl.Shoot;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.TiltForCollecting;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.TiltForLowBar;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.UserControlledWinch;
+import org.usfirst.frc.team5427.robot.network.Client;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.UserControlledTurn;
 import org.usfirst.frc.team5427.robot.subsystems.Winch;
 import org.usfirst.frc.team5427.robot.util.Config;
@@ -64,17 +65,17 @@ public class OI {
 		rightBack.whenPressed(new EngageRightArm(false));
 //		scissorUp.whenPressed(new ScissorUp());
 		scissorUp.whenPressed(new RotateTurret(0));
+//		scissorDown.whenPressed(new RotateTurret(Client.lastRecievedGoal.getHorizontalAngle()));
 //		scissorDown.whenPressed(new ScissorDown());
-		winch.whenPressed(new UserControlledTurn());// change to "new Winch()"
+	winch.whenPressed(new UserControlledTurn());// change to "new Winch()"
 													// after testing and making
 													// sure the GRIP works
 //		winch.whenPressed(new UserControlledWinch());
 		SmartDashboard.putData("TEST", new Test());
+		//Moat, rough terrain, rockwall, ramparts, lowbar
 		SmartDashboard.putData("ArmSpeedDown", new ArmSpeedDown());
 		SmartDashboard.putData("ArmSpeedUp", new ArmSpeedUp());
-		SmartDashboard.putNumber("Turret Potentiometer Value:", Robot.potentiometer.get());
-		SmartDashboard.putNumber("Left Arm Potentiometer Value:", Robot.leftArmPot.get());
-		SmartDashboard.putNumber("Right Arm Potentiometer Value:", Robot.rightArmPot.get());
+		
 	}
 
 	/**

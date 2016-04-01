@@ -316,6 +316,9 @@ public class Robot extends IterativeRobot {
 		boolean forward = true, right = true, forwardObs = true;
 
 		Command autonomousCommand = null;
+		
+		
+		
 		// autonomousCommand = (Command) chooser.getSelected();
 
 		// AutoLocateGoal autoLocateGoal = new AutoLocateGoal();
@@ -355,7 +358,7 @@ public class Robot extends IterativeRobot {
 		// Client.send(StringDictionary.TELEOP_START);
 
 		drive = new Drive();
-//		drive.start();
+		drive.start();
 
 		armSpeedModifier = new ArmSpeedModifier();
 		armSpeedModifier.start();
@@ -374,6 +377,11 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		
+		SmartDashboard.putNumber("Turret Potentiometer Value:", Robot.potentiometer.get());
+		SmartDashboard.putNumber("Turret Degree value:", Robot.launcher.getDegrees());
+		SmartDashboard.putNumber("Left Arm Potentiometer Value:", Robot.leftArmPot.get());
+		SmartDashboard.putNumber("Right Arm Potentiometer Value:", Robot.rightArmPot.get());
 		//Log.info(Robot.oi.getJoy().getPOV(0) + "");
 		// Log.info(tilterLimitSwitch.get() + "");
 		//Log.info(potentiometer.get() + "");
