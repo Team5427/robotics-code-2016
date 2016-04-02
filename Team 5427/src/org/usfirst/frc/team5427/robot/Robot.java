@@ -320,51 +320,36 @@ public class Robot extends IterativeRobot {
 
 		Command autonomousCommand = null;
 
-		switch (Config.autoMode) {
-		case Lowbar:
-			new Lowbar();
+		// RoughTerrain r = new RoughTerrain();
+		// r.start();
+		// new RoughTerrain().start();
+
+//		((Command) oi.autoChooser.getSelected()).start();
+
+		switch (3) {
+		case 1:
+			new Moat().start();
 			break;
-		case Moat:
-			new Moat();
+		case 2:
+			new RoughTerrain().start();
 			break;
-		case Nothing:
+		case 3:
+			new Rockwall().start();
 			break;
-		case Ramparts:
-			new Ramparts();
+		case 4:
+			new Ramparts().start();
 			break;
-		case Rockwall:
-			new Rockwall();
+		case 5:
+			new Moat().start();
 			break;
-		case RoughTerrain:
-			new RoughTerrain();
+		case 6:
+			new Lowbar().start();
 			break;
 		default:
 			break;
 
 		}
 
-		// autonomousCommand = (Command) chooser.getSelected();
-
-		// AutoLocateGoal autoLocateGoal = new AutoLocateGoal();
-		// autoLocateGoal.start();
-		// AutoDrive autoDrive=new AutoDrive(distance, forward);
-		// autoDrive.start();
-		// AutoObstacle autoObstacle=new AutoObstacle(forwardObs);
-		// autoObstacle.start();
-		// AutoTurn autoTurn=new AutoTurn(turnDegrees, right);
-		// autoTurn.start();
-		// autonomousCommand = (Command) chooser.getSelected();
-
-		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector",
-		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-		 * = new MyAutoCommand(); break; case "Default Auto": default:
-		 * autonomousCommand = new ExampleCommand(); break; }
-		 */
-
-		// schedule the autonomous command (example)
-		if (autonomousCommand != null)
-			autonomousCommand.start();
 	}
 
 	/**

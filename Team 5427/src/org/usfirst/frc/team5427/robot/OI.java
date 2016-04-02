@@ -32,6 +32,7 @@ import org.usfirst.frc.team5427.robot.util.Config;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -53,6 +54,8 @@ public class OI {
 			leftBack = new JoystickButton(joy, Config.LEFT_BACK_ARM_BUTTON),
 			rightFront = new JoystickButton(joy, Config.RIGHT_FRONT_ARM_BUTTON),
 			rightBack = new JoystickButton(joy, Config.RIGHT_BACK_ARM_BUTTON);
+	SendableChooser autoChooser = new SendableChooser();
+	
 
 	/**
 	 * constructor for the OI class, defines the button-press events.
@@ -77,13 +80,17 @@ public class OI {
 		winch.whenPressed(new UserControlledTurn());// change to "new Winch()"
 													// after testing and making
 													// sure the GRIP works
+		autoChooser.addDefault("Nothing", null);
+		autoChooser.addObject("Moat", new Moat());
+		autoChooser.addObject("Rough Terrain", new RoughTerrain());
+		autoChooser.addObject("Rockwall", new Rockwall());
+		autoChooser.addObject("Ramparts", new Ramparts());
+		autoChooser.addObject("Lowbar", new Lowbar());
+		
+		SmartDashboard.putData("Autonomous mode chooser", autoChooser);
+		
 		// winch.whenPressed(new UserControlledWinch());
-		// Moat, rough terrain, rockwall, ramparts, lowbar
-		SmartDashboard.putData("Autonomous: Moat            ", new AutonomousSelector(AutonomousMode.Moat));
-		SmartDashboard.putData("Autonomous: Rough Terrain   ", new AutonomousSelector(AutonomousMode.RoughTerrain));
-		SmartDashboard.putData("Autonomous: Rockwall        ", new AutonomousSelector(AutonomousMode.Rockwall));
-		SmartDashboard.putData("Autonomous: Ramparts        ", new AutonomousSelector(AutonomousMode.Ramparts));
-		SmartDashboard.putData("Autonomous: Lowbar          ", new AutonomousSelector(AutonomousMode.Lowbar));
+		
 
 		SmartDashboard.putData("ArmSpeedDown", new ArmSpeedDown());
 		SmartDashboard.putData("ArmSpeedUp", new ArmSpeedUp());

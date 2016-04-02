@@ -5,6 +5,8 @@ import org.usfirst.frc.team5427.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class Ramparts extends Command{
+	
+	Long timeStarted = System.nanoTime();
 
 	@Override
 	protected void initialize() {
@@ -33,6 +35,10 @@ public class Ramparts extends Command{
 	protected void interrupted() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	protected int getTime(){
+		return (int)((System.nanoTime()-timeStarted)/1000000);
 	}
 
 }

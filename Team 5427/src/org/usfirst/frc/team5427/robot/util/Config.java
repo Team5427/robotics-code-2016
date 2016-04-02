@@ -22,7 +22,7 @@ public class Config {
 	public static final boolean LOGGING = true; // only logs errors and fatals
 												// with this false
 
-	public static AutonomousMode autoMode = AutonomousMode.Nothing;
+	public static int autoMode = 0;
 
 	// the amount of time AutoGetStuffIn runs
 	public static final double AUTO_INTAKE_TIME = 5;
@@ -106,7 +106,7 @@ public class Config {
 	public static final double LEFT_ARM_MAX_ENDING_POSITION = 180;
 	public static final double LEFT_ARM_MARGIN = .1;// Margin of error
 	// Center of the Turret
-	public static final double TURRET_CENTER = 270.1;
+	public static final double TURRET_CENTER = 296;
 	public static final double TURRET_CENTER_DEGREES_RANGE = 6;
 
 	// Timeouts for the different types of tilts

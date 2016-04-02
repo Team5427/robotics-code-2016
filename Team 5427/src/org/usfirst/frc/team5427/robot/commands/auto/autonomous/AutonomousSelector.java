@@ -8,14 +8,13 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class AutonomousSelector extends Command {
 
-	public AutonomousSelector(Object o) {
-		Config.autoMode = (AutonomousMode) o;
-		Log.info("AutonomousMode has been selected: " + (AutonomousMode) o);
-	}
 
-	protected void AutomousSelector(AutonomousMode auto) {
 
-	}
+
+	public AutonomousSelector(int i) {
+		Config.autoMode = i;
+		Log.info("AutonomousMode has been selected: " + i);	
+		}
 
 	@Override
 	protected void execute() {
@@ -24,7 +23,7 @@ public class AutonomousSelector extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return true;
+		return false;
 	}
 
 	@Override
@@ -34,11 +33,12 @@ public class AutonomousSelector extends Command {
 
 	@Override
 	protected void interrupted() {
-
+end();
 	}
 
 	@Override
 	protected void initialize() {
+		
 	}
 
 }

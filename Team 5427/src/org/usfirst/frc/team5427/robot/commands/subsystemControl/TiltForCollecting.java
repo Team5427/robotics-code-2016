@@ -36,15 +36,15 @@ public class TiltForCollecting extends Command {
 
 	protected void execute() {
 		// sets the speed of the turning motor
-		if (Math.abs(Robot.launcher.getDegrees()) < 5.5) {
+//		if (Math.abs(Robot.launcher.getDegrees()) < 5.5) {
 			if (up)
 				Robot.launcher.tiltDown();
 			else
 				Robot.launcher.tiltUp();
-		}
-		else{Log.warn("Turret rotated too much to tilt");
-			end();
-		}
+//		} else {
+//			Log.warn("Turret rotated too much to tilt");
+//			end();
+//		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

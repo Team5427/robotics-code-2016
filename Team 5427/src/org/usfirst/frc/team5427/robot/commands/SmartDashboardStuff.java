@@ -4,7 +4,6 @@ package org.usfirst.frc.team5427.robot.commands;
 import org.usfirst.frc.team5427.robot.Robot;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.ArmSpeedDown;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.ArmSpeedUp;
-import org.usfirst.frc.team5427.robot.util.Config;
 import org.usfirst.frc.team5427.robot.util.Log;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -26,7 +25,6 @@ public class SmartDashboardStuff extends Command {
 	// is used to determine how far the arms need to go back
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		SmartDashboard.putData("TEST", new Test());
 		SmartDashboard.putData("ArmSpeedDown", new ArmSpeedDown());
 		SmartDashboard.putData("ArmSpeedUp", new ArmSpeedUp());
 		SmartDashboard.putNumber("Turret Potentiometer Value:", Robot.potentiometer.get());
