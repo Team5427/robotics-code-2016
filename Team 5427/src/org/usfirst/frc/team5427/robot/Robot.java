@@ -4,10 +4,14 @@ package org.usfirst.frc.team5427.robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team5427.robot.commands.SmartDashboardStuff;
-import org.usfirst.frc.team5427.robot.commands.Test;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoDrive;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoObstacle;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoTurn;
+import org.usfirst.frc.team5427.robot.commands.auto.autonomous.Lowbar;
+import org.usfirst.frc.team5427.robot.commands.auto.autonomous.Moat;
+import org.usfirst.frc.team5427.robot.commands.auto.autonomous.Ramparts;
+import org.usfirst.frc.team5427.robot.commands.auto.autonomous.Rockwall;
+import org.usfirst.frc.team5427.robot.commands.auto.autonomous.RoughTerrain;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.*;
 import org.usfirst.frc.team5427.robot.network.Client;
 import org.usfirst.frc.team5427.robot.network.ByteDictionary;
@@ -245,8 +249,7 @@ public class Robot extends IterativeRobot {
 		motorRelay_ScissorLift = new Relay(Config.SCISSOR_MOTOR);
 		scissorUpLimitSwitch = new DigitalInput(Config.SCISSOR_LIMIT_UP);
 		scissorDownLimitSwitch = new DigitalInput(Config.SCISSOR_LIMIT_DOWN);
-		scissorLift = new ScissorLift(motorRelay_ScissorLift,
-		scissorUpLimitSwitch, scissorDownLimitSwitch);
+		scissorLift = new ScissorLift(motorRelay_ScissorLift, scissorUpLimitSwitch, scissorDownLimitSwitch);
 		Log.init("scissorLift initialized!");
 
 		Log.init("Resetting Potentiometers...");
@@ -316,9 +319,30 @@ public class Robot extends IterativeRobot {
 		boolean forward = true, right = true, forwardObs = true;
 
 		Command autonomousCommand = null;
-		
-		
-		
+
+		switch (Config.autoMode) {
+		case Lowbar:
+			new Lowbar();
+			break;
+		case Moat:
+			new Moat();
+			break;
+		case Nothing:
+			break;
+		case Ramparts:
+			new Ramparts();
+			break;
+		case Rockwall:
+			new Rockwall();
+			break;
+		case RoughTerrain:
+			new RoughTerrain();
+			break;
+		default:
+			break;
+
+		}
+
 		// autonomousCommand = (Command) chooser.getSelected();
 
 		// AutoLocateGoal autoLocateGoal = new AutoLocateGoal();
@@ -377,18 +401,18 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		
+
 		SmartDashboard.putNumber("Turret Potentiometer Value:", Robot.potentiometer.get());
 		SmartDashboard.putNumber("Turret Degree value:", Robot.launcher.getDegrees());
 		SmartDashboard.putNumber("Left Arm Potentiometer Value:", Robot.leftArmPot.get());
 		SmartDashboard.putNumber("Right Arm Potentiometer Value:", Robot.rightArmPot.get());
-		//Log.info(Robot.oi.getJoy().getPOV(0) + "");
+		// Log.info(Robot.oi.getJoy().getPOV(0) + "");
 		// Log.info(tilterLimitSwitch.get() + "");
-		//Log.info(potentiometer.get() + "");
-		//Log.info(launcher.getDegrees()+"");
+		// Log.info(potentiometer.get() + "");
+		// Log.info(launcher.getDegrees()+"");
 		// Log.info("LEFT ARM " + leftArmPot.get() + "");
-		//Log.info(launcher.getDegrees()+"");
-		//Log.info("RIGHT ARM "+ rightArmPot.get()+"");
+		// Log.info(launcher.getDegrees()+"");
+		// Log.info("RIGHT ARM "+ rightArmPot.get()+"");
 		// Log.info("limit switch "+tilterLimitSwitch.get() + "\n");
 		try {
 			// Thread.sleep(150);

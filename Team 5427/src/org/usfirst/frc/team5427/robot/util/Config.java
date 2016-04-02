@@ -22,13 +22,17 @@ public class Config {
 	public static final boolean LOGGING = true; // only logs errors and fatals
 												// with this false
 
+	public static AutonomousMode autoMode = AutonomousMode.Nothing;
+
 	// the amount of time AutoGetStuffIn runs
 	public static final double AUTO_INTAKE_TIME = 5;
 
 	// Controls
-	public static final int ONE_JOYSTICK = 0; //static var for above
-	public static final int TWO_JOYSTICKS = 1; //static var for above
-	public static final int JOYSTICK_MODE = ONE_JOYSTICK; //Set this to either ONE_JOYSTICK or TWO_JOYSTICKS
+	public static final int ONE_JOYSTICK = 0; // static var for above
+	public static final int TWO_JOYSTICKS = 1; // static var for above
+	public static final int JOYSTICK_MODE = ONE_JOYSTICK; // Set this to either
+															// ONE_JOYSTICK or
+															// TWO_JOYSTICKS
 
 	// Buttons
 
@@ -108,14 +112,14 @@ public class Config {
 	// Timeouts for the different types of tilts
 	public static final double TILT_COLLECT_TIMEOUT = 4.5;
 	public static final double TILT_LOW_BAR_TIMEOUT = 3;
-	public static final double TILT_MAX_TURRET_ANGLE = 6; //TODO implement
+	public static final double TILT_MAX_TURRET_ANGLE = 6; // TODO implement
 
 	// CONTROLLER PORTS
 	public static final int JOYSTICK_PORT = 0;
 	public static final int ALT_JOYSTICK_PORT = 0;
 
 	// Speeds for the different things that the robot needs to do
-	public static final double LAUNCH_SPEED = -1; //Controlled by grip
+	public static final double LAUNCH_SPEED = -1; // Controlled by grip
 	public static final double WINCH_SPEED = 0.5;
 
 	// DoorOpeners positions to be referenced in their respective automatic
@@ -136,7 +140,8 @@ public class Config {
 	// stores the speed, in meters per second, that the Robot travels at full
 	// speed
 	// TODO time these values
-	// TODO use feet, nobody uses meters.... //TODO please don't use feet... smart ppl use meters.
+	// TODO use feet, nobody uses meters.... //TODO please don't use feet...
+	// smart ppl use meters.
 	public static final int FULL_SPEED_FORWARD = 1;
 	public static final int FULL_SPEED_BACKWARD = 1;
 	public static final int FULL_TURN_SPEED_RIGHT = 1;
@@ -194,14 +199,14 @@ public class Config {
 	/**
 	 * Time for the flywheels to spin up in nanoseconds
 	 *
-	 * To change the time, change the value after the '*'. This number
-	 * is the time in seconds. The seconds will be converted automatically
-	 * to nanoseconds (1000000000L).
+	 * To change the time, change the value after the '*'. This number is the
+	 * time in seconds. The seconds will be converted automatically to
+	 * nanoseconds (1000000000L).
 	 *
 	 * NOTE: The L in 1000000000L indicates that the value is a long type.
-	 * 		 Without it, java will continue to assume that the value is an
-	 * 		 int, causing the int type to run out of values if the product
-	 * 		 between the two numbers is too large.
+	 * Without it, java will continue to assume that the value is an int,
+	 * causing the int type to run out of values if the product between the two
+	 * numbers is too large.
 	 */
 	public static final double SPIN_UP_TIME = 1000000000L * .7;
 
@@ -210,6 +215,5 @@ public class Config {
 	 * The client used for the robot for connecting to the driver station
 	 */
 	public static Client client;
-
 
 }

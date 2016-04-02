@@ -1,8 +1,13 @@
 package org.usfirst.frc.team5427.robot;
 
-import org.usfirst.frc.team5427.robot.commands.Test;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoShoot;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoTurn;
+import org.usfirst.frc.team5427.robot.commands.auto.autonomous.AutonomousSelector;
+import org.usfirst.frc.team5427.robot.commands.auto.autonomous.Lowbar;
+import org.usfirst.frc.team5427.robot.commands.auto.autonomous.Moat;
+import org.usfirst.frc.team5427.robot.commands.auto.autonomous.Ramparts;
+import org.usfirst.frc.team5427.robot.commands.auto.autonomous.Rockwall;
+import org.usfirst.frc.team5427.robot.commands.auto.autonomous.RoughTerrain;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.ArmSpeedDown;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.ArmSpeedUp;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.Drive;
@@ -21,6 +26,7 @@ import org.usfirst.frc.team5427.robot.commands.subsystemControl.UserControlledWi
 import org.usfirst.frc.team5427.robot.network.Client;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.UserControlledTurn;
 import org.usfirst.frc.team5427.robot.subsystems.Winch;
+import org.usfirst.frc.team5427.robot.util.AutonomousMode;
 import org.usfirst.frc.team5427.robot.util.Config;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -56,26 +62,32 @@ public class OI {
 		tiltCollect.whenPressed(new TiltForCollecting());
 		tiltLowBar.whenPressed(new TiltForLowBar());
 		shoot.whenPressed(new Shoot());
-//		shoot.whenPressed(new AutoShoot());
+		// shoot.whenPressed(new AutoShoot());
 		intaker.whenPressed(new IntakeIn());
 		outGo.whenPressed(new IntakeOut());
 		leftFront.whenPressed(new EngageLeftArm(true));
 		leftBack.whenPressed(new EngageLeftArm(false));
 		rightFront.whenPressed(new EngageRightArm(true));
 		rightBack.whenPressed(new EngageRightArm(false));
-//		scissorUp.whenPressed(new ScissorUp());
+		// scissorUp.whenPressed(new ScissorUp());
 		scissorUp.whenPressed(new RotateTurret(0));
-//		scissorDown.whenPressed(new RotateTurret(Client.lastReceivedGoal.getHorizontalAngle()));
-//		scissorDown.whenPressed(new ScissorDown());
-	winch.whenPressed(new UserControlledTurn());// change to "new Winch()"
+		// scissorDown.whenPressed(new
+		// RotateTurret(Client.lastReceivedGoal.getHorizontalAngle()));
+		// scissorDown.whenPressed(new ScissorDown());
+		winch.whenPressed(new UserControlledTurn());// change to "new Winch()"
 													// after testing and making
 													// sure the GRIP works
-//		winch.whenPressed(new UserControlledWinch());
-		SmartDashboard.putData("TEST", new Test());
-		//Moat, rough terrain, rockwall, ramparts, lowbar
+		// winch.whenPressed(new UserControlledWinch());
+		// Moat, rough terrain, rockwall, ramparts, lowbar
+		SmartDashboard.putData("Autonomous: Moat            ", new AutonomousSelector(AutonomousMode.Moat));
+		SmartDashboard.putData("Autonomous: Rough Terrain   ", new AutonomousSelector(AutonomousMode.RoughTerrain));
+		SmartDashboard.putData("Autonomous: Rockwall        ", new AutonomousSelector(AutonomousMode.Rockwall));
+		SmartDashboard.putData("Autonomous: Ramparts        ", new AutonomousSelector(AutonomousMode.Ramparts));
+		SmartDashboard.putData("Autonomous: Lowbar          ", new AutonomousSelector(AutonomousMode.Lowbar));
+
 		SmartDashboard.putData("ArmSpeedDown", new ArmSpeedDown());
 		SmartDashboard.putData("ArmSpeedUp", new ArmSpeedUp());
-		
+
 	}
 
 	/**
