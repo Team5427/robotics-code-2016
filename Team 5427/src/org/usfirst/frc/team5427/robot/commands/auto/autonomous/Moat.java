@@ -47,5 +47,9 @@ public class Moat extends Command {
 	protected int getTime() {
 		return (int) ((System.nanoTime() - timeStarted) / 1000000);
 	}
+	
+	public String toString(){
+		return "Autonomous Command: Moat";
+	}
 
 }

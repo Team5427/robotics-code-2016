@@ -324,9 +324,9 @@ public class Robot extends IterativeRobot {
 		// r.start();
 		// new RoughTerrain().start();
 
-//		((Command) oi.autoChooser.getSelected()).start();
+		// ((Command) oi.autoChooser.getSelected()).start();
 
-		switch (3) {
+		switch ((Integer) oi.autoChooser.getSelected()) {
 		case 1:
 			new Moat().start();
 			break;
@@ -340,10 +340,10 @@ public class Robot extends IterativeRobot {
 			new Ramparts().start();
 			break;
 		case 5:
-			new Moat().start();
+			new Lowbar().start();
 			break;
 		case 6:
-			new Lowbar().start();
+
 			break;
 		default:
 			break;
@@ -391,6 +391,17 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Turret Degree value:", Robot.launcher.getDegrees());
 		SmartDashboard.putNumber("Left Arm Potentiometer Value:", Robot.leftArmPot.get());
 		SmartDashboard.putNumber("Right Arm Potentiometer Value:", Robot.rightArmPot.get());
+		
+		if((Integer)(oi.test.getSelected()) == 1){
+			new Shoot();
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			new IntakeIn();
+		}
 		// Log.info(Robot.oi.getJoy().getPOV(0) + "");
 		// Log.info(tilterLimitSwitch.get() + "");
 		// Log.info(potentiometer.get() + "");
@@ -416,8 +427,7 @@ public class Robot extends IterativeRobot {
 
 	public static void resetPotentiometers() {
 		ai = new AnalogInput(Config.POTENTIOMETER_ANALOG_INPUT);
-		potentiometer = new AnalogPotentiometer(ai, Config.TURRET_POTENTIOMETER_SCALE,
-				Config.TURRET_POTENTIOMETER_OFFSET);
+		potentiometer = new AnalogPotentiometer(ai);
 		leftPotPort = new AnalogInput(Config.LEFT_POT_PORT);
 		leftArmPot = new AnalogPotentiometer(leftPotPort, Config.LEFT_POT_SCALE, Config.LEFT_POT_OFFSET);
 		rightPotPort = new AnalogInput(Config.RIGHT_POT_PORT);

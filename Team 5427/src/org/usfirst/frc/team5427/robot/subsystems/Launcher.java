@@ -21,7 +21,7 @@ public class Launcher extends Subsystem {
 	 * SpeedController which is responsible for the flywheel that launches the
 	 * boulder out of the robot.
 	 */
-	SpeedController motorPWM_Flywheel;
+	public SpeedController motorPWM_Flywheel;
 
 	/**
 	 * Stores if the tilter is at teh bottom; if it is, the tilter won't go down

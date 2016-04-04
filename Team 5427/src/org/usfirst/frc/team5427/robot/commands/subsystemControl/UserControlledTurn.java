@@ -35,9 +35,9 @@ public class UserControlledTurn extends Command {
 		}
 		//going to left, -91
 		//goign to right, 93
-		if ((Robot.potentiometer.get() <= Config.TURRET_POTENTIOMETER_END_ONE && Robot.oi.getJoy().getTwist() > .2)
-				|| (Robot.potentiometer.get() >= Config.TURRET_POTENTIOMETER_END_TWO && Robot.oi.getJoy().getTwist() < -.2))
-			return true;
+//		if ((Robot.potentiometer.get() <= Config.TURRET_POTENTIOMETER_END_ONE && Robot.oi.getJoy().getTwist() > .2)
+//				|| (Robot.potentiometer.get() >= Config.TURRET_POTENTIOMETER_END_TWO && Robot.oi.getJoy().getTwist() < -.2))
+//			return true;
 		return false;
 	}
 
