@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.command.Command;
  * This class shoots the ball at an appropriate speed. This assumes that the
  * turret is already centered to the goal
  */
+@Deprecated
 public class AutoShoot extends Command {
 
 	public static double timeout = .3;

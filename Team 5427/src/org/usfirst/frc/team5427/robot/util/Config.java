@@ -119,6 +119,7 @@ public class Config {
 	public static final int ALT_JOYSTICK_PORT = 0;
 
 	// Speeds for the different things that the robot needs to do
+	public static final boolean ENABLE_GRIP_SHOOT = false;
 	public static final double LAUNCH_SPEED = -1; // Controlled by grip
 	public static final double WINCH_SPEED = 0.5;
 
