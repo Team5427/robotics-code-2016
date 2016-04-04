@@ -3,7 +3,6 @@ package org.usfirst.frc.team5427.robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-import org.usfirst.frc.team5427.robot.commands.SmartDashboardStuff;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoDrive;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoObstacle;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoTurn;
