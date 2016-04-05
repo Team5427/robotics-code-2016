@@ -437,6 +437,7 @@ public class Robot extends IterativeRobot {
 	public static void resetPotentiometers() {
 		ai = new AnalogInput(Config.POTENTIOMETER_ANALOG_INPUT);
 		potentiometer = new AnalogPotentiometer(ai);
+		//or maybe this is better new AnalogPotentiometer(ai, Config.TURRET_POTENTIOMETER_SCALE, Config.TURRET_POTENTIOMETER_OFFSET);
 		leftPotPort = new AnalogInput(Config.LEFT_POT_PORT);
 		leftArmPot = new AnalogPotentiometer(leftPotPort, Config.LEFT_POT_SCALE, Config.LEFT_POT_OFFSET);
 		rightPotPort = new AnalogInput(Config.RIGHT_POT_PORT);
