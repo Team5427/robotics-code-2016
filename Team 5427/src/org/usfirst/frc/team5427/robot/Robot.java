@@ -252,6 +252,8 @@ public class Robot extends IterativeRobot {
 		scissorUpLimitSwitch = new DigitalInput(Config.SCISSOR_LIMIT_UP);
 		scissorDownLimitSwitch = new DigitalInput(Config.SCISSOR_LIMIT_DOWN);
 		scissorLift = new ScissorLift(motorRelay_ScissorLift, scissorUpLimitSwitch, scissorDownLimitSwitch);
+		//scissorLift = new ScissorLift(motorRelay_ScissorLift);
+
 		Log.init("scissorLift initialized!");
 
 		Log.init("Resetting Potentiometers...");
