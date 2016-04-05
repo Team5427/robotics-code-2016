@@ -3,6 +3,7 @@ package org.usfirst.frc.team5427.robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+import org.usfirst.frc.team5427.robot.commands.Test;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoDrive;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoObstacle;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoTurn;
@@ -157,6 +158,8 @@ public class Robot extends IterativeRobot {
 	Drive drive;
 
 	ArmSpeedModifier armSpeedModifier;
+	
+	UserControlledWinch ucWinch;
 
 	public Client c;
 
@@ -361,7 +364,9 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 
 		Log.info("Teleop Start!~");
-
+		
+		//SmartDashboard.putData("Test", new Test());
+		
 		// if (Client.isConnected())
 		// Client.send(StringDictionary.TELEOP_START);
 
@@ -370,6 +375,10 @@ public class Robot extends IterativeRobot {
 
 		armSpeedModifier = new ArmSpeedModifier();
 		armSpeedModifier.start();
+		
+		ucWinch=new UserControlledWinch();
+		ucWinch.start();
+		
 
 		// if(oi.getJoy().getX()!=0)
 
@@ -386,6 +395,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 
+		SmartDashboard.putNumber("Turret AI Value:", Robot.ai.getValue());
 		SmartDashboard.putNumber("Turret Potentiometer Value:", Robot.potentiometer.get());
 		SmartDashboard.putNumber("Turret Degree value:", Robot.launcher.getDegrees());
 		SmartDashboard.putNumber("Left Arm Potentiometer Value:", Robot.leftArmPot.get());

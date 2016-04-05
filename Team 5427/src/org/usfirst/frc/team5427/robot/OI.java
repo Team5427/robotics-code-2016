@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5427.robot;
 
+import org.usfirst.frc.team5427.robot.commands.Test;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoShoot;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoTurn;
 import org.usfirst.frc.team5427.robot.commands.auto.MoveBallAwayFromFlyWheels;
@@ -101,8 +102,8 @@ public class OI {
 
 		// winch.whenPressed(new UserControlledWinch());
 
-		SmartDashboard.putData("ArmSpeedDown", new ArmSpeedDown());
-		SmartDashboard.putData("ArmSpeedUp", new ArmSpeedUp());
+		
+		//SmartDashboard.putData("ArmSpeedUp", new ArmSpeedUp());
 
 	}
 
