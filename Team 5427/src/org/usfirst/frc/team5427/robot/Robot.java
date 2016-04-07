@@ -378,8 +378,8 @@ public class Robot extends IterativeRobot {
 		armSpeedModifier = new ArmSpeedModifier();
 		armSpeedModifier.start();
 		
-		ucWinch=new UserControlledWinch();
-		ucWinch.start();
+		//ucWinch=new UserControlledWinch();
+		//ucWinch.start();
 		
 
 		// if(oi.getJoy().getX()!=0)
