@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5427.robot;
 
+import org.usfirst.frc.team5427.robot.commands.Test;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoShoot;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoTurn;
 import org.usfirst.frc.team5427.robot.commands.auto.MoveBallAwayFromFlyWheels;
@@ -74,15 +75,18 @@ public class OI {
 		rightFront.whenPressed(new EngageRightArm(true));
 		rightBack.whenPressed(new EngageRightArm(false));
 		scissorUp.whenPressed(new AutoShoot());
-//		scissorDown.whenPressed(new ScissorDown());
+		
+		//To get scissor stuff back::
+		//scissorUp.whenPressed(new AutoShoot());
+		//scissorDown.whenPressed(new ScissorDown());
+		
+		
 		// scissorUp.whenPressed(new RotateTurret(0));
-		// scissorDown.whenPressed(new
+		
 		// RotateTurret(Client.lastReceivedGoal.getHorizontalAngle()));
-		// scissorDown.whenPressed(new ScissorDown());
-		winch.whenPressed(new UserControlledTurn());// change to "new Winch()"
-														// after testing and
-														// making
-														// sure the GRIP works
+		winch.whenPressed(new UserControlledTurn());
+		
+		
 		autoChooser.addDefault("Nothing", 0);
 		autoChooser.addObject("Moat", 1);
 		autoChooser.addObject("Rough Terrain", 2);
@@ -118,7 +122,7 @@ public class OI {
 
 	/**
 	 * returns the right joystick if using 2
-	 * 
+	 * NOTE: not used for real, but used elsewhere in code
 	 * @return the other joystick
 	 */
 	public Joystick getAltJoy() {

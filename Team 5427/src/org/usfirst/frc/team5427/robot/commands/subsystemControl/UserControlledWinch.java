@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class UserControlledWinch extends Command {
 
+	
 	public UserControlledWinch(){
 		requires(Robot.winch);
 	}
@@ -19,15 +20,18 @@ public class UserControlledWinch extends Command {
 
 	@Override
 	protected void execute() {
-		Robot.winch.setSpeed(-Robot.oi.getJoy().getY());
+		if(Robot.oi.getJoy().getPOV()==0)
+			Robot.winch.setSpeed(1);
+		else if((Robot.oi.getJoy().getPOV()==180))
+			Robot.winch.setSpeed(-1);
+		else
+			Robot.winch.setSpeed(0);
 	}
 
 	@Override
 	protected boolean isFinished() {
-		if (Robot.oi.getJoy().getRawButton(Config.WINCH_BUTTON) == false) {
-			return true;
-		} else
 			return false;
+		
 	}
 
 	@Override

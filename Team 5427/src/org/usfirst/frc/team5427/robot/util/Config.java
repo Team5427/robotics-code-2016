@@ -35,7 +35,13 @@ public class Config {
 															// TWO_JOYSTICKS
 
 	// Buttons
-
+	
+	
+	//For the central POV thing at the top of the joystick:
+	//East==decreaseArmSpeed; West==IncreaseArmSpeed();
+	//North==WinchOut; South==WinchIn;
+	
+	
 	public static final int INTAKE_IN_BUTTON = 8;
 	public static final int INTAKE_OUT_BUTTON = 7;
 	public static final int TILT_COLLECT_BUTTON = 9;
