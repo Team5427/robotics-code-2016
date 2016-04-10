@@ -51,7 +51,7 @@ public class Client implements Runnable {
 		} catch (Exception e) {
 			// TODO removed due to spam
 			// System.out.println("Connection failed to establish.");
-			Log.info("Connection failed to establish.");
+		//	Log.info("Connection failed to establish.");
 			return false;
 		}
 	}
@@ -227,7 +227,7 @@ public class Client implements Runnable {
 					Log.error(e.getMessage());
 				}
 			} else {
-				Log.info("Connection lost, attempting to re-establish with driver station.");
+//				Log.info("Connection lost, attempting to re-establish with driver station.");
 				reconnect();
 			}
 		}

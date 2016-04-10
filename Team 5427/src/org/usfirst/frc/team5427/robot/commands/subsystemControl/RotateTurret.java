@@ -46,7 +46,7 @@ public class RotateTurret extends Command {
 
 		System.out.println(getDegrees() + " - " + targetDegrees + " = " + (getDegrees() - targetDegrees));
 
-		if (Math.abs(getDegrees() - targetDegrees) > 60)
+		if (Math.abs(getDegrees() - targetDegrees) > .05)
 			currentSpeed = TURN_SPEED_HIGH;
 		else if (Math.abs(getDegrees() - targetDegrees) > 40)
 			currentSpeed = TURN_SPEED_MEDIUM;

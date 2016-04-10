@@ -91,18 +91,18 @@ public class OI {
 		autoChooser.addObject("Lowbar", 5);
 		
 		
-		test.addDefault("Don't shoot" , 0);
-		test.addObject("Shoot", 1);
+//		test.addDefault("Don't shoot" , 0);
+//		test.addObject("Shoot", 1);
 		
-		SmartDashboard.putData("test",test);
+//		SmartDashboard.putData("test",test);
 		
 
 		SmartDashboard.putData("Autonomous mode chooser", autoChooser);
 
 		// winch.whenPressed(new UserControlledWinch());
 
-		SmartDashboard.putData("ArmSpeedDown", new ArmSpeedDown());
-		SmartDashboard.putData("ArmSpeedUp", new ArmSpeedUp());
+//		SmartDashboard.putData("ArmSpeedDown", new ArmSpeedDown());
+//		SmartDashboard.putData("ArmSpeedUp", new ArmSpeedUp());
 
 	}
 

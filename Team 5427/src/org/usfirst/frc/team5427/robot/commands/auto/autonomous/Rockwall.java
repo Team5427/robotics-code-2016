@@ -20,9 +20,9 @@ public class Rockwall extends Command {
 	@Override
 	protected void execute() {
 		if (getTime() < 1000)
-			Robot.driveTrain.driveJoystick(.05, -.5);
+			Robot.driveTrain.driveJoystick(.02, -.5);
 		else if(getTime() < 3000)
-			Robot.driveTrain.driveJoystick(.07, -.8);
+			Robot.driveTrain.driveJoystick(.02, -.8);
 //		else
 //			Robot.driveTrain.driveJoystick(.005, -.7);
 	}

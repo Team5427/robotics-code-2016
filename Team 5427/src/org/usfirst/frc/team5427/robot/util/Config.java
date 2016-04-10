@@ -106,7 +106,7 @@ public class Config {
 	public static final double LEFT_ARM_MAX_ENDING_POSITION = 180;
 	public static final double LEFT_ARM_MARGIN = .1;// Margin of error
 	// Center of the Turret
-	public static final double TURRET_CENTER = 296;
+	public static final double TURRET_CENTER = .052;
 	public static final double TURRET_CENTER_DEGREES_RANGE = 6;
 
 	// Timeouts for the different types of tilts

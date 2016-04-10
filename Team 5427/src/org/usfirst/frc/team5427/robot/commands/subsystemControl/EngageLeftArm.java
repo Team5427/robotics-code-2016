@@ -37,9 +37,11 @@ public class EngageLeftArm extends Command {
 	protected boolean isFinished() {
 		// If button not pressed, returns true and command stops running
 		// else returns true and command continues to run
-		if (forward && Robot.oi.getJoy().getRawButton(Config.LEFT_FRONT_ARM_BUTTON) == false)
+		if (forward && Robot.oi.getJoy().getRawButton(Config.LEFT_FRONT_ARM_BUTTON) == false
+				&& Robot.oi.getJoy().getPOV(0) != 0)
 			return true;
-		if (forward == false && Robot.oi.getJoy().getRawButton(Config.LEFT_BACK_ARM_BUTTON) == false)
+		if (forward == false && Robot.oi.getJoy().getRawButton(Config.LEFT_BACK_ARM_BUTTON) == false
+				&& Robot.oi.getJoy().getPOV(0) != 180)
 			return true;
 		
 //		if(!forward && Robot.leftArmPot.get() > 195)
@@ -62,5 +64,13 @@ public class EngageLeftArm extends Command {
 	// subsystems is scheduled to run
 	protected void interrupted() {
 		end();
+	}
+
+	/**
+	 * Sets the direction the arm moves
+	 * @param forward the direction the arm moves
+     */
+	public void setForward(boolean forward) {
+		this.forward = forward;
 	}
 }

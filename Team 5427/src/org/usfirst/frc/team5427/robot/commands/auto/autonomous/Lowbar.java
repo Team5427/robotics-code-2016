@@ -27,9 +27,9 @@ public class Lowbar extends Command {
 			
 		}
 		else if (getTime() < 4100)
-			Robot.driveTrain.driveJoystick(.06, -.5);
+			Robot.driveTrain.driveJoystick(.02, -.5);
 		else if (getTime() < 8100)
-			Robot.driveTrain.driveJoystick(.05, -.3);
+			Robot.driveTrain.driveJoystick(.02, -.3);
 
 	}
 

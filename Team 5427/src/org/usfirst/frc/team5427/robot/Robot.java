@@ -3,10 +3,6 @@ package org.usfirst.frc.team5427.robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-import org.usfirst.frc.team5427.robot.commands.SmartDashboardStuff;
-import org.usfirst.frc.team5427.robot.commands.auto.AutoDrive;
-import org.usfirst.frc.team5427.robot.commands.auto.AutoObstacle;
-import org.usfirst.frc.team5427.robot.commands.auto.AutoTurn;
 import org.usfirst.frc.team5427.robot.commands.auto.autonomous.Lowbar;
 import org.usfirst.frc.team5427.robot.commands.auto.autonomous.Moat;
 import org.usfirst.frc.team5427.robot.commands.auto.autonomous.Ramparts;
@@ -14,12 +10,10 @@ import org.usfirst.frc.team5427.robot.commands.auto.autonomous.Rockwall;
 import org.usfirst.frc.team5427.robot.commands.auto.autonomous.RoughTerrain;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.*;
 import org.usfirst.frc.team5427.robot.network.Client;
-import org.usfirst.frc.team5427.robot.network.ByteDictionary;
 import org.usfirst.frc.team5427.robot.subsystems.Intake;
 import org.usfirst.frc.team5427.robot.subsystems.LeftArm;
 import org.usfirst.frc.team5427.robot.subsystems.RightArm;
 import org.usfirst.frc.team5427.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team5427.robot.subsystems.Intake;
 import org.usfirst.frc.team5427.robot.subsystems.Launcher;
 import org.usfirst.frc.team5427.robot.subsystems.ScissorLift;
 import org.usfirst.frc.team5427.robot.subsystems.Winch;
@@ -29,8 +23,6 @@ import org.usfirst.frc.team5427.robot.util.Log;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.DigitalOutput;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -157,7 +149,7 @@ public class Robot extends IterativeRobot {
 
 	Drive drive;
 
-	ArmSpeedModifier armSpeedModifier;
+	POVModifier POVModifier;
 
 	public Client c;
 
@@ -235,10 +227,10 @@ public class Robot extends IterativeRobot {
 		launcher = new Launcher(motorPWM_Flywheel, motorPWM_RotateTurret, motorRelay_TiltTurret);
 		Log.init("launcher initialized!");
 
-		motorPWM_WinchOne = new SteelTalon(Config.WINCH_ONE_MOTOR);
-		motorPWM_WinchTwo = new SteelTalon(Config.WINCH_TWO_MOTOR);
-		winch = new Winch(motorPWM_WinchOne, motorPWM_WinchTwo);
-		Log.init("winch initialized!");
+//		motorPWM_WinchOne = new SteelTalon(Config.WINCH_ONE_MOTOR);
+//		motorPWM_WinchTwo = new SteelTalon(Config.WINCH_TWO_MOTOR);
+//		winch = new Winch(motorPWM_WinchOne, motorPWM_WinchTwo);
+//		Log.init("winch initialized!");
 
 		motorPWM_LeftArm = new SteelTalon(Config.LEFT_ARM_MOTOR);
 		motorPWM_RightArm = new SteelTalon(Config.RIGHT_ARM_MOTOR);
@@ -246,11 +238,11 @@ public class Robot extends IterativeRobot {
 		rightArm = new RightArm(motorPWM_RightArm);
 		Log.init("Arms initialized!");
 
-		motorRelay_ScissorLift = new Relay(Config.SCISSOR_MOTOR);
-		scissorUpLimitSwitch = new DigitalInput(Config.SCISSOR_LIMIT_UP);
-		scissorDownLimitSwitch = new DigitalInput(Config.SCISSOR_LIMIT_DOWN);
-		scissorLift = new ScissorLift(motorRelay_ScissorLift, scissorUpLimitSwitch, scissorDownLimitSwitch);
-		Log.init("scissorLift initialized!");
+//		motorRelay_ScissorLift = new Relay(Config.SCISSOR_MOTOR);
+//		scissorUpLimitSwitch = new DigitalInput(Config.SCISSOR_LIMIT_UP);
+//		scissorDownLimitSwitch = new DigitalInput(Config.SCISSOR_LIMIT_DOWN);
+//		scissorLift = new ScissorLift(motorRelay_ScissorLift, scissorUpLimitSwitch, scissorDownLimitSwitch);
+//		Log.init("scissorLift initialized!");
 
 		Log.init("Resetting Potentiometers...");
 		resetPotentiometers();
@@ -369,8 +361,8 @@ public class Robot extends IterativeRobot {
 		drive = new Drive();
 		drive.start();
 
-		armSpeedModifier = new ArmSpeedModifier();
-		armSpeedModifier.start();
+		POVModifier = new POVModifier();
+		POVModifier.start();
 
 		// if(oi.getJoy().getX()!=0)
 
@@ -387,11 +379,12 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 
-		SmartDashboard.putNumber("Turret Potentiometer Value:", Robot.potentiometer.get());
-		SmartDashboard.putNumber("Turret Degree value:", Robot.launcher.getDegrees());
+		SmartDashboard.putNumber("Turret Potentiometer Value:", ai.getValue());
+	//	SmartDashboard.putNumber("Turret Degree value:", Robot.launcher.getDegrees());
 		SmartDashboard.putNumber("Left Arm Potentiometer Value:", Robot.leftArmPot.get());
 		SmartDashboard.putNumber("Right Arm Potentiometer Value:", Robot.rightArmPot.get());
 		
+		/*
 		if((Integer)(oi.test.getSelected()) == 1){
 			new Shoot();
 			try {
@@ -402,7 +395,7 @@ public class Robot extends IterativeRobot {
 			}
 			new IntakeIn();
 		}
-		// Log.info(Robot.oi.getJoy().getPOV(0) + "");
+		*/// Log.info(Robot.oi.getJoy().getPOV(0) + "");
 		// Log.info(tilterLimitSwitch.get() + "");
 		// Log.info(potentiometer.get() + "");
 		// Log.info(launcher.getDegrees()+"");
@@ -435,4 +428,7 @@ public class Robot extends IterativeRobot {
 
 	}
 
+	public double returnDouble(int i) {
+		return i + 0f;
+	}
 }

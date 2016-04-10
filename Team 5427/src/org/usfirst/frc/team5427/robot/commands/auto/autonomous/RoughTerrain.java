@@ -20,9 +20,9 @@ public class RoughTerrain extends Command {
 	@Override
 	protected void execute() {
 		if (getTime() < 1000)
-			Robot.driveTrain.driveJoystick(.07, -.7);
+			Robot.driveTrain.driveJoystick(.02, -.7);
 		else
-			Robot.driveTrain.driveJoystick(.005, -.7);
+			Robot.driveTrain.driveJoystick(.02, -.7);
 	}
 
 	@Override

@@ -5,17 +5,31 @@ import org.usfirst.frc.team5427.robot.Robot;
 import org.usfirst.frc.team5427.robot.util.Config;
 import org.usfirst.frc.team5427.robot.util.Log;
 
-public class ArmSpeedModifier extends Command {
+/**
+ * This class involves controlling systems in the robot using the
+ * joystick's POV HAT switch.
+ */
+public class POVModifier extends Command {
 
 	/**
 	 * Used to prevent the speed to change until axis is 0
 	 */
-	private boolean modifiable = true;
+	private boolean speedModifiable = true;
+
+	/**
+	 * Used to prevent a single command to keep starting when
+	 * execute is called in this class
+	 */
+	private boolean armSyncMoving = false;
+
+	// TODO: Comment
+	private EngageLeftArm leftArm = new EngageLeftArm(true);
+	private EngageRightArm rightArm = new EngageRightArm(true);
 
 	/**
 	 * This is used if the axis used is as listed from the config
 	 */
-	public ArmSpeedModifier() {
+	public POVModifier() {
 	}
 
 	/**
@@ -29,11 +43,11 @@ public class ArmSpeedModifier extends Command {
 	/**
 	 * Returns true once the speed has been modified properly
 	 *
-	 * @return true if command has modifiable, false if otherwise
+	 * @return true if command has speedModifiable, false if otherwise
 	 */
 	@Override
 	protected boolean isFinished() {
-		return modifiable;
+		return false;
 	}
 
 	/**
@@ -50,19 +64,35 @@ public class ArmSpeedModifier extends Command {
 	 */
 	@Override
 	protected void execute() {
+//		L
+//		og.info("Execute POV Modifier");
+		
+		/*if (leftArm.isFinished() || rightArm.isFinished()) {
+			Log.info("Commands are finished");
+			if (Robot.oi.getJoy().getPOV(0) == 0) {
+				Log.info("Moved arms");
+				leftArm.setForward(true);
+				rightArm.setForward(true);
+				leftArm.start();
+				rightArm.start();
+			}
+		}
+*/
 		// Log.info("Executing arm speed");
-		if (modifiable) {
+
+
+		if (speedModifiable) {
 			if (Robot.oi.getJoy().getPOV(0) == 270) {
 				Log.info("Decreasing arm speed");
 				Config.decreaseArmSpeed();
-				modifiable = false;
+				speedModifiable = false;
 			} else if (Robot.oi.getJoy().getPOV(0) == 90) {
 				Log.info("Increasing arm speed");
 				Config.increaseArmSpeed();
-				modifiable = false;
+				speedModifiable = false;
 			}
 		} else if (Robot.oi.getJoy().getPOV(0) == -1) {
-			modifiable = true;
+			speedModifiable = true;
 		}
 	}
 
