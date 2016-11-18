@@ -79,9 +79,9 @@ public class DriveTrain extends Subsystem {
 	 * at which the right side should move (right), the right side plus the left
 	 * side (v), and the right side minus the left side (w).
 	 * 
-	 * @param joyZ
+	 * @param z
 	 *            - Z axis of joystick, positive is to the right
-	 * @param joyY
+	 * @param y
 	 *            - Y axis of joystick, positive is backwards
 	 */
 	public void driveJoystick(double z, double y) {

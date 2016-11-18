@@ -28,9 +28,9 @@ public class EngageLeftArm extends Command {
 	protected void execute() {
 
 		if (forward)
-			Robot.leftArm.setLeftSpeed(-Config.MOVE_SPEED);
+			Robot.leftArm.setLeftSpeed(-Config.moveSpeed);
 		else
-			Robot.leftArm.setLeftSpeed(Config.MOVE_SPEED);
+			Robot.leftArm.setLeftSpeed(Config.moveSpeed);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

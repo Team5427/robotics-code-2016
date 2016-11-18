@@ -170,26 +170,34 @@ public class Config {
 	/**
 	 * The current arm speed of the arms
 	 */
-	public static double MOVE_SPEED = .3;
+	public static double moveSpeed = .3;
 
 	/**
 	 * Increases the speed of the arm based on the interval
 	 */
 	public static void increaseArmSpeed() {
-		MOVE_SPEED += SPEED_INTERVAL;
+		Log.info("Increasing arm speed");
+		
+		moveSpeed += SPEED_INTERVAL;
 
-		if (MOVE_SPEED > MAX_SPEED)
-			MOVE_SPEED = MAX_SPEED;
+		if (moveSpeed > MAX_SPEED)
+			moveSpeed = MAX_SPEED;
+		
+		Log.info("Arm Speed: " + moveSpeed);
 	}
 
 	/**
 	 * Decreases the speed of the arm based on the interval
 	 */
 	public static void decreaseArmSpeed() {
-		MOVE_SPEED -= SPEED_INTERVAL;
+		Log.info("Decreasing arm speed");
+		
+		moveSpeed -= SPEED_INTERVAL;
 
-		if (MOVE_SPEED < MIN_SPEED)
-			MOVE_SPEED = MIN_SPEED;
+		if (moveSpeed < MIN_SPEED)
+			moveSpeed = MIN_SPEED;
+		
+		Log.info("Arm Speed: " + moveSpeed);
 	}
 
 	// public static double getTilt() {
