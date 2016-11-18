@@ -10,6 +10,10 @@ public class RotateTurret extends Command {
 	private double targetDegrees;
 	Config config;
 
+	private static final double TURN_SPEED_HIGH = .8;
+	private static final double TURN_SPEED_MEDIUM = .2;
+	private static final double TURN_SPEED_LOW = .02;
+
 	/**
 	 * set the speed of the motor that rotates the launcher in accordance with
 	 * the joystick twist axis.
@@ -31,35 +35,46 @@ public class RotateTurret extends Command {
 	 */
 	protected void initialize() {
 		Log.init("initialized ProgrammedTurner");
-	
+
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 
 	protected void execute() {
-		
-		if ((Robot.potentiometer.get() <= Config.TURRET_POTENTIOMETER_END_ONE && targetDegrees<= Config.TURRET_POTENTIOMETER_END_ONE)
-				|| (Robot.potentiometer.get() >= Config.TURRET_POTENTIOMETER_END_TWO && targetDegrees >= Config.TURRET_POTENTIOMETER_END_TWO))
-			end();
-		if (getDegrees() - targetDegrees < 0)
-			Robot.launcher.turn(-.2);
-		else if (getDegrees() - targetDegrees > 0)
-			Robot.launcher.turn(.2);
+
+		double currentSpeed = 0;
+
+		System.out.println(getDegrees() + " - " + targetDegrees + " = " + (getDegrees() - targetDegrees));
+
+		if (Math.abs(getDegrees() - targetDegrees) > .05)
+			currentSpeed = TURN_SPEED_HIGH;
+		else if (Math.abs(getDegrees() - targetDegrees) > 40)
+			currentSpeed = TURN_SPEED_MEDIUM;
+		else 
+			currentSpeed = TURN_SPEED_LOW;
+
+		if (getDegrees() - targetDegrees < 2)
+			Robot.launcher.turn(-.4);
+		else if (getDegrees() - targetDegrees > 2)
+			Robot.launcher.turn(.4);
+		else Robot.launcher.stopTurn();;
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if (getDegrees() - targetDegrees == 0) {
+		if (Math.abs(getDegrees() - targetDegrees) < 2) {
 			return true;
-		}
-		if ((Robot.potentiometer.get() <= Config.TURRET_POTENTIOMETER_END_ONE && targetDegrees<= Config.TURRET_POTENTIOMETER_END_ONE)
-				|| (Robot.potentiometer.get() >= Config.TURRET_POTENTIOMETER_END_TWO && targetDegrees >= Config.TURRET_POTENTIOMETER_END_TWO))
+		} else if ((Robot.potentiometer.get() <= Config.TURRET_POTENTIOMETER_END_ONE)
+				|| (Robot.potentiometer.get() >= Config.TURRET_POTENTIOMETER_END_TWO))
 			return true;
 		return false;
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
+		for(int i = 0; i<150; i++){
+			execute();
+		}
 		Robot.launcher.stopTurn();
 	}
 
@@ -71,8 +86,9 @@ public class RotateTurret extends Command {
 
 	protected double getDegrees() {
 		// return Config.getTurn();
-		//TODO set this up with the value in the config, which needs a better name
-		return 267.5-Robot.potentiometer.get();
+		// TODO set this up with the value in the config, which needs a better
+		// name
+		return Config.TURRET_CENTER - Robot.potentiometer.get();
 	}
 
 }

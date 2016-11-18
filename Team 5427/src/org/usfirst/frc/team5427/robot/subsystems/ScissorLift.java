@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class ScissorLift extends Subsystem {
 
 	Relay motorRelay_ScissorLift;
+	//The below limits DO NOT EXIST on the Robot
 	DigitalInput scissorLimitUp, scissorLimitDown;
 
 	/**
@@ -23,6 +24,12 @@ public class ScissorLift extends Subsystem {
 		this.scissorLimitDown = scissorLimitDown;
 
 	}
+	
+	
+	//below is the correct construcot that we should use because we do not have any limit switches
+	/*public ScissorLift(Relay motorRelay_ScissorLift) {
+		this.motorRelay_ScissorLift = motorRelay_ScissorLift;
+	}*/
 
 	@Override
 	protected void initDefaultCommand() {
@@ -43,6 +50,7 @@ public class ScissorLift extends Subsystem {
 	 * @param direction
 	 */
 	public void move(int direction) {
+		/*
 		// Note: (May have to switch the kReverse and kForard if our directions
 		// are messed up...)
 		// Going down
@@ -54,6 +62,22 @@ public class ScissorLift extends Subsystem {
 		else
 			stop();
 
+*/
+		System.out.println("moving the scissorLift");
+		if (direction < 0){
+			motorRelay_ScissorLift.setDirection(Relay.Direction.kReverse);
+			System.out.println("GOING DOWN W/ scissorlift");
+			//motorRelay_ScissorLift.set(Relay.Value.kOn);
+		}
+		// Going up
+		else if (direction > 0){
+			motorRelay_ScissorLift.setDirection(Relay.Direction.kForward);
+			System.out.println("GOING UP W/ scissorlift");
+			//motorRelay_ScissorLift.set(Relay.Value.kOn);
+		}
+		else
+			stop();
+		//the below line of code should probably not exist...but maybe it will be OK
 		motorRelay_ScissorLift.set(Relay.Value.kOn);
 	}
 }

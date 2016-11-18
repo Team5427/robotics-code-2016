@@ -23,15 +23,15 @@ public class ScissorDown extends Command {
 		// if(Robot.oi.getJoy().getButton(button))
 		// Robot.winch.setSpeed(Config.WINCH_SPEED);
 		// latches onto bar
-		Robot.scissorLift.move(-1);
+		Robot.scissorLift.move(1);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
 		if (Robot.oi.getJoy().getRawButton(Config.SCISSORLIFT_DOWN_BUTTON) == false)
 			return true;
-		if (Robot.scissorDownLimitSwitch.get())
-			return true;
+//		if (Robot.scissorDownLimitSwitch.get())
+//			return true;
 
 		return false;
 	}

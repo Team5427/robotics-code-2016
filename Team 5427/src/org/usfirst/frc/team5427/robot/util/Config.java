@@ -22,16 +22,26 @@ public class Config {
 	public static final boolean LOGGING = true; // only logs errors and fatals
 												// with this false
 
+	public static int autoMode = 0;
+
 	// the amount of time AutoGetStuffIn runs
 	public static final double AUTO_INTAKE_TIME = 5;
 
 	// Controls
-	public static final int JOYSTICK_MODE = 0;
-	public static final int ONE_JOYSTICK = 0;
-	public static final int TWO_JOYSTICKS = 1;
+	public static final int ONE_JOYSTICK = 0; // static var for above
+	public static final int TWO_JOYSTICKS = 1; // static var for above
+	public static final int JOYSTICK_MODE = ONE_JOYSTICK; // Set this to either
+															// ONE_JOYSTICK or
+															// TWO_JOYSTICKS
 
 	// Buttons
-
+	
+	
+	//For the central POV thing at the top of the joystick:
+	//East==decreaseArmSpeed; West==IncreaseArmSpeed();
+	//North==WinchOut; South==WinchIn;
+	
+	
 	public static final int INTAKE_IN_BUTTON = 8;
 	public static final int INTAKE_OUT_BUTTON = 7;
 	public static final int TILT_COLLECT_BUTTON = 9;
@@ -65,8 +75,8 @@ public class Config {
 
 	// LIMIT SWITCH PORTS
 	public static final int TILTER_LIMIT_SWITCH = 0;
-	public static final int SCISSOR_LIMIT_UP = 973;
-	public static final int SCISSOR_LIMIT_DOWN = 888;
+	public static final int SCISSOR_LIMIT_UP = 1;
+	public static final int SCISSOR_LIMIT_DOWN = 2;
 
 	// Potentiometer Analog input ports
 	public static final int POTENTIOMETER_ANALOG_INPUT = 0;
@@ -85,13 +95,13 @@ public class Config {
 	public static final double TURRET_POTENTIOMETER_SCALE = 369.2307692307692;
 	// WHY::large turret gear has 234 teeth, and the small gear for the
 	// potentiometer
-	// has 24 teeth. 234/24= 9.75 rotations for 360 degrees. THerefore, the
+	// has 24 teeth. 234/24= 9.75 rotations for 360 degrees. Therefore, the
 	// potentiometer's 10 rotations is equal to 369.231 degrees {360*10/9.75}
 
 	// Potentiometers' Degree references
 	// Soft stop values of Potentiometers
-	public static final double TURRET_POTENTIOMETER_END_ONE = 220;
-	public static final double TURRET_POTENTIOMETER_END_TWO = 313;
+	public static final double TURRET_POTENTIOMETER_END_ONE = 174;
+	public static final double TURRET_POTENTIOMETER_END_TWO = 360;
 	// MIN = 127
 	// TODO figure out what MIN=127 means...
 	public static final double RIGHT_ARM_MAX_STARTING_POSITION = 0;
@@ -102,19 +112,21 @@ public class Config {
 	public static final double LEFT_ARM_MAX_ENDING_POSITION = 180;
 	public static final double LEFT_ARM_MARGIN = .1;// Margin of error
 	// Center of the Turret
-	public static final double TURRET_CENTER = 267.5;
+	public static final double TURRET_CENTER = .052;
 	public static final double TURRET_CENTER_DEGREES_RANGE = 6;
 
 	// Timeouts for the different types of tilts
-	public static final double TILT_COLLECT_TIMEOUT = 6;
+	public static final double TILT_COLLECT_TIMEOUT = 4.5;
 	public static final double TILT_LOW_BAR_TIMEOUT = 3;
+	public static final double TILT_MAX_TURRET_ANGLE = 6; // TODO implement
 
 	// CONTROLLER PORTS
 	public static final int JOYSTICK_PORT = 0;
 	public static final int ALT_JOYSTICK_PORT = 0;
 
 	// Speeds for the different things that the robot needs to do
-	public static final double LAUNCH_SPEED = -1; //Controlled by grip
+	public static final boolean ENABLE_GRIP_SHOOT = false;
+	public static final double LAUNCH_SPEED = -1; // Controlled by grip
 	public static final double WINCH_SPEED = 0.5;
 
 	// DoorOpeners positions to be referenced in their respective automatic
@@ -135,18 +147,14 @@ public class Config {
 	// stores the speed, in meters per second, that the Robot travels at full
 	// speed
 	// TODO time these values
-	// TODO use feet, nobody uses meters.... //TODO please don't use feet... smart ppl use meters.
+	// TODO use feet, nobody uses meters.... //TODO please don't use feet...
+	// smart ppl use meters.
 	public static final int FULL_SPEED_FORWARD = 1;
 	public static final int FULL_SPEED_BACKWARD = 1;
 	public static final int FULL_TURN_SPEED_RIGHT = 1;
 	public static final int FULL_TURN_SPEED_LEFT = 1;
 
 	// Variables involving the speed of the robot's arms
-	/**
-	 * The axis on the joystick that will be used to increase or decrease the
-	 * speed of the robot's arms
-	 */
-	public static final int ARM_AXIS = 5;
 	/**
 	 * Max speed of the arm to move
 	 */
@@ -162,26 +170,34 @@ public class Config {
 	/**
 	 * The current arm speed of the arms
 	 */
-	public static double MOVE_SPEED = .3;
+	public static double moveSpeed = .3;
 
 	/**
 	 * Increases the speed of the arm based on the interval
 	 */
 	public static void increaseArmSpeed() {
-		MOVE_SPEED += SPEED_INTERVAL;
+		Log.info("Increasing arm speed");
+		
+		moveSpeed += SPEED_INTERVAL;
 
-		if (MOVE_SPEED > MAX_SPEED)
-			MOVE_SPEED = MAX_SPEED;
+		if (moveSpeed > MAX_SPEED)
+			moveSpeed = MAX_SPEED;
+		
+		Log.info("Arm Speed: " + moveSpeed);
 	}
 
 	/**
 	 * Decreases the speed of the arm based on the interval
 	 */
 	public static void decreaseArmSpeed() {
-		MOVE_SPEED -= SPEED_INTERVAL;
+		Log.info("Decreasing arm speed");
+		
+		moveSpeed -= SPEED_INTERVAL;
 
-		if (MOVE_SPEED < MIN_SPEED)
-			MOVE_SPEED = MIN_SPEED;
+		if (moveSpeed < MIN_SPEED)
+			moveSpeed = MIN_SPEED;
+		
+		Log.info("Arm Speed: " + moveSpeed);
 	}
 
 	// public static double getTilt() {
@@ -194,6 +210,20 @@ public class Config {
 
 		return Robot.potentiometer.get();
 	}
+
+	/**
+	 * Time for the flywheels to spin up in nanoseconds
+	 *
+	 * To change the time, change the value after the '*'. This number is the
+	 * time in seconds. The seconds will be converted automatically to
+	 * nanoseconds (1000000000L).
+	 *
+	 * NOTE: The L in 1000000000L indicates that the value is a long type.
+	 * Without it, java will continue to assume that the value is an int,
+	 * causing the int type to run out of values if the product between the two
+	 * numbers is too large.
+	 */
+	public static final double SPIN_UP_TIME = 1000000000L * .7;
 
 	// Client
 	/**

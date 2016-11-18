@@ -20,7 +20,6 @@ public class RightArm extends Subsystem {
 	/**
 	 * DoorOpener constructor -- as parameters takes each motor to initialise.
 	 * 
-	 * @param motorPWM_LeftArm
 	 * @param motorPWM_RightArm
 	 */
 	public RightArm(SpeedController motorPWM_RightArm) {

@@ -28,22 +28,24 @@ public class EngageLeftArm extends Command {
 	protected void execute() {
 
 		if (forward)
-			Robot.leftArm.setLeftSpeed(-Config.MOVE_SPEED);
+			Robot.leftArm.setLeftSpeed(-Config.moveSpeed);
 		else
-			Robot.leftArm.setLeftSpeed(Config.MOVE_SPEED);
+			Robot.leftArm.setLeftSpeed(Config.moveSpeed);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
 		// If button not pressed, returns true and command stops running
 		// else returns true and command continues to run
-		if (forward && Robot.oi.getJoy().getRawButton(Config.LEFT_FRONT_ARM_BUTTON) == false)
+		if (forward && Robot.oi.getJoy().getRawButton(Config.LEFT_FRONT_ARM_BUTTON) == false
+				&& Robot.oi.getJoy().getPOV(0) != 0)
 			return true;
-		if (forward == false && Robot.oi.getJoy().getRawButton(Config.LEFT_BACK_ARM_BUTTON) == false)
+		if (forward == false && Robot.oi.getJoy().getRawButton(Config.LEFT_BACK_ARM_BUTTON) == false
+				&& Robot.oi.getJoy().getPOV(0) != 180)
 			return true;
 		
-		if(!forward && Robot.leftArmPot.get() > 190)
-			return true;
+//		if(!forward && Robot.leftArmPot.get() > 195)
+//			return true;
 		/*
 		if (Robot.leftArmPot.get() + Config.LEFT_ARM_MARGIN_TO_SHUT_DOWN >= Config.LEFT_ARM_MAX_ENDING_POSITION)
 			return true;
@@ -62,5 +64,13 @@ public class EngageLeftArm extends Command {
 	// subsystems is scheduled to run
 	protected void interrupted() {
 		end();
+	}
+
+	/**
+	 * Sets the direction the arm moves
+	 * @param forward the direction the arm moves
+     */
+	public void setForward(boolean forward) {
+		this.forward = forward;
 	}
 }

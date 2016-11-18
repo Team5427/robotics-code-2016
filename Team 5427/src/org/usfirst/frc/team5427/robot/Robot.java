@@ -3,19 +3,17 @@ package org.usfirst.frc.team5427.robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-import org.usfirst.frc.team5427.robot.commands.SmartDashboardStuff;
-import org.usfirst.frc.team5427.robot.commands.Test;
-import org.usfirst.frc.team5427.robot.commands.auto.AutoDrive;
-import org.usfirst.frc.team5427.robot.commands.auto.AutoObstacle;
-import org.usfirst.frc.team5427.robot.commands.auto.AutoTurn;
+import org.usfirst.frc.team5427.robot.commands.auto.autonomous.Lowbar;
+import org.usfirst.frc.team5427.robot.commands.auto.autonomous.Moat;
+import org.usfirst.frc.team5427.robot.commands.auto.autonomous.Ramparts;
+import org.usfirst.frc.team5427.robot.commands.auto.autonomous.Rockwall;
+import org.usfirst.frc.team5427.robot.commands.auto.autonomous.RoughTerrain;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.*;
 import org.usfirst.frc.team5427.robot.network.Client;
-import org.usfirst.frc.team5427.robot.network.StringDictionary;
 import org.usfirst.frc.team5427.robot.subsystems.Intake;
 import org.usfirst.frc.team5427.robot.subsystems.LeftArm;
 import org.usfirst.frc.team5427.robot.subsystems.RightArm;
 import org.usfirst.frc.team5427.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team5427.robot.subsystems.Intake;
 import org.usfirst.frc.team5427.robot.subsystems.Launcher;
 import org.usfirst.frc.team5427.robot.subsystems.ScissorLift;
 import org.usfirst.frc.team5427.robot.subsystems.Winch;
@@ -25,8 +23,6 @@ import org.usfirst.frc.team5427.robot.util.Log;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.DigitalOutput;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -153,7 +149,9 @@ public class Robot extends IterativeRobot {
 
 	Drive drive;
 
-	ArmSpeedModifier armSpeedModifier;
+	POVModifier POVModifier;
+
+	public Client c;
 
 	// new intake system
 	// public static GetStuffIn getStuff;
@@ -187,6 +185,7 @@ public class Robot extends IterativeRobot {
 	public static AnalogInput leftPotPort, rightPotPort;
 
 	SendableChooser chooser;
+
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -197,9 +196,9 @@ public class Robot extends IterativeRobot {
 
 		try {
 			Log.init("Initializing connection to the driver station...");
-			new Client();
-			Client.start();
-			if (Client.isConnected())
+			c = new Client();
+			c.start();
+			if (c.isConnected())
 				Log.init("Connection successfully established with the driver station.");
 			else
 				Log.init("Connection failed to establish. Client will continue to connect with the driver station.");
@@ -211,10 +210,10 @@ public class Robot extends IterativeRobot {
 		tilterLimitSwitch = new DigitalInput(Config.TILTER_LIMIT_SWITCH);
 		Log.init("TilterLimitSwitch initialized!");
 
-		motorPWM_RearRight = new SteelTalon(Config.REAR_RIGHT_MOTOR);
-		motorPWM_FrontRight = new SteelTalon(Config.FRONT_RIGHT_MOTOR);
-		motorPWM_RearLeft = new SteelTalon(Config.REAR_LEFT_MOTOR);
-		motorPWM_FrontLeft = new SteelTalon(Config.FRONT_LEFT_MOTOR);
+		motorPWM_RearRight = new SteelTalon(Config.REAR_RIGHT_MOTOR, 0, 0);
+		motorPWM_FrontRight = new SteelTalon(Config.FRONT_RIGHT_MOTOR, 0, 0);
+		motorPWM_RearLeft = new SteelTalon(Config.REAR_LEFT_MOTOR, 0, 0);
+		motorPWM_FrontLeft = new SteelTalon(Config.FRONT_LEFT_MOTOR, 0, 0);
 		driveTrain = new DriveTrain(motorPWM_FrontLeft, motorPWM_RearLeft, motorPWM_FrontRight, motorPWM_RearRight);
 		Log.init("driveTrain initialized!");
 
@@ -228,10 +227,10 @@ public class Robot extends IterativeRobot {
 		launcher = new Launcher(motorPWM_Flywheel, motorPWM_RotateTurret, motorRelay_TiltTurret);
 		Log.init("launcher initialized!");
 
-		motorPWM_WinchOne = new SteelTalon(Config.WINCH_ONE_MOTOR);
-		motorPWM_WinchTwo = new SteelTalon(Config.WINCH_TWO_MOTOR);
-		winch = new Winch(motorPWM_WinchOne, motorPWM_WinchTwo);
-		Log.init("winch initialized!");
+//		motorPWM_WinchOne = new SteelTalon(Config.WINCH_ONE_MOTOR);
+//		motorPWM_WinchTwo = new SteelTalon(Config.WINCH_TWO_MOTOR);
+//		winch = new Winch(motorPWM_WinchOne, motorPWM_WinchTwo);
+//		Log.init("winch initialized!");
 
 		motorPWM_LeftArm = new SteelTalon(Config.LEFT_ARM_MOTOR);
 		motorPWM_RightArm = new SteelTalon(Config.RIGHT_ARM_MOTOR);
@@ -239,12 +238,11 @@ public class Robot extends IterativeRobot {
 		rightArm = new RightArm(motorPWM_RightArm);
 		Log.init("Arms initialized!");
 
-		// motorRelay_ScissorLift = new Relay(Config.SCISSOR_MOTOR);
-		// scissorUpLimitSwitch = new DigitalInput(Config.SCISSOR_LIMIT_UP);
-		// scissorDownLimitSwitch = new DigitalInput(Config.SCISSOR_LIMIT_DOWN);
-		// scissorLift = new ScissorLift(motorRelay_ScissorLift,
-		// scissorUpLimitSwitch, scissorDownLimitSwitch);
-		Log.init("scissorLift initialized!");
+//		motorRelay_ScissorLift = new Relay(Config.SCISSOR_MOTOR);
+//		scissorUpLimitSwitch = new DigitalInput(Config.SCISSOR_LIMIT_UP);
+//		scissorDownLimitSwitch = new DigitalInput(Config.SCISSOR_LIMIT_DOWN);
+//		scissorLift = new ScissorLift(motorRelay_ScissorLift, scissorUpLimitSwitch, scissorDownLimitSwitch);
+//		Log.init("scissorLift initialized!");
 
 		Log.init("Resetting Potentiometers...");
 		resetPotentiometers();
@@ -258,12 +256,11 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto mode", chooser);
 		Log.init("Interface loaded!...");
 
-		//Log.init("Robot initializing SmartDashboard...");
-		//new SmartDashboardStuff();
-		
+		// Log.init("Robot initializing SmartDashboard...");
+		// new SmartDashboardStuff();
+
 		Log.init("Robot initializing operator interface...");
 		oi = new OI();
-		
 
 		Log.init("All systems ready!");
 
@@ -303,8 +300,8 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		Log.info("Autonomous Start!~");
 
-		if (Client.isConnected())
-			Client.send(StringDictionary.AUTO_START);
+		// if (Client.isConnected())
+		// Client.send(StringDictionary.AUTO_START);
 
 		turnDegrees = 0;
 		tiltDegrees = 0;
@@ -314,28 +311,37 @@ public class Robot extends IterativeRobot {
 		boolean forward = true, right = true, forwardObs = true;
 
 		Command autonomousCommand = null;
-		// autonomousCommand = (Command) chooser.getSelected();
 
-		// AutoLocateGoal autoLocateGoal = new AutoLocateGoal();
-		// autoLocateGoal.start();
-		// AutoDrive autoDrive=new AutoDrive(distance, forward);
-		// autoDrive.start();
-		// AutoObstacle autoObstacle=new AutoObstacle(forwardObs);
-		// autoObstacle.start();
-		// AutoTurn autoTurn=new AutoTurn(turnDegrees, right);
-		// autoTurn.start();
-		// autonomousCommand = (Command) chooser.getSelected();
+		// RoughTerrain r = new RoughTerrain();
+		// r.start();
+		// new RoughTerrain().start();
 
-		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector",
-		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-		 * = new MyAutoCommand(); break; case "Default Auto": default:
-		 * autonomousCommand = new ExampleCommand(); break; }
-		 */
+		// ((Command) oi.autoChooser.getSelected()).start();
 
-		// schedule the autonomous command (example)
-		if (autonomousCommand != null)
-			autonomousCommand.start();
+		switch ((Integer) oi.autoChooser.getSelected()) {
+		case 1:
+			new Moat().start();
+			break;
+		case 2:
+			new RoughTerrain().start();
+			break;
+		case 3:
+			new Rockwall().start();
+			break;
+		case 4:
+			new Ramparts().start();
+			break;
+		case 5:
+			new Lowbar().start();
+			break;
+		case 6:
+
+			break;
+		default:
+			break;
+
+		}
+
 	}
 
 	/**
@@ -348,15 +354,17 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 
 		Log.info("Teleop Start!~");
-
-		if (Client.isConnected())
-			Client.send(StringDictionary.TELEOP_START);
+		
+		//SmartDashboard.putData("Test", new Test());
+		
+		// if (Client.isConnected())
+		// Client.send(StringDictionary.TELEOP_START);
 
 		drive = new Drive();
 		drive.start();
 
-		armSpeedModifier = new ArmSpeedModifier();
-		armSpeedModifier.start();
+		POVModifier = new POVModifier();
+		POVModifier.start();
 
 		// if(oi.getJoy().getX()!=0)
 
@@ -372,8 +380,29 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+
+		SmartDashboard.putNumber("Turret Potentiometer Value:", ai.getValue());
+	//	SmartDashboard.putNumber("Turret Degree value:", Robot.launcher.getDegrees());
+		SmartDashboard.putNumber("Left Arm Potentiometer Value:", Robot.leftArmPot.get());
+		SmartDashboard.putNumber("Right Arm Potentiometer Value:", Robot.rightArmPot.get());
+		
+		/*
+		if((Integer)(oi.test.getSelected()) == 1){
+			new Shoot();
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			new IntakeIn();
+		}
+		*/// Log.info(Robot.oi.getJoy().getPOV(0) + "");
+		// Log.info(tilterLimitSwitch.get() + "");
 		// Log.info(potentiometer.get() + "");
-		//Log.info("LEFT ARM " + leftArmPot.get() + "");
+		// Log.info(launcher.getDegrees()+"");
+		// Log.info("LEFT ARM " + leftArmPot.get() + "");
+		// Log.info(launcher.getDegrees()+"");
 		// Log.info("RIGHT ARM "+ rightArmPot.get()+"");
 		// Log.info("limit switch "+tilterLimitSwitch.get() + "\n");
 		try {
@@ -393,8 +422,8 @@ public class Robot extends IterativeRobot {
 
 	public static void resetPotentiometers() {
 		ai = new AnalogInput(Config.POTENTIOMETER_ANALOG_INPUT);
-		potentiometer = new AnalogPotentiometer(ai, Config.TURRET_POTENTIOMETER_SCALE,
-				Config.TURRET_POTENTIOMETER_OFFSET);
+		potentiometer = new AnalogPotentiometer(ai);
+		//or maybe this is better new AnalogPotentiometer(ai, Config.TURRET_POTENTIOMETER_SCALE, Config.TURRET_POTENTIOMETER_OFFSET);
 		leftPotPort = new AnalogInput(Config.LEFT_POT_PORT);
 		leftArmPot = new AnalogPotentiometer(leftPotPort, Config.LEFT_POT_SCALE, Config.LEFT_POT_OFFSET);
 		rightPotPort = new AnalogInput(Config.RIGHT_POT_PORT);
@@ -402,4 +431,7 @@ public class Robot extends IterativeRobot {
 
 	}
 
+	public double returnDouble(int i) {
+		return i + 0f;
+	}
 }
